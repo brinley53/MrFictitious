@@ -57,6 +57,11 @@ func reduce_player_health(damage):
 		queue_free()
 
 
+#Attacks enemies when entering the attack area
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.name != "Player":
+		body.reduce_enemy_health(1)
+
 
 #USEFUL FOR LATER WHEN IMPLEMENTING GUNS. DO NOT DELETE
 #func start_attack(direction):
