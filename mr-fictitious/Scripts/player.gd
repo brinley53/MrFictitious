@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #Player Area for attacks
 @onready var attack_area = $AttackArea
-const Speed = 300.0
+const SPEED = 300.0
 
 func _process(delta):
 	move_character(delta)
@@ -22,7 +22,7 @@ func move_character(delta):
 	if direction.length() > 0:
 		direction = direction.normalized()
 	
-	velocity = direction * Speed
+	velocity = direction * SPEED
 	move_and_slide()
 
 	# Get the input direction and handle the movement/deceleration.
