@@ -4,6 +4,9 @@ Authors: Brinley Hull [add your name as you work on it]
 Creation Date: 3/27/2025
 Revisions:
 	[format: date - name, what you revised]
+	Tej Gumaste - 3/27/2025:
+	- Added item generation for generic item(sprite coin) and key item(godot sprite)
+	- Added rudimentary logic to ensure spawned objects don't completely overlap
 """
 
 extends Node2D
@@ -14,12 +17,7 @@ extends Node2D
 @export var key_item:PackedScene
 @export var num_generic_item:int = 5
 @export var num_key_item:int = 3
-'''
-Tej Gumaste - 3/27/2025:
-	- Added item generation for generic item(sprite coin) and key item(godot sprite)
-	- Added rudimentary logic to ensure spawned objects don't completely overlap
-	
-'''
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
