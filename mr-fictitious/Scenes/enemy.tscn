@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6rvfvsgrtsg6"]
+[gd_scene load_steps=3 format=3 uid="uid://jigu4v6vbtsk"]
 
-[ext_resource type="Texture2D" uid="uid://dae585xejk3qj" path="res://images/jvW6h7.png" id="2_k6nxk"]
+[ext_resource type="Texture2D" uid="uid://dae585xejk3qj" path="res://images/jvW6h7.png" id="1_vd83c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bkmaf"]
 
@@ -12,4 +12,4 @@ shape = SubResource("CircleShape2D_bkmaf")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, -1)
 scale = Vector2(0.178674, 0.190202)
-texture = ExtResource("2_k6nxk")
+texture = ExtResource("1_vd83c")

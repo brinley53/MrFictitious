@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv3l717okj3g4"]
+
+[ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_umi28"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_umi28")
