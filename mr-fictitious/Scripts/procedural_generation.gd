@@ -1,3 +1,11 @@
+"""
+File to control procedural generation for items, rooms, enemies, etc.
+Authors: Brinley Hull [add your name as you work on it]
+Creation Date: 3/27/2025
+Revisions:
+	[format: date - name, what you revised]
+"""
+
 extends Node2D
 
 @export var enemy_scene: PackedScene
