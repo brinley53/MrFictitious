@@ -12,7 +12,7 @@ size = Vector2(20.5, 16)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_qm5xk")
 
-[node name="PlayerCollition" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_jal5q")
 
