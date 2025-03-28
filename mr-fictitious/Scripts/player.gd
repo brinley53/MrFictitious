@@ -1,10 +1,10 @@
-###
-	#Player Script
-# Script focused on the player, it has it's movement, attacks, and taking damage
-#Creation Date: 03/27/2025
-	#Revisions# 
-# Jose Leyba -- 03/27/2025 -- Creation of player.gd
-###
+"""
+Script focused on the player, it has it's movement, attacks, and taking damage
+Authors: Jose Leyba
+Creation Date: 3/27/2025
+Revisions:
+	[format: date - name, what you revised]
+"""
 extends CharacterBody2D
 
 #CONSTANTS
