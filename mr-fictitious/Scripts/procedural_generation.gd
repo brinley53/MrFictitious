@@ -1,12 +1,12 @@
 """
 File to control procedural generation for items, rooms, enemies, etc.
-Authors: Brinley Hull [add your name as you work on it]
+Authors: Brinley Hull, Tej Gumaste
 Creation Date: 3/27/2025
 Revisions:
-	[format: date - name, what you revised]
 	Tej Gumaste - 3/27/2025:
 	- Added item generation for generic item(sprite coin) and key item(godot sprite)
 	- Added rudimentary logic to ensure spawned objects don't completely overlap
+	Brinley Hull - 3/30/2025: commented out enemy procedural generation (for now)
 """
 
 extends Node2D
@@ -22,7 +22,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Generate all items, enemies, rooms, etc here
-	generate_objects(enemy_scene,3)
+	#generate_objects(enemy_scene,3)
 	generate_objects(generic_item,num_generic_item)
 	generate_objects(key_item,num_key_item)
 
