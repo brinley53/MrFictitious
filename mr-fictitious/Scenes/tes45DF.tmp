@@ -361,11 +361,10 @@ tile_set = SubResource("TileSet_x3r61")
 [node name="Player" parent="." instance=ExtResource("6_l1h62")]
 position = Vector2(113, 112)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("point_a", "point_b", "player") instance=ExtResource("2_hmu8s")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("2_hmu8s")]
 position = Vector2(630, 454)
 point_a = NodePath("../PatrolA")
 point_b = NodePath("../PatrolB")
-player = NodePath("../Player")
 
 [node name="PatrolA" parent="." instance=ExtResource("5_yf2qe")]
 position = Vector2(1230, 370)

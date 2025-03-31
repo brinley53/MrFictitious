@@ -27,4 +27,11 @@ texture = ExtResource("1_vd83c")
 position = Vector2(-1.5, -1)
 shape = SubResource("RectangleShape2D_xb3p1")
 
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
+polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
