@@ -3,7 +3,7 @@ Script focused on the player, it has it's movement, attacks, and taking damage
 Authors: Jose Leyba
 Creation Date: 03/27/2025
 Revisions:
-	[format: date - name, what you revised]
+	Brinley Hull - 4/2/2025: animation
 """
 extends CharacterBody2D
 
@@ -15,6 +15,7 @@ var attack_radius = 20
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
+@onready var sprite = $AnimatedSprite2D
 
 #Every frame call the move_character function, calls the attack function when pressing left click
 func _process(delta):
@@ -25,17 +26,25 @@ func _process(delta):
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(delta):
 	var direction = Vector2.ZERO
+	var animation = "stand_down" #default standing animation
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
+		animation = "walk_up"
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
+		animation = "walk_down"
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
+		animation = "walk_left"
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
+		animation = "walk_right"
 	
 	if direction.length() > 0:
 		direction = direction.normalized()
+	
+	if (sprite.animation != animation):
+		sprite.play(animation)
 	
 	velocity = direction * SPEED
 	move_and_slide()

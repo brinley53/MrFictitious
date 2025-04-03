@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://ci2exwd0rrftm"]
+[gd_scene load_steps=11 format=4 uid="uid://ci2exwd0rrftm"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="1_fjeel"]
 [ext_resource type="Script" path="res://Scripts/room.gd" id="1_ke32c"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_gcyfj"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/enemy.tscn" id="4_rg4uh"]
+[ext_resource type="PackedScene" uid="uid://77ecksixfpeo" path="res://Scenes/player.tscn" id="5_3jjuc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gon6r"]
 texture = ExtResource("1_fjeel")
@@ -23,6 +25,8 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_b3cbj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66hv2"]
+
 [node name="Room2" type="Node2D"]
 script = ExtResource("1_ke32c")
 
@@ -33,3 +37,42 @@ tile_set = SubResource("TileSet_151t3")
 [node name="CollisionLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAMABAAAQAAAAAAAAALABAAAQAAAAAAAAAKABAAAQAAAAAAAAAJABAAAQAAAAAAAAAIABAAAQAAAAAAAAAHABAAAQAAAAAAAAAGABAAAQAAAAAAAAAFABAAAQAAAAAAAAAEABAAAQAAAAAAAAADABAAAQAAAAAAAAACABAAAQAAAAAAAAABABAAAQAAAAAAAAAAABAAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAwAAQAAAAAAAAAAAA0AAQAAAAAAAAAAAA4AAQAAAAAAAAAAAA8AAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAdAAYAAQAAAAAAAAAdAAUAAQAAAAAAAAAdAAQAAQAAAAAAAAAdAAMAAQAAAAAAAAAdAAIAAQAAAAAAAAAdAAEAAQAAAAAAAAAdAAoAAQAAAAAAAAAdAAsAAQAAAAAAAAAdAAwAAQAAAAAAAAAdAA0AAQAAAAAAAAAdAA4AAQAAAAAAAAAdAA8AAQAAAAAAAAAdABAAAQAAAAAAAAASABAAAQAAAAAAAAATABAAAQAAAAAAAAAUABAAAQAAAAAAAAAVABAAAQAAAAAAAAAWABAAAQAAAAAAAAAXABAAAQAAAAAAAAAYABAAAQAAAAAAAAAZABAAAQAAAAAAAAAaABAAAQAAAAAAAAAbABAAAQAAAAAAAAAcABAAAQAAAAAAAAARABAAAQAAAAAAAAARAAAAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_2epqt")
+
+[node name="Enemy1_PatrolA" type="Area2D" parent="."]
+position = Vector2(1880, 217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolA"]
+shape = SubResource("RectangleShape2D_66hv2")
+
+[node name="Enemy1_PatrolB" type="Area2D" parent="."]
+position = Vector2(30, 217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolB"]
+shape = SubResource("RectangleShape2D_66hv2")
+
+[node name="Enemy1" parent="." node_paths=PackedStringArray("point_a", "point_b", "player") instance=ExtResource("4_rg4uh")]
+position = Vector2(282, 217)
+point_a = NodePath("../Enemy1_PatrolA")
+point_b = NodePath("../Enemy1_PatrolB")
+player = NodePath("../Player")
+
+[node name="Enemy2_PatrolA" type="Area2D" parent="."]
+position = Vector2(1880, 862)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2_PatrolA"]
+shape = SubResource("RectangleShape2D_66hv2")
+
+[node name="Enemy2_PatrolB" type="Area2D" parent="."]
+position = Vector2(32, 872)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2_PatrolB"]
+shape = SubResource("RectangleShape2D_66hv2")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("point_a", "point_b", "player") instance=ExtResource("4_rg4uh")]
+position = Vector2(1446, 872)
+point_a = NodePath("../Enemy2_PatrolA")
+point_b = NodePath("../Enemy2_PatrolB")
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("5_3jjuc")]
+position = Vector2(975, 501)
