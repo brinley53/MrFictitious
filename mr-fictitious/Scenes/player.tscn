@@ -1,11 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://77ecksixfpeo"]
+[gd_scene load_steps=40 format=3 uid="uid://77ecksixfpeo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qm5xk"]
 [ext_resource type="Texture2D" uid="uid://cd7cadxdqtk11" path="res://images/player_standing.png" id="2_s7im1"]
 [ext_resource type="Texture2D" uid="uid://g8ilidvw47ws" path="res://images/player_walk.png" id="2_xcs7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jal5q"]
-size = Vector2(24, 44)
+size = Vector2(30, 109)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81x5b"]
 atlas = ExtResource("2_s7im1")
@@ -288,25 +288,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx8cm"]
-size = Vector2(31, 8.5)
-
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qm5xk")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(-3, -6.5)
 shape = SubResource("RectangleShape2D_jal5q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6qceo")
-animation = &"stand_up"
+animation = &"stand_down"
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(12.75, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-7.25, -0.75)
-shape = SubResource("RectangleShape2D_vx8cm")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackArea"]
+position = Vector2(-12.75, -10)
+scale = Vector2(0.821429, 0.671875)
+polygon = PackedVector2Array(70, 10, 70, -10, 60, -30, 35, -60, 0, 0, 35, 60, 60, 30)
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
