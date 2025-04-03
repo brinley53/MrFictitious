@@ -77,7 +77,7 @@ func generate_rooms() -> void:
 		# There can only be a maximum of three NEW attachments because all
 		# rooms will have a previous link (the anchor is linked to whatever
 		# scene brought us to this area).
-		var attachments:int = random.randi_range(0, Room.PathDirection.COUNT - 2)
+		var attachments:int = random.randi_range(1, Room.PathDirection.COUNT - 2)
 		for i in attachments:
 			# Break if we attempt to make more attachments
 			# than we have unattached rooms.
@@ -89,7 +89,7 @@ func generate_rooms() -> void:
 				# Find an random, open direction to link on.
 				# Consider this fully optimized. There is nothing faster than
 				# a while loop that breaks on a random condition.
-				direction = random.randi_range(0, Room.PathDirection.COUNT - 1)
+				direction = random.randi_range(0, Room.PathDirection.COUNT - 1) as Room.PathDirection
 				if instances[source].is_path_available(direction):
 					break
 
@@ -109,7 +109,10 @@ func generate_rooms() -> void:
 			unexplored.append(destination)
 
 		# The source is now explored.
-		unexplored.remove_at(source)
+		unexplored.remove_at(explore)
+
+	for instance in instances:
+		instance.set_edges()
 
 func generate_objects(objectScene:PackedScene,count:int):
 	# Function to procedurally generate enemies in the scene
