@@ -99,7 +99,7 @@ func shoot_projectile():
 func reduce_player_health(damage):
 	health = health - damage
 	if health <= 0:
-		queue_free()
+		queue_free()	
 
 
 #Attacks enemies when entering the attack area
@@ -115,8 +115,8 @@ func _on_attack_timer_timeout():
 	attack_area.monitorable = true
 	
 #Adds bullet back to the player	
-func add_bullet(amount = 1):
-	bullets += amount
+func add_bullet():
+	bullets += 1
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
