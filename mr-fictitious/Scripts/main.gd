@@ -1,10 +1,11 @@
 extends Node
 
-#const ProceduralGeneration = preload("res://Scripts/procedural_generation.gd")
+#const RoomManager = preload("res://Scripts/room_manager.gd")
 #
 #func _ready():
-	#var generator = ProceduralGeneration.new()
-	#add_child(generator)
+	#var room_manager = RoomManager.new()
+	#add_child(room_manager)
+	#room_manager.generate_rooms()
 
 const TEST_AREA = preload("res://Scenes/test_area.tscn")
 
