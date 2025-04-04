@@ -27,7 +27,7 @@ var can_attack = true
 @onready var collision_shape = $PlayerCollision
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_timer = $AttackTimer
-
+@onready var bulletResource = preload("res://Resources/bullet.tres")
 #EXPORT VARIABLES
 @export var inventory:Inventory;
 
@@ -36,6 +36,8 @@ func _ready():
 	attack_area.visible = false
 	attack_area.monitoring = false 
 	attack_area.monitorable = false
+	for i in range(bullets):
+		collectItem(bulletResource)
 
 
 #Every frame call the move_character function, calls the attack function when pressing left click
@@ -124,6 +126,8 @@ func add_bullet():
 	
 func collectItem(item:InventoryItem):
 	return inventory.insert(item)
+
+
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
