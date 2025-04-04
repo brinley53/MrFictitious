@@ -1,17 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx3j73gvr5miy"]
+[gd_scene load_steps=5 format=3 uid="uid://cx3j73gvr5miy"]
 
-[ext_resource type="Texture2D" uid="uid://clo0uetylsacs" path="res://images/icon.svg" id="1_lxj4o"]
-[ext_resource type="Script" path="res://Scripts/key_item.gd" id="1_ovmnv"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_ovmnv"]
+[ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/bullet.tres" id="2_5ih6u"]
+[ext_resource type="Texture2D" uid="uid://7hc3kmmjmca1" path="res://images/anmo sprite bigger.png" id="2_j3a5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i0dm"]
 size = Vector2(120, 121)
 
-[node name="KeyItem" type="Area2D"]
+[node name="bullet" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ovmnv")
+drop_item = ExtResource("2_5ih6u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_lxj4o")
+scale = Vector2(2, 2)
+texture = ExtResource("2_j3a5f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://77ecksixfpeo"]
+[gd_scene load_steps=41 format=3 uid="uid://77ecksixfpeo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qm5xk"]
+[ext_resource type="Resource" uid="uid://bwokjx3lenypg" path="res://Resources/inventory.tres" id="2_dulbo"]
 [ext_resource type="Texture2D" uid="uid://cd7cadxdqtk11" path="res://images/player_standing.png" id="2_s7im1"]
 [ext_resource type="Texture2D" uid="uid://g8ilidvw47ws" path="res://images/player_walk.png" id="2_xcs7w"]
 
@@ -290,6 +291,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qm5xk")
+inventory = ExtResource("2_dulbo")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -6.5)
