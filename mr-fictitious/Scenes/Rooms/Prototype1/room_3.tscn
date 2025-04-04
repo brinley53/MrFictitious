@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://w5iipa6f26qe"]
+[gd_scene load_steps=10 format=4 uid="uid://w5iipa6f26qe"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_x6qd7"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_78a1c"]
-[ext_resource type="PackedScene" uid="uid://77ecksixfpeo" path="res://Scenes/player.tscn" id="3_hlol8"]
-[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/wolf_enemy.tscn" id="4_54roa"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/enemy.tscn" id="4_54roa"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="5_f0rjg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yvdsy"]
@@ -38,9 +37,6 @@ tile_set = SubResource("TileSet_bmlop")
 tile_map_data = PackedByteArray("AAAMABAAAQAAAAAAAAALABAAAQAAAAAAAAAKABAAAQAAAAAAAAAJABAAAQAAAAAAAAAIABAAAQAAAAAAAAAHABAAAQAAAAAAAAAGABAAAQAAAAAAAAAFABAAAQAAAAAAAAAEABAAAQAAAAAAAAADABAAAQAAAAAAAAACABAAAQAAAAAAAAABABAAAQAAAAAAAAAAABAAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAwAAQAAAAAAAAAAAA0AAQAAAAAAAAAAAA4AAQAAAAAAAAAAAA8AAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAdAAYAAQAAAAAAAAAdAAUAAQAAAAAAAAAdAAQAAQAAAAAAAAAdAAMAAQAAAAAAAAAdAAIAAQAAAAAAAAAdAAEAAQAAAAAAAAAdAAoAAQAAAAAAAAAdAAsAAQAAAAAAAAAdAAwAAQAAAAAAAAAdAA0AAQAAAAAAAAAdAA4AAQAAAAAAAAAdAA8AAQAAAAAAAAAdABAAAQAAAAAAAAASABAAAQAAAAAAAAATABAAAQAAAAAAAAAUABAAAQAAAAAAAAAVABAAAQAAAAAAAAAWABAAAQAAAAAAAAAXABAAAQAAAAAAAAAYABAAAQAAAAAAAAAZABAAAQAAAAAAAAAaABAAAQAAAAAAAAAbABAAAQAAAAAAAAAcABAAAQAAAAAAAAARABAAAQAAAAAAAAARAAAAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_sf4un")
 
-[node name="Player" parent="." instance=ExtResource("3_hlol8")]
-position = Vector2(945, 540)
-
 [node name="Enemy1_PatrolB" type="Area2D" parent="."]
 position = Vector2(88, 86)
 
@@ -53,11 +49,10 @@ position = Vector2(1823, 997)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolA"]
 shape = SubResource("RectangleShape2D_50skq")
 
-[node name="WolfEnemy" parent="." node_paths=PackedStringArray("point_a", "point_b", "player") instance=ExtResource("4_54roa")]
+[node name="WolfEnemy" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("4_54roa")]
 position = Vector2(313, 220)
 point_a = NodePath("../Enemy1_PatrolB")
 point_b = NodePath("../Enemy1_PatrolA")
-player = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

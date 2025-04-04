@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=4 uid="uid://bqg6tfpn5salc"]
+[gd_scene load_steps=12 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
-[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/wolf_enemy.tscn" id="2_hmu8s"]
 [ext_resource type="Texture2D" uid="uid://cxioamx5qtyn1" path="res://images/4_Seasons_Ground_Tiles.png" id="3_wqg5p"]
 [ext_resource type="PackedScene" uid="uid://cx3j73gvr5miy" path="res://Scenes/bullet.tscn" id="4_qxmmb"]
 [ext_resource type="PackedScene" uid="uid://cantif38snr4f" path="res://Scenes/generic_item.tscn" id="5_yf2qe"]
 [ext_resource type="PackedScene" uid="uid://77ecksixfpeo" path="res://Scenes/player.tscn" id="6_l1h62"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="7_5odrl"]
-[ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/enemy.tscn" id="8_k453x"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/enemy.tscn" id="8_k453x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gpdx6"]
 texture = ExtResource("3_wqg5p")
@@ -348,7 +347,7 @@ sources/0 = SubResource("TileSetAtlasSource_gpwr5")
 
 [node name="TestArea" type="Node2D"]
 script = ExtResource("1_w8ima")
-enemy_scene = ExtResource("2_hmu8s")
+enemy_scene = ExtResource("8_k453x")
 generic_item = ExtResource("5_yf2qe")
 key_item = ExtResource("4_qxmmb")
 
