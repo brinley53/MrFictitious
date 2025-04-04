@@ -2,6 +2,7 @@
 Creation Date: 04/03/2025
 Revisions:
 	Sean Hammell - Added room generation logic
+	Brinley Hull - 4/4/2025, fix left transition
 """
 extends Node2D
 
@@ -155,7 +156,7 @@ func _on_path_left_body_entered(body: Node2D) -> void:
 		var destination = connections[active_room_index][PathDirection.LEFT]
 		if destination != null:
 			set_active_room(destination)
-			body.position.x = get_viewport_rect().size.x + body.get_size().x * 2
+			body.position.x = get_viewport_rect().size.x - body.get_size().x * 2
 
 func _on_path_right_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):

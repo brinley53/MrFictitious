@@ -8,6 +8,7 @@ Revisions:
 	Brinley Hull - 4/2/2025: 
 		-Enemy faces its movement direction
 		-Player I-frames/attack timer
+	Brinley Hull - 4/4/2025, dynamic player variable
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -23,12 +24,13 @@ var target_point:Area2D
 #chase player variables
 var chase_player = false
 var attack_player = false
-@export var player:Node2D
 
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $Sprite2D
 @onready var detection = $Detection
+@onready var players = get_tree().get_nodes_in_group("Player")
+@onready var player = players[0]
 
 func _ready():
 	#set initial variables
@@ -59,10 +61,13 @@ func patrol():
 	# face the sprite and detection cone based on what direction we're going
 	if direction.x > 0:
 		sprite.flip_h = 0
-		detection.scale.x = 1
+		#detection.scale.x = 1
 	else:
 		sprite.flip_h = 1
-		detection.scale.x =  -1
+		#detection.scale.x =  -1
+		
+	if velocity.length() > 0:
+		detection.rotation = velocity.angle()
 
 	move_and_slide()	
 	

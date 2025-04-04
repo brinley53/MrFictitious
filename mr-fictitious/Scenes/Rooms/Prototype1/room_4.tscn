@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://jsl1530v2s8q"]
+[gd_scene load_steps=10 format=4 uid="uid://jsl1530v2s8q"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_bunnj"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_q1807"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_ad0ut"]
+[ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/enemy.tscn" id="4_yjcxs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfrq4"]
 texture = ExtResource("2_bunnj")
@@ -24,6 +25,8 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1allw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_caq78"]
+
 [node name="Room4" type="Node2D"]
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
@@ -37,3 +40,20 @@ tile_set = SubResource("TileSet_nh5pi")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_ad0ut")]
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("4_yjcxs")]
+position = Vector2(944, 538)
+point_a = NodePath("../Enemy1_PatrolA")
+point_b = NodePath("../Enemy1_PatrolB")
+
+[node name="Enemy1_PatrolA" type="Area2D" parent="."]
+position = Vector2(956, 113)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolA"]
+shape = SubResource("RectangleShape2D_caq78")
+
+[node name="Enemy1_PatrolB" type="Area2D" parent="."]
+position = Vector2(965, 943)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolB"]
+shape = SubResource("RectangleShape2D_caq78")

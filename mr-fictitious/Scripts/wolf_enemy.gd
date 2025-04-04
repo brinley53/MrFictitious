@@ -3,7 +3,7 @@ Script for wolf enemy
 Authors: Jose Leyba, Brinley Hull
 Creation Date: 04/04/2025
 Revisions:
-
+	Brinley Hull - 4/4/2025, dynamic player variable
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -19,12 +19,13 @@ var target_point:Area2D
 #chase player variables
 var chase_player = false
 var attack_player = false
-@export var player:Node2D
 
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $AnimatedSprite2D
 @onready var detection = $Detection
+@onready var players = get_tree().get_nodes_in_group("Player")
+@onready var player = players[0]
 
 func _ready():
 	#set initial variables
@@ -39,8 +40,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		sprite.play("walk")
 		speed = 60.0
-
-		
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
