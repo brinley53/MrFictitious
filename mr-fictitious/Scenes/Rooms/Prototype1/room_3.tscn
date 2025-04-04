@@ -38,19 +38,19 @@ tile_map_data = PackedByteArray("AAAMABAAAQAAAAAAAAALABAAAQAAAAAAAAAKABAAAQAAAAA
 tile_set = SubResource("TileSet_sf4un")
 
 [node name="Enemy1_PatrolB" type="Area2D" parent="."]
-position = Vector2(88, 86)
+position = Vector2(108, 108)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolB"]
 shape = SubResource("RectangleShape2D_50skq")
 
 [node name="Enemy1_PatrolA" type="Area2D" parent="."]
-position = Vector2(1823, 997)
+position = Vector2(1807, 979)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolA"]
 shape = SubResource("RectangleShape2D_50skq")
 
 [node name="WolfEnemy" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("4_54roa")]
-position = Vector2(313, 220)
+position = Vector2(1319, 765)
 point_a = NodePath("../Enemy1_PatrolB")
 point_b = NodePath("../Enemy1_PatrolA")
 

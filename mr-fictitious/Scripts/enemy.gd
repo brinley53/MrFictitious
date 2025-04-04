@@ -92,7 +92,7 @@ func patrol():
 	move_and_slide()	
 	
 	#if we're close to the target point, change patrol points as the target point
-	if global_position.distance_to(target_point.global_position) < 15.0 and !chase_player:
+	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.size.x and !chase_player:
 		# Swap target between point A and B
 		target_point = point_a if target_point == point_b else point_b
 	
