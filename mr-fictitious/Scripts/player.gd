@@ -120,6 +120,9 @@ func _on_attack_timer_timeout():
 #Adds bullet back to the player	
 func add_bullet():
 	bullets += 1
+	
+func collectItem(item:InventoryItem):
+	inventory.insert(item)
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
