@@ -27,6 +27,9 @@ var can_attack = true
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_timer = $AttackTimer
 
+#EXPORT VARIABLES
+@export var inventory:Inventory;
+
 #The attack area starts disabled
 func _ready():
 	attack_area.visible = false

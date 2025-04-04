@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fuqwbvfuotnq"]
+
+[ext_resource type="Texture2D" uid="uid://b17glyc2o6y2h" path="res://images/inventory-slot.png" id="1_tgdem"]
+[ext_resource type="Script" path="res://Scripts/ui_slot.gd" id="2_7sssn"]
+
+[node name="inv_ui_slot" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_tgdem")
+centered = false
+script = ExtResource("2_7sssn")
