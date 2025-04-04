@@ -53,6 +53,10 @@ func _process(delta):
 		can_attack = false
 	if Input.is_action_just_pressed("secondary_attack") and can_attack:
 		shoot_projectile()
+	
+	if Input.is_action_just_pressed("increaseBullet"):
+		collectItem(bulletResource)
+		add_bullet()
 
 func get_size() -> Vector2:
 	return collision_shape.shape.size
