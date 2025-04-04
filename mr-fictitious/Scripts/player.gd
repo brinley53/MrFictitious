@@ -28,6 +28,9 @@ var can_attack = true
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_timer = $AttackTimer
 
+#EXPORT VARIABLES
+@export var inventory:Inventory;
+
 #The attack area starts disabled
 func _ready():
 	attack_area.visible = false
@@ -118,6 +121,9 @@ func _on_attack_timer_timeout():
 #Adds bullet back to the player	
 func add_bullet():
 	bullets += 1
+	
+func collectItem(item:InventoryItem):
+	return inventory.insert(item)
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():

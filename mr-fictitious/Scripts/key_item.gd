@@ -6,7 +6,7 @@ Revisions:
 	[format: date - name, what you revised]
 """
 extends Area2D
-
+@export var drop_item:InventoryItem;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,5 +20,6 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		queue_free()
+		if body.collectItem(drop_item):
+			queue_free()
 	
