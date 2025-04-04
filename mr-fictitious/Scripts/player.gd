@@ -48,6 +48,7 @@ func _process(delta):
 		can_attack = false
 	if Input.is_action_just_pressed("secondary_attack") and can_attack:
 		shoot_projectile()
+	
 
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(delta):
@@ -93,6 +94,7 @@ func attack():
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
 	if bullets > 0:  
+		removeItem(bulletResource)
 		bullets -= 1 
 		var projectile = PROJECTILE_SCENE.instantiate()
 		get_parent().add_child(projectile)
@@ -127,7 +129,8 @@ func add_bullet():
 func collectItem(item:InventoryItem):
 	return inventory.insert(item)
 
-
+func removeItem(item:InventoryItem):
+	return inventory.remove(item)
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():

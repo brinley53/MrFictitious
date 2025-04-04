@@ -29,6 +29,19 @@ func insert(item:InventoryItem):
 	else:
 		update.emit()
 		return true
+
+func remove(item:InventoryItem):
+	var itemFound:bool = false
+	for i in range(slots.size()):
+		if(slots[i].item == item):
+			slots[i].amount-=1
+			itemFound=true
+			if(slots[i].amount==0):
+				slots[i].item = null
+			break
+	update.emit()
+	return itemFound
+		
 		
 		
 		
