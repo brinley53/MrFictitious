@@ -1,9 +1,9 @@
 extends Node
 
-#const RoomManager = preload("res://Scripts/room_manager.gd")
+#const RoomManager:PackedScene = preload("res://Scenes/room_manager.tscn")
 #
 #func _ready():
-	#var room_manager = RoomManager.new()
+	#var room_manager = RoomManager.instantiate()
 	#add_child(room_manager)
 	#room_manager.generate_rooms()
 

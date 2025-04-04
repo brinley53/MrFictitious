@@ -1,3 +1,8 @@
+"""
+Creation Date: 04/03/2025
+Revisions:
+	Sean Hammell - Added room generation logic
+"""
 extends Node2D
 
 enum PathDirection {
@@ -15,29 +20,34 @@ const ROOM_SCENES:Array[PackedScene] = [
 	preload("res://Scenes/Rooms/Prototype1/room_4.tscn")
 ]
 
-const BLOCKING_EDGES:Array[Resource] = [
+const BLOCKING_EDGES:Array[PackedScene] = [
 	preload("res://Scenes/Rooms/Prototype1/up_blocking_edge.tscn"),
 	preload("res://Scenes/Rooms/Prototype1/down_blocking_edge.tscn"),
 	preload("res://Scenes/Rooms/Prototype1/left_blocking_edge.tscn"),
 	preload("res://Scenes/Rooms/Prototype1/right_blocking_edge.tscn")
 ]
 
+var active_room_index:int = -1
 var active_room:Node2D = null
 var connections:Dictionary = {}
 var blocking_edges:Array = []
 
 func _ready() -> void:
-	for i in range(PathDirection.COUNT):
-		blocking_edges.append(BLOCKING_EDGES[i].instantiate())
+	for direction in range(PathDirection.COUNT):
+		blocking_edges.append(BLOCKING_EDGES[direction].instantiate())
 
 func set_active_room(index:int) -> void:
+	# Delete the current active room.
 	if active_room != null:
 		remove_child(active_room)
 		active_room.queue_free()
 
+	# Add the new active room.
+	active_room_index = index
 	active_room = ROOM_SCENES[index].instantiate()
 	add_child(active_room)
 
+	# Update the blocking edges.
 	for direction in range(PathDirection.COUNT):
 		if connections[index][direction] != null and blocking_edges[direction].is_inside_tree():
 			remove_child(blocking_edges[direction])
@@ -49,6 +59,7 @@ func add_connection_entry(index:int) -> void:
 		print("Attempted to add duplicate room: %" % index)
 		return
 
+	# Add an empty connection entry for the room.
 	connections[index] = {
 		PathDirection.UP: null,
 		PathDirection.DOWN: null,
@@ -110,7 +121,7 @@ func generate_rooms() -> void:
 
 			# Link to the source room from the destination room so things don't
 			# get weird when it's this destination's turn to be a source.
-			var opposite_direction:int = (direction / 2) + (1 - (direction % 2))
+			var opposite_direction:int = ((direction / 2) * 2) + (1 - (direction % 2))
 			add_connection_entry(destination)
 			connections[destination][opposite_direction] = source
 
@@ -125,6 +136,26 @@ func generate_rooms() -> void:
 	# that we have edge information.
 	set_active_room(start)
 
-class Link:
-	var direction:PathDirection
-	var room:int
+func _on_path_up_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		var destination = connections[active_room_index][PathDirection.UP]
+		if destination != null:
+			set_active_room(destination)
+
+func _on_path_down_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		var destination = connections[active_room_index][PathDirection.DOWN]
+		if destination != null:
+			set_active_room(destination)
+
+func _on_path_left_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		var destination = connections[active_room_index][PathDirection.LEFT]
+		if destination != null:
+			set_active_room(destination)
+
+func _on_path_right_body_entered(body: Node2D) -> void:
+	if is_instance_of(body, Player):
+		var destination = connections[active_room_index][PathDirection.RIGHT]
+		if destination != null:
+			set_active_room(destination)

@@ -8,16 +8,10 @@ Revisions:
 	- Added rudimentary logic to ensure spawned objects don't completely overlap
 	Brinley Hull - 3/30/2025: commented out enemy procedural generation (for now)
 	Sean Hammell - 4/2/2025: Added room layout logic
+	Sean Hammell - 4/3/2025: Moved room layout logic to room_manager.gd
 """
 
 extends Node2D
-
-const ROOM_SCENES:Array[Resource] = [
-	preload("res://Scenes/Rooms/Prototype1/room_1.tscn"),
-	preload("res://Scenes/Rooms/Prototype1/room_2.tscn"),
-	preload("res://Scenes/Rooms/Prototype1/room_3.tscn"),
-	preload("res://Scenes/Rooms/Prototype1/room_4.tscn")
-]
 
 @export var enemy_scene: PackedScene
 
@@ -33,7 +27,6 @@ func _ready() -> void:
 	#generate_objects(enemy_scene,3)
 	generate_objects(generic_item,num_generic_item)
 	generate_objects(key_item,num_key_item)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

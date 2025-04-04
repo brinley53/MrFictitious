@@ -6,6 +6,7 @@ Revisions:
 	Brinley Hull - 4/2/2025: animation
 	Jose Leyba - 04/03/2025 - Attack Revamp
 """
+class_name Player
 extends CharacterBody2D
 
 #CONSTANTS
