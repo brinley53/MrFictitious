@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/inventory_ui.gd" id="1_c2trp"]
 [ext_resource type="Texture2D" uid="uid://dh0447ynepkbf" path="res://images/inventory-background.png" id="2_bj6g1"]
-[ext_resource type="PackedScene" path="res://Scenes/inv_slot.tscn" id="3_fkliq"]
+[ext_resource type="PackedScene" uid="uid://cfok6g5pbovwq" path="res://Scenes/inv_slot.tscn" id="3_fkliq"]
 
 [node name="InventoryUi" type="Control"]
 layout_mode = 3

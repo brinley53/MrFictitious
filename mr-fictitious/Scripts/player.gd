@@ -16,7 +16,7 @@ const ATTACK_LOCK_TIME_Range = 2
 const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")  
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
-var health = 5
+var health = 100
 var bullets = 3
 var attack_radius_x = 20 
 var attack_radius_y = 35
@@ -28,11 +28,15 @@ var can_attack = true
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_timer = $AttackTimer
 @onready var bulletResource = preload("res://Resources/bullet.tres")
+@onready var attack_sprite = $AttackArea/AttackSprite
+@onready var health_bar = $HealthContainer/HealthBar
+
 #EXPORT VARIABLES
 @export var inventory:Inventory;
 
 #The attack area starts disabled
 func _ready():
+	health_bar.value = health
 	attack_area.visible = false
 	attack_area.monitoring = false 
 	attack_area.monitorable = false
@@ -44,6 +48,7 @@ func _ready():
 func _process(delta):
 	move_character(delta)
 	if Input.is_action_just_pressed("attack") and can_attack:
+		attack_sprite.play("attacking")
 		attack()
 		can_attack = false
 	if Input.is_action_just_pressed("secondary_attack") and can_attack:
@@ -106,8 +111,10 @@ func shoot_projectile():
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
 	health = health - damage
+	health_bar.value = health
 	if health <= 0:
-		queue_free()	
+		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
+	
 
 
 #Attacks enemies when entering the attack area

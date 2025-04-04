@@ -1,19 +1,15 @@
 """
-Script for all things enemy
+Script for wolf enemy
 Authors: Jose Leyba, Brinley Hull
-Creation Date: 03/27/2025
+Creation Date: 04/04/2025
 Revisions:
-	Brinley Hull - 3/30/2025: Enemy patrol
-	Brinley Hull - 3/31/2025: Enemy chase player
-	Brinley Hull - 4/2/2025: 
-		-Enemy faces its movement direction
-		-Player I-frames/attack timer
+
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
 # stats attributes
-var health = 3
-var speed = 100.0
+var health = 5
+var speed = 60.0
 
 #patrol points/variables
 @export var point_a:Area2D
@@ -27,7 +23,7 @@ var attack_player = false
 
 # On ready attributes
 @onready var timer = $AttackTimer
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 @onready var detection = $Detection
 
 func _ready():
@@ -38,7 +34,13 @@ func _physics_process(delta: float) -> void:
 	patrol()
 	if chase_player:
 		chase(player)
+		sprite.play("run")
+		speed = 150.0
+	else:
+		sprite.play("walk")
+		speed = 60.0
 
+		
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -67,7 +69,7 @@ func patrol():
 	move_and_slide()	
 	
 	#if we're close to the target point, change patrol points as the target point
-	if global_position.distance_to(target_point.global_position) < 15.0 and !chase_player:
+	if global_position.distance_to(target_point.global_position) < 5.0 and !chase_player:
 		# Swap target between point A and B
 		target_point = point_a if target_point == point_b else point_b
 	
@@ -94,5 +96,5 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
-		player.reduce_player_health(20)
+		player.reduce_player_health(25)
 		timer.start()

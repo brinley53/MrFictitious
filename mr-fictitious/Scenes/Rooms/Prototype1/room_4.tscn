@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://jsl1530v2s8q"]
+[gd_scene load_steps=9 format=4 uid="uid://jsl1530v2s8q"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_bunnj"]
 [ext_resource type="PackedScene" uid="uid://77ecksixfpeo" path="res://Scenes/player.tscn" id="3_dlr77"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_q1807"]
+[ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_ad0ut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfrq4"]
 texture = ExtResource("2_bunnj")
@@ -36,3 +37,7 @@ tile_set = SubResource("TileSet_nh5pi")
 
 [node name="Player" parent="." instance=ExtResource("3_dlr77")]
 position = Vector2(972, 539)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_ad0ut")]

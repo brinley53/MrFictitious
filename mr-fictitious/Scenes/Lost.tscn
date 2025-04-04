@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2qah4iahw0li"]
+
+[ext_resource type="Script" path="res://Scenes/losing_screen.gd" id="1_f6b2v"]
+
+[node name="Lost" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_f6b2v")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 448.0
+offset_top = 254.0
+offset_right = 1399.0
+offset_bottom = 772.0
+text = "YOU LOSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

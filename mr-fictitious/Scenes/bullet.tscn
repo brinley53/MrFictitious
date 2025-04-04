@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_2ek2i"]
 [ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/bullet.tres" id="2_nydgb"]
-[ext_resource type="Texture2D" uid="uid://7hc3kmmjmca1" path="res://images/anmo sprite bigger.png" id="3_ip60k"]
+[ext_resource type="Texture2D" uid="uid://l40ckjsmfxl8" path="res://images/anmo sprite.png" id="3_gg3po"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i0dm"]
-size = Vector2(120, 121)
+[sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
+radius = 46.457
 
 [node name="bullet" type="Area2D"]
 scale = Vector2(0.5, 0.5)
@@ -14,10 +14,10 @@ drop_item = ExtResource("2_nydgb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("3_ip60k")
+texture = ExtResource("3_gg3po")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_2i0dm")
+shape = SubResource("CircleShape2D_6xgsp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
