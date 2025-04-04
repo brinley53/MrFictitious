@@ -5,17 +5,30 @@ class_name Inventory
 @export var slots:Array[InventorySlot];
 signal update
 func insert(item:InventoryItem):
-	
-	var itemSlots = slots.filter(func(slot): slot.item==item)
-	if !itemSlots.is_empty():
-		itemSlots[0].amount+=1
+	print("item is null", item==null)
+	var itemFound:bool = false
+	for i in range(slots.size()):
+		if(slots[i].item == item):
+			slots[i].amount+=1
+			itemFound=true
+			break
+	if !itemFound:
+		print("Trying new slot")
+		var emptyFound:bool = false
+		for i in range(slots.size()):
+			if !slots[i].item:
+				slots[i].amount = 1
+				slots[i].item = item;
+				emptyFound = true
+				break
+		if emptyFound:
+			update.emit()
+			return true
+		else:
+			return false
 	else:
-		print("Empty slots")
-		var emptySlots = slots.filter(func(slot): slot.item==null)
-		if !emptySlots.is_empty():
-			emptySlots[0].item = item
-			emptySlots[0].amount = 1
-	update.emit()
+		update.emit()
+		return true
 		
 		
 		
