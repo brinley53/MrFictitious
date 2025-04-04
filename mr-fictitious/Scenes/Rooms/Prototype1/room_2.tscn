@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://ci2exwd0rrftm"]
+[gd_scene load_steps=10 format=4 uid="uid://ci2exwd0rrftm"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="1_fjeel"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_gcyfj"]
 [ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/enemy.tscn" id="4_rg4uh"]
-[ext_resource type="PackedScene" uid="uid://77ecksixfpeo" path="res://Scenes/player.tscn" id="5_3jjuc"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="5_tu1qd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gon6r"]
@@ -62,20 +61,17 @@ position = Vector2(32, 872)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2_PatrolB"]
 shape = SubResource("RectangleShape2D_66hv2")
 
-[node name="Player" parent="." instance=ExtResource("5_3jjuc")]
-position = Vector2(978, 508)
-
 [node name="Enemy1" parent="." node_paths=PackedStringArray("point_a", "point_b", "player") instance=ExtResource("4_rg4uh")]
 position = Vector2(307, 226)
 point_a = NodePath("../Enemy1_PatrolB")
 point_b = NodePath("../Enemy1_PatrolB")
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("point_a", "point_b", "player") instance=ExtResource("4_rg4uh")]
 position = Vector2(1359, 841)
 point_a = NodePath("../Enemy2_PatrolA")
 point_b = NodePath("../Enemy2_PatrolB")
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
