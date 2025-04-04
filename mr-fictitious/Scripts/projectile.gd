@@ -14,7 +14,7 @@ func _physics_process(delta):
 # Deals damage to enemy when hit
 func _on_area_2d_area_entered(body):
 	print("Collided with:", body.name)
-	if (body.name != "Player") and (body.name != "AttackArea"):
+	if body.is_in_group("Enemies"):
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(1)
 		queue_free()

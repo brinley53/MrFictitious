@@ -74,4 +74,4 @@ point_b = NodePath("../Enemy2_PatrolB")
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("5_3jjuc")]
-position = Vector2(975, 501)
+position = Vector2(978, 508)

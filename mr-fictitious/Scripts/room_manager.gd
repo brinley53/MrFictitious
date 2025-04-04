@@ -36,23 +36,46 @@ func _ready() -> void:
 	for direction in range(PathDirection.COUNT):
 		blocking_edges.append(BLOCKING_EDGES[direction].instantiate())
 
-func set_active_room(index:int) -> void:
-	# Delete the current active room.
+func set_active_room(index:int, entry_direction: PathDirection = -1) -> void:
+	var player = get_parent().get_node("Player") if get_parent().has_node("Player") else null
+	## Delete the current active room.
 	if active_room != null:
 		remove_child(active_room)
 		active_room.queue_free()
-
-	# Add the new active room.
+#
+	## Add the new active room.
 	active_room_index = index
 	active_room = ROOM_SCENES[index].instantiate()
 	add_child(active_room)
-
-	# Update the blocking edges.
+#
+	#if player:
+		#print("Adjusting player position based on entry direction: ", entry_direction)
+		#match entry_direction:
+			#PathDirection.DOWN:
+				#player.global_position = Vector2(player.global_position.x, active_room.global_position.y + 50)  # Entering from below
+				#print("Player position set to: ", player.global_position)
+			#PathDirection.UP:
+				#player.global_position = Vector2(player.global_position.x, active_room.global_position.y + active_room.get_viewport_rect().size.y - 50)  # Entering from above
+				#print("Player position set to: ", player.global_position)
+			#PathDirection.LEFT:
+				#player.global_position = Vector2(active_room.global_position.x + active_room.get_viewport_rect().size.x - 50, player.global_position.y)  # Entering from left
+				#print("Player position set to: ", player.global_position)
+			#PathDirection.RIGHT:
+				#player.global_position = Vector2(active_room.global_position.x + 50, player.global_position.y)  # Entering from right
+				#print("Player position set to: ", player.global_position)
+			#_:
+				#player.global_position = active_room.global_position + (active_room.get_viewport_rect().size / 2)  # Default center spawn
+				#print("Player position set to center: ", player.global_position)
+	## Update the blocking edges.
 	for direction in range(PathDirection.COUNT):
 		if connections[index][direction] != null and blocking_edges[direction].is_inside_tree():
 			remove_child(blocking_edges[direction])
 		elif connections[index][direction] == null and not blocking_edges[direction].is_inside_tree():
 			add_child(blocking_edges[direction])
+
+
+
+
 
 func add_connection_entry(index:int) -> void:
 	if connections.has(index):
@@ -140,22 +163,22 @@ func _on_path_up_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var destination = connections[active_room_index][PathDirection.UP]
 		if destination != null:
-			set_active_room(destination)
+			set_active_room(destination, PathDirection.DOWN)
 
 func _on_path_down_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var destination = connections[active_room_index][PathDirection.DOWN]
 		if destination != null:
-			set_active_room(destination)
+			set_active_room(destination, PathDirection.UP)
 
 func _on_path_left_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var destination = connections[active_room_index][PathDirection.LEFT]
 		if destination != null:
-			set_active_room(destination)
+			set_active_room(destination, PathDirection.RIGHT)
 
 func _on_path_right_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var destination = connections[active_room_index][PathDirection.RIGHT]
 		if destination != null:
-			set_active_room(destination)
+			set_active_room(destination, PathDirection.LEFT)
