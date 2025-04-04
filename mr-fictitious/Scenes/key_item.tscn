@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx3j73gvr5miy"]
 
-[ext_resource type="Script" path="res://Scripts/key_item.gd" id="1_ovmnv"]
-[ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/key_item.tres" id="2_5ih6u"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_ovmnv"]
+[ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/bullet.tres" id="2_5ih6u"]
 [ext_resource type="Texture2D" uid="uid://7hc3kmmjmca1" path="res://images/anmo sprite bigger.png" id="2_j3a5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i0dm"]
 size = Vector2(120, 121)
 
-[node name="KeyItem" type="Area2D"]
+[node name="bullet" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ovmnv")
 drop_item = ExtResource("2_5ih6u")

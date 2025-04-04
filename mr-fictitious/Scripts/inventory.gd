@@ -5,7 +5,7 @@ class_name Inventory
 @export var slots:Array[InventorySlot];
 signal update
 func insert(item:InventoryItem):
-	print("item is null", item==null)
+
 	var itemFound:bool = false
 	for i in range(slots.size()):
 		if(slots[i].item == item):
@@ -13,7 +13,7 @@ func insert(item:InventoryItem):
 			itemFound=true
 			break
 	if !itemFound:
-		print("Trying new slot")
+
 		var emptyFound:bool = false
 		for i in range(slots.size()):
 			if !slots[i].item:
