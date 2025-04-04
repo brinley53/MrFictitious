@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://upsatx10rdgt"]
+[gd_scene load_steps=6 format=3 uid="uid://upsatx10rdgt"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_advk4"]
 [ext_resource type="Texture2D" uid="uid://dae585xejk3qj" path="res://images/jvW6h7.png" id="1_vd83c"]
@@ -6,20 +6,31 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mteq"]
 size = Vector2(60, 65)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_42n1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vd83c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
 size = Vector2(65, 72)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_advk4")
+type = "Goomba"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -0.5)
 shape = SubResource("RectangleShape2D_6mteq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, -1)
-scale = Vector2(0.178674, 0.190202)
-texture = ExtResource("1_vd83c")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_42n1k")
 
 [node name="AttackArea" type="Area2D" parent="."]
 

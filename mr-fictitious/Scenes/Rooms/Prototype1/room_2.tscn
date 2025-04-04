@@ -38,36 +38,37 @@ tile_map_data = PackedByteArray("AAAMABAAAQAAAAAAAAALABAAAQAAAAAAAAAKABAAAQAAAAA
 tile_set = SubResource("TileSet_2epqt")
 
 [node name="Enemy1_PatrolA" type="Area2D" parent="."]
-position = Vector2(1814, 217)
+position = Vector2(1711, 217)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolA"]
 shape = SubResource("RectangleShape2D_66hv2")
 
 [node name="Enemy1_PatrolB" type="Area2D" parent="."]
-position = Vector2(101, 217)
+position = Vector2(149, 214)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolB"]
 shape = SubResource("RectangleShape2D_66hv2")
 
 [node name="Enemy2_PatrolA" type="Area2D" parent="."]
-position = Vector2(1820, 859)
+position = Vector2(1734, 859)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2_PatrolA"]
 shape = SubResource("RectangleShape2D_66hv2")
 
 [node name="Enemy2_PatrolB" type="Area2D" parent="."]
-position = Vector2(115, 872)
+position = Vector2(165, 872)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2_PatrolB"]
 shape = SubResource("RectangleShape2D_66hv2")
 
 [node name="Enemy1" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("4_rg4uh")]
 position = Vector2(307, 226)
-point_a = NodePath("../Enemy1_PatrolB")
+point_a = NodePath("../Enemy1_PatrolA")
 point_b = NodePath("../Enemy1_PatrolB")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("4_rg4uh")]
 position = Vector2(1359, 841)
+scale = Vector2(0.970151, 0.995956)
 point_a = NodePath("../Enemy2_PatrolA")
 point_b = NodePath("../Enemy2_PatrolB")
 

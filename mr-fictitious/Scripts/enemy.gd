@@ -6,15 +6,20 @@ Revisions:
 	Brinley Hull - 3/30/2025: Enemy patrol
 	Brinley Hull - 3/31/2025: Enemy chase player
 	Brinley Hull - 4/2/2025: 
-		-Enemy faces its movement direction
-		-Player I-frames/attack timer
-	Brinley Hull - 4/4/2025, dynamic player variable
+		- Enemy faces its movement direction
+		- Player I-frames/attack timer
+	Brinley Hull - 4/4/2025
+		- Dynamic Player Variable
+		- Flip Detection Point Up
+		- Modular for Other Enemy Types
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
 # stats attributes
-var health = 3
-var speed = 100.0
+var health : int
+var speed : float
+var base_speed : float
+var damage : float
 
 #patrol points/variables
 @export var point_a:Area2D
@@ -27,26 +32,41 @@ var attack_player = false
 
 # On ready attributes
 @onready var timer = $AttackTimer
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 @onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
+@export_enum("Wolf", "Goomba") var type : String
 
 func _ready():
 	#set initial variables
 	target_point = point_b
+	if (type == "Wolf"):
+		health = 5
+		base_speed = 60.0
+		damage = 25
+	else:
+		base_speed = 100.0
+		health = 3
+		damage = 20
+	speed = base_speed
 
 func _physics_process(delta: float) -> void:
 	patrol()
 	if chase_player:
 		chase(player)
-
+		if (type == "Wolf"):
+			sprite.play("run")
+			speed = base_speed * 2.5
+	elif (type == "Wolf"):
+		sprite.play("walk")
+		speed = base_speed
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		attack_player = true
-		player.reduce_player_health(1)
+		player.reduce_player_health(damage)
 		timer.start()
 
 #Enemy patrol movement -> go from point A to point B
@@ -99,5 +119,5 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
-		player.reduce_player_health(20)
+		player.reduce_player_health(damage)
 		timer.start()

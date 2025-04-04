@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://jigu4v6vbtsk"]
 
-[ext_resource type="Script" path="res://Scripts/wolf_enemy.gd" id="1_5n3rl"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_c84wt"]
 [ext_resource type="Texture2D" uid="uid://cajs0ydsfqpft" path="res://images/Wolf_White_Background.png" id="2_wsox7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mteq"]
@@ -203,7 +203,8 @@ animations = [{
 size = Vector2(114, 75)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
-script = ExtResource("1_5n3rl")
+script = ExtResource("1_c84wt")
+type = "Wolf"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
