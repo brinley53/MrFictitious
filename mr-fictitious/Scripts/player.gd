@@ -53,9 +53,7 @@ func _process(delta):
 		can_attack = false
 	if Input.is_action_just_pressed("secondary_attack") and can_attack:
 		shoot_projectile()
-
-func get_size() -> Vector2:
-	return collision_shape.shape.size
+	
 
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(delta):
