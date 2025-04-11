@@ -29,7 +29,7 @@ const BLOCKING_EDGES:Array[PackedScene] = [
 ]
 
 var active_room_index:int = -1
-var active_room:Node2D = null
+var instances:Array = []
 var connections:Dictionary = {}
 var blocking_edges:Array = []
 
@@ -39,14 +39,12 @@ func _ready() -> void:
 
 func set_active_room(index:int) -> void:
 	# Delete the current active room.
-	if active_room != null:
-		remove_child(active_room)
-		active_room.queue_free()
+	if active_room_index != -1:
+		remove_child(instances[active_room_index])
 #
 	# Add the new active room.
 	active_room_index = index
-	active_room = ROOM_SCENES[index].instantiate()
-	add_child(active_room)
+	add_child(instances[active_room_index])
 
 	# Update the blocking edges.
 	for direction in range(PathDirection.COUNT):
@@ -76,6 +74,7 @@ func generate_rooms() -> void:
 
 	# All of the rooms begin unattached.
 	for i in range(ROOM_SCENES.size()):
+		instances.append(ROOM_SCENES[i].instantiate())
 		unattached.append(i)
 
 	# Select a random room to serve as the anchor and move it from
