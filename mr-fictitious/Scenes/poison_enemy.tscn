@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://upsatx10rdgt"]
+[gd_scene load_steps=6 format=3 uid="uid://m653te6y8pka"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_advk4"]
-[ext_resource type="Texture2D" uid="uid://dae585xejk3qj" path="res://images/jvW6h7.png" id="1_vd83c"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_aix1q"]
+[ext_resource type="Texture2D" uid="uid://b5xc4eugaqgrv" path="res://images/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg" id="2_35np4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mteq"]
 size = Vector2(60, 65)
@@ -10,7 +10,7 @@ size = Vector2(60, 65)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_vd83c")
+"texture": ExtResource("2_35np4")
 }],
 "loop": true,
 "name": &"default",
@@ -21,11 +21,12 @@ animations = [{
 size = Vector2(65, 72)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
-script = ExtResource("1_advk4")
-health = 3
+script = ExtResource("1_aix1q")
+health = 15
 base_speed = 100.0
-damage = 20.0
-type = "Goomba"
+damage = 5.0
+poison_proc_count = 3
+type = "Poison"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -0.5)

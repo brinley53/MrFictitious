@@ -12,14 +12,17 @@ Revisions:
 		- Dynamic Player Variable
 		- Flip Detection Point Up
 		- Modular for Other Enemy Types
+	Brinley Hull - 4/11/2025: Poison enemy
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
 # stats attributes
-var health : int
+@export var health : int
 var speed : float
-var base_speed : float
-var damage : float
+@export var base_speed : float
+@export var damage : float
+@export var poison_proc_count : int
+var current_proc_count = 0
 
 #patrol points/variables
 @export var point_a:Area2D
@@ -29,6 +32,7 @@ var target_point:Area2D
 #chase player variables
 var chase_player = false
 var attack_player = false
+var poison = false
 
 # On ready attributes
 @onready var timer = $AttackTimer
@@ -36,19 +40,12 @@ var attack_player = false
 @onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
-@export_enum("Wolf", "Goomba") var type : String
+@export_enum("Wolf", "Goomba", "Poison") var type : String
+@onready var poison_timer = $PoisonTimer
 
 func _ready():
 	#set initial variables
 	target_point = point_b
-	if (type == "Wolf"):
-		health = 5
-		base_speed = 60.0
-		damage = 25
-	else:
-		base_speed = 100.0
-		health = 3
-		damage = 20
 	speed = base_speed
 
 func _physics_process(delta: float) -> void:
@@ -68,6 +65,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		attack_player = true
 		player.reduce_player_health(damage)
 		timer.start()
+		if (type == "Poison"):
+			poison = true
 
 #Enemy patrol movement -> go from point A to point B
 func patrol():
@@ -81,10 +80,8 @@ func patrol():
 	# face the sprite and detection cone based on what direction we're going
 	if direction.x > 0:
 		sprite.flip_h = 0
-		#detection.scale.x = 1
 	else:
 		sprite.flip_h = 1
-		#detection.scale.x =  -1
 		
 	if velocity.length() > 0:
 		detection.rotation = velocity.angle()
@@ -97,8 +94,8 @@ func patrol():
 		target_point = point_a if target_point == point_b else point_b
 	
 #Takes damage, when life reaches 0 it dies
-func reduce_enemy_health(damage):
-	health = health - damage
+func reduce_enemy_health(damage_dealt):
+	health = health - damage_dealt
 	if health <= 0:
 		queue_free()
 
@@ -115,9 +112,26 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
 	if body.name == "Player":
 		attack_player = false
+		poison_timer.start()
+		current_proc_count = 0
+			
 
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
 		player.reduce_player_health(damage)
 		timer.start()
+
+
+func _on_poison_timer_timeout() -> void:
+	if type != "Poison":
+		pass
+		
+	if current_proc_count >= poison_proc_count:
+		poison = false
+	else:
+		player.reduce_player_health(damage)
+		current_proc_count+=1
+		poison_timer.start()
+	
+	
