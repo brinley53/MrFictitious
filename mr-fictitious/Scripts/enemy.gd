@@ -13,6 +13,7 @@ Revisions:
 		- Flip Detection Point Up
 		- Modular for Other Enemy Types
 	Brinley Hull - 4/11/2025: Poison enemy
+	Brinley Hull - 4/14/2025: Shadows
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -47,8 +48,16 @@ func _ready():
 	#set initial variables
 	target_point = point_b
 	speed = base_speed
+	
+func reset_patrol():
+	chase_player = false
+	speed = base_speed
+	attack_player = false
+	target_point = point_a
 
 func _physics_process(delta: float) -> void:
+	if player.stealth and chase_player:
+		reset_patrol()
 	patrol()
 	if chase_player:
 		chase(player)
@@ -102,7 +111,8 @@ func reduce_enemy_health(damage_dealt):
 func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player
 	if body.name == "Player":
-		chase_player = true
+		if !body.stealth:
+			chase_player = true
 		
 func chase(body: Node2D) -> void:
 	# Change target point to be the player's area2d child

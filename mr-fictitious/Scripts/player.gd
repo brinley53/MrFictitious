@@ -3,8 +3,9 @@ Script focused on the player, it has it's movement, attacks, and taking damage
 Authors: Jose Leyba
 Creation Date: 03/27/2025
 Revisions:
-	Brinley Hull - 4/2/2025: animation
+	Brinley Hull - 4/2/2025: Animation
 	Jose Leyba - 04/03/2025 - Attack Revamp
+	Brinley Hull - 4/14/2025: Stealth
 """
 class_name Player
 extends CharacterBody2D
@@ -22,6 +23,7 @@ var attack_radius_x = 20
 var attack_radius_y = 35
 var attack_radius = 35
 var can_attack = true  
+var stealth = false
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -43,6 +45,8 @@ func _ready():
 	for i in range(bullets):
 		collectItem(bulletResource)
 
+func set_stealth(is_stealthy):
+	stealth = is_stealthy
 
 #Every frame call the move_character function, calls the attack function when pressing left click
 func _process(delta):
@@ -120,8 +124,6 @@ func reduce_player_health(damage):
 	health_bar.value = health
 	if health <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
-	
-
 
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:

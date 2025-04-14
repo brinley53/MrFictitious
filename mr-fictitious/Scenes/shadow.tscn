@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ttxlhunr5yw"]
+
+[ext_resource type="Script" path="res://Scripts/shadow.gd" id="1_6lwq6"]
+[ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_dtl0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aitug"]
+
+[node name="Shadow" type="Area2D"]
+script = ExtResource("1_6lwq6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aitug")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dtl0u")
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]
