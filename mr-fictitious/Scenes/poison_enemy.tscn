@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_aix1q"]
 [ext_resource type="Texture2D" uid="uid://b5xc4eugaqgrv" path="res://images/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg" id="2_35np4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mteq"]
-size = Vector2(60, 65)
+[sub_resource type="CircleShape2D" id="CircleShape2D_w87jh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_42n1k"]
 animations = [{
@@ -21,6 +20,7 @@ animations = [{
 size = Vector2(65, 72)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+motion_mode = 1
 script = ExtResource("1_aix1q")
 health = 15
 base_speed = 100.0
@@ -30,7 +30,8 @@ type = "Poison"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -0.5)
-shape = SubResource("RectangleShape2D_6mteq")
+scale = Vector2(3.6, -2.77294)
+shape = SubResource("CircleShape2D_w87jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

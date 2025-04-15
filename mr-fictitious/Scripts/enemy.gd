@@ -14,6 +14,7 @@ Revisions:
 		- Modular for Other Enemy Types
 	Brinley Hull - 4/11/2025: Poison enemy
 	Brinley Hull - 4/14/2025: Shadows
+	Brinley Hull - 4/15/2025: Detect player on hit
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -41,7 +42,7 @@ var poison = false
 @onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
-@export_enum("Wolf", "Goomba", "Poison") var type : String
+@export_enum("Wolf", "Rat", "Poison") var type : String
 @onready var poison_timer = $PoisonTimer
 
 func _ready():
@@ -61,10 +62,10 @@ func _physics_process(delta: float) -> void:
 	patrol()
 	if chase_player:
 		chase(player)
+		sprite.play("run")
 		if (type == "Wolf"):
-			sprite.play("run")
 			speed = base_speed * 2.5
-	elif (type == "Wolf"):
+	else:
 		sprite.play("walk")
 		speed = base_speed
 
@@ -98,13 +99,14 @@ func patrol():
 	move_and_slide()	
 	
 	#if we're close to the target point, change patrol points as the target point
-	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.size.x and !chase_player:
+	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player:
 		# Swap target between point A and B
 		target_point = point_a if target_point == point_b else point_b
 	
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
+	chase_player = true
 	if health <= 0:
 		queue_free()
 
@@ -143,5 +145,3 @@ func _on_poison_timer_timeout() -> void:
 		player.reduce_player_health(damage)
 		current_proc_count+=1
 		poison_timer.start()
-	
-	

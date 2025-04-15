@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_c84wt"]
 [ext_resource type="Texture2D" uid="uid://cajs0ydsfqpft" path="res://images/Wolf_White_Background.png" id="2_wsox7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mteq"]
-size = Vector2(98, 60)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vweiy"]
+radius = 21.0238
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr45q"]
 atlas = ExtResource("2_wsox7")
@@ -203,6 +203,7 @@ animations = [{
 size = Vector2(114, 75)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+motion_mode = 1
 script = ExtResource("1_c84wt")
 health = 5
 base_speed = 60.0
@@ -211,7 +212,8 @@ type = "Wolf"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_6mteq")
+scale = Vector2(2.88, 1.64)
+shape = SubResource("CircleShape2D_vweiy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
