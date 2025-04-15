@@ -18,6 +18,7 @@ const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
 var health = 100
+var max_health=100
 var bullets = 3
 var attack_radius_x = 20 
 var attack_radius_y = 35
@@ -124,6 +125,10 @@ func reduce_player_health(damage):
 	health_bar.value = health
 	if health <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
+	
+func increase_player_health(amount:int):
+	health = min(health+amount,max_health)
+	health_bar.value=health
 
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -146,6 +151,8 @@ func collectItem(item:InventoryItem):
 
 func removeItem(item:InventoryItem):
 	return inventory.remove(item)
+
+
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
