@@ -9,3 +9,4 @@ script = ExtResource("1_ys6t5")
 [node name="Player" parent="." instance=ExtResource("2_ednlh")]
 z_index = 1
 position = Vector2(960, 540)
+scale = Vector2(1.5, 1.5)

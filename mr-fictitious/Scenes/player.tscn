@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://77ecksixfpeo"]
+[gd_scene load_steps=50 format=3 uid="uid://77ecksixfpeo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qm5xk"]
 [ext_resource type="Resource" uid="uid://bwokjx3lenypg" path="res://Resources/inventory.tres" id="2_dulbo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://g8ilidvw47ws" path="res://images/player_walk.png" id="2_xcs7w"]
 [ext_resource type="Texture2D" uid="uid://cxyuu1igo7us8" path="res://images/right-facing slashframes.png" id="5_lkyq1"]
 [ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="6_0nipb"]
+[ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="7_ipwff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jal5q"]
 size = Vector2(30, 109)
@@ -383,6 +384,7 @@ offset_top = -15.0
 offset_right = -99.0
 offset_bottom = -16.994
 value = 100.0
+texture_progress = ExtResource("7_ipwff")
 tint_over = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

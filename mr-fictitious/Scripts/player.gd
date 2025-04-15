@@ -18,18 +18,21 @@ const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
 var health = 100
+var max_health = 100
 var bullets = 3
 var attack_radius_x = 20 
 var attack_radius_y = 35
 var attack_radius = 35
 var can_attack = true  
 var stealth = false
+var health_items = 0;
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_timer = $AttackTimer
 @onready var bulletResource = preload("res://Resources/bullet.tres")
+@onready var healthResource = preload("res://Resources/health_item.tres")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
 
@@ -61,6 +64,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("increaseBullet"):
 		collectItem(bulletResource)
 		add_bullet()
+	
+	if Input.is_action_just_pressed("healthItem"):
+		use_health_item()
 
 func get_size() -> Vector2:
 	return collision_shape.shape.size
@@ -124,6 +130,10 @@ func reduce_player_health(damage):
 	health_bar.value = health
 	if health <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
+	
+func increase_player_health(amount:int):
+	health = min(health+amount,max_health)
+	health_bar.value=health
 
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -146,6 +156,16 @@ func collectItem(item:InventoryItem):
 
 func removeItem(item:InventoryItem):
 	return inventory.remove(item)
+
+func add_health_item():
+	health_items+=1
+
+func use_health_item():
+	if removeItem(healthResource):
+		health_items-=1
+		increase_player_health(10)
+
+
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
