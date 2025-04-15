@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://crdsaeocr2klm"]
+
+[ext_resource type="Script" path="res://Scripts/statue.gd" id="1_50suy"]
+[ext_resource type="Texture2D" uid="uid://bp4afsvmbc6su" path="res://images/Outstretched+Arms+Standing+Statue,+Aluminum.webp" id="2_ywjc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yah7x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i7t77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ywjc4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bccre"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1pj5"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_50suy")
+health = null
+base_speed = null
+damage = null
+poison_proc_count = null
+type = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yah7x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i7t77")
+
+[node name="LeftArm" type="Area2D" parent="."]
+position = Vector2(-83, -146)
+scale = Vector2(4.92, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
+shape = SubResource("RectangleShape2D_bccre")
+
+[node name="RightArm" type="Area2D" parent="."]
+position = Vector2(100, -144)
+scale = Vector2(5.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
+shape = SubResource("RectangleShape2D_f1pj5")
+
+[connection signal="body_entered" from="LeftArm" to="." method="_on_left_arm_body_entered"]
+[connection signal="body_entered" from="RightArm" to="." method="_on_right_arm_body_entered"]
