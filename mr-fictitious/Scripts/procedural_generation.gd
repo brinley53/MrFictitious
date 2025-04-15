@@ -19,7 +19,8 @@ extends Node2D
 @export var key_item:PackedScene
 @export var num_generic_item:int = 5
 @export var num_key_item:int = 3
-
+@export var health_item:PackedScene
+@export var num_health_items:int = 4
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Generate all items, enemies, rooms, etc here
@@ -27,6 +28,7 @@ func _ready() -> void:
 	#generate_objects(enemy_scene,3)
 	generate_objects(generic_item,num_generic_item)
 	generate_objects(key_item,num_key_item)
+	generate_objects(health_item,num_health_items)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
