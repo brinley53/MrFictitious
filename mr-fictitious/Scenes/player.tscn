@@ -371,8 +371,8 @@ frame_progress = 0.448132
 one_shot = true
 
 [node name="HealthContainer" type="Sprite2D" parent="."]
-position = Vector2(-3, -67)
-scale = Vector2(0.2, 0.2)
+position = Vector2(-3, -73)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_0nipb")
 
 [node name="HealthBar" type="TextureProgressBar" parent="HealthContainer"]
