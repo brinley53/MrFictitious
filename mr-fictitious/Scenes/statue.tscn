@@ -20,7 +20,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1pj5"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_50suy")
 health = null
 base_speed = null

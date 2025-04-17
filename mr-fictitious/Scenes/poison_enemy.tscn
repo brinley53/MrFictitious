@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://m653te6y8pka"]
+[gd_scene load_steps=6 format=3 uid="uid://d2wvpaplmsc7w"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_aix1q"]
 [ext_resource type="Texture2D" uid="uid://b5xc4eugaqgrv" path="res://images/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg" id="2_35np4"]
@@ -28,7 +28,7 @@ damage = 5.0
 poison_proc_count = 3
 type = "Poison"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemies"]]
 position = Vector2(-2, -0.5)
 scale = Vector2(3.6, -2.77294)
 shape = SubResource("CircleShape2D_w87jh")
