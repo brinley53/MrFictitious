@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bqg6tfpn5salc"]
+[gd_scene load_steps=26 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/wolf_enemy.tscn" id="2_hmu8s"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="14_m33fj"]
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
 [ext_resource type="PackedScene" uid="uid://3tegx7n1mwtx" path="res://Scenes/chest.tscn" id="16_ogyyp"]
+[ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="17_xsx77"]
+[ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
+[ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/permanent_dmg_item.tscn" id="19_3js83"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
 radius = 46.457
@@ -419,3 +422,12 @@ position = Vector2(437, 330)
 
 [node name="Chest" parent="." instance=ExtResource("16_ogyyp")]
 position = Vector2(429, 192)
+
+[node name="Speed" parent="." instance=ExtResource("17_xsx77")]
+position = Vector2(130, 426)
+
+[node name="Speed2" parent="." instance=ExtResource("18_jvhr2")]
+position = Vector2(312, 171)
+
+[node name="Perm_Buff_Dmg" parent="." instance=ExtResource("19_3js83")]
+position = Vector2(196, 213)

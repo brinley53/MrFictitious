@@ -19,7 +19,8 @@ const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
 var base_speed := SPEED
-var speed_multiplier := 1.0
+var buff_speed := 1.0
+var debuff_speed := 1.0
 var health = 100
 var max_health = 100
 var bullets = 3
@@ -29,6 +30,11 @@ var attack_radius = 35
 var can_attack = true  
 var stealth = false
 var health_items = 0;
+var base_damage = 1
+var current_damage = base_damage
+var speed_buff_timer :Timer = null
+var damage_buff_timer :Timer = null
+
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -98,12 +104,13 @@ func move_character(delta):
 	if (sprite.animation != animation):
 		sprite.play(animation)
 	
-	velocity = direction * base_speed * speed_multiplier
+	velocity = direction * base_speed * buff_speed * debuff_speed
 	move_and_slide()
 
 
 #Will attack directing at the position of the map, uses radius 
 func attack():
+	print(base_damage)
 	attack_area.monitoring = true  
 	attack_area.monitorable = true
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
@@ -180,9 +187,64 @@ func use_inventory_item():
 				
 		
 	
-#Changes the speed, called when on "goo"
+#Changes the speed, called when on "goo" (Debuffs Speed)
 func set_speed_multiplier(multiplier: float) -> void:
-	speed_multiplier = multiplier
+	debuff_speed = multiplier
+
+#FUNCTIONS RELATED TO TEMPORARY ITEMS
+#Gives additional Speed for X seconds
+func apply_speed_buff(boost: float, duration: float):
+	buff_speed = boost
+	if speed_buff_timer:
+		speed_buff_timer.stop()
+	else:
+		speed_buff_timer = Timer.new()
+		speed_buff_timer.one_shot = true
+		speed_buff_timer.timeout.connect(_remove_speed_buff)
+		add_child(speed_buff_timer)
+
+	speed_buff_timer.wait_time = duration
+	speed_buff_timer.start()
+
+#Ends Speed Buff
+func _remove_speed_buff():
+	buff_speed = 1.0
+
+#Gives additional Damage for X seconds
+func apply_damage_buff(boost: int, duration: float):
+	current_damage = base_damage + boost
+	if damage_buff_timer:
+		damage_buff_timer.stop()
+	else:
+		damage_buff_timer = Timer.new()
+		damage_buff_timer.one_shot = true
+		damage_buff_timer.timeout.connect(_remove_damage_buff)
+		add_child(damage_buff_timer)
+
+	damage_buff_timer.wait_time = duration
+	damage_buff_timer.start()
+
+#Ends Damage Buff
+func _remove_damage_buff():
+	current_damage = base_damage
+
+#END OF TEMPORARY BUFF FUNCTIONS
+
+#PERMANENT CHANGES
+#Trades Attack Area for DMG
+func shovel(damage_increase: int, shrink_factor: float):
+	base_damage += damage_increase
+	current_damage = base_damage  
+	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
+	if poly_node:
+		var points = poly_node.polygon.duplicate()
+		for i in range(points.size()):
+			points[i] *= shrink_factor
+		poly_node.polygon = points
+	if attack_sprite:
+		attack_sprite.scale *= shrink_factor
+
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventorySlot"):

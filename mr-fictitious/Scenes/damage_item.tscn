@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbh0rq1ugw0ng"]
+
+[ext_resource type="Script" path="res://Scripts/temp_items.gd" id="1_cbojx"]
+[ext_resource type="Texture2D" uid="uid://boqbol6lnf815" path="res://images/coin.svg" id="2_fsclw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxki8"]
+size = Vector2(178, 178)
+
+[node name="Damage_Item" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_cbojx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -0.999988)
+scale = Vector2(0.2, 0.187)
+texture = ExtResource("2_fsclw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
+shape = SubResource("RectangleShape2D_uxki8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

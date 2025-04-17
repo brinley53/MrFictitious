@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cultue1qlvv0h"]
+
+[ext_resource type="Script" path="res://Scripts/permanent_dmg_item.gd" id="1_xyj58"]
+[ext_resource type="Texture2D" uid="uid://cwchv3r0wqduq" path="res://images/shovel sprite.png" id="2_ylp5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxki8"]
+size = Vector2(76, 136)
+
+[node name="Perm_Buff_Dmg" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xyj58")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -0.999988)
+scale = Vector2(1, 0.935)
+texture = ExtResource("2_ylp5g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_uxki8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
