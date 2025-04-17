@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm8vr7nfbo4g8"]
+
+[ext_resource type="Texture2D" uid="uid://ck3j0ma8jhiqp" path="res://images/cryptbossidle.webp" id="1_gmnva"]
+[ext_resource type="Script" path="res://Scripts/shadow_boss.gd" id="1_nd6t5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8475x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_heauu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gmnva")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ShadowBoss" type="CharacterBody2D"]
+script = ExtResource("1_nd6t5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 6.5)
+scale = Vector2(13.52, 9.88)
+shape = SubResource("CircleShape2D_8475x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_heauu")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
+polygon = PackedVector2Array(827, -844, -234, -1158, -1079, -935, -1419, -327, -1359, 500, -736, 1081, 96, 1022, 559, 806, 53, 85, 72, -70)
