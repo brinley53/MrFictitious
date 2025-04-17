@@ -1,25 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2qah4iahw0li"]
+[gd_scene load_steps=3 format=3 uid="uid://d2qah4iahw0li"]
 
-[ext_resource type="Script" path="res://Scenes/losing_screen.gd" id="1_f6b2v"]
+[ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_f6b2v"]
+[ext_resource type="Texture2D" uid="uid://xhdu76441sre" path="res://images/ROUGH death screen.PNG" id="2_aqoyv"]
 
 [node name="Lost" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_f6b2v")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 254.0
-offset_right = 1399.0
-offset_bottom = 772.0
-text = "YOU LOSE"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+texture = ExtResource("2_aqoyv")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 665.0
+offset_right = 1108.0
+offset_bottom = 754.0
+text = "Try Again?"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 869.0
+offset_top = 791.0
+offset_right = 1108.0
+offset_bottom = 880.0
+text = "Exit Game"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

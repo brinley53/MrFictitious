@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccyafhvjao0l"]
+[gd_scene load_steps=5 format=3 uid="uid://b3pqrnygend1o"]
 
 [ext_resource type="Script" path="res://Scripts/health_item.gd" id="1_2mle4"]
-[ext_resource type="Texture2D" uid="uid://clo0uetylsacs" path="res://images/icon.svg" id="1_4bwxv"]
-[ext_resource type="Resource" uid="uid://dr4ab61w7656n" path="res://Resources/health_item.tres" id="2_osmog"]
+[ext_resource type="Resource" path="res://Resources/health_item.tres" id="2_osmog"]
+[ext_resource type="Texture2D" uid="uid://dqmcje7xxo6n4" path="res://images/health pack.png" id="3_mdw0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jip1a"]
 size = Vector2(138, 130)
@@ -13,7 +13,8 @@ script = ExtResource("1_2mle4")
 inventory_drop_item = ExtResource("2_osmog")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_4bwxv")
+scale = Vector2(2, 2)
+texture = ExtResource("3_mdw0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
