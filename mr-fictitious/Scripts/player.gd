@@ -121,6 +121,7 @@ func shoot_projectile():
 		removeItem(bulletResource)
 		bullets -= 1 
 		var projectile = PROJECTILE_SCENE.instantiate()
+		projectile.body_entered.connect(projectile._on_body_entered)
 		get_parent().add_child(projectile)
 		projectile.global_position = global_position
 		var target_position = get_global_mouse_position()

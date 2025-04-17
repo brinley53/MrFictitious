@@ -12,14 +12,16 @@ func _physics_process(delta):
 	position += velocity * delta
 
 # Deals damage to enemy when hit
-func _on_area_2d_area_entered(body):
-	print("Collided with:", body.name)
-	if body.is_in_group("Enemies"):
-		if body.has_method("reduce_enemy_health"):
-			body.reduce_enemy_health(1)
-		queue_free()
 
 
 #Bullet dissapear if nothing is hit in 4 seconds
-func _on_timer_timeout() -> void:
-	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print("Body entered:", body.name)
+	if body.is_in_group("Enemies"):
+		print("Hit an Enemy!")
+		if body.has_method("reduce_enemy_health"):
+			body.reduce_enemy_health(2)
+			print("Enemy health reduced.")
+			queue_free()

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://l40ckjsmfxl8" path="res://images/anmo sprite.png" id="6_sj4gg"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="7_5odrl"]
 [ext_resource type="PackedScene" uid="uid://d2wvpaplmsc7w" path="res://Scenes/poison_enemy.tscn" id="8_wk7nr"]
-[ext_resource type="PackedScene" uid="uid://caqj5knru4d7h" path="res://Scenes/shadow.tscn" id="9_doona"]
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="9_doona"]
 [ext_resource type="PackedScene" uid="uid://dxy708ne5nvwe" path="res://Scenes/rat_enemy.tscn" id="10_ffdkv"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="14_m33fj"]
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
