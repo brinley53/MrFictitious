@@ -70,6 +70,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("healthItem"):
 		use_health_item()
+	
 
 func get_size() -> Vector2:
 	return collision_shape.shape.size
@@ -169,10 +170,26 @@ func use_health_item():
 		health_items-=1
 		increase_player_health(10)
 
+func use_inventory_item():
+	var action = inventory.use_item()
+	match action:
+		"HEALTH": 
+			use_health_item()
+		_:
+			print("Invalid Option")
+				
+		
+	
 #Changes the speed, called when on "goo"
 func set_speed_multiplier(multiplier: float) -> void:
 	speed_multiplier = multiplier
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("inventorySlot"):
+		inventory.equipSlot(int(event.as_text())-1)
+	
+	if event.is_action_pressed("use_inventory_item"):
+		use_inventory_item()
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
 	#attack_area.visible = true

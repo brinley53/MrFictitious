@@ -2,9 +2,16 @@ extends Control
 
 
 var is_open:bool;
+
 @onready var playerinv:Inventory = preload("res://Resources/inventory.tres")
 @onready var slots:Array = $NinePatchRect/GridContainer.get_children()
+@onready var slotBg:NinePatchRect = $NinePatchRect
+var belt_sprites:Array[Texture2D]=[]
 func _ready() -> void:
+	for i in range(2,7):
+		var texture = ResourceLoader.load("res://images/bandolierinventory%d.png"%i)
+		belt_sprites.append(texture)
+		
 	playerinv.update.connect(updateSlots)
 	updateSlots()
 	close()
@@ -17,6 +24,9 @@ func _process(delta: float) -> void:
 
 func updateSlots():
 	for i in range(min(playerinv.slots.size(),slots.size())):
+		if(i==playerinv.activeSlot):
+			slotBg.texture=belt_sprites[i]
+			print(belt_sprites[i].resource_name)
 		slots[i].update(playerinv.slots[i])
 
 func close():

@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dr4ab61w7656n"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_wwuaj"]
-[ext_resource type="Texture2D" uid="uid://clo0uetylsacs" path="res://images/icon.svg" id="2_xepx0"]
+[ext_resource type="Texture2D" uid="uid://dqmcje7xxo6n4" path="res://images/health pack.png" id="2_rqob2"]
 
 [resource]
 script = ExtResource("1_wwuaj")
-texture = ExtResource("2_xepx0")
+texture = ExtResource("2_rqob2")
+action = "HEALTH"

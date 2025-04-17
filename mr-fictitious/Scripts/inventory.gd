@@ -3,6 +3,7 @@ extends Resource
 class_name Inventory
 
 @export var slots:Array[InventorySlot];
+var activeSlot:int=0
 signal update
 func insert(item:InventoryItem):
 
@@ -41,6 +42,18 @@ func remove(item:InventoryItem):
 			break
 	update.emit()
 	return itemFound
+
+func equipSlot(index:int):
+	print(index)
+	if(index>=0 and index<slots.size()):
+		activeSlot = index
+		update.emit()
+
+func use_item():
+	if not slots[activeSlot]:
+		return "NULL"
+	return slots[activeSlot].item.action
+	
 		
 		
 		
