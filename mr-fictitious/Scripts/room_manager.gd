@@ -52,16 +52,20 @@ var edges:Dictionary
 var connections:Dictionary
 
 func _ready() -> void:
+	# Start in the Central room.
 	active_location = Location.CENTRAL
 	active_room = 0
-
 	rooms[Location.CENTRAL] = [ROOMS[Location.CENTRAL][0].instantiate()]
 	add_connection_entry(Location.CENTRAL, 0)
 
+	# Instantiate the Forest rooms.
 	rooms[Location.FOREST] = []
 	for room in ROOMS[Location.FOREST]:
 		rooms[Location.FOREST].append(room.instantiate())
 
+	# Instantiate the Forest edges.
+	# The Central room uses the forest theme, so it shares the
+	# Forest edges.
 	edges[Location.CENTRAL] = []
 	edges[Location.FOREST] = []
 	for edge in FOREST_EDGES:
@@ -69,7 +73,7 @@ func _ready() -> void:
 		edges[Location.FOREST].append(edges[Location.CENTRAL][-1])
 
 func set_active_room(location:Location, room:int) -> void:
-	# Delete the current active room.
+	# Remove the olde active room from the scene.
 	remove_child(rooms[active_location][active_room])
 
 	# Switch out all of the edges when entering a new location.
@@ -78,12 +82,12 @@ func set_active_room(location:Location, room:int) -> void:
 			if edges[location][direction].is_inside_tree():
 				remove_child(edges[location][direction])
 
-	# Add the new active room.
+	# Add the new active room to the scene.
 	active_location = location
 	active_room = room
 	add_child(rooms[active_location][active_room])
 
-	# Update the blocking edges.
+	# Update the room's edges.
 	for direction in range(Direction.COUNT):
 		if connections[location][room][direction]["room"] != null and edges[location][direction].is_inside_tree():
 			remove_child(edges[location][direction])
@@ -91,9 +95,11 @@ func set_active_room(location:Location, room:int) -> void:
 			add_child(edges[location][direction])
 
 func add_connection_entry(location:Location, room:int) -> void:
+	# Add an entry for the location if one isn't present.
 	if not connections.has(location):
 		connections[location] = {}
 
+	# Check for duplicate connection requests.
 	if connections[location].has(room):
 		print("Attempted to add duplicate room %s in location %s" % [room, location])
 		return
@@ -119,16 +125,19 @@ func add_connection_entry(location:Location, room:int) -> void:
 	}
 
 func create_connection(source_location:Location, source_room:int, destination_location:Location, destination_room:int, direction:Direction):
+		# Record the source to destination connection.
 		connections[source_location][source_room][direction]["location"] = destination_location
 		connections[source_location][source_room][direction]["room"] = destination_room
 
-		# Intentional integer division
+		# Record the destination to source connection.
+		# Intentional integer division.
 		var opposite_direction:int = ((direction / 2) * 2) + (1 - (direction % 2))
 		connections[destination_location][destination_room][opposite_direction]["location"] = source_location
 		connections[destination_location][destination_room][opposite_direction]["room"] = source_room
 
 func generate_rooms() -> void:
 	for location in range(Location.COUNT):
+		# Skip Central since those connections are hardcoded.
 		if location == Location.CENTRAL:
 			continue
 
@@ -153,6 +162,8 @@ func generate_rooms() -> void:
 		unattached.erase(start)
 		unexplored.append(start)
 		add_connection_entry(location, start)
+	
+		# Connect the anchor room of the location to Central.
 		create_connection(Location.CENTRAL, 0, location, start, DIRECTION_FROM_CENTRAL[location])
 
 		while unattached.size() > 0:
@@ -161,8 +172,7 @@ func generate_rooms() -> void:
 
 			# Pick a random number of rooms to link to this one.
 			# There can only be a maximum of three NEW attachments because all
-			# rooms will have a previous link (the anchor is linked to whatever
-			# scene brought us to this area).
+			# rooms will have a previous link (the anchor is linked to Central).
 			var attachments:int = random.randi_range(1, Direction.COUNT - 2)
 			for i in attachments:
 				# Break if we attempt to make more attachments
@@ -192,6 +202,8 @@ func generate_rooms() -> void:
 			# The source is now explored.
 			unexplored.erase(source)
 
+	# Activate the Central room now that the connections
+	# are populated.
 	set_active_room(Location.CENTRAL, 0)
 
 func _on_path_up_body_entered(body: Node2D) -> void:
