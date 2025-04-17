@@ -38,6 +38,7 @@ tile_set = SubResource("TileSet_u8210")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_u24np")]
+metadata/_edit_use_anchors_ = true
 
 [node name="GenericItem" parent="." instance=ExtResource("4_oqsl5")]
 position = Vector2(947, 534)

@@ -50,7 +50,7 @@ func equipSlot(index:int):
 		update.emit()
 
 func use_item():
-	if not slots[activeSlot]:
+	if not slots[activeSlot] or not slots[activeSlot].item:
 		return "NULL"
 	return slots[activeSlot].item.action
 	
