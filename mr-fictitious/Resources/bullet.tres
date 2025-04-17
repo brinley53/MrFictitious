@@ -4,5 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7hc3kmmjmca1" path="res://images/anmo sprite bigger.png" id="2_17vp3"]
 
 [resource]
+resource_name = "NULL"
 script = ExtResource("1_k1dmt")
 texture = ExtResource("2_17vp3")
+action = ""
