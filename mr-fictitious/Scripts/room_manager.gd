@@ -9,6 +9,7 @@ extends Node2D
 enum Location {
 	CENTRAL,
 	FOREST,
+	CRYPT,
 	COUNT
 }
 
@@ -21,7 +22,8 @@ enum Direction {
 }
 
 const DIRECTION_FROM_CENTRAL:Dictionary = {
-	Location.FOREST: Direction.DOWN
+	Location.FOREST: Direction.DOWN,
+	Location.CRYPT: Direction.LEFT
 }
 
 const ROOMS:Dictionary = {
@@ -33,15 +35,35 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/Forest/room_2.tscn"),
 		preload("res://Scenes/Rooms/Forest/room_3.tscn"),
 		preload("res://Scenes/Rooms/Forest/room_4.tscn")
-	]
+	],
+	Location.CRYPT: [
+		preload("res://Scenes/Rooms/Crypt/room_1.tscn"),
+		preload("res://Scenes/Rooms/Crypt/room_2.tscn"),
+		preload("res://Scenes/Rooms/Crypt/room_3.tscn"),
+		preload("res://Scenes/Rooms/Crypt/room_4.tscn")
+	],
 }
 
-const FOREST_EDGES:Array[PackedScene] = [
-	preload("res://Scenes/Rooms/Forest/up_blocking_edge.tscn"),
-	preload("res://Scenes/Rooms/Forest/down_blocking_edge.tscn"),
-	preload("res://Scenes/Rooms/Forest/left_blocking_edge.tscn"),
-	preload("res://Scenes/Rooms/Forest/right_blocking_edge.tscn")
-]
+const EDGES:Dictionary = {
+	Location.CENTRAL: [
+		preload("res://Scenes/Rooms/Forest/up_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Forest/down_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Forest/left_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Forest/right_blocking_edge.tscn")
+	],
+	Location.FOREST: [
+		preload("res://Scenes/Rooms/Forest/up_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Forest/down_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Forest/left_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Forest/right_blocking_edge.tscn")
+	],
+	Location.CRYPT: [
+		preload("res://Scenes/Rooms/Crypt/up_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Crypt/down_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Crypt/left_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Crypt/right_blocking_edge.tscn")
+	]
+}
 
 var active_location:Location
 var active_room:int
@@ -58,41 +80,37 @@ func _ready() -> void:
 	rooms[Location.CENTRAL] = [ROOMS[Location.CENTRAL][0].instantiate()]
 	add_connection_entry(Location.CENTRAL, 0)
 
-	# Instantiate the Forest rooms.
-	rooms[Location.FOREST] = []
-	for room in ROOMS[Location.FOREST]:
-		rooms[Location.FOREST].append(room.instantiate())
+	# Instantiate the rooms and edges for each location.
+	for location in range(Location.COUNT):
+		edges[location] = []
+		for edge in EDGES[location]:
+			edges[location].append(edge.instantiate())
 
-	# Instantiate the Forest edges.
-	# The Central room uses the forest theme, so it shares the
-	# Forest edges.
-	edges[Location.CENTRAL] = []
-	edges[Location.FOREST] = []
-	for edge in FOREST_EDGES:
-		edges[Location.CENTRAL].append(edge.instantiate())
-		edges[Location.FOREST].append(edges[Location.CENTRAL][-1])
+		# The Central room is taken care of above.
+		if location == Location.CENTRAL:
+			continue
+
+		rooms[location] = []
+		for room in ROOMS[location]:
+			rooms[location].append(room.instantiate())
 
 func set_active_room(location:Location, room:int) -> void:
-	# Remove the olde active room from the scene.
+	# Remove the old active room.
 	remove_child(rooms[active_location][active_room])
 
-	# Switch out all of the edges when entering a new location.
-	if location != active_location:
-		for direction in range(Direction.COUNT):
-			if edges[location][direction].is_inside_tree():
-				remove_child(edges[location][direction])
+	# Remove the old active room's edges.
+	for direction in range(Direction.COUNT):
+		remove_child(edges[active_location][direction])
 
-	# Add the new active room to the scene.
+	# Add the new active room.
 	active_location = location
 	active_room = room
 	add_child(rooms[active_location][active_room])
 
-	# Update the room's edges.
+	# Update the new active room's edges.
 	for direction in range(Direction.COUNT):
-		if connections[location][room][direction]["room"] != null and edges[location][direction].is_inside_tree():
-			remove_child(edges[location][direction])
-		elif connections[location][room][direction]["room"] == null and not edges[location][direction].is_inside_tree():
-			add_child(edges[location][direction])
+		if connections[active_location][active_room][direction]["room"] == null:
+			add_child(edges[active_location][direction])
 
 func add_connection_entry(location:Location, room:int) -> void:
 	# Add an entry for the location if one isn't present.
