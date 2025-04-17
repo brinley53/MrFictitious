@@ -44,7 +44,8 @@ func remove(item:InventoryItem):
 	return itemFound
 
 func equipSlot(index:int):
-	if(index-1 in range(0,slots.size())):
+	print(index)
+	if(index>=0 and index<slots.size()):
 		activeSlot = index
 		update.emit()
 

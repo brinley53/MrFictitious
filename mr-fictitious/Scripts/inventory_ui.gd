@@ -24,8 +24,9 @@ func _process(delta: float) -> void:
 
 func updateSlots():
 	for i in range(min(playerinv.slots.size(),slots.size())):
-		if(i==playerinv.activeSlot-1):
+		if(i==playerinv.activeSlot):
 			slotBg.texture=belt_sprites[i]
+			print(belt_sprites[i].resource_name)
 		slots[i].update(playerinv.slots[i])
 
 func close():
