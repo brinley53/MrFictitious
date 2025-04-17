@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bqg6tfpn5salc"]
+[gd_scene load_steps=23 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/wolf_enemy.tscn" id="2_hmu8s"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dxy708ne5nvwe" path="res://Scenes/rat_enemy.tscn" id="10_ffdkv"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="14_m33fj"]
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
+[ext_resource type="PackedScene" uid="uid://3tegx7n1mwtx" path="res://Scenes/chest.tscn" id="16_ogyyp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
 radius = 46.457
@@ -415,3 +416,6 @@ position = Vector2(194, 301)
 
 [node name="Goo" parent="." instance=ExtResource("15_vu1k3")]
 position = Vector2(437, 330)
+
+[node name="Chest" parent="." instance=ExtResource("16_ogyyp")]
+position = Vector2(429, 192)
