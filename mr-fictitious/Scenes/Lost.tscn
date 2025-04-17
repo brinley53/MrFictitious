@@ -25,6 +25,7 @@ offset_bottom = 754.0
 text = "Try Again?"
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 869.0
 offset_top = 791.0
 offset_right = 1108.0
