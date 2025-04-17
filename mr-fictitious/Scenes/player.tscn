@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://77ecksixfpeo"]
+[gd_scene load_steps=51 format=3 uid="uid://77ecksixfpeo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qm5xk"]
 [ext_resource type="Resource" uid="uid://bwokjx3lenypg" path="res://Resources/inventory.tres" id="2_dulbo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://g8ilidvw47ws" path="res://images/player_walk.png" id="2_xcs7w"]
 [ext_resource type="Texture2D" uid="uid://cxyuu1igo7us8" path="res://images/right-facing slashframes.png" id="5_lkyq1"]
 [ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="6_0nipb"]
+[ext_resource type="Texture2D" uid="uid://c02idvqeq8oia" path="res://images/empty.png" id="6_ujg8o"]
 [ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="7_ipwff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jal5q"]
@@ -315,22 +316,25 @@ region = Rect2(0, 65, 111, 65)
 [sub_resource type="SpriteFrames" id="SpriteFrames_tokwd"]
 animations = [{
 "frames": [{
-"duration": 0.7,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_cirq7")
 }, {
-"duration": 0.7,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_phyf4")
 }, {
-"duration": 0.7,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_dl405")
 }, {
-"duration": 0.7,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_37ttl")
 }, {
-"duration": 0.7,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_o3mn8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ujg8o")
 }],
-"loop": true,
+"loop": false,
 "name": &"attacking",
 "speed": 5.0
 }, {
@@ -357,17 +361,17 @@ position = Vector2(12.75, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackArea"]
 position = Vector2(-12.75, -10)
-scale = Vector2(0.821429, 0.671875)
-polygon = PackedVector2Array(70, 10, 70, -10, 60, -30, 35, -60, 0, 0, 35, 60, 60, 30)
+scale = Vector2(1.5, 1.228)
+polygon = PackedVector2Array(73, 10, 73, -10, 60, -30, 35, -40, 14, -24, 0, 0, 14, 24.43, 35, 40, 60, 30)
 
 [node name="AttackSprite" type="AnimatedSprite2D" parent="AttackArea"]
 position = Vector2(0, -10)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tokwd")
 animation = &"attacking"
-frame_progress = 0.448132
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 
 [node name="HealthContainer" type="Sprite2D" parent="."]

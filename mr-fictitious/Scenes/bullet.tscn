@@ -1,23 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx3j73gvr5miy"]
+[gd_scene load_steps=4 format=3 uid="uid://npwlwjk8owgy"]
 
-[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_2ek2i"]
-[ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/bullet.tres" id="2_nydgb"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_jji5k"]
 [ext_resource type="Texture2D" uid="uid://l40ckjsmfxl8" path="res://images/anmo sprite.png" id="3_gg3po"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
-radius = 46.457
+[sub_resource type="CircleShape2D" id="CircleShape2D_exjxp"]
+radius = 21.8403
 
-[node name="bullet" type="Area2D"]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("1_2ek2i")
-drop_item = ExtResource("2_nydgb")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("3_gg3po")
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_jji5k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
-shape = SubResource("CircleShape2D_6xgsp")
+shape = SubResource("CircleShape2D_exjxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_gg3po")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

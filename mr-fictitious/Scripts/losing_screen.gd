@@ -1,5 +1,4 @@
 extends Control
-const Main:PackedScene = preload("res://Scenes/main.tscn")
 
 
 func _on_button_pressed() -> void:

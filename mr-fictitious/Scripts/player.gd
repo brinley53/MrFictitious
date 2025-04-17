@@ -6,6 +6,7 @@ Revisions:
 	Brinley Hull - 4/2/2025: Animation
 	Jose Leyba - 04/03/2025 - Attack Revamp
 	Brinley Hull - 4/14/2025: Stealth
+	Jose Leyba 4/17/2025: Speed Multiplier
 """
 class_name Player
 extends CharacterBody2D
@@ -17,6 +18,8 @@ const ATTACK_LOCK_TIME_Range = 2
 const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")  
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
+var base_speed := SPEED
+var speed_multiplier := 1.0
 var health = 100
 var max_health = 100
 var bullets = 3
@@ -94,7 +97,7 @@ func move_character(delta):
 	if (sprite.animation != animation):
 		sprite.play(animation)
 	
-	velocity = direction * SPEED
+	velocity = direction * base_speed * speed_multiplier
 	move_and_slide()
 
 
@@ -129,7 +132,7 @@ func reduce_player_health(damage):
 	health = health - damage
 	health_bar.value = health
 	if health <= 0:
-		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
+		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
 	
 func increase_player_health(amount:int):
 	health = min(health+amount,max_health)
@@ -165,7 +168,9 @@ func use_health_item():
 		health_items-=1
 		increase_player_health(10)
 
-
+#Changes the speed, called when on "goo"
+func set_speed_multiplier(multiplier: float) -> void:
+	speed_multiplier = multiplier
 
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
