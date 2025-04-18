@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_wwuaj")
 texture = ExtResource("2_rqob2")
-action = ""
+action = "HEALTH"

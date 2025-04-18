@@ -7,11 +7,16 @@ Revisions:
 	Jose Leyba - 04/03/2025 - Attack Revamp
 	Brinley Hull - 4/14/2025: Stealth
 	Jose Leyba 4/17/2025: Speed Multiplier
+	Tej Gumaste 4/17/2025: Sound integration with dynamic sounds
 """
 class_name Player
 extends CharacterBody2D
 
 #CONSTANTS
+enum PLAYER_STATE {
+	Combat,
+	Explore
+}
 const SPEED = 300.0
 const ATTACK_LOCK_TIME_MELEE = 0.5
 const FOOTSTEP_FREQUENCY=0.4
@@ -37,6 +42,8 @@ var speed_buff_timer :Timer = null
 var damage_buff_timer :Timer = null
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
+var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
+
 
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
@@ -282,13 +289,11 @@ func play_ambient_sound(location):
 	match location:
 		0:
 			play_sound(AK.EVENTS.CAMP)
-			play_sound(AK.EVENTS.EXPLORE)
 		1:
 			play_sound(AK.EVENTS.FOREST)
-			play_sound(AK.EVENTS.EXPLORE)
+
 		2:
 			play_sound(AK.EVENTS.VILLAGE)
-			play_sound(AK.EVENTS.EXPLORE)
 		3:
 			pass
 		4:
@@ -314,9 +319,17 @@ func play_footstep_sound(location:int):
 
 func receive_current_location(location:int):
 	print(location)
+	play_sound(AK.EVENTS.EXPLORE)
+	current_player_state = PLAYER_STATE.Explore
 	if current_location!=location:
 		current_location=location
 		play_ambient_sound(current_location)
+
+func initiate_combat():
+	if current_player_state!=PLAYER_STATE.Combat:
+		play_sound(AK.EVENTS.COMBAT)
+		current_player_state=PLAYER_STATE.Combat
+	
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
 	#attack_area.visible = true

@@ -15,6 +15,7 @@ Revisions:
 	Brinley Hull - 4/11/2025: Poison enemy
 	Brinley Hull - 4/14/2025: Shadows
 	Brinley Hull - 4/15/2025: Detect player on hit
+	Tej Gumaste - 4/17/2025: Added combat sounds
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -73,6 +74,7 @@ func _physics_process(delta: float) -> void:
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		attack_player = true
+		player.initiate_combat()
 		player.reduce_player_health(damage)
 		timer.start()
 		if (type == "Poison"):
@@ -107,6 +109,7 @@ func patrol():
 func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
 	chase_player = true
+	player.initiate_combat()
 	if health <= 0:
 		queue_free()
 
@@ -114,6 +117,7 @@ func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player
 	if body.name == "Player":
 		if !body.stealth:
+			player.initiate_combat()
 			chase_player = true
 		
 func chase(body: Node2D) -> void:
