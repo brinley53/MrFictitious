@@ -272,9 +272,10 @@ point_a = NodePath("../PointA2")
 point_b = NodePath("../PointB2")
 
 [node name="PointA" type="Area2D" parent="."]
-position = Vector2(950, 588)
+position = Vector2(846, 558)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointA"]
+position = Vector2(-83, 11)
 shape = SubResource("CircleShape2D_eaats")
 
 [node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("3_8xbok")]
