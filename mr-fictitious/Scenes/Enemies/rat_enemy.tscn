@@ -64,7 +64,7 @@ size = Vector2(65, 72)
 [node name="CharacterBody2D3" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
 script = ExtResource("1_7w4eh")
-health = 3
+health = 15
 base_speed = 200.0
 damage = 20.0
 type = "Rat"
