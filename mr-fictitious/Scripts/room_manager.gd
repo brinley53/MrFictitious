@@ -65,7 +65,7 @@ const EDGES:Dictionary = {
 		preload("res://Scenes/Rooms/Crypt/right_blocking_edge.tscn")
 	]
 }
-
+var playerInstance:Player
 var active_location:Location
 var active_room:int
 
@@ -105,6 +105,7 @@ func set_active_room(location:Location, room:int) -> void:
 
 	# Add the new active room.
 	active_location = location
+	send_player_location(active_location)
 	active_room = room
 	add_child(rooms[active_location][active_room])
 
@@ -252,3 +253,12 @@ func _on_path_right_body_entered(body: Node2D) -> void:
 		if destination["room"] != null:
 			set_active_room(destination["location"], destination["room"])
 			body.position.x = body.get_size().x * 2
+			
+func receive_player(object:Player):
+	print("Player received")
+	playerInstance = object
+
+func send_player_location(location:Location):
+	print("Sending Player Location")
+	playerInstance.receive_current_location(location)
+	

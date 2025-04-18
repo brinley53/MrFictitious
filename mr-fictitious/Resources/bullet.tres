@@ -7,3 +7,4 @@
 resource_name = "NULL"
 script = ExtResource("1_k1dmt")
 texture = ExtResource("2_17vp3")
+action = ""

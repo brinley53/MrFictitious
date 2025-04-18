@@ -18,6 +18,7 @@ config/icon="res://images/icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 [display]
 
@@ -101,3 +102,10 @@ use_inventory_item={
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://dialogue.dialogue")
+
+[wwise]
+
+common_user_settings/root_output_path="res://GeneratedSoundBanks"
+project_settings/use_soundbank_names=false
+project_settings/windows_platform_info="res://Wwise/resources/Windows.tres"
+project_settings/mac_platform_info="res://Wwise/resources/Mac.tres"

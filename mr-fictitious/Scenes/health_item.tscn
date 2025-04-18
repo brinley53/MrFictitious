@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3pqrnygend1o"]
 
 [ext_resource type="Script" path="res://Scripts/health_item.gd" id="1_2mle4"]
-[ext_resource type="Resource" uid="uid://dr4ab61w7656n" path="res://Resources/health_item.tres" id="2_osmog"]
+[ext_resource type="Resource" uid="uid://cnleh0p53vbru" path="res://Resources/health_item.tres" id="2_osmog"]
 [ext_resource type="Texture2D" uid="uid://dqmcje7xxo6n4" path="res://images/health pack.png" id="3_mdw0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jip1a"]
