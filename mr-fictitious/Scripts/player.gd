@@ -1,6 +1,6 @@
 """
 Script focused on the player, it has it's movement, attacks, and taking damage
-Authors: Jose Leyba
+Authors: Jose Leyba, Brinley Hull
 Creation Date: 03/27/2025
 Revisions:
 	Brinley Hull - 4/2/2025: Animation
@@ -8,6 +8,7 @@ Revisions:
 	Brinley Hull - 4/14/2025: Stealth
 	Jose Leyba 4/17/2025: Speed Multiplier
 	Brinley Hull - 4/17/2025: Dialogue
+	Brinley Hull - 4/18/2025: Fix Attack Area Body Entered Bug
 """
 class_name Player
 extends CharacterBody2D
@@ -111,7 +112,10 @@ func move_character(delta):
 
 #Will attack directing at the position of the map, uses radius 
 func attack():
-	print(base_damage)
+	var bodies = $AttackArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("Enemies"):
+			body.reduce_enemy_health(5)
 	attack_area.monitoring = true  
 	attack_area.monitorable = true
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
@@ -150,8 +154,7 @@ func increase_player_health(amount:int):
 
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Enemies"):
-		body.reduce_enemy_health(5)
+	pass
 
 #When timer runs out disable the attack area
 func _on_attack_timer_timeout():
