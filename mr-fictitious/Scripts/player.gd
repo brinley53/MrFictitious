@@ -8,6 +8,7 @@ Revisions:
 	Brinley Hull - 4/14/2025: Stealth
 	Jose Leyba 4/17/2025: Speed Multiplier
 	Tej Gumaste 4/17/2025: Sound integration with dynamic sounds
+	Brinley Hull - 4/17/2025: Dialogue
 """
 class_name Player
 extends CharacterBody2D
@@ -54,7 +55,6 @@ var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
 @onready var healthResource = preload("res://Resources/health_item.tres")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
-@onready var footstep_timer = $FootstepTimer
 
 #EXPORT VARIABLES
 @export var inventory:Inventory;
@@ -272,7 +272,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_E):
-		DialogueManager.show_example_dialogue_balloon(load("res://dialogue.dialogue"), "start")
+		dialogue_manager.show_example_dialogue_balloon(load("res://dialogue.dialogue"), "start")
 		return
 	
 	if event.is_action_pressed("inventorySlot"):

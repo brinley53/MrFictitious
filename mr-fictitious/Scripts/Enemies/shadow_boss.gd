@@ -7,9 +7,12 @@ Revisions:
 
 extends CharacterBody2D
 
+const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")  
+
 #GLOBAL VARIABLES
 # stats attributes
 var speed : float
+@export var health : float
 @export var base_speed : float
 @export var damage : float
 
@@ -27,6 +30,69 @@ var attack_player = false
 func _ready():
 	#set initial variables
 	speed = base_speed
+	timer.start()
+	
+func reset_patrol():
+	chase_player = false
+	speed = base_speed
+	attack_player = false
+	
+func shoot_player():
+	var bullet = BULLET_SCENE.instantiate()
+	bullet.body_entered.connect(bullet._on_body_entered)
+	bullet.global_position = global_position
+	bullet.initialize_bullet(player.global_position, 500)
+	get_parent().add_child(bullet)
+
+func _physics_process(delta: float) -> void:
+	if !player.stealth:
+		# Calculate the direction vector towards the player
+		var direction = (player.global_position - global_position).normalized()
+
+		# Rotate the sprite towards the player
+		if direction.x > 0:
+			sprite.flip_h = true  # Not flipped
+		else:
+			sprite.flip_h = false  # Flip horizontally
+
+		# Rotate the detection area to face the player
+		detection.rotation = direction.angle()
+
+#Enemy patrol movement -> go from point A to point B
+#func patrol():
+	## set direction to be towards target_point
+	#if target_point == null:
+		#target_point = point_a
+		#chase_player = false
+	#var direction = (target_point.global_position - global_position).normalized()
+	#velocity = direction * speed
+	#
+	## face the sprite and detection cone based on what direction we're going
+	#if direction.x > 0:
+		#sprite.flip_h = 0
+	#else:
+		#sprite.flip_h = 1
+		#
+	#if velocity.length() > 0:
+		#detection.rotation = velocity.angle()
+#
+	#move_and_slide()	
+	
+	##if we're close to the target point, change patrol points as the target point
+	#if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player:
+		## Swap target between point A and B
+		#target_point = point_a if target_point == point_b else point_b
+	#
+#Takes damage, when life reaches 0 it dies
+func reduce_enemy_health(damage_dealt):
+	health = health - damage_dealt
+	chase_player = true
+	if health <= 0:
+		queue_free()
+
+#func chase(body: Node2D) -> void:
+	## Change target point to be the player's area2d child
+	#target_point = body.get_child(2)
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -45,11 +111,10 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
 	if body.name == "Player":
 		attack_player = false
-		poison_timer.start()
-		current_proc_count = 0
 			
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
-	if attack_player:
-		player.reduce_player_health(damage)
-		timer.start()
+	if !player.stealth:
+		shoot_player()
+	timer.start()
+		

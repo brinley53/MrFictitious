@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dytosiqlbde4g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yik3"]
+
+[node name="Patrol" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5yik3")

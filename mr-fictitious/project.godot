@@ -14,10 +14,6 @@ config/name="Mr Fictitious"
 run/main_scene="res://Scenes/title.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://images/icon.svg"
-
-[autoload]
-
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 [display]
@@ -28,6 +24,10 @@ window/size/viewport_height=1080
 [dotnet]
 
 project/assembly_name="Mr Fictitious"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 

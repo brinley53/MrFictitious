@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0wd00fhx40d5"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/shadow_bullet.gd" id="1_wxwm6"]
+[ext_resource type="Texture2D" uid="uid://jnbo736ya4ck" path="res://images/SbulletWIP.png" id="2_1m0qh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e334m"]
+radius = 3.0
+
+[node name="ShadowBullet" type="Area2D"]
+script = ExtResource("1_wxwm6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1m0qh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_e334m")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

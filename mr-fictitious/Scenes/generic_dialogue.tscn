@@ -1,6 +1,18 @@
 [gd_scene load_steps=2 format=3 uid="uid://c65b4rqdkx1su"]
 
-[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="1_sakq6"]
+[sub_resource type="GDScript" id="GDScript_c4lol"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="GenericDialogue" type="Node2D"]
-script = ExtResource("1_sakq6")
+script = SubResource("GDScript_c4lol")
