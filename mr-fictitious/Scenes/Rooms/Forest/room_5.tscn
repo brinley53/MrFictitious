@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://bnowu5qauy6m0"]
+[gd_scene load_steps=12 format=4 uid="uid://bnowu5qauy6m0"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_fwphx"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_uierw"]
 [ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="3_q34h4"]
+[ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_vmfpb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
 texture = ExtResource("1_fwphx")
@@ -284,3 +285,7 @@ position = Vector2(382, 280)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointB"]
 shape = SubResource("CircleShape2D_eaats")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_vmfpb")]
