@@ -70,8 +70,8 @@ damage = 20.0
 type = "Rat"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 6)
-scale = Vector2(3.08, 2.08)
+position = Vector2(4, 7)
+scale = Vector2(2.62049, 1.74327)
 shape = SubResource("CircleShape2D_wk8k2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -80,7 +80,7 @@ animation = &"run"
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(5, 8)
-scale = Vector2(1, 0.56)
+scale = Vector2(1.04, 0.64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-1.5, -1)

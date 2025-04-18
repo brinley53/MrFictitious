@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bqg6tfpn5salc"]
+[gd_scene load_steps=26 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_hmu8s"]
@@ -15,10 +15,9 @@
 [ext_resource type="PackedScene" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
 [ext_resource type="PackedScene" path="res://Scenes/chest.tscn" id="16_ogyyp"]
 [ext_resource type="PackedScene" path="res://Scenes/speed_item.tscn" id="17_xsx77"]
-[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="18_a8axj"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="18_1db15"]
 [ext_resource type="PackedScene" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
 [ext_resource type="PackedScene" path="res://Scenes/permanent_dmg_item.tscn" id="19_3js83"]
-[ext_resource type="PackedScene" uid="uid://bm8vr7nfbo4g8" path="res://Scenes/Enemies/shadow_boss.tscn" id="19_wi3un"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
 radius = 46.457
@@ -436,11 +435,7 @@ position = Vector2(833, 509)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_nw7vk")
 
-[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("18_a8axj")]
-position = Vector2(779, 482)
-point_a = NodePath("../Area2D")
-point_b = NodePath("../Area2D2")
-
-[node name="ShadowBoss" parent="." instance=ExtResource("19_wi3un")]
-position = Vector2(950, 550)
-base_speed = 0.0
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("18_1db15")]
+position = Vector2(819, 698)
+point_a = NodePath("../PatrolA")
+point_b = NodePath("../PatrolB")

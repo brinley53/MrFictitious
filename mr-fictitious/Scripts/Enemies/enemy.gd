@@ -136,12 +136,10 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_poison_timer_timeout() -> void:
-	if type != "Poison":
-		pass
-		
-	if current_proc_count >= poison_proc_count:
-		poison = false
-	else:
-		player.reduce_player_health(damage)
-		current_proc_count+=1
-		poison_timer.start()
+	if poison:
+		if current_proc_count >= poison_proc_count:
+			poison = false
+		else:
+			player.reduce_player_health(damage)
+			current_proc_count+=1
+			poison_timer.start()

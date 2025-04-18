@@ -274,13 +274,13 @@ position = Vector2(950, 588)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointA"]
 shape = SubResource("CircleShape2D_eaats")
 
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("3_q34h4")]
+position = Vector2(382, 280)
+point_a = NodePath("../PointA")
+point_b = NodePath("../PointB")
+
 [node name="PointB" type="Area2D" parent="."]
 position = Vector2(382, 280)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointB"]
 shape = SubResource("CircleShape2D_eaats")
-
-[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("3_q34h4")]
-position = Vector2(382, 280)
-point_a = NodePath("../PointA")
-point_b = NodePath("../PointB")
