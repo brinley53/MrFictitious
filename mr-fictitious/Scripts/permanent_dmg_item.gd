@@ -6,7 +6,7 @@ Revisions:
 """
 extends Area2D
 
-@export var damage_increase := 1
+@export var damage_increase := 3
 @export var attack_area_shrink := 0.7  # 70% of original size
 
 func _ready():
