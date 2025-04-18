@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://cskvio3hsixhn"]
+[gd_scene load_steps=14 format=4 uid="uid://cskvio3hsixhn"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_5c4g0"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_nnf8p"]
 [ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="3_8xbok"]
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="4_g1e1g"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="5_8cj0r"]
+[ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="6_sr8j1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
 texture = ExtResource("1_5c4g0")
@@ -194,7 +195,9 @@ texture_region_size = Vector2i(64, 64)
 4:3/0 = 0
 5:3/0 = 0
 6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 0:4/0 = 0
 1:4/0 = 0
 2:4/0 = 0
@@ -312,3 +315,6 @@ position = Vector2(695, 391)
 
 [node name="Spikes4" parent="." instance=ExtResource("5_8cj0r")]
 position = Vector2(634, 391)
+
+[node name="Damage_Item" parent="." instance=ExtResource("6_sr8j1")]
+position = Vector2(969, 405)

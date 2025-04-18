@@ -233,7 +233,7 @@ func _on_path_up_body_entered(body: Node2D) -> void:
 		var destination = connections[active_location][active_room][Direction.UP]
 		if destination["room"] != null:
 			set_active_room(destination["location"], destination["room"])
-			body.position.y = get_viewport_rect().size.y - body.get_size().y
+			body.position.y = get_viewport_rect().size.y - body.get_size().y*2
 
 func _on_path_down_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
