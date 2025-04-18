@@ -444,3 +444,4 @@ point_b = NodePath("../Area2D2")
 [node name="ShadowBoss" parent="." instance=ExtResource("19_wi3un")]
 position = Vector2(950, 550)
 base_speed = 0.0
+damage = 0.0
