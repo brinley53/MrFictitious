@@ -19,7 +19,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arxui"]
 size = Vector2(65, 72)
 
-[node name="ShadowBoss" type="CharacterBody2D"]
+[node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ccgou")
 health = 100.0
 base_speed = 20.0

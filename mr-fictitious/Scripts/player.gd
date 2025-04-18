@@ -151,7 +151,7 @@ func increase_player_health(amount:int):
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
-		body.reduce_enemy_health(1)
+		body.reduce_enemy_health(5)
 
 #When timer runs out disable the attack area
 func _on_attack_timer_timeout():
