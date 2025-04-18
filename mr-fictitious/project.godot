@@ -21,10 +21,6 @@ WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
-[autoload]
-
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-
 [display]
 
 window/size/viewport_width=1920
