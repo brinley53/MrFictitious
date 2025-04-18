@@ -8,7 +8,9 @@ Revisions:
 	Brinley Hull - 4/14/2025: Stealth
 	Jose Leyba 4/17/2025: Speed Multiplier
 	Brinley Hull - 4/17/2025: Dialogue
-	Brinley Hull - 4/18/2025: Fix Attack Area Body Entered Bug
+	Brinley Hull - 4/18/2025: 
+		- Fix Attack Area Body Entered Bug
+		- Poison
 """
 class_name Player
 extends CharacterBody2D
@@ -36,6 +38,10 @@ var base_damage = 1
 var current_damage = base_damage
 var speed_buff_timer :Timer = null
 var damage_buff_timer :Timer = null
+var is_poisoned = false
+var current_proc_count = 0
+var poison_proc_count = 0
+var poison_damage = 0
 
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
@@ -47,6 +53,7 @@ var damage_buff_timer :Timer = null
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var dialogue_manager = $DialogueManager
+@onready var poison_timer = $PoisonTimer
 
 #EXPORT VARIABLES
 @export var inventory:Inventory;
@@ -62,6 +69,14 @@ func _ready():
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
+	
+func poison(pp, pd):
+	# function for enemies to call to poison the player, taking in the poison proc count and the poison damage dealt
+	is_poisoned = true
+	poison_timer.start()
+	poison_proc_count = pp
+	current_proc_count = 0
+	poison_damage = pd
 
 #Every frame call the move_character function, calls the attack function when pressing left click
 func _process(delta):
@@ -276,3 +291,14 @@ func _input(event: InputEvent) -> void:
 	#await tween.finished
 	#attack_area.visible = false
 	#attack_area.position = Vector2.ZERO  # Reset position after attack
+
+#Function to poison the player
+func _on_poison_timer_timeout() -> void:
+	if is_poisoned:
+		# Check if we're over the proc count to be done with poison
+		if current_proc_count >= poison_proc_count:
+			is_poisoned = false
+		else:
+			reduce_player_health(poison_damage)
+			current_proc_count+=1
+			poison_timer.start()
