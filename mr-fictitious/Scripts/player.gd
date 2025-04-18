@@ -55,6 +55,8 @@ var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
 @onready var healthResource = preload("res://Resources/health_item.tres")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
+@onready var footstep_timer = $FootstepTimer
+@onready var dialogue_manager = $DialogueManager
 
 #EXPORT VARIABLES
 @export var inventory:Inventory;

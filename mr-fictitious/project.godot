@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://images/icon.svg"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
+[autoload]
+
+WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
 [display]
 
 window/size/viewport_width=1920
