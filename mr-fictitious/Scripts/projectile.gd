@@ -22,6 +22,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
 		print("Hit an Enemy!")
 		if body.has_method("reduce_enemy_health"):
-			body.reduce_enemy_health(2)
+			body.reduce_enemy_health(10)
 			print("Enemy health reduced.")
 			queue_free()

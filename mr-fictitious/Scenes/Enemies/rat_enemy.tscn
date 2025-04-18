@@ -64,14 +64,14 @@ size = Vector2(65, 72)
 [node name="CharacterBody2D3" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
 script = ExtResource("1_7w4eh")
-health = 3
+health = 15
 base_speed = 200.0
 damage = 20.0
 type = "Rat"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 6)
-scale = Vector2(3.08, 2.08)
+position = Vector2(4, 7)
+scale = Vector2(2.62049, 1.74327)
 shape = SubResource("CircleShape2D_wk8k2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -80,7 +80,7 @@ animation = &"run"
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(5, 8)
-scale = Vector2(1, 0.56)
+scale = Vector2(1.04, 0.64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-1.5, -1)
@@ -93,10 +93,7 @@ polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
-[node name="PoisonTimer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="PoisonTimer" to="." method="_on_poison_timer_timeout"]

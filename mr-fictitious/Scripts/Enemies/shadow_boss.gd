@@ -55,8 +55,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.flip_h = false  # Flip horizontally
 
-		# Rotate the detection area to face the player
-		detection.rotation = direction.angle()
+		# Rotate the detection area to face the playe
+		
+		direction = (player.global_position - detection.global_position).angle() + PI
+		detection.rotation = lerp_angle(detection.rotation, direction, delta)
+		#detection.look_at(player.global_position)
+		#detection.rotation += PI
 
 #Enemy patrol movement -> go from point A to point B
 #func patrol():
@@ -104,8 +108,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player
 	if body.name == "Player":
-		if !body.stealth:
-			chase_player = true
+		attack_player = true
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
@@ -114,7 +117,10 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 			
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
-	if !player.stealth:
+	if !player.stealth and attack_player:
 		shoot_player()
 	timer.start()
-		
+
+func _on_detection_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		attack_player = false

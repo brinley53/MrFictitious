@@ -44,7 +44,6 @@ var poison = false
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
 @export_enum("Wolf", "Rat", "Poison") var type : String
-@onready var poison_timer = $PoisonTimer
 
 func _ready():
 	#set initial variables
@@ -77,8 +76,6 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		player.initiate_combat()
 		player.reduce_player_health(damage)
 		timer.start()
-		if (type == "Poison"):
-			poison = true
 
 #Enemy patrol movement -> go from point A to point B
 func patrol():
@@ -128,24 +125,11 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
 	if body.name == "Player":
 		attack_player = false
-		poison_timer.start()
-		current_proc_count = 0
-			
+		if (type == 'Poison'):
+			player.poison(poison_proc_count, damage)			
 
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
 		player.reduce_player_health(damage)
 		timer.start()
-
-
-func _on_poison_timer_timeout() -> void:
-	if type != "Poison":
-		pass
-		
-	if current_proc_count >= poison_proc_count:
-		poison = false
-	else:
-		player.reduce_player_health(damage)
-		current_proc_count+=1
-		poison_timer.start()

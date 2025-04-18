@@ -35,7 +35,10 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/Forest/room_2.tscn"),
 		preload("res://Scenes/Rooms/Forest/room_3.tscn"),
 		preload("res://Scenes/Rooms/Forest/room_4.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_5.tscn")
+		preload("res://Scenes/Rooms/Forest/room_5.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_6.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_7.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_8.tscn")
 	],
 	Location.CRYPT: [
 		preload("res://Scenes/Rooms/Crypt/room_1.tscn"),
@@ -231,7 +234,7 @@ func _on_path_up_body_entered(body: Node2D) -> void:
 		var destination = connections[active_location][active_room][Direction.UP]
 		if destination["room"] != null:
 			set_active_room(destination["location"], destination["room"])
-			body.position.y = get_viewport_rect().size.y - body.get_size().y
+			body.position.y = get_viewport_rect().size.y - body.get_size().y*2
 
 func _on_path_down_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):

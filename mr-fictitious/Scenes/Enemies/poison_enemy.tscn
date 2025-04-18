@@ -12,6 +12,14 @@ animations = [{
 "texture": ExtResource("2_8371w")
 }],
 "loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8371w")
+}],
+"loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -28,17 +36,18 @@ damage = 5.0
 poison_proc_count = 3
 type = "Poison"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemies"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -0.5)
-scale = Vector2(3.6, -2.77294)
+scale = Vector2(3.16, -3.09294)
 shape = SubResource("CircleShape2D_w87jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_42n1k")
-animation = &"walk"
+animation = &"run"
 
 [node name="AttackArea" type="Area2D" parent="."]
+scale = Vector2(1.4, 1.25035)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-1.5, -1)

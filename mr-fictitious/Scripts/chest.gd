@@ -30,7 +30,7 @@ func spawn_random_loot():
 	opened = true
 	#sprite.texture = open_texture
 
-	var loot_options = [bullet_scene, health_scene, speed_scene, damage_scene]
+	var loot_options = [bullet_scene, health_scene, speed_scene]
 	var num_loot = randi_range(1, 6)
 
 	for i in range(num_loot):

@@ -205,14 +205,14 @@ size = Vector2(114, 81)
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
 script = ExtResource("1_ocemh")
-health = 5
+health = 25
 base_speed = 60.0
 damage = 25.0
 type = "Wolf"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
-scale = Vector2(2.88, 1.64)
+scale = Vector2(1.792, 1.45077)
 shape = SubResource("CircleShape2D_vweiy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -234,10 +234,7 @@ polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
-[node name="PoisonTimer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="PoisonTimer" to="." method="_on_poison_timer_timeout"]

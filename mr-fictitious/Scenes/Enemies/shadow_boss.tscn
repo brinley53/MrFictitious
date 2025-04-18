@@ -19,7 +19,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arxui"]
 size = Vector2(65, 72)
 
-[node name="ShadowBoss" type="CharacterBody2D"]
+[node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ccgou")
 health = 100.0
 base_speed = 20.0
@@ -47,6 +47,7 @@ shape = SubResource("RectangleShape2D_arxui")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
