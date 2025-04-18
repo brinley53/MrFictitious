@@ -1,10 +1,16 @@
 extends Node
 
 const RoomManager:PackedScene = preload("res://Scenes/room_manager.tscn")
+
+@onready var player:Player = $Player
+
 func _ready():
 	var room_manager = RoomManager.instantiate()
 	add_child(room_manager)
+	room_manager.receive_player(player)
 	room_manager.generate_rooms()
+	
+	
 
 #const TEST_AREA = preload("res://Scenes/test_area.tscn")
 #

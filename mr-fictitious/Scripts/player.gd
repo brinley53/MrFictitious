@@ -7,6 +7,7 @@ Revisions:
 	Jose Leyba - 04/03/2025 - Attack Revamp
 	Brinley Hull - 4/14/2025: Stealth
 	Jose Leyba 4/17/2025: Speed Multiplier
+	Tej Gumaste 4/17/2025: Sound integration with dynamic sounds
 	Brinley Hull - 4/17/2025: Dialogue
 	Brinley Hull - 4/18/2025: 
 		- Fix Attack Area Body Entered Bug
@@ -16,8 +17,13 @@ class_name Player
 extends CharacterBody2D
 
 #CONSTANTS
+enum PLAYER_STATE {
+	Combat,
+	Explore
+}
 const SPEED = 300.0
 const ATTACK_LOCK_TIME_MELEE = 0.5
+const FOOTSTEP_FREQUENCY=0.4
 const ATTACK_LOCK_TIME_Range = 2
 const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")  
 const PROJECTILE_SPEED = 600.0 
@@ -38,10 +44,15 @@ var base_damage = 1
 var current_damage = base_damage
 var speed_buff_timer :Timer = null
 var damage_buff_timer :Timer = null
+
 var is_poisoned = false
 var current_proc_count = 0
 var poison_proc_count = 0
 var poison_damage = 0
+
+var can_play_footstep_sound:bool=true
+var current_location:int = -1
+var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
 
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
@@ -52,6 +63,7 @@ var poison_damage = 0
 @onready var healthResource = preload("res://Resources/health_item.tres")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
+@onready var footstep_timer = $FootstepTimer
 @onready var dialogue_manager = $DialogueManager
 @onready var poison_timer = $PoisonTimer
 
@@ -66,6 +78,10 @@ func _ready():
 	attack_area.monitorable = false
 	for i in range(bullets):
 		collectItem(bulletResource)
+	Wwise.register_game_obj(self,self.name)
+	Wwise.register_listener(self)
+	Wwise.load_bank_id(AK.BANKS.SOUND)
+	Wwise.load_bank_id(AK.BANKS.MUSIC)
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
@@ -121,7 +137,11 @@ func move_character(delta):
 	
 	if (sprite.animation != animation):
 		sprite.play(animation)
-	
+	if direction!=Vector2.ZERO:
+		if can_play_footstep_sound:
+			can_play_footstep_sound=false
+			play_sound(AK.EVENTS.PLAYER_STEP)
+			footstep_timer.start(FOOTSTEP_FREQUENCY)
 	velocity = direction * base_speed * buff_speed * debuff_speed
 	move_and_slide()
 
@@ -131,6 +151,7 @@ func attack():
 	for body in bodies:
 		if body.is_in_group("Enemies"):
 			body.reduce_enemy_health(5)
+	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
 	attack_area.monitoring = true  
 	attack_area.monitorable = true
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
@@ -146,6 +167,7 @@ func attack():
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
 	if bullets > 0:  
+		play_sound(AK.EVENTS.PLAYER_GUN_SHOOT)
 		removeItem(bulletResource)
 		bullets -= 1 
 		var projectile = PROJECTILE_SCENE.instantiate()
@@ -158,9 +180,11 @@ func shoot_projectile():
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
+	play_sound(AK.EVENTS.PLAYER_DAMAGE)
 	health = health - damage
 	health_bar.value = health
 	if health <= 0:
+		play_sound(AK.EVENTS.PLAYER_DEATH)
 		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
 	
 func increase_player_health(amount:int):
@@ -177,7 +201,9 @@ func _on_attack_timer_timeout():
 	attack_area.visible = false 
 	attack_area.monitoring = true  
 	attack_area.monitorable = true
-	
+
+func _on_footstep_timer_timeout():
+	can_play_footstep_sound=true
 #Adds bullet back to the player	
 func add_bullet():
 	bullets += 1
@@ -275,6 +301,56 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("use_inventory_item"):
 		use_inventory_item()
+
+func play_sound(id:int):
+	Wwise.post_event_id(id,self)
+
+func play_ambient_sound(location):
+	play_sound(AK.EVENTS.PLAYMUSIC)
+	match location:
+		0:
+			play_sound(AK.EVENTS.CAMP)
+		1:
+			play_sound(AK.EVENTS.FOREST)
+
+		2:
+			play_sound(AK.EVENTS.VILLAGE)
+		3:
+			pass
+		4:
+			pass
+		_:
+			print("Wrong room loser")
+		
+func play_footstep_sound(location:int):
+	match location:
+		0:
+			play_sound(AK.EVENTS.PLAYER_STEP)
+		1:
+			play_sound(AK.EVENTS.PLAYER_STEP_MATERIAL_CRUNCH)
+			play_sound(AK.EVENTS.PLAYER_STEP_MATERIAL_GRASS)
+		2:
+			play_sound(AK.EVENTS.PLAYER_STEP_MATERIAL_NORMAL)
+		3:
+			pass
+		4:
+			pass
+		_:
+			print("Wrong room loser")
+
+func receive_current_location(location:int):
+	print(location)
+	play_sound(AK.EVENTS.EXPLORE)
+	current_player_state = PLAYER_STATE.Explore
+	if current_location!=location:
+		current_location=location
+		play_ambient_sound(current_location)
+
+func initiate_combat():
+	if current_player_state!=PLAYER_STATE.Combat:
+		play_sound(AK.EVENTS.COMBAT)
+		current_player_state=PLAYER_STATE.Combat
+	
 #Might be useful later, rn not, leave it here for now
 #func start_attack_range():
 	#attack_area.visible = true
