@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cskvio3hsixhn"]
+[gd_scene load_steps=15 format=4 uid="uid://cskvio3hsixhn"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_5c4g0"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_nnf8p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="4_g1e1g"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="5_8cj0r"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="6_sr8j1"]
+[ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="7_cxmjc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
 texture = ExtResource("1_5c4g0")
@@ -318,3 +319,7 @@ position = Vector2(634, 391)
 
 [node name="Damage_Item" parent="." instance=ExtResource("6_sr8j1")]
 position = Vector2(969, 405)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("7_cxmjc")]
