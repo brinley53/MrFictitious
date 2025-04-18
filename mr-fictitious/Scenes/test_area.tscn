@@ -19,6 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
 [ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/permanent_dmg_item.tscn" id="19_3js83"]
 
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="18_a8axj"]
+[ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
+[ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/permanent_dmg_item.tscn" id="19_3js83"]
+[ext_resource type="PackedScene" uid="uid://bm8vr7nfbo4g8" path="res://Scenes/Enemies/shadow_boss.tscn" id="19_wi3un"]
+
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
 radius = 46.457
 
