@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_bunnj"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_q1807"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_ad0ut"]
-[ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/enemy.tscn" id="4_yjcxs"]
-[ext_resource type="PackedScene" uid="uid://b3pqrnygend1o" path="res://Scenes/health_item.tscn" id="5_w4of0"]
+[ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/Enemies/enemy.tscn" id="4_yjcxs"]
+[ext_resource type="PackedScene" path="res://Scenes/health_item.tscn" id="5_w4of0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfrq4"]
 texture = ExtResource("2_bunnj")

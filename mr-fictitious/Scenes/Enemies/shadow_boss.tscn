@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm8vr7nfbo4g8"]
 
-[ext_resource type="Texture2D" uid="uid://ck3j0ma8jhiqp" path="res://images/cryptbossidle.webp" id="1_gmnva"]
-[ext_resource type="Script" path="res://Scripts/shadow_boss.gd" id="1_nd6t5"]
+[ext_resource type="Script" path="res://Scripts/Enemies/shadow_boss.gd" id="1_ccgou"]
+[ext_resource type="Texture2D" uid="uid://ck3j0ma8jhiqp" path="res://images/cryptbossidle.webp" id="2_uceho"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8475x"]
 
@@ -9,7 +9,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gmnva")
+"texture": ExtResource("2_uceho")
 }],
 "loop": true,
 "name": &"default",
@@ -17,7 +17,7 @@ animations = [{
 }]
 
 [node name="ShadowBoss" type="CharacterBody2D"]
-script = ExtResource("1_nd6t5")
+script = ExtResource("1_ccgou")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 6.5)

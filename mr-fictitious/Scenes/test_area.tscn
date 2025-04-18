@@ -1,24 +1,23 @@
 [gd_scene load_steps=26 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
-[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/wolf_enemy.tscn" id="2_hmu8s"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_hmu8s"]
 [ext_resource type="Texture2D" uid="uid://cxioamx5qtyn1" path="res://images/4_Seasons_Ground_Tiles.png" id="3_wqg5p"]
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="4_446dw"]
 [ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/bullet.tres" id="5_0jx6f"]
-[ext_resource type="PackedScene" uid="uid://b3pqrnygend1o" path="res://Scenes/health_item.tscn" id="5_q4cbo"]
+[ext_resource type="PackedScene" path="res://Scenes/health_item.tscn" id="5_q4cbo"]
 [ext_resource type="PackedScene" uid="uid://cantif38snr4f" path="res://Scenes/generic_item.tscn" id="5_yf2qe"]
 [ext_resource type="PackedScene" uid="uid://77ecksixfpeo" path="res://Scenes/player.tscn" id="6_l1h62"]
 [ext_resource type="Texture2D" uid="uid://l40ckjsmfxl8" path="res://images/anmo sprite.png" id="6_sj4gg"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="7_5odrl"]
-[ext_resource type="PackedScene" uid="uid://d2wvpaplmsc7w" path="res://Scenes/poison_enemy.tscn" id="8_wk7nr"]
 [ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="9_doona"]
-[ext_resource type="PackedScene" uid="uid://dxy708ne5nvwe" path="res://Scenes/rat_enemy.tscn" id="10_ffdkv"]
-[ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="14_m33fj"]
-[ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
-[ext_resource type="PackedScene" uid="uid://3tegx7n1mwtx" path="res://Scenes/chest.tscn" id="16_ogyyp"]
-[ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="17_xsx77"]
-[ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
-[ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/permanent_dmg_item.tscn" id="19_3js83"]
+[ext_resource type="PackedScene" path="res://Scenes/hazard_spikes.tscn" id="14_m33fj"]
+[ext_resource type="PackedScene" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
+[ext_resource type="PackedScene" path="res://Scenes/chest.tscn" id="16_ogyyp"]
+[ext_resource type="PackedScene" path="res://Scenes/speed_item.tscn" id="17_xsx77"]
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="18_a8axj"]
+[ext_resource type="PackedScene" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
+[ext_resource type="PackedScene" path="res://Scenes/permanent_dmg_item.tscn" id="19_3js83"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xgsp"]
 radius = 46.457
@@ -373,6 +372,8 @@ texture = ExtResource("3_wqg5p")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gpwr5")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nw7vk"]
+
 [node name="TestArea" type="Node2D"]
 script = ExtResource("1_w8ima")
 enemy_scene = ExtResource("2_hmu8s")
@@ -401,18 +402,8 @@ position = Vector2(298, 517)
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("7_5odrl")]
 
-[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("8_wk7nr")]
-position = Vector2(635, 214)
-point_a = NodePath("../PatrolA")
-point_b = NodePath("../PatrolB")
-
 [node name="Shadow" parent="." instance=ExtResource("9_doona")]
 position = Vector2(1159, 736)
-
-[node name="Rat" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("10_ffdkv")]
-position = Vector2(680, 488)
-point_a = NodePath("../Shadow")
-point_b = NodePath("../PatrolB")
 
 [node name="Spikes" parent="." instance=ExtResource("14_m33fj")]
 position = Vector2(194, 301)
@@ -431,3 +422,20 @@ position = Vector2(312, 171)
 
 [node name="Perm_Buff_Dmg" parent="." instance=ExtResource("19_3js83")]
 position = Vector2(196, 213)
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(1360, 890)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_nw7vk")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(833, 509)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nw7vk")
+
+[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("18_a8axj")]
+position = Vector2(779, 482)
+point_a = NodePath("../Area2D")
+point_b = NodePath("../Area2D2")

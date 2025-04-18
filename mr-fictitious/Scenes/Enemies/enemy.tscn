@@ -1,25 +1,25 @@
 [gd_scene load_steps=10 format=3 uid="uid://upsatx10rdgt"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_advk4"]
-[ext_resource type="Texture2D" uid="uid://bljlhru6fbc7t" path="res://images/rat_run.png" id="3_klc8k"]
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy.gd" id="1_k1655"]
+[ext_resource type="Texture2D" uid="uid://bljlhru6fbc7t" path="res://images/rat_run.png" id="2_o2e8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ldtj"]
 radius = 33.0151
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0rie"]
-atlas = ExtResource("3_klc8k")
+atlas = ExtResource("2_o2e8h")
 region = Rect2(0, 0, 92, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iykrc"]
-atlas = ExtResource("3_klc8k")
+atlas = ExtResource("2_o2e8h")
 region = Rect2(92, 0, 92, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdsco"]
-atlas = ExtResource("3_klc8k")
+atlas = ExtResource("2_o2e8h")
 region = Rect2(184, 0, 92, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_osb3u"]
-atlas = ExtResource("3_klc8k")
+atlas = ExtResource("2_o2e8h")
 region = Rect2(276, 0, 92, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_42n1k"]
@@ -64,7 +64,7 @@ size = Vector2(65, 72)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
-script = ExtResource("1_advk4")
+script = ExtResource("1_k1655")
 health = 3
 base_speed = 200.0
 damage = 20.0

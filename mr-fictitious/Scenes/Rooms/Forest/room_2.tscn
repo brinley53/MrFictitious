@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="1_fjeel"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_gcyfj"]
-[ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/enemy.tscn" id="4_rg4uh"]
+[ext_resource type="PackedScene" uid="uid://upsatx10rdgt" path="res://Scenes/Enemies/enemy.tscn" id="4_rg4uh"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="5_tu1qd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gon6r"]

@@ -27,8 +27,6 @@ var attack_player = false
 func _ready():
 	#set initial variables
 	speed = base_speed
-	left_arm_health = 3
-	right_arm_health = 3
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:

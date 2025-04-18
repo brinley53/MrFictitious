@@ -107,7 +107,6 @@ func move_character(delta):
 	velocity = direction * base_speed * buff_speed * debuff_speed
 	move_and_slide()
 
-
 #Will attack directing at the position of the map, uses radius 
 func attack():
 	print(base_damage)
@@ -247,6 +246,10 @@ func shovel(damage_increase: int, shrink_factor: float):
 
 
 func _input(event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_E):
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue.dialogue"), "start")
+		return
+	
 	if event.is_action_pressed("inventorySlot"):
 		inventory.equipSlot(int(event.as_text())-1)
 	

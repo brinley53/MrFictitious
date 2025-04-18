@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://pyhuj728gkw5"]
+[gd_scene load_steps=11 format=4 uid="uid://bnowu5qauy6m0"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_fwphx"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_uierw"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="3_q34h4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
 texture = ExtResource("1_fwphx")
@@ -232,6 +234,8 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_hdftj")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_eaats"]
+
 [node name="Room5" type="Node2D"]
 
 [node name="BaseLayer" type="TileMapLayer" parent="."]
@@ -246,3 +250,35 @@ tile_set = SubResource("TileSet_dnjrm")
 z_index = 2
 tile_map_data = PackedByteArray("AAAJAP7/AQADAAQAAAAJAP//AQADAAUAAAAJAAAAAQADAAYAAAAJAAEAAQADAAcAAAAKAP7/AQAEAAQAAAAKAP//AQAEAAUAAAAKAAAAAQAEAAYAAAAKAAEAAQAEAAcAAAAcAAoAAQADAAQAAAAcAAsAAQADAAUAAAAcAAwAAQADAAYAAAAcAA0AAQADAAcAAAAdAAoAAQAEAAQAAAAdAAsAAQAEAAUAAAAdAAwAAQAEAAYAAAAdAA0AAQAEAAcAAAAAAAsAAQADAAQAAAAAAAwAAQADAAUAAAAAAA0AAQADAAYAAAAAAA4AAQADAAcAAAABAAsAAQAEAAQAAAABAAwAAQAEAAUAAAABAA0AAQAEAAYAAAABAA4AAQAEAAcAAAAWAP//AQADAAQAAAAWAAAAAQADAAUAAAAWAAEAAQADAAYAAAAWAAIAAQADAAcAAAAXAP//AQAEAAQAAAAXAAAAAQAEAAUAAAAXAAEAAQAEAAYAAAAXAAIAAQAEAAcAAAAVAAAAAQACAAUAAAAbAAsAAQACAAUAAAAYAAAAAQAFAAUAAAACAAwAAQAFAAUAAAACAAsAAQAFAAQAAAAAAAIAAQAAAAUAAAAAAAMAAQAAAAYAAAAAAAQAAQAAAAcAAAABAAIAAQABAAUAAAABAAMAAQABAAYAAAABAAQAAQABAAcAAAACAA4AAQAAAAUAAAACAA8AAQAAAAYAAAACABAAAQAAAAcAAAADAA4AAQABAAUAAAADAA8AAQABAAYAAAADABAAAQABAAcAAAAcAAEAAQAAAAUAAAAcAAIAAQAAAAYAAAAcAAMAAQAAAAcAAAAdAAEAAQABAAUAAAAdAAIAAQABAAYAAAAdAAMAAQABAAcAAAAGAA4AAQAFAAYAAAAGAA8AAQAFAAcAAAAGABAAAQAFAAgAAAAHAA4AAQAGAAYAAAAHAA8AAQAGAAcAAAAHABAAAQAGAAgAAAAIAA4AAQAHAAYAAAAIABAAAQAHAAgAAAADAAAAAQAFAAYAAAADAAEAAQAFAAcAAAADAAIAAQAFAAgAAAAEAAAAAQAGAAYAAAAEAAEAAQAGAAcAAAAEAAIAAQAGAAgAAAAFAAAAAQAHAAYAAAAFAAIAAQAHAAgAAAAWAA4AAQAFAAYAAAAWAA8AAQAFAAcAAAAWABAAAQAFAAgAAAAXAA4AAQAGAAYAAAAXAA8AAQAGAAcAAAAXABAAAQAGAAgAAAAYAA4AAQAHAAYAAAAYABAAAQAHAAgAAAAUAA0AAQAAAAUAAAAUAA4AAQAAAAYAAAAUAA8AAQAAAAcAAAAVAA0AAQABAAUAAAAVAA4AAQABAAYAAAAVAA8AAQABAAcAAAAXAA0AAQAGAAUAAAAHAA0AAQAGAAUAAAA=")
 tile_set = SubResource("TileSet_l4uf5")
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("2_uierw")]
+position = Vector2(1582, 320)
+point_a = NodePath("PointA")
+point_b = NodePath("PointB")
+
+[node name="PointA" type="Area2D" parent="CharacterBody2D"]
+position = Vector2(-902, 584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PointA"]
+shape = SubResource("CircleShape2D_eaats")
+
+[node name="PointB" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PointB"]
+shape = SubResource("CircleShape2D_eaats")
+
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("3_q34h4")]
+position = Vector2(382, 280)
+point_a = NodePath("PointA")
+point_b = NodePath("PointB")
+
+[node name="PointA" type="Area2D" parent="CharacterBody2D2"]
+position = Vector2(-902, 584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2/PointA"]
+shape = SubResource("CircleShape2D_eaats")
+
+[node name="PointB" type="Area2D" parent="CharacterBody2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2/PointB"]
+shape = SubResource("CircleShape2D_eaats")
