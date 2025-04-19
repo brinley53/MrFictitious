@@ -3,6 +3,7 @@ extends Resource
 class_name Inventory
 
 @export var slots:Array[InventorySlot];
+@export var evidence_inventory:Array[Evidence]
 var activeSlot:int=0
 signal update
 func insert(item:InventoryItem):

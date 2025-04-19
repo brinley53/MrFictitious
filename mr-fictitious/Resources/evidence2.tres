@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Evidence" load_steps=2 format=3 uid="uid://ba1wqe46ht6i"]
+
+[ext_resource type="Script" path="res://Scripts/evidence.gd" id="1_kwoyi"]
+
+[resource]
+script = ExtResource("1_kwoyi")
+evidence_number = 2
+in_player_possession = false
+evidence_text = "This is evidence 2"
