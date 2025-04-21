@@ -106,7 +106,7 @@ use_inventory_item={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue.dialogue", "res://shovel.dialogue")
 
 [wwise]
 

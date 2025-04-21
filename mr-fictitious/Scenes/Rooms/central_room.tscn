@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://chcq1cga66sp8"]
+[gd_scene load_steps=9 format=4 uid="uid://chcq1cga66sp8"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="1_v43nf"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_a40ld"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="3_dar36"]
+[ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/shovel.tscn" id="4_hnvtx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvvxi"]
 texture = ExtResource("1_v43nf")
@@ -38,3 +39,6 @@ tile_set = SubResource("TileSet_3d0bj")
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("3_dar36")]
 metadata/_edit_use_anchors_ = true
+
+[node name="Perm_Buff_Dmg" parent="." instance=ExtResource("4_hnvtx")]
+position = Vector2(1259, 606)
