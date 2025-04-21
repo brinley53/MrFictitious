@@ -43,12 +43,15 @@ var poison = false
 @onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
+var dart_timer:Timer
 @export_enum("Wolf", "Rat", "Poison") var type : String
 
 func _ready():
 	#set initial variables
 	target_point = point_b
 	speed = base_speed
+	if type=="Rat":
+		dart_timer = $DartTimer
 	
 func reset_patrol():
 	chase_player = false
@@ -62,12 +65,7 @@ func _physics_process(delta: float) -> void:
 	patrol()
 	if chase_player:
 		chase(player)
-		sprite.play("run")
-		if (type == "Wolf"):
-			speed = base_speed * 2.5
-	else:
-		sprite.play("walk")
-		speed = base_speed
+		
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -85,6 +83,15 @@ func patrol():
 		chase_player = false
 	var direction = (target_point.global_position - global_position).normalized()
 	velocity = direction * speed
+	
+	if type != "Rat":
+		if chase_player:
+			sprite.play("run")
+			if (type == "Wolf"):
+				speed = base_speed * 2.5
+		else:
+			sprite.play("walk")
+			speed = base_speed
 	
 	# face the sprite and detection cone based on what direction we're going
 	if direction.x > 0:
@@ -133,3 +140,6 @@ func _on_attack_timer_timeout() -> void:
 	if attack_player:
 		player.reduce_player_health(damage)
 		timer.start()
+
+func _on_dart_timer_timeout() -> void:
+	dart_timer.start()
