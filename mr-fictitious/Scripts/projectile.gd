@@ -7,9 +7,24 @@ Revisions:
 
 extends Node2D
 var velocity = Vector2.ZERO  
+@onready var trail := $Trail
+var trail_points: Array[Vector2] = []
+const MAX_POINTS = 4
 
+
+func _ready():
+	trail.clear_points()
+	trail_points.clear()
+
+#When it moves, leaves a trail behind
 func _physics_process(delta):	
 	position += velocity * delta
+	trail_points.insert(0, global_position)
+	if trail_points.size() > MAX_POINTS:
+		trail_points = trail_points.slice(0, MAX_POINTS)
+	trail.clear_points()
+	for point in trail_points:
+		trail.add_point(to_local(point))
 
 # Deals damage to enemy when hit
 

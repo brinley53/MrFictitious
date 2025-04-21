@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ioiv02vnxv15"]
+[gd_scene load_steps=5 format=3 uid="uid://ioiv02vnxv15"]
 
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_tscs5"]
 [ext_resource type="Texture2D" uid="uid://l40ckjsmfxl8" path="res://images/anmo sprite.png" id="2_mgg2f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lbv8g"]
 radius = 3.0
+
+[sub_resource type="Gradient" id="Gradient_1eb5g"]
+colors = PackedColorArray(1, 1, 1, 1, 0.87, 0.87, 0.87, 0)
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_tscs5")
@@ -21,6 +24,10 @@ texture = ExtResource("2_mgg2f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_lbv8g")
+
+[node name="Trail" type="Line2D" parent="."]
+width = 2.0
+gradient = SubResource("Gradient_1eb5g")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

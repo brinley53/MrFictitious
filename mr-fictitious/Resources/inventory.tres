@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=8 format=3 uid="uid://bwokjx3lenypg"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3 uid="uid://bwokjx3lenypg"]
 
+[ext_resource type="Script" path="res://Scripts/evidence.gd" id="1_1bfpk"]
 [ext_resource type="Script" path="res://Scripts/inventory_slot.gd" id="2_2yvb4"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_ug38v"]
 
@@ -26,3 +27,4 @@ amount = 0
 [resource]
 script = ExtResource("3_ug38v")
 slots = Array[ExtResource("2_2yvb4")]([SubResource("Resource_yudnu"), SubResource("Resource_oe2ti"), SubResource("Resource_5dm2i"), SubResource("Resource_f3v22"), SubResource("Resource_s2efg")])
+evidence_inventory = Array[ExtResource("1_1bfpk")]([])
