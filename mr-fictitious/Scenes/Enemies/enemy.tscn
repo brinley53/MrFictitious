@@ -92,6 +92,11 @@ polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

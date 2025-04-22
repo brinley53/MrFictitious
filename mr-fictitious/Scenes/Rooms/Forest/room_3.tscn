@@ -1,17 +1,26 @@
-[gd_scene load_steps=10 format=4 uid="uid://w5iipa6f26qe"]
+[gd_scene load_steps=11 format=4 uid="uid://w5iipa6f26qe"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_x6qd7"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_78a1c"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="4_54roa"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="5_f0rjg"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y30rt"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yvdsy"]
 texture = ExtResource("2_x6qd7")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_y30rt")
 
 [sub_resource type="TileSet" id="TileSet_bmlop"]
 tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
 sources/4 = SubResource("TileSetAtlasSource_yvdsy")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dd2se"]
@@ -23,6 +32,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_sf4un"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_dd2se")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50skq"]
@@ -37,22 +47,20 @@ tile_set = SubResource("TileSet_bmlop")
 tile_map_data = PackedByteArray("AAAMABAAAQAAAAAAAAALABAAAQAAAAAAAAAKABAAAQAAAAAAAAAJABAAAQAAAAAAAAAIABAAAQAAAAAAAAAHABAAAQAAAAAAAAAGABAAAQAAAAAAAAAFABAAAQAAAAAAAAAEABAAAQAAAAAAAAADABAAAQAAAAAAAAACABAAAQAAAAAAAAABABAAAQAAAAAAAAAAABAAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAwAAQAAAAAAAAAAAA0AAQAAAAAAAAAAAA4AAQAAAAAAAAAAAA8AAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAdAAYAAQAAAAAAAAAdAAUAAQAAAAAAAAAdAAQAAQAAAAAAAAAdAAMAAQAAAAAAAAAdAAIAAQAAAAAAAAAdAAEAAQAAAAAAAAAdAAoAAQAAAAAAAAAdAAsAAQAAAAAAAAAdAAwAAQAAAAAAAAAdAA0AAQAAAAAAAAAdAA4AAQAAAAAAAAAdAA8AAQAAAAAAAAAdABAAAQAAAAAAAAASABAAAQAAAAAAAAATABAAAQAAAAAAAAAUABAAAQAAAAAAAAAVABAAAQAAAAAAAAAWABAAAQAAAAAAAAAXABAAAQAAAAAAAAAYABAAAQAAAAAAAAAZABAAAQAAAAAAAAAaABAAAQAAAAAAAAAbABAAAQAAAAAAAAAcABAAAQAAAAAAAAARABAAAQAAAAAAAAARAAAAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_sf4un")
 
-[node name="Enemy1_PatrolB" type="Area2D" parent="."]
+[node name="Enemy1_PatrolB" type="Area2D" parent="." groups=["Patrol"]]
 position = Vector2(108, 108)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolB"]
 shape = SubResource("RectangleShape2D_50skq")
 
-[node name="Enemy1_PatrolA" type="Area2D" parent="."]
+[node name="Enemy1_PatrolA" type="Area2D" parent="." groups=["Patrol"]]
 position = Vector2(1807, 979)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1_PatrolA"]
 shape = SubResource("RectangleShape2D_50skq")
 
-[node name="WolfEnemy" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("4_54roa")]
+[node name="WolfEnemy" parent="." instance=ExtResource("4_54roa")]
 position = Vector2(1319, 765)
-point_a = NodePath("../Enemy1_PatrolB")
-point_b = NodePath("../Enemy1_PatrolA")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
