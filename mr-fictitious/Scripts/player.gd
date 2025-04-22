@@ -53,7 +53,7 @@ var poison_damage = 0
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-
+var evidence_collected = 0
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision

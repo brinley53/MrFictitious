@@ -8,7 +8,7 @@ Revisions:
 extends Area2D
 
 #Possible Buffs
-@export_enum("Speed", "Dmg", "Nothing fr") var type : String
+@export_enum("Speed", "Dmg", "Nothing fr", "Evidence") var type : String
 
 #BOOST VALUES
 var speed_boost: float = 1.5
@@ -25,4 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 			queue_free()
 		if type == "Dmg":
 			body.apply_damage_buff(damage_boost, duration)
+			queue_free()
+		if type == "Evidence":
+			body.evidence_collected +=1
 			queue_free()

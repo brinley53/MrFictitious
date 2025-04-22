@@ -20,6 +20,7 @@ WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Global="*res://Scripts/global.gd"
 
 [display]
 

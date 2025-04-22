@@ -1,13 +1,16 @@
 """
 Script for the shadow crypt boss logic
-Authors: Brinley Hull
+Authors: Brinley Hull, Jose Leyba
 Creation Date: 04/17/2025
 Revisions:
+		Jose Leyba - 04/21/2025: Boss drops the "key" (evidence) for final area when killed
 """
 
 extends CharacterBody2D
 
 const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")  
+const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
+
 
 #GLOBAL VARIABLES
 # stats attributes
@@ -90,8 +93,15 @@ func _physics_process(delta: float) -> void:
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
+	print("Health taken")
 	chase_player = true
 	if health <= 0:
+		var item = EVIDENCE_SCENE.instantiate()
+		var angle = randf() * TAU 
+		var radius = randf_range(64.0, 128.0)
+		var offset = Vector2(cos(angle), sin(angle)) * radius
+		item.global_position = global_position + offset
+		get_tree().current_scene.add_child(item)
 		queue_free()
 
 #func chase(body: Node2D) -> void:
