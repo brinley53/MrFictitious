@@ -48,3 +48,51 @@ position = Vector2(904, 811)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_sd4ns")]
+
+[node name="Shadow6" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(700, 213)
+
+[node name="Shadow7" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(427, 294)
+
+[node name="Shadow8" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1635, 365)
+
+[node name="Shadow9" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1361, 915)
+
+[node name="Shadow10" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1038, 829)
+
+[node name="Shadow11" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(610, 659)
+
+[node name="Shadow12" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1345, 639)
+
+[node name="Shadow13" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1308, 700)
+
+[node name="Shadow14" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1225, 777)
+
+[node name="Shadow15" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(1134, 817)
+
+[node name="Shadow16" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(534, 940)
+
+[node name="Shadow17" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(106, 770)
+
+[node name="Shadow18" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(841, 750)
+
+[node name="Shadow19" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(804, 811)
+
+[node name="Shadow20" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(721, 888)
+
+[node name="Shadow21" parent="." instance=ExtResource("3_pjs4q")]
+position = Vector2(630, 928)

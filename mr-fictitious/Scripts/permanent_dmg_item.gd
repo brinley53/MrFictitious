@@ -3,6 +3,7 @@ First Permanent Item, It trades attack area for a dmg buff
 Authors: Jose Leyba
 Creation Date: 04/17/2025
 Revisions:
+	Brinley Hull - 4/22/2025: Dialogue
 """
 extends Area2D
 
@@ -13,6 +14,7 @@ extends Area2D
 @onready var ui = $UI
 @onready var message_timer = $UI/MessageTimer
 @onready var text_box_bg: TextureRect = $UI/TextBoxBG
+@onready var dialogue_manager = get_node("/root/DialogueManager")
 
 
 
@@ -26,6 +28,7 @@ func _on_body_entered(body):
 		body.shovel(damage_increase, attack_area_shrink)
 		show_message("Tactical Shovel:\nAttack Damage Up, Attack Area Down")
 		queue_free()
+		dialogue_manager.show_example_dialogue_balloon(load("res://dialogue.dialogue"), "start")
 
 func show_message(text: String, duration: float = 3.0):
 	message.text = text

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm8vr7nfbo4g8"]
+[gd_scene load_steps=7 format=3 uid="uid://bm8vr7nfbo4g8"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/shadow_boss.gd" id="1_ccgou"]
 [ext_resource type="Texture2D" uid="uid://ck3j0ma8jhiqp" path="res://images/cryptbossidle.webp" id="2_uceho"]
@@ -19,10 +19,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arxui"]
 size = Vector2(65, 72)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wuf0x"]
+
 [node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ccgou")
 health = 100.0
-base_speed = 20.0
 damage = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -36,7 +37,7 @@ sprite_frames = SubResource("SpriteFrames_heauu")
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(827, -844, -234, -1158, -1079, -935, -1419, -327, -1359, 500, -736, 1081, 96, 1022, 559, 806, 53, 85, 72, -70)
+polygon = PackedVector2Array(1399, -657, -230, -1511, -1600, -1112, -1914, -208, -1781, 772, -763, 1638, 26, 1792, 712, 1504, 0, 80, 72, -70)
 
 [node name="AttackArea" type="Area2D" parent="."]
 
@@ -46,8 +47,20 @@ shape = SubResource("RectangleShape2D_arxui")
 
 [node name="AttackTimer" type="Timer" parent="."]
 
+[node name="VulnerableArea" type="Area2D" parent="."]
+position = Vector2(67, 29)
+scale = Vector2(1.6, 1.64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VulnerableArea"]
+shape = SubResource("CircleShape2D_wuf0x")
+
+[node name="VulnerableTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="VulnerableArea" to="." method="_on_vulnerable_area_body_entered"]
+[connection signal="timeout" from="VulnerableTimer" to="." method="_on_vulnerable_timer_timeout"]

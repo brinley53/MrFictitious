@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cultue1qlvv0h"]
+
+[ext_resource type="Script" path="res://Scripts/permanent_dmg_item.gd" id="1_1bj05"]
+[ext_resource type="Texture2D" uid="uid://cwchv3r0wqduq" path="res://images/shovel sprite.png" id="2_n8pwf"]
+[ext_resource type="Texture2D" uid="uid://bk0nh04qrhfe8" path="res://images/text box .png" id="3_osti5"]
+[ext_resource type="PackedScene" uid="uid://c65b4rqdkx1su" path="res://Scenes/generic_dialogue.tscn" id="4_ujoyk"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="5_lwtac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxki8"]
+size = Vector2(76, 136)
+
+[node name="Perm_Buff_Dmg" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_1bj05")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -0.999988)
+scale = Vector2(1, 0.935)
+texture = ExtResource("2_n8pwf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_uxki8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MessageTimer" type="Timer" parent="UI"]
+wait_time = 3.0
+one_shot = true
+
+[node name="TextBoxBG" type="TextureRect" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_osti5")
+
+[node name="MessageLabel" type="Label" parent="UI/TextBoxBG"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 35.0
+offset_right = 958.0
+offset_bottom = 117.0
+
+[node name="DialogueManager" parent="." instance=ExtResource("4_ujoyk")]
+script = ExtResource("5_lwtac")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
