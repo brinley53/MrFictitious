@@ -9,6 +9,7 @@ size = Vector2(178, 178)
 [node name="Damage_Item" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_cbojx")
+type = "Dmg"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -0.999988)
