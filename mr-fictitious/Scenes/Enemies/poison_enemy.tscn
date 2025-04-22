@@ -61,6 +61,9 @@ polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 200.0
+avoidance_enabled = true
+debug_enabled = true
 
 [node name="NavTimer" type="Timer" parent="."]
 autostart = true

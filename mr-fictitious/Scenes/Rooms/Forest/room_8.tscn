@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://iky2ydq0k4lw"]
+[gd_scene load_steps=20 format=4 uid="uid://iky2ydq0k4lw"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_a3kym"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="2_va535"]
 [ext_resource type="PackedScene" uid="uid://3tegx7n1mwtx" path="res://Scenes/chest.tscn" id="3_kl0ig"]
-[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="4_xwuau"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="5_li15m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
@@ -366,12 +365,6 @@ position = Vector2(264, 835)
 
 [node name="Chest" parent="." instance=ExtResource("3_kl0ig")]
 position = Vector2(984, 547)
-
-[node name="CharacterBody2D3" parent="." instance=ExtResource("4_xwuau")]
-position = Vector2(502, 404)
-
-[node name="CharacterBody2D4" parent="." instance=ExtResource("4_xwuau")]
-position = Vector2(1497, 440)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

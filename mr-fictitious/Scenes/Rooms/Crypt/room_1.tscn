@@ -54,3 +54,15 @@ position = Vector2(1666, 876)
 [node name="CharacterBody2D3" parent="." instance=ExtResource("2_pgfaw")]
 position = Vector2(1036.56, 524.384)
 rotation = -0.000813723
+
+[node name="Patrol5" parent="." groups=["Patrol"] instance=ExtResource("3_5rpl5")]
+position = Vector2(472, 246)
+
+[node name="Patrol6" parent="." groups=["Patrol"] instance=ExtResource("3_5rpl5")]
+position = Vector2(454, 876)
+
+[node name="Patrol7" parent="." groups=["Patrol"] instance=ExtResource("3_5rpl5")]
+position = Vector2(851, 483)
+
+[node name="Patrol8" parent="." groups=["Patrol"] instance=ExtResource("3_5rpl5")]
+position = Vector2(867, 788)

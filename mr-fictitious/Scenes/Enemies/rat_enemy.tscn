@@ -78,7 +78,7 @@ size = Vector2(65, 72)
 motion_mode = 1
 script = ExtResource("1_7w4eh")
 health = 15
-base_speed = 200.0
+base_speed = 400.0
 damage = 20.0
 type = "Rat"
 

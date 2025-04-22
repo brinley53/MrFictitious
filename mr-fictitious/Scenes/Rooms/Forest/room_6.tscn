@@ -1,8 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://cskvio3hsixhn"]
+[gd_scene load_steps=13 format=4 uid="uid://cskvio3hsixhn"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_5c4g0"]
-[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_nnf8p"]
-[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="3_8xbok"]
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="4_g1e1g"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="5_8cj0r"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="6_sr8j1"]
@@ -270,18 +268,12 @@ position = Vector2(1582, 320)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointB2"]
 shape = SubResource("CircleShape2D_eaats")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_nnf8p")]
-position = Vector2(1582, 320)
-
 [node name="PointA" type="Area2D" parent="." groups=["Patrol"]]
 position = Vector2(846, 558)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PointA"]
 position = Vector2(-83, 11)
 shape = SubResource("CircleShape2D_eaats")
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("3_8xbok")]
-position = Vector2(382, 280)
 
 [node name="PointB" type="Area2D" parent="." groups=["Patrol"]]
 position = Vector2(382, 280)

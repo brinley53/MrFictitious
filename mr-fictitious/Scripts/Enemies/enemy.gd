@@ -17,6 +17,8 @@ Revisions:
 	Brinley Hull - 4/15/2025: Detect player on hit
 	Tej Gumaste - 4/17/2025: Added combat sounds
 	Jose Leyba - 4/21/2025: Enemies drop health and/or bullets when killed (randomly)
+	Brinley Hull - 4/21/2025: Better Navigation
+	Brinley Hull - 4/22/2025: Darting Rats
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -38,6 +40,7 @@ var point_b = 0
 var chase_player = false
 var attack_player = false
 var poison = false
+var stand = false
 
 # On ready attributes
 @onready var timer = $AttackTimer
@@ -66,6 +69,7 @@ func _ready():
 	speed = base_speed
 	if type=="Rat":
 		dart_timer = $DartTimer
+		dart_timer.start()
 	
 func reset_patrol():
 	if len(patrol_points) == 0:
@@ -80,7 +84,13 @@ func _physics_process(delta: float) -> void:
 	if player.stealth and chase_player:
 		reset_patrol()
 		
-	chase(target_point)
+	if type=="Rat":
+		if stand:
+			sprite.play("stand")
+		else:
+			chase(target_point)
+	else:
+		chase(target_point)
 		
 	if chase_player:
 		target_point = player
@@ -92,6 +102,11 @@ func check_patrol():
 	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player and len(patrol_points) > 0:
 		# Swap target between point A and B
 		target_point = patrol_points[point_a] if target_point == patrol_points[point_b] else patrol_points[point_b]
+		if type == "Rat":
+			point_a = randi_range(0, len(patrol_points)-1)
+			point_b = randi_range(0, len(patrol_points)-1)
+			while point_b == point_a:
+				point_b = randi_range(0, len(patrol_points)-1)
 		
 	if target_point == null and len(patrol_points) > 0:
 		target_point = point_a
@@ -174,7 +189,7 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_dart_timer_timeout() -> void:
 	dart_timer.start()
-
+	stand = !stand
 
 func _on_nav_timer_timeout() -> void:
 	pass # Replace with function body.
