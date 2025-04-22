@@ -9,7 +9,7 @@ radius = 3.0
 [sub_resource type="Gradient" id="Gradient_1eb5g"]
 colors = PackedColorArray(1, 1, 1, 1, 0.87, 0.87, 0.87, 0)
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["Bullet"]]
 script = ExtResource("1_tscs5")
 
 [node name="Timer" type="Timer" parent="."]

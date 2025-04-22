@@ -66,6 +66,7 @@ var evidence_collected = 0
 @onready var footstep_timer = $FootstepTimer
 @onready var dialogue_manager = $DialogueManager
 @onready var poison_timer = $PoisonTimer
+@onready var stealth_area = $Stealth
 
 #EXPORT VARIABLES
 @export var inventory:Inventory;
@@ -95,7 +96,14 @@ func poison(pp, pd):
 	poison_damage = pd
 
 #Every frame call the move_character function, calls the attack function when pressing left click
-func _process(delta):
+func _process(delta):	
+	var overlapping_areas = stealth_area.get_overlapping_areas()
+	stealth = false
+	for area in overlapping_areas:
+		if area.is_in_group("Shadow"):  # or type check
+			stealth = true
+			break
+	
 	move_character(delta)
 	if Input.is_action_just_pressed("attack") and can_attack:
 		attack_sprite.play("attacking")
@@ -171,7 +179,6 @@ func shoot_projectile():
 		removeItem(bulletResource)
 		bullets -= 1 
 		var projectile = PROJECTILE_SCENE.instantiate()
-		projectile.body_entered.connect(projectile._on_body_entered)
 		get_parent().add_child(projectile)
 		projectile.global_position = global_position
 		var target_position = get_global_mouse_position()

@@ -19,11 +19,9 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# set player stealth
-	if body.name == "Player":
-		body.set_stealth(true)
+	pass
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	# reset player stealth
-	if body.name == "Player":
-		body.set_stealth(false)
+	pass

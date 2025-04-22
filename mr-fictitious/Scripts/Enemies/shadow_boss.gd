@@ -77,7 +77,6 @@ func reduce_enemy_health(damage_dealt):
 		return
 	health = health - damage_dealt
 	print("Health taken")
-	chase_player = true
 	if health <= 0:
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 
@@ -119,9 +118,14 @@ func _on_detection_body_exited(body: Node2D) -> void:
 		chase_player = false
 
 func _on_vulnerable_area_body_entered(body: Node2D) -> void:
-	if !chase_player:
-		is_vulnerable = true
-		vul_timer.start()
+	pass
 
 func _on_vulnerable_timer_timeout() -> void:
 	is_vulnerable = false
+	
+func _on_vulnerable_area_area_entered(area: Area2D) -> void:
+	print('hi')
+	if !chase_player:
+		is_vulnerable = true
+		print('vulnerable')
+		vul_timer.start()
