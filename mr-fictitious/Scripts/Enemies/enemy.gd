@@ -16,6 +16,7 @@ Revisions:
 	Brinley Hull - 4/14/2025: Shadows
 	Brinley Hull - 4/15/2025: Detect player on hit
 	Tej Gumaste - 4/17/2025: Added combat sounds
+	Jose Leyba - 4/21/2025: Enemies drop health and/or bullets when killed (randomly)
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -25,6 +26,8 @@ var speed : float
 @export var base_speed : float
 @export var damage : float
 @export var poison_proc_count : int
+@export var bullet_scene: PackedScene = preload("res://Scenes/bullet.tscn")
+@export var health_scene: PackedScene = preload("res://Scenes/health_item.tscn")
 var current_proc_count = 0
 
 var target_point:Node2D
@@ -47,6 +50,7 @@ var poison = false
 var patrol_points
 var dart_timer:Timer
 @export_enum("Wolf", "Rat", "Poison") var type : String
+
 
 func _ready():
 	#set initial variables
@@ -107,7 +111,18 @@ func reduce_enemy_health(damage_dealt):
 	chase_player = true
 	player.initiate_combat()
 	if health <= 0:
+		var loot_options = [bullet_scene, health_scene]
+		var num_loot = randi_range(0, 1)
+		for i in range(num_loot):
+			var item_scene = loot_options[randi() % loot_options.size()]
+			var item = item_scene.instantiate()
+			var angle = randf() * TAU 
+			var radius = randf_range(64.0, 128.0)
+			var offset = Vector2(cos(angle), sin(angle)) * radius
+			item.global_position = global_position + offset
+			get_tree().current_scene.add_child(item)
 		queue_free()
+
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player

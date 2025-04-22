@@ -34,6 +34,7 @@ offset_bottom = 40.0
 texture = ExtResource("3_osti5")
 
 [node name="MessageLabel" type="Label" parent="UI/TextBoxBG"]
+layout_mode = 0
 offset_left = 138.0
 offset_top = 35.0
 offset_right = 958.0
