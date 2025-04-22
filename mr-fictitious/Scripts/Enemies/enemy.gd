@@ -44,23 +44,30 @@ var poison = false
 @onready var player = players[0]
 @onready var nav_timer = $NavTimer
 @onready var nav_agent = $NavigationAgent2D
-@onready var patrol_points = get_tree().get_nodes_in_group("Patrol")
+var patrol_points
 var dart_timer:Timer
 @export_enum("Wolf", "Rat", "Poison") var type : String
 
 func _ready():
 	#set initial variables
-	point_a = randi_range(0, len(patrol_points)-1)
-	point_b = randi_range(0, len(patrol_points)-1)
-	while point_b == point_a:
+	patrol_points = get_tree().get_nodes_in_group("Patrol")
+	if len(patrol_points) != 0:
+		point_a = randi_range(0, len(patrol_points)-1)
 		point_b = randi_range(0, len(patrol_points)-1)
-	target_point = patrol_points[point_a]
+		while point_b == point_a:
+			point_b = randi_range(0, len(patrol_points)-1)
+		target_point = patrol_points[point_a]
+	else:
+		target_point = player
 	speed = base_speed
 	if type=="Rat":
 		dart_timer = $DartTimer
 	
 func reset_patrol():
-	target_point = patrol_points[point_a]
+	if len(patrol_points) == 0:
+		target_point = player
+	else:
+		target_point = patrol_points[point_a]
 	chase_player = false
 	speed = base_speed
 	attack_player = false
@@ -78,11 +85,11 @@ func _physics_process(delta: float) -> void:
 	
 func check_patrol():
 	#if we're close to the target point, change patrol points as the target point
-	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player:
+	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player and len(patrol_points) > 0:
 		# Swap target between point A and B
 		target_point = patrol_points[point_a] if target_point == patrol_points[point_b] else patrol_points[point_b]
 		
-	if target_point == null:
+	if target_point == null and len(patrol_points) > 0:
 		target_point = point_a
 		chase_player = false
 
