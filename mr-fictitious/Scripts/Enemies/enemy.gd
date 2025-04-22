@@ -27,10 +27,9 @@ var speed : float
 @export var poison_proc_count : int
 var current_proc_count = 0
 
-#patrol points/variables
-@export var point_a:Area2D
-@export var point_b:Area2D
-var target_point:Area2D
+var target_point:Node2D
+var point_a = 0
+var point_b = 0
 
 #chase player variables
 var chase_player = false
@@ -43,29 +42,49 @@ var poison = false
 @onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
+@onready var nav_timer = $NavTimer
+@onready var nav_agent = $NavigationAgent2D
+@onready var patrol_points = get_tree().get_nodes_in_group("Patrol")
 var dart_timer:Timer
 @export_enum("Wolf", "Rat", "Poison") var type : String
 
 func _ready():
 	#set initial variables
-	target_point = point_b
+	point_a = randi_range(0, len(patrol_points)-1)
+	point_b = randi_range(0, len(patrol_points)-1)
+	while point_b == point_a:
+		point_b = randi_range(0, len(patrol_points)-1)
+	target_point = patrol_points[point_a]
 	speed = base_speed
 	if type=="Rat":
 		dart_timer = $DartTimer
 	
 func reset_patrol():
+	target_point = patrol_points[point_a]
 	chase_player = false
 	speed = base_speed
 	attack_player = false
-	target_point = point_a
 
 func _physics_process(delta: float) -> void:
 	if player.stealth and chase_player:
 		reset_patrol()
-	patrol()
-	if chase_player:
-		chase(player)
 		
+	chase(target_point)
+		
+	if chase_player:
+		target_point = player
+		
+	check_patrol()
+	
+func check_patrol():
+	#if we're close to the target point, change patrol points as the target point
+	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player:
+		# Swap target between point A and B
+		target_point = patrol_points[point_a] if target_point == patrol_points[point_b] else patrol_points[point_b]
+		
+	if target_point == null:
+		target_point = point_a
+		chase_player = false
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -75,40 +94,6 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		player.reduce_player_health(damage)
 		timer.start()
 
-#Enemy patrol movement -> go from point A to point B
-func patrol():
-	# set direction to be towards target_point
-	if target_point == null:
-		target_point = point_a
-		chase_player = false
-	var direction = (target_point.global_position - global_position).normalized()
-	velocity = direction * speed
-	
-	if type != "Rat":
-		if chase_player:
-			sprite.play("run")
-			if (type == "Wolf"):
-				speed = base_speed * 2.5
-		else:
-			sprite.play("walk")
-			speed = base_speed
-	
-	# face the sprite and detection cone based on what direction we're going
-	if direction.x > 0:
-		sprite.flip_h = 0
-	else:
-		sprite.flip_h = 1
-		
-	if velocity.length() > 0:
-		detection.rotation = velocity.angle()
-
-	move_and_slide()	
-	
-	#if we're close to the target point, change patrol points as the target point
-	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player:
-		# Swap target between point A and B
-		target_point = point_a if target_point == point_b else point_b
-	
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
@@ -125,8 +110,32 @@ func _on_detection_body_entered(body: Node2D) -> void:
 			chase_player = true
 		
 func chase(body: Node2D) -> void:
-	# Change target point to be the player's area2d child
-	target_point = body.get_child(2)
+	# Change target point
+	nav_agent.target_position = body.global_position
+	var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	
+	# change sprite
+	if chase_player:
+		sprite.play("run")
+		if (type == "Wolf"):
+			speed = base_speed * 2.5
+	else:
+		sprite.play("walk")
+		speed = base_speed
+			
+	velocity = dir * speed
+	
+	# face the sprite and detection cone based on what direction we're going
+	if dir.x > 0:
+		sprite.flip_h = 0
+	else:
+		sprite.flip_h = 1
+		
+	if velocity.length() > 0:
+		detection.rotation = velocity.angle()
+	
+	move_and_slide()
+	
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
@@ -143,3 +152,7 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_dart_timer_timeout() -> void:
 	dart_timer.start()
+
+
+func _on_nav_timer_timeout() -> void:
+	pass # Replace with function body.
