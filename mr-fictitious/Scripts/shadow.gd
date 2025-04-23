@@ -24,10 +24,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-func _on_timer_timeout() -> void:
-	timer.wait_time = timeEnabled if timer.wait_time == timeDisabled else timeDisabled
-	timer.start()
+	
+func toggle_enable():
 	enabled = !enabled
 	visible = !visible
+
+func _on_timer_timeout() -> void:
+	pass
+	#timer.wait_time = timeEnabled if timer.wait_time == timeDisabled else timeDisabled
+	#timer.start()
+	#toggle_enable()
 	
