@@ -12,6 +12,7 @@ Revisions:
 	Brinley Hull - 4/18/2025: 
 		- Fix Attack Area Body Entered Bug
 		- Poison
+	Brinley Hull - 4/22/2025: Shadows
 """
 class_name Player
 extends CharacterBody2D
@@ -100,7 +101,7 @@ func _process(delta):
 	var overlapping_areas = stealth_area.get_overlapping_areas()
 	stealth = false
 	for area in overlapping_areas:
-		if area.is_in_group("Shadow"):  # or type check
+		if area.is_in_group("Shadow") and area.enabled:  # or type check
 			stealth = true
 			break
 	

@@ -86,10 +86,6 @@ func reduce_enemy_health(damage_dealt):
 		get_tree().current_scene.add_child(item)
 		queue_free()
 
-#func chase(body: Node2D) -> void:
-	## Change target point to be the player's area2d child
-	#target_point = body.get_child(2)
-
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
@@ -124,8 +120,6 @@ func _on_vulnerable_timer_timeout() -> void:
 	is_vulnerable = false
 	
 func _on_vulnerable_area_area_entered(area: Area2D) -> void:
-	print('hi')
 	if !chase_player:
 		is_vulnerable = true
-		print('vulnerable')
 		vul_timer.start()
