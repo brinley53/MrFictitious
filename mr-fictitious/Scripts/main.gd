@@ -3,6 +3,7 @@ extends Node
 const RoomManager:PackedScene = preload("res://Scenes/room_manager.tscn")
 
 @onready var player:Player = $Player
+@onready var menu = $PauseMenu/CanvasLayer
 
 func _ready():
 	var room_manager = RoomManager.instantiate()
@@ -10,7 +11,10 @@ func _ready():
 	room_manager.receive_player(player)
 	room_manager.generate_rooms()
 	
-	
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		menu.show()
+		get_tree().paused = true
 
 #const TEST_AREA = preload("res://Scenes/test_area.tscn")
 #

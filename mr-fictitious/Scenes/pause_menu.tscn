@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci1vnxss5dc1t"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_ap44k"]
+
+[node name="PauseMenu" type="Node2D"]
+process_mode = 2
+script = ExtResource("1_ap44k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 783.0
+offset_top = 442.0
+offset_right = -864.0
+offset_bottom = -491.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "unpause"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
