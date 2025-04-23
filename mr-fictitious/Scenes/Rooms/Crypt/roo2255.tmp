@@ -34,8 +34,6 @@ position = Vector2(952, 512)
 
 [node name="Shadow" parent="Gray" instance=ExtResource("3_pjs4q")]
 position = Vector2(112, 974)
-timeEnabled = 2
-timeDisabled = 5
 
 [node name="Shadow2" parent="Gray" instance=ExtResource("3_pjs4q")]
 position = Vector2(115, 880)

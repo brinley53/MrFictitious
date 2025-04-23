@@ -77,7 +77,6 @@ func reduce_enemy_health(damage_dealt):
 		return
 	health = health - damage_dealt
 	print("Health taken")
-	chase_player = true
 	if health <= 0:
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 
@@ -86,10 +85,6 @@ func reduce_enemy_health(damage_dealt):
 		item.global_position = global_position + offset
 		get_tree().current_scene.add_child(item)
 		queue_free()
-
-#func chase(body: Node2D) -> void:
-	## Change target point to be the player's area2d child
-	#target_point = body.get_child(2)
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -119,9 +114,12 @@ func _on_detection_body_exited(body: Node2D) -> void:
 		chase_player = false
 
 func _on_vulnerable_area_body_entered(body: Node2D) -> void:
-	if !chase_player:
-		is_vulnerable = true
-		vul_timer.start()
+	pass
 
 func _on_vulnerable_timer_timeout() -> void:
 	is_vulnerable = false
+	
+func _on_vulnerable_area_area_entered(area: Area2D) -> void:
+	if !chase_player:
+		is_vulnerable = true
+		vul_timer.start()
