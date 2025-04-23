@@ -48,7 +48,7 @@ func shoot_player():
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.body_entered.connect(bullet._on_body_entered)
 	bullet.global_position = global_position
-	bullet.initialize_bullet(player.global_position, 500)
+	bullet.initialize_bullet(player.global_position, "Split")
 	get_parent().add_child(bullet)
 
 func _physics_process(delta: float) -> void:
