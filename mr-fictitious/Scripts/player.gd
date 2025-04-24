@@ -301,7 +301,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_E):
-		dialogue_manager.show_example_dialogue_balloon(load("res://dialogue.dialogue"), "start")
+		dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start")
 		return
 	
 	if event.is_action_pressed("inventorySlot"):

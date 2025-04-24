@@ -55,7 +55,6 @@ func _on_transition_timer_timeout() -> void:
 	transition_timer.stop()
 	
 
-
 func _on_attack_timer_timeout() -> void:
 	# change attack type for the boss
 	boss.change_attack(attacks[randi_range(0, 2)])

@@ -73,6 +73,7 @@ func _physics_process(delta: float) -> void:
 		
 		direction = (player.global_position - detection.global_position).angle() + PI
 		detection.rotation = lerp_angle(detection.rotation, direction, delta)
+		vul_area.scale.x = 1 if (player.global_position - global_position).normalized().x > 0 else -1
 		
 		velocity = (player.global_position - global_position).normalized() * speed
 		move_and_slide()
