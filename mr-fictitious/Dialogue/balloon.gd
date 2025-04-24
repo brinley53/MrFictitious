@@ -16,6 +16,8 @@ var temporary_game_states: Array = []
 ## See if we are waiting for the player
 var is_waiting_for_input: bool = false
 
+@onready var portrait = $Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer/Portrait
+
 ## See if we are running a long mutation and should hide the balloon
 var will_hide_balloon: bool = false
 
@@ -44,6 +46,11 @@ var dialogue_line: DialogueLine:
 
 		character_label.visible = not dialogue_line.character.is_empty()
 		character_label.text = tr(dialogue_line.character, "dialogue")
+		var portrait_path = "res://characters/%s.png" % dialogue_line.character.to_lower()
+		if FileAccess.file_exists(portrait_path):
+			portrait.texture = load(portrait_path)
+		else:
+			portrait.texture = null
 
 		dialogue_label.hide()
 		dialogue_label.dialogue_line = dialogue_line
