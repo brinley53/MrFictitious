@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=4 uid="uid://bqg6tfpn5salc"]
+[gd_scene load_steps=25 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_hmu8s"]
-[ext_resource type="Texture2D" path="res://images/4_Seasons_Ground_Tiles.png" id="3_wqg5p"]
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="4_446dw"]
 [ext_resource type="Resource" uid="uid://b651bud85kgvw" path="res://Resources/bullet.tres" id="5_0jx6f"]
 [ext_resource type="PackedScene" uid="uid://b3pqrnygend1o" path="res://Scenes/health_item.tscn" id="5_q4cbo"]
@@ -36,7 +35,6 @@ _bundled = {
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gpdx6"]
-texture = ExtResource("3_wqg5p")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -150,7 +148,6 @@ texture = ExtResource("3_wqg5p")
 sources/0 = SubResource("TileSetAtlasSource_gpdx6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gpwr5"]
-texture = ExtResource("3_wqg5p")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -435,7 +432,5 @@ position = Vector2(833, 509)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_nw7vk")
 
-[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("point_a", "point_b") instance=ExtResource("18_1db15")]
+[node name="CharacterBody2D2" parent="." instance=ExtResource("18_1db15")]
 position = Vector2(819, 698)
-point_a = NodePath("../PatrolA")
-point_b = NodePath("../PatrolB")

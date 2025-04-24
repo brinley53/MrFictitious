@@ -361,7 +361,7 @@ shape = SubResource("RectangleShape2D_jal5q")
 sprite_frames = SubResource("SpriteFrames_6qceo")
 animation = &"stand_left"
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." groups=["Weapon"]]
 position = Vector2(12.75, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackArea"]

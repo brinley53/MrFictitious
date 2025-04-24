@@ -1,52 +1,165 @@
-[gd_scene load_steps=7 format=3 uid="uid://crdsaeocr2klm"]
+[gd_scene load_steps=20 format=3 uid="uid://crdsaeocr2klm"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/statue.gd" id="1_ounb0"]
-[ext_resource type="Texture2D" uid="uid://bp4afsvmbc6su" path="res://images/Outstretched+Arms+Standing+Statue,+Aluminum.webp" id="2_cemsl"]
+[ext_resource type="Texture2D" uid="uid://bmw4pg4kcv4fn" path="res://images/angel attack sprite-Sheet.png" id="2_iwsbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yah7x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iy8a"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(512, 600, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjglt"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(768, 600, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmoe8"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(0, 900, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipc8o"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(256, 900, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojj6c"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(0, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paa4x"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(256, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfwkh"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(512, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l135s"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(768, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h31dk"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(0, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erj21"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(256, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38cf1"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(512, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1bkn"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(768, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe42x"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(0, 600, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynuoq"]
+atlas = ExtResource("2_iwsbr")
+region = Rect2(256, 600, 256, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i7t77"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_cemsl")
+"texture": SubResource("AtlasTexture_5iy8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjglt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmoe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipc8o")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojj6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paa4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfwkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l135s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h31dk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erj21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38cf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1bkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe42x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynuoq")
+}],
+"loop": false,
+"name": &"pound",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bccre"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1pj5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vast"]
 
 [node name="CharacterBody2D3" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ounb0")
-health = null
-base_speed = null
-damage = null
-poison_proc_count = null
-type = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.44, 7.88)
 shape = SubResource("RectangleShape2D_yah7x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i7t77")
+animation = &"pound"
+autoplay = "default"
 
-[node name="LeftArm" type="Area2D" parent="."]
+[node name="LeftWing" type="Area2D" parent="."]
 position = Vector2(-83, -146)
 scale = Vector2(4.92, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm"]
-shape = SubResource("RectangleShape2D_bccre")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWing"]
+polygon = PackedVector2Array(9.14634, 33, 1.42276, 18, -7.31707, 73, -5.4878, 225, 5.0813, 156, 3.65854, 85)
 
-[node name="RightArm" type="Area2D" parent="."]
+[node name="RightWing" type="Area2D" parent="."]
 position = Vector2(100, -144)
 scale = Vector2(5.32, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm"]
-shape = SubResource("RectangleShape2D_f1pj5")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWing"]
+polygon = PackedVector2Array(-11.6541, 34, -5.45113, 12, 2.06767, 59, 2.25564, 157, -2.44361, 191, -7.70677, 145, -6.76692, 72)
 
-[connection signal="body_entered" from="LeftArm" to="." method="_on_left_arm_body_entered"]
-[connection signal="body_entered" from="RightArm" to="." method="_on_right_arm_body_entered"]
+[node name="Head" type="Area2D" parent="."]
+position = Vector2(1, -120)
+scale = Vector2(2.0864, 2.44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+shape = SubResource("CircleShape2D_4vast")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="BigAttackTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="LeftWing" to="." method="_on_left_wing_area_entered"]
+[connection signal="area_entered" from="RightWing" to="." method="_on_right_wing_area_entered"]
+[connection signal="area_entered" from="Head" to="." method="_on_head_area_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]
