@@ -15,6 +15,8 @@ var left_wing_health : int
 var right_wing_health : int
 var head_health : int
 var speed : float
+var charge_speed : float
+var target : Vector2
 @export var base_speed : float
 @export var damage : float
 
@@ -28,22 +30,28 @@ var attack_types = ["Pound", "Charge"]
 @onready var timer = $AttackTimer
 @onready var big_attack_timer = $BigAttackTimer
 @onready var sprite = $AnimatedSprite2D
-@onready var detection = $Detection
+#@onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
 
 func _ready():
 	#set initial variables
+	target = global_position
 	speed = base_speed
 	left_wing_health = 3
 	right_wing_health = 3
 	head_health = 5
-	sprite.play("pound")
+	charge_speed = 750.0
 
 func _physics_process(delta: float) -> void:
+	if global_position.distance_to(target) < sprite.sprite_frames.get_frame_texture("default", 0).get_size().x/4:
+		speed = 0.0
 	# Die if its arms are off
 	if left_wing_health <= 0 and right_wing_health <= 0 and head_health <= 0:
 		queue_free()
+	var direction = (target - global_position).normalized()
+	velocity = speed * direction
+	position += velocity * delta
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -89,7 +97,8 @@ func ground_pound():
 	sprite.play("pound")
 	
 func charge():
-	pass
+	speed = charge_speed
+	target = player.global_position
 
 func _on_big_attack_timer_timeout() -> void:
 	big_attack_timer.start()
