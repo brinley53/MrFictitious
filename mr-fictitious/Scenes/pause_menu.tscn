@@ -1,15 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci1vnxss5dc1t"]
+[gd_scene load_steps=3 format=3 uid="uid://ci1vnxss5dc1t"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_ap44k"]
+[ext_resource type="PackedScene" uid="uid://b5yvuv5stab68" path="res://Scenes/enemy_glossary.tscn" id="2_4bqwm"]
 
-[node name="PauseMenu" type="Node2D"]
+[node name="PauseMenu" type="Control"]
 process_mode = 2
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_ap44k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Resume" type="Button" parent="CanvasLayer"]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,4 +25,19 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "unpause"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Glossary" type="Button" parent="CanvasLayer"]
+offset_left = 794.0
+offset_top = 611.0
+offset_right = 1048.0
+offset_bottom = 701.0
+text = "Glossary"
+
+[node name="EnemyGlossary" parent="." instance=ExtResource("2_4bqwm")]
+process_mode = 2
+offset_left = 300.0
+offset_top = 249.0
+offset_right = 300.0
+offset_bottom = 249.0
+
+[connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Glossary" to="." method="_on_glossary_pressed"]

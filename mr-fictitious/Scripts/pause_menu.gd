@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 @onready var menu = $CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
@@ -16,3 +16,7 @@ func _process(delta: float) -> void:
 func _on_button_pressed() -> void:
 	menu.hide()
 	get_tree().paused = false
+
+
+func _on_glossary_pressed() -> void:
+	$EnemyGlossary.show()
