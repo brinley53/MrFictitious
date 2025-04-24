@@ -104,6 +104,9 @@ func receive_player(object:Player):
 	print("Player received")
 	playerInstance = object
 
+func get_active_room() -> Node:
+	return rooms[active_location][active_room]
+
 func set_active_room(location:Location, room:int) -> void:
 	# Remove the old active room.
 	remove_child(rooms[active_location][active_room])

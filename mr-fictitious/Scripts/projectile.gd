@@ -3,6 +3,7 @@ Script focused on the bullets the player can shoot
 Authors: Jose Leyba
 Creation Date: 04/03/2025
 Revisions:
+	Brinley Hull - 4/24/2025: Disappear on hit enemy
 """
 
 extends Node2D
@@ -39,4 +40,9 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10)
 			print("Enemy health reduced.")
-			queue_free()
+		queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.get_parent().is_in_group("Enemies"):
+		queue_free()

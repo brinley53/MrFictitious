@@ -5,6 +5,7 @@ Creation Date: 04/17/2025
 Revisions:
 		Jose Leyba - 04/21/2025: Boss drops the "key" (evidence) for final area when killed
 		Brinley Hull - 4/22/2025: Boss movement and vulnerability
+		Brinley Hull - 4/23/2025: Different boss attacks
 """
 
 extends CharacterBody2D
@@ -19,6 +20,7 @@ var speed : float
 @export var health : float
 @export var damage : float
 var is_vulnerable = false
+var attack = "Default"
 
 #chase player variables
 var chase_player = false
@@ -34,6 +36,7 @@ var dir_facing = 1
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
 
+
 func _ready():
 	#set initial variables
 	speed = 10.0
@@ -44,11 +47,14 @@ func reset_patrol():
 	speed = 10.0
 	attack_player = false
 	
+func change_attack(attack_type):
+	attack = attack_type
+	
 func shoot_player():
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.body_entered.connect(bullet._on_body_entered)
 	bullet.global_position = global_position
-	bullet.initialize_bullet(player.global_position, 500)
+	bullet.initialize_bullet(player.global_position, attack)
 	get_parent().add_child(bullet)
 
 func _physics_process(delta: float) -> void:
@@ -67,6 +73,7 @@ func _physics_process(delta: float) -> void:
 		
 		direction = (player.global_position - detection.global_position).angle() + PI
 		detection.rotation = lerp_angle(detection.rotation, direction, delta)
+		vul_area.scale.x = 1 if (player.global_position - global_position).normalized().x > 0 else -1
 		
 		velocity = (player.global_position - global_position).normalized() * speed
 		move_and_slide()
