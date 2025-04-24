@@ -1,11 +1,13 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+JIM: MENDOZA!
+MENDOZA: You’re back?
+JIM: I’m not leaving without the others. 
+MENDOZA: You think you can just walk out of here with a bunch of my patients? You are all deeply disturbed individuals who need help. 
+JIM: I have proven what I saw. What I’ve been telling you for years now. 
+JIM: You said I was crazy but you were the one behind it all. I found your creations. If you can call them that.
+MENDOZA: I’ve done all I can to help you here. I thought we were making real progress but you’ve clearly gone and thrown it all away.
+JIM: Still pretending I’m crazy? Well I found your little journal entries and they’ll back up my story.
+MENDOZA: I know I don’t know your pain but I can help. The war is over. You can stop fighting.
+JIM: I’ll stop fighting when you’re in the ground.
+MENDOZA: So be it.
 => END
