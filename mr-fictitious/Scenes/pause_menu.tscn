@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci1vnxss5dc1t"]
+[gd_scene load_steps=4 format=3 uid="uid://ci1vnxss5dc1t"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_ap44k"]
 [ext_resource type="PackedScene" uid="uid://b5yvuv5stab68" path="res://Scenes/enemy_glossary.tscn" id="2_4bqwm"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_b6lds"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -23,14 +24,25 @@ offset_right = -864.0
 offset_bottom = -491.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "unpause"
+theme_override_fonts/font = ExtResource("2_b6lds")
+text = "Resume Game"
 
 [node name="Glossary" type="Button" parent="CanvasLayer"]
 offset_left = 794.0
 offset_top = 611.0
 offset_right = 1048.0
 offset_bottom = 701.0
+theme_override_fonts/font = ExtResource("2_b6lds")
 text = "Glossary"
+
+[node name="Exit" type="Button" parent="CanvasLayer"]
+offset_left = 792.0
+offset_top = 733.0
+offset_right = 1046.0
+offset_bottom = 823.0
+theme_override_fonts/font = ExtResource("2_b6lds")
+text = "Exit
+"
 
 [node name="EnemyGlossary" parent="." instance=ExtResource("2_4bqwm")]
 process_mode = 2
@@ -41,3 +53,5 @@ offset_bottom = 249.0
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Glossary" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]

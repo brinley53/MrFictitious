@@ -44,5 +44,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.get_parent().is_in_group("Enemies"):
+	if area.get_parent().name == "Statue":
 		queue_free()

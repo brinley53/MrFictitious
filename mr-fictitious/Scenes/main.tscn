@@ -13,4 +13,7 @@ position = Vector2(960, 540)
 scale = Vector2(1.5, 1.5)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_2s2dm")]
-position = Vector2(955, 538)
+offset_left = 955.0
+offset_top = 538.0
+offset_right = 955.0
+offset_bottom = 538.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2qah4iahw0li"]
+[gd_scene load_steps=4 format=3 uid="uid://d2qah4iahw0li"]
 
 [ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_pr35b"]
 [ext_resource type="Texture2D" uid="uid://xhdu76441sre" path="res://images/ROUGH death screen.PNG" id="2_e54j1"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_nmyku"]
 
 [node name="Lost" type="Control"]
 layout_mode = 3
@@ -16,22 +17,24 @@ autostart = true
 position = Vector2(959, 540)
 texture = ExtResource("2_e54j1")
 
-[node name="Button" type="Button" parent="."]
+[node name="Reload" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
 offset_top = 665.0
 offset_right = 1108.0
 offset_bottom = 754.0
+theme_override_fonts/font = ExtResource("3_nmyku")
 text = "Try Again?"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Exit" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
 offset_top = 791.0
 offset_right = 1108.0
 offset_bottom = 880.0
+theme_override_fonts/font = ExtResource("3_nmyku")
 text = "Exit Game"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Reload" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_button_2_pressed"]

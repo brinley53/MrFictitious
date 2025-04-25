@@ -20,3 +20,7 @@ func _on_button_pressed() -> void:
 
 func _on_glossary_pressed() -> void:
 	$EnemyGlossary.show()
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()

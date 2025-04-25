@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://chcq1cga66sp8"]
+[gd_scene load_steps=13 format=4 uid="uid://chcq1cga66sp8"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="1_v43nf"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_a40ld"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c65b4rqdkx1su" path="res://Scenes/generic_dialogue.tscn" id="5_yj55d"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="6_6domw"]
 [ext_resource type="PackedScene" uid="uid://crdsaeocr2klm" path="res://Scenes/Enemies/statue.tscn" id="7_0b12r"]
+[ext_resource type="PackedScene" uid="uid://bwvwhki3unhqy" path="res://Scenes/flashlight_item.tscn" id="8_0l07w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvvxi"]
 texture = ExtResource("1_v43nf")
@@ -49,5 +50,8 @@ position = Vector2(1259, 606)
 [node name="DialogueManager" parent="." instance=ExtResource("5_yj55d")]
 script = ExtResource("6_6domw")
 
-[node name="CharacterBody2D3" parent="." instance=ExtResource("7_0b12r")]
+[node name="Statue" parent="." instance=ExtResource("7_0b12r")]
 position = Vector2(1495, 309)
+
+[node name="health_item" parent="." instance=ExtResource("8_0l07w")]
+position = Vector2(342, 222)

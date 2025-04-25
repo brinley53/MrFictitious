@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://br2u722xc5scc"]
+[gd_scene load_steps=4 format=3 uid="uid://br2u722xc5scc"]
 
 [ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_7cqpi"]
 [ext_resource type="Texture2D" uid="uid://dxco5ak06tp67" path="res://images/ROUGH title screen.PNG" id="2_phwex"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_bv411"]
 
 [node name="Lost" type="Control"]
 layout_mode = 3
@@ -22,6 +23,7 @@ offset_left = 869.0
 offset_top = 881.0
 offset_right = 1108.0
 offset_bottom = 970.0
+theme_override_fonts/font = ExtResource("3_bv411")
 text = "Start Game"
 
 [node name="Button2" type="Button" parent="."]
@@ -30,6 +32,7 @@ offset_left = 869.0
 offset_top = 978.0
 offset_right = 1108.0
 offset_bottom = 1067.0
+theme_override_fonts/font = ExtResource("3_bv411")
 text = "Exit Game"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

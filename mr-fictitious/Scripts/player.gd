@@ -41,6 +41,7 @@ var attack_radius = 35
 var can_attack = true  
 var stealth = false
 var health_items = 0;
+var flashlight_items = 0;
 var base_damage = 1
 var current_damage = base_damage
 var speed_buff_timer :Timer = null
@@ -62,6 +63,7 @@ var evidence_collected = 0
 @onready var attack_timer = $AttackTimer
 @onready var bulletResource = preload("res://Resources/bullet.tres")
 @onready var healthResource = preload("res://Resources/health_item.tres")
+@onready var flashResource = preload("res://Resources/flashlight_item.tres")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var footstep_timer = $FootstepTimer
@@ -180,7 +182,9 @@ func shoot_projectile():
 		removeItem(bulletResource)
 		bullets -= 1 
 		var projectile = PROJECTILE_SCENE.instantiate()
-		get_parent().add_child(projectile)
+		var manager = get_node("/root/Main/RoomManager")
+		var room = manager.get_active_room()
+		room.add_child(projectile)
 		projectile.global_position = global_position
 		var target_position = get_global_mouse_position()
 		var direction = (target_position - global_position).normalized()
@@ -225,16 +229,26 @@ func removeItem(item:InventoryItem):
 func add_health_item():
 	health_items+=1
 
+func add_flashlight_item():
+	flashlight_items+=1
+	
+func use_flashlight_item():
+	if removeItem(flashResource):
+		flashlight_items-=1
+		increase_player_health(20)
+
 func use_health_item():
 	if removeItem(healthResource):
 		health_items-=1
-		increase_player_health(10)
+		increase_player_health(20)
 
 func use_inventory_item():
 	var action = inventory.use_item()
 	match action:
 		"HEALTH": 
 			use_health_item()
+		"FLASH":
+			use_flashlight_item()
 		_:
 			print("Invalid Option")
 				
