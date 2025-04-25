@@ -36,6 +36,7 @@ theme_override_fonts/font = ExtResource("3_bv411")
 text = "Exit Game"
 
 [node name="Glossary" type="Button" parent="."]
+layout_mode = 0
 offset_left = 869.0
 offset_top = 882.0
 offset_right = 1108.0

@@ -370,7 +370,7 @@ scale = Vector2(1.5, 1.228)
 polygon = PackedVector2Array(73, 10, 73, -10, 60, -30, 35, -40, 14, -24, 0, 0, 14, 24.43, 35, 40, 60, 30)
 
 [node name="AttackSprite" type="AnimatedSprite2D" parent="AttackArea"]
-position = Vector2(0, -10)
+position = Vector2(12.75, -9)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tokwd")
 animation = &"attacking"
@@ -410,7 +410,21 @@ script = ExtResource("10_3ehms")
 position = Vector2(-4, -7.5)
 shape = SubResource("RectangleShape2D_c1kuj")
 
+[node name="SpinArea" type="Area2D" parent="." groups=["Weapon"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpinArea"]
+position = Vector2(0, -7)
+scale = Vector2(1.5, 1.228)
+polygon = PackedVector2Array(73, 10, 73, -10, 60, -30, 35, -40, 14, -24, 0, 0, 14, 24.43, 35, 40, 60, 30)
+
+[node name="AttackSprite" type="AnimatedSprite2D" parent="SpinArea"]
+position = Vector2(12.75, -9)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tokwd")
+animation = &"attacking"
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_poison_timer_timeout"]
+[connection signal="area_entered" from="SpinArea" to="." method="_on_spin_area_area_entered"]

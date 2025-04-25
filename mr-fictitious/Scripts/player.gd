@@ -61,6 +61,12 @@ var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
 var evidence_collected = 0
+
+var spin_attack_active = false
+var orbit_timer = 0.0
+var orbit_duration = 1.5  # How long the orbit lasts
+var orbit_speed = 2 * PI 
+var sword = false
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -78,6 +84,7 @@ var evidence_collected = 0
 @onready var dialogue_manager = $DialogueManager
 @onready var poison_timer = $PoisonTimer
 @onready var stealth_area = $Stealth
+@onready var spin_area = $SpinArea
 
 #EXPORT VARIABLES
 @export var inventory:Inventory;
@@ -88,6 +95,10 @@ func _ready():
 	attack_area.visible = false
 	attack_area.monitoring = false 
 	attack_area.monitorable = false
+	spin_area.visible = false
+	spin_area.monitoring = false
+	spin_area.monitorable = false
+
 	for i in range(bullets):
 		collectItem(bulletResource)
 	Wwise.register_game_obj(self,self.name)
@@ -122,6 +133,15 @@ func _process(delta):
 		can_attack = false
 	if Input.is_action_just_pressed("secondary_attack") and can_attack:
 		shoot_projectile()
+		
+	if spin_attack_active:
+		orbit_timer += delta
+		spin_area.rotation += orbit_speed * delta
+		if orbit_timer >= orbit_duration:
+			end_spin_attack()
+
+	if Input.is_action_just_pressed("attack") and can_attack and sword:
+		start_spin_attack()
 	
 	if Input.is_action_just_pressed("increaseBullet"):
 		collectItem(bulletResource)
@@ -207,6 +227,23 @@ func shoot_projectile():
 		var direction = (target_position - global_position).normalized()
 		projectile.velocity = direction * PROJECTILE_SPEED
 
+#Functions for swinging attack
+func start_spin_attack():
+	spin_attack_active = true
+	orbit_timer = 0.0
+	can_attack = false
+	attack_area.visible = true
+	attack_area.monitoring = true
+	attack_area.monitorable = true
+
+func end_spin_attack():
+	spin_attack_active = false
+	can_attack = true
+	attack_area.visible = false
+	attack_area.monitoring = false
+
+
+
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
 	play_sound(AK.EVENTS.PLAYER_DAMAGE)
@@ -223,6 +260,10 @@ func increase_player_health(amount:int):
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	pass
+
+func _on_spin_area_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+
 
 #When timer runs out disable the attack area
 func _on_attack_timer_timeout():

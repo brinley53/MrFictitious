@@ -44,6 +44,7 @@ text = "Exit
 "
 
 [node name="ExitGlossary" type="Button" parent="."]
+layout_mode = 0
 offset_left = 27.0
 offset_top = 22.0
 offset_right = 60.0
