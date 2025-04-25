@@ -44,6 +44,9 @@ var can_attack = true
 var stealth = false
 var health_items = 0;
 var flashlight_items = 0;
+var dmg_items = 0;
+var speed_items = 0;
+
 var base_damage = 1
 var current_damage = base_damage
 var speed_buff_timer :Timer = null
@@ -66,6 +69,9 @@ var evidence_collected = 0
 @onready var bulletResource = preload("res://Resources/bullet.tres")
 @onready var healthResource = preload("res://Resources/health_item.tres")
 @onready var flashResource = preload("res://Resources/flashlight_item.tres")
+@onready var DmgResource = preload("res://Resources/damage_item.tres")
+@onready var SpeedResource = preload("res://Resources/speed_item.tres")
+@onready var proof1 = preload("res://proof1.dialogue")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var footstep_timer = $FootstepTimer
@@ -176,6 +182,15 @@ func attack():
 	attack_area.position = attack_offset
 	attack_area.rotation = attack_direction.angle()
 
+func new_evidence_collected():
+	evidence_collected += 1
+	if evidence_collected == 1:
+		dialogue_manager.show_dialogue_balloon(proof1, "start")
+	if evidence_collected == 2:
+		dialogue_manager.show_dialogue_balloon(proof1, "start")
+	if evidence_collected == 3:
+		dialogue_manager.show_dialogue_balloon(proof1, "start")
+
 
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
@@ -233,20 +248,34 @@ func add_health_item():
 
 func add_flashlight_item():
 	flashlight_items+=1
-	
+
+func add_damage_item():
+	dmg_items+=1
+
+func add_speed_item():
+	speed_items+=1
+
 func use_flashlight_item():
 	if removeItem(flashResource):
 		flashlight_items-=1
 		var enemies = get_tree().get_nodes_in_group("Enemies")
 		for enemy in enemies:
 			if enemy.has_method("apply_stun"):
-				enemy.apply_stun(5.0)
+				enemy.apply_stun(2.0)
 
 func use_health_item():
 	if removeItem(healthResource):
 		health_items-=1
 		increase_player_health(20)
 
+func use_dmg_item():
+	if removeItem(DmgResource):
+		apply_damage_buff(10, 5)
+
+
+func use_speed_item():
+	if removeItem(SpeedResource):
+		apply_speed_buff(1.5, 5)
 func use_inventory_item():
 	var action = inventory.use_item()
 	match action:
@@ -254,6 +283,10 @@ func use_inventory_item():
 			use_health_item()
 		"FLASH":
 			use_flashlight_item()
+		"DMG":
+			use_dmg_item()
+		"SPEED":
+			use_speed_item()
 		_:
 			print("Invalid Option")
 				

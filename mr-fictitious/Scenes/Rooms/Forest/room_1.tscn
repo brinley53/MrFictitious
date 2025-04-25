@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_1olu5"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_782c6"]
-[ext_resource type="PackedScene" uid="uid://cantif38snr4f" path="res://Scenes/generic_item.tscn" id="4_oqsl5"]
+[ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="4_s7cbr"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_u24np"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdk4h"]
@@ -40,5 +40,5 @@ tile_set = SubResource("TileSet_u8210")
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_u24np")]
 metadata/_edit_use_anchors_ = true
 
-[node name="GenericItem" parent="." instance=ExtResource("4_oqsl5")]
-position = Vector2(947, 534)
+[node name="Damage_Item" parent="." instance=ExtResource("4_s7cbr")]
+position = Vector2(956, 545)

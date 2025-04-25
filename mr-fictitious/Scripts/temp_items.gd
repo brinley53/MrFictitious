@@ -9,6 +9,7 @@ extends Area2D
 
 #Possible Buffs
 @export_enum("Speed", "Dmg", "Nothing fr", "Evidence") var type : String
+@export var inventory_drop_item:InventoryItem;
 
 #BOOST VALUES
 var speed_boost: float = 1.5
@@ -21,11 +22,13 @@ var damage_boost: int = 1
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		if type == "Speed":
-			body.apply_speed_buff(speed_boost, duration)
+			if body.collectItem(inventory_drop_item):
+				body.add_speed_item()
 			queue_free()
 		if type == "Dmg":
-			body.apply_damage_buff(damage_boost, duration)
-			queue_free()
+			if body.collectItem(inventory_drop_item):
+				body.add_damage_item()
+				queue_free()
 		if type == "Evidence":
-			body.evidence_collected +=1
+			body.new_evidence_collected()
 			queue_free()

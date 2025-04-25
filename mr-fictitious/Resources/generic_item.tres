@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_uy0bi")
 texture = ExtResource("2_krm0q")
-action = "NULL"
+action = "DMG"

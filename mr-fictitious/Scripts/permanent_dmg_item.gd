@@ -20,8 +20,7 @@ func _ready():
 
 
 func _on_body_entered(body):
-	
-	if body is Player:
+	if body.name == "Player":
 		body.shovel(damage_increase, attack_area_shrink)
 		dialogue_manager.show_dialogue_balloon(dialogue, "start")
 		queue_free()

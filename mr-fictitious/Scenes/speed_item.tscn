@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1nsdeigj4w22"]
+[gd_scene load_steps=5 format=3 uid="uid://c1nsdeigj4w22"]
 
 [ext_resource type="Script" path="res://Scripts/temp_items.gd" id="1_j8ycd"]
 [ext_resource type="Texture2D" uid="uid://dh0447ynepkbf" path="res://images/inventory-background.png" id="2_6fhjw"]
+[ext_resource type="Resource" uid="uid://33ycyixyfh7v" path="res://Resources/speed_item.tres" id="2_h40hl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxki8"]
 size = Vector2(123.205, 115.068)
@@ -10,6 +11,7 @@ size = Vector2(123.205, 115.068)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_j8ycd")
 type = "Speed"
+inventory_drop_item = ExtResource("2_h40hl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -0.999988)

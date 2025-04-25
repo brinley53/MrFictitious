@@ -20,9 +20,9 @@ texture = ExtResource("2_phwex")
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
-offset_top = 881.0
+offset_top = 784.0
 offset_right = 1108.0
-offset_bottom = 970.0
+offset_bottom = 873.0
 theme_override_fonts/font = ExtResource("3_bv411")
 text = "Start Game"
 
@@ -35,6 +35,15 @@ offset_bottom = 1067.0
 theme_override_fonts/font = ExtResource("3_bv411")
 text = "Exit Game"
 
+[node name="Glossary" type="Button" parent="."]
+offset_left = 869.0
+offset_top = 882.0
+offset_right = 1108.0
+offset_bottom = 971.0
+theme_override_fonts/font = ExtResource("3_bv411")
+text = "Glossary"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Glossary" to="." method="_on_glossary_pressed"]
