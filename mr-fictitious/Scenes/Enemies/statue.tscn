@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://crdsaeocr2klm"]
+[gd_scene load_steps=23 format=3 uid="uid://crdsaeocr2klm"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/statue.gd" id="1_ounb0"]
 [ext_resource type="Texture2D" uid="uid://bmw4pg4kcv4fn" path="res://images/angel attack sprite-Sheet.png" id="2_iwsbr"]
+[ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="3_syafe"]
+[ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="4_bbbje"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yah7x"]
 size = Vector2(15.6977, 15.3553)
@@ -169,6 +171,23 @@ autostart = true
 position = Vector2(2.5, 29.0521)
 scale = Vector2(1.99374, 2.4971)
 shape = SubResource("RectangleShape2D_q5xbk")
+
+[node name="HealthContainer" type="Sprite2D" parent="."]
+position = Vector2(-3, -199)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("3_syafe")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.941
+offset_left = -95.0
+offset_top = -15.0
+offset_right = -99.0
+offset_bottom = -16.994
+value = 100.0
+texture_progress = ExtResource("4_bbbje")
+tint_over = Color(1, 0, 0, 1)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="LeftWing" to="." method="_on_left_wing_area_entered"]

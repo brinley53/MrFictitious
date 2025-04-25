@@ -28,6 +28,7 @@ var attack_type = "Pound"
 var attack_types = ["Pound", "Charge"]
 var stunned = false
 var current_stun_timer: Timer = null
+var total_health:int
 
 # On ready attributes
 @onready var timer = $AttackTimer
@@ -36,6 +37,8 @@ var current_stun_timer: Timer = null
 #@onready var detection = $Detection
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
+@onready var health_bar = $HealthContainer/HealthBar
+
 
 func _ready():
 	#set initial variables
@@ -45,8 +48,10 @@ func _ready():
 	right_wing_health = 3
 	head_health = 5
 	charge_speed = 750.0
+	total_health = left_wing_health + right_wing_health + head_health
 
 func _physics_process(delta: float) -> void:
+	health_bar.value = (left_wing_health+right_wing_health+head_health)*100/total_health
 	if stunned:
 		return
 	if global_position.distance_to(target) < sprite.sprite_frames.get_frame_texture("default", 0).get_size().x/4:
@@ -109,17 +114,20 @@ func _on_stun_timeout():
 
 func _on_head_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Weapon"):
-		head_health -= 1
+		if(head_health>0):
+			head_health -= 1
 
 
 func _on_right_wing_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Weapon"):
-		right_wing_health -= 1
+		if(right_wing_health>0):
+			right_wing_health -= 1
 
 
 func _on_left_wing_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Weapon"):
-		left_wing_health -= 1
+		if(left_wing_health>0):
+			left_wing_health -= 1
 
 func ground_pound():
 	sprite.play("pound")
