@@ -168,7 +168,7 @@ func move_character(delta):
 func attack():
 	var bodies = $AttackArea.get_overlapping_bodies()
 	for body in bodies:
-		if body.is_in_group("Enemies"):
+		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(5)
 	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
 	attack_area.monitoring = true  
