@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm8vr7nfbo4g8"]
+[gd_scene load_steps=9 format=3 uid="uid://bm8vr7nfbo4g8"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/shadow_boss.gd" id="1_ccgou"]
 [ext_resource type="Texture2D" uid="uid://ck3j0ma8jhiqp" path="res://images/cryptbossidle.webp" id="2_uceho"]
+[ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="3_yrm7j"]
+[ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="4_p6ikl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8475x"]
 radius = 4.08542
@@ -57,6 +59,23 @@ shape = SubResource("CircleShape2D_wuf0x")
 
 [node name="VulnerableTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="HealthContainer" type="Sprite2D" parent="."]
+position = Vector2(-3, -130)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_yrm7j")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.941
+offset_left = -95.0
+offset_top = -15.0
+offset_right = -99.0
+offset_bottom = -16.994
+value = 100.0
+texture_progress = ExtResource("4_p6ikl")
+tint_over = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
