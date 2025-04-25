@@ -107,6 +107,7 @@ func _ready():
 	Wwise.load_bank_id(AK.BANKS.MUSIC)
 	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
@@ -251,6 +252,7 @@ func reduce_player_health(damage):
 	play_sound(AK.EVENTS.PLAYER_DAMAGE)
 	health = health - damage
 	health_bar.value = health
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
 	if health <= 0:
 		play_sound(AK.EVENTS.PLAYER_DEATH)
 		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
@@ -429,7 +431,7 @@ func play_footstep_sound(location:int):
 	play_sound(AK.EVENTS.PLAYER_STEP)
 	match location:
 		0:
-			play_sound(AK.EVENTS.GAME_AREA_TOWN)
+			play_sound(AK.EVENTS.GAME_AREA_FOREST)
 		1:
 			play_sound(AK.EVENTS.GAME_AREA_FOREST)
 		2:
