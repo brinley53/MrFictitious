@@ -104,8 +104,9 @@ func _ready():
 		collectItem(bulletResource)
 	Wwise.register_game_obj(self,self.name)
 	Wwise.register_listener(self)
-	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.load_bank_id(AK.BANKS.MUSIC)
+	Wwise.load_bank_id(AK.BANKS.SOUND)
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
@@ -411,12 +412,12 @@ func play_ambient_sound(location):
 	play_sound(AK.EVENTS.PLAYMUSIC)
 	match location:
 		0:
-			play_sound(AK.EVENTS.CAMP)
+			play_sound(AK.EVENTS.VILLAGE)
 		1:
 			play_sound(AK.EVENTS.FOREST)
 
 		2:
-			play_sound(AK.EVENTS.VILLAGE)
+			play_sound(AK.EVENTS.CRYPT)
 		3:
 			pass
 		4:
@@ -425,14 +426,14 @@ func play_ambient_sound(location):
 			print("Wrong room loser")
 		
 func play_footstep_sound(location:int):
+	play_sound(AK.EVENTS.PLAYER_STEP)
 	match location:
 		0:
-			play_sound(AK.EVENTS.PLAYER_STEP)
+			play_sound(AK.EVENTS.GAME_AREA_TOWN)
 		1:
-			play_sound(AK.EVENTS.PLAYER_STEP_MATERIAL_CRUNCH)
-			play_sound(AK.EVENTS.PLAYER_STEP_MATERIAL_GRASS)
+			play_sound(AK.EVENTS.GAME_AREA_FOREST)
 		2:
-			play_sound(AK.EVENTS.PLAYER_STEP_MATERIAL_NORMAL)
+			play_sound(AK.EVENTS.GAME_AREA_CRYPT)
 		3:
 			pass
 		4:
