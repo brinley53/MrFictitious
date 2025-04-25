@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="3_yrm7j"]
 [ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="4_p6ikl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8475x"]
-radius = 4.08542
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2jxe"]
+size = Vector2(20, 21.7832)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_heauu"]
 animations = [{
@@ -30,9 +30,9 @@ health = 100.0
 damage = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 6.5)
-scale = Vector2(13.52, 9.88)
-shape = SubResource("CircleShape2D_8475x")
+position = Vector2(-7, 2.30045)
+scale = Vector2(6.53397, -4.71009)
+shape = SubResource("RectangleShape2D_t2jxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_heauu")
@@ -42,7 +42,13 @@ sprite_frames = SubResource("SpriteFrames_heauu")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 polygon = PackedVector2Array(1399, -657, -230, -1511, -1600, -1112, -1914, -208, -1781, 772, -763, 1638, 26, 1792, 712, 1504, 0, 80, 72, -70)
 
+[node name="Polygon2D" type="Polygon2D" parent="Detection"]
+color = Color(0, 0, 0, 0.396078)
+polygon = PackedVector2Array(64, -84, -6, 82, 682, 1477, -10, 1726, -815, 1598, -1784, 693, -1941, -155, -1593, -1114, -251, -1486, 1271, -730)
+
 [node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(-38, 5)
+scale = Vector2(2.8819, -2.85684)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-1.5, -1)
