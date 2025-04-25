@@ -26,6 +26,11 @@ const DIRECTION_FROM_CENTRAL:Dictionary = {
 	Location.CRYPT: Direction.LEFT
 }
 
+const BOSS_INDEX:Dictionary = {
+	Location.FOREST: -1,
+	Location.CRYPT: 3
+}
+
 const ROOMS:Dictionary = {
 	Location.CENTRAL: [
 		preload("res://Scenes/Rooms/central_room.tscn")
@@ -226,7 +231,13 @@ func generate_rooms() -> void:
 
 				# Pick a random room from the list of unattached rooms to link
 				# to the destination room from the source room.
-				var destination:int = unattached[random.randi_range(0, unattached.size() - 1)]
+				var destination:int
+				while true:
+					destination = unattached[random.randi_range(0, unattached.size() - 1)]
+					# Make sure the boss room is the last room added to the location
+					if unattached.size() == 1 or destination != BOSS_INDEX[location]:
+						break
+
 				add_connection_entry(location, destination)
 				create_connection(location, source, location, destination, direction)
 
