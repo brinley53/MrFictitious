@@ -10,6 +10,8 @@ Revisions:
 
 extends CharacterBody2D
 
+signal dead
+
 const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")  
 const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 
@@ -19,7 +21,7 @@ const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")
 var speed : float
 @export var health : float
 @export var damage : float
-var is_vulnerable = false
+var is_vulnerable = true
 var attack = "Default"
 
 #chase player variables
@@ -58,6 +60,7 @@ func shoot_player():
 	get_parent().add_child(bullet)
 
 func _physics_process(delta: float) -> void:
+	reduce_enemy_health(20 * delta)
 	if !player.stealth:
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
@@ -92,6 +95,7 @@ func reduce_enemy_health(damage_dealt):
 		item.global_position = global_position + offset
 		get_tree().current_scene.add_child(item)
 		queue_free()
+		dead.emit()
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
@@ -124,7 +128,7 @@ func _on_vulnerable_area_body_entered(body: Node2D) -> void:
 	pass
 
 func _on_vulnerable_timer_timeout() -> void:
-	is_vulnerable = false
+	is_vulnerable = true
 	
 func _on_vulnerable_area_area_entered(area: Area2D) -> void:
 	if !chase_player:

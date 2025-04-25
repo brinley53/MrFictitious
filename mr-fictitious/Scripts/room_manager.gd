@@ -134,6 +134,9 @@ func set_active_room(location:Location, room:int) -> void:
 		if connections[active_location][active_room][direction]["room"] == null:
 			add_child(edges[active_location][direction])
 
+	if BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location]:
+		rooms[active_location][active_room].block_edges(edges[active_location])
+
 func add_connection_entry(location:Location, room:int) -> void:
 	# Add an entry for the location if one isn't present.
 	if not connections.has(location):
@@ -175,6 +178,13 @@ func create_connection(source_location:Location, source_room:int, destination_lo
 		connections[destination_location][destination_room][opposite_direction]["location"] = source_location
 		connections[destination_location][destination_room][opposite_direction]["room"] = source_room
 
+func get_random_room(location:Location, rooms:Array[int], boss_allowed:bool):
+	var random:RandomNumberGenerator = RandomNumberGenerator.new()
+	while true:
+		var room:int = rooms[random.randi_range(0, rooms.size() - 1)]
+		if boss_allowed or room != BOSS_INDEX[location]:
+			return room
+
 func generate_rooms() -> void:
 	for location in range(Location.COUNT):
 		# Skip Central since those connections are hardcoded.
@@ -197,8 +207,7 @@ func generate_rooms() -> void:
 		# - Unattached means a room is not linked to any other rooms.
 		# - Unexplored means a room is linked to another room but has
 		#   not made links of its own.
-		var random:RandomNumberGenerator = RandomNumberGenerator.new()
-		var start:int = unattached[random.randi_range(0, unattached.size() - 1)]
+		var start:int = get_random_room(location, unattached, false)
 		unattached.erase(start)
 		unexplored.append(start)
 		add_connection_entry(location, start)
@@ -206,9 +215,10 @@ func generate_rooms() -> void:
 		# Connect the anchor room of the location to Central.
 		create_connection(Location.CENTRAL, 0, location, start, DIRECTION_FROM_CENTRAL[location])
 
+		var random:RandomNumberGenerator = RandomNumberGenerator.new()
 		while unattached.size() > 0:
 			# Pick a random, unexplored room to... explore.
-			var source:int = unexplored[random.randi_range(0, unexplored.size() - 1)]
+			var source:int = get_random_room(location, unexplored, false)
 
 			# Pick a random number of rooms to link to this one.
 			# There can only be a maximum of three NEW attachments because all
@@ -231,13 +241,7 @@ func generate_rooms() -> void:
 
 				# Pick a random room from the list of unattached rooms to link
 				# to the destination room from the source room.
-				var destination:int
-				while true:
-					destination = unattached[random.randi_range(0, unattached.size() - 1)]
-					# Make sure the boss room is the last room added to the location
-					if unattached.size() == 1 or destination != BOSS_INDEX[location]:
-						break
-
+				var destination:int = get_random_room(location, unattached, unattached.size() == 1)
 				add_connection_entry(location, destination)
 				create_connection(location, source, location, destination, direction)
 
