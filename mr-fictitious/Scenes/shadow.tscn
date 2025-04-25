@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ttxlhunr5yw"]
+[gd_scene load_steps=3 format=3 uid="uid://c5ttxlhunr5yw"]
 
 [ext_resource type="Script" path="res://Scripts/shadow.gd" id="1_6lwq6"]
-[ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_dtl0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aitug"]
 size = Vector2(22.7273, 64)
@@ -16,10 +15,11 @@ position = Vector2(0.999999, 2.5)
 scale = Vector2(3.08, 1)
 shape = SubResource("RectangleShape2D_aitug")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_dtl0u")
-
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.231373, 0, 0.235294, 0.654902)
+polygon = PackedVector2Array(-39.3333, -37.3333, 41.3333, -37.3333, 41.3333, 39.3333, -42, 39.3333)
 
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]
