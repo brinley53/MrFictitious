@@ -15,7 +15,6 @@ signal dead
 const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")  
 const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 
-
 #GLOBAL VARIABLES
 # stats attributes
 var speed : float
@@ -37,6 +36,7 @@ var dir_facing = 1
 @onready var vul_area = $VulnerableArea
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
+@onready var health_bar = $HealthContainer/HealthBar
 
 
 func _ready():
@@ -86,6 +86,7 @@ func reduce_enemy_health(damage_dealt):
 	if !is_vulnerable:
 		return
 	health = health - damage_dealt
+	health_bar.value = health
 	print("Health taken")
 	if health <= 0:
 		var item = EVIDENCE_SCENE.instantiate()
