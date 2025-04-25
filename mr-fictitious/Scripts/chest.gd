@@ -11,6 +11,7 @@ extends Area2D
 @export var health_scene: PackedScene = preload("res://Scenes/health_item.tscn")
 @export var speed_scene: PackedScene = preload("res://Scenes/speed_item.tscn")
 @export var damage_scene: PackedScene = preload("res://Scenes/damage_item.tscn")
+@export var flashlight_scene: PackedScene = preload("res://Scenes/flashlight_item.tscn")
 
 @onready var sprite = $Sprite2D
 var opened = false
@@ -30,7 +31,7 @@ func spawn_random_loot():
 	opened = true
 	#sprite.texture = open_texture
 
-	var loot_options = [bullet_scene, health_scene, speed_scene]
+	var loot_options = [bullet_scene, health_scene, speed_scene, flashlight_scene]
 	var num_loot = randi_range(1, 6)
 
 	for i in range(num_loot):

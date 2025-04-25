@@ -84,7 +84,8 @@ var sword = false
 @onready var dialogue_manager = $DialogueManager
 @onready var poison_timer = $PoisonTimer
 @onready var stealth_area = $Stealth
-@onready var spin_area = $SpinArea
+@onready var spin_node = $SpinNode
+@onready var spin_area = $SpinNode/SpinArea
 
 #EXPORT VARIABLES
 @export var inventory:Inventory;
@@ -95,7 +96,7 @@ func _ready():
 	attack_area.visible = false
 	attack_area.monitoring = false 
 	attack_area.monitorable = false
-	spin_area.visible = false
+	spin_node.visible = false
 	spin_area.monitoring = false
 	spin_area.monitorable = false
 
@@ -127,7 +128,7 @@ func _process(delta):
 			break
 	
 	move_character(delta)
-	if Input.is_action_just_pressed("attack") and can_attack:
+	if Input.is_action_just_pressed("attack") and can_attack and !sword:
 		attack_sprite.play("attacking")
 		attack()
 		can_attack = false
@@ -136,7 +137,7 @@ func _process(delta):
 		
 	if spin_attack_active:
 		orbit_timer += delta
-		spin_area.rotation += orbit_speed * delta
+		spin_node.rotation += orbit_speed * delta
 		if orbit_timer >= orbit_duration:
 			end_spin_attack()
 
@@ -232,15 +233,15 @@ func start_spin_attack():
 	spin_attack_active = true
 	orbit_timer = 0.0
 	can_attack = false
-	attack_area.visible = true
-	attack_area.monitoring = true
-	attack_area.monitorable = true
+	spin_node.visible = true
+	spin_area.monitoring = true
+	spin_area.monitorable = true
 
 func end_spin_attack():
 	spin_attack_active = false
 	can_attack = true
-	attack_area.visible = false
-	attack_area.monitoring = false
+	spin_area.visible = false
+	spin_area.monitoring = false
 
 
 
@@ -302,7 +303,7 @@ func use_flashlight_item():
 		var enemies = get_tree().get_nodes_in_group("Enemies")
 		for enemy in enemies:
 			if enemy.has_method("apply_stun"):
-				enemy.apply_stun(2.0)
+				enemy.apply_stun(5.0)
 
 func use_health_item():
 	if removeItem(healthResource):
