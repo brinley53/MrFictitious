@@ -22,7 +22,7 @@ const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")
 var speed : float
 @export var health : float
 @export var damage : float
-var is_vulnerable = true
+var is_vulnerable = false
 var attack = "Default"
 
 #chase player variables
@@ -70,7 +70,7 @@ func shoot_player():
 func _physics_process(delta: float) -> void:
 	if stunned:
 		return
-	if !player.stealth:
+	if !player.stealth or is_vulnerable:
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
 
@@ -157,7 +157,7 @@ func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if stunned:
 		return
-	if !player.stealth and chase_player:
+	if (!player.stealth and chase_player) or is_vulnerable:
 		shoot_player()
 	timer.start()
 

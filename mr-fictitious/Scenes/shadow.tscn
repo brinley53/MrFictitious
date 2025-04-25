@@ -17,10 +17,6 @@ shape = SubResource("RectangleShape2D_aitug")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.231373, 0, 0.235294, 0.654902)
-polygon = PackedVector2Array(-39.3333, -37.3333, 41.3333, -37.3333, 41.3333, 39.3333, -42, 39.3333)
-
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -10,7 +10,7 @@ extends Node2D
 @export var timeEnabled : int
 @export var timeDisabled : int
 @onready var timer = $Timer
-@onready var collision_area = $CollisionShape2D
+@onready var collision_area = $CollisionPolygon2D
 var monitorable = true
 var enabled = true
 
@@ -19,7 +19,6 @@ func _ready() -> void:
 	if timeEnabled > 0:
 		timer.wait_time = timeEnabled
 		timer.start()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
