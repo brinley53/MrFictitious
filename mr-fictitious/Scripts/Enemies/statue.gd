@@ -7,6 +7,7 @@ Revisions:
 		- Animation
 		- Death Logic
 		- Basic Attacks
+	Jose Leyba  4/24/2025: Statue Stun
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -25,6 +26,8 @@ var chase_player = false
 var attack_player = false
 var attack_type = "Pound"
 var attack_types = ["Pound", "Charge"]
+var stunned = false
+var current_stun_timer: Timer = null
 
 # On ready attributes
 @onready var timer = $AttackTimer
@@ -44,6 +47,8 @@ func _ready():
 	charge_speed = 750.0
 
 func _physics_process(delta: float) -> void:
+	if stunned:
+		return
 	if global_position.distance_to(target) < sprite.sprite_frames.get_frame_texture("default", 0).get_size().x/4:
 		speed = 0.0
 	# Die if its arms are off
@@ -55,6 +60,8 @@ func _physics_process(delta: float) -> void:
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	if stunned:
+		return
 	if body.name == "Player":
 		attack_player = true
 		player.reduce_player_health(damage)
@@ -62,6 +69,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player
+	if stunned:
+		return
 	if body.name == "Player":
 		if !body.stealth:
 			chase_player = true
@@ -73,11 +82,30 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 			
 
 func _on_attack_timer_timeout() -> void:
+	if stunned:
+		return
 	# timer to allow player iframes
 	if attack_player:
 		player.reduce_player_health(damage)
 		timer.start()
 
+func apply_stun(duration):
+	if stunned and current_stun_timer:
+		current_stun_timer.stop()
+		current_stun_timer.queue_free()
+	stunned = true
+	current_stun_timer = Timer.new()
+	current_stun_timer.one_shot = true
+	current_stun_timer.wait_time = duration
+	add_child(current_stun_timer)
+	current_stun_timer.connect("timeout", Callable(self, "_on_stun_timeout"))
+	current_stun_timer.start()
+
+func _on_stun_timeout():
+	stunned = false
+	if current_stun_timer:
+		current_stun_timer.queue_free()
+		current_stun_timer = null
 
 func _on_head_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Weapon"):

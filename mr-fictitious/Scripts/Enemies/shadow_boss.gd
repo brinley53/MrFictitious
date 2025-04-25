@@ -52,9 +52,13 @@ func reset_patrol():
 	attack_player = false
 	
 func change_attack(attack_type):
+	if stunned:
+		return
 	attack = attack_type
 	
 func shoot_player():
+	if stunned:
+		return
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.body_entered.connect(bullet._on_body_entered)
 	bullet.global_position = global_position
