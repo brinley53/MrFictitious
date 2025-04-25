@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5yvuv5stab68"]
+[gd_scene load_steps=5 format=3 uid="uid://b5yvuv5stab68"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_glossary.gd" id="1_o3r84"]
 [ext_resource type="Texture2D" uid="uid://dvelc1brkk1lq" path="res://images/Ratstanding.png" id="2_4x0c5"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_c4ykj"]
 [ext_resource type="Texture2D" uid="uid://cajs0ydsfqpft" path="res://images/Wolf_White_Background.png" id="3_ydvb6"]
 
 [node name="EnemyGlossary" type="Control"]
@@ -19,10 +20,12 @@ columns = 4
 
 [node name="slime" type="Button" parent="EnemyGrid"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("2_4x0c5")
 
 [node name="skeleton" type="Button" parent="EnemyGrid"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("3_ydvb6")
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
@@ -37,9 +40,12 @@ stretch_mode = 5
 
 [node name="EnemyName" type="Label" parent="InfoPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
 
 [node name="EnemyType" type="Label" parent="InfoPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
 
 [node name="EnemyDescription" type="Label" parent="InfoPanel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")

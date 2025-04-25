@@ -6,6 +6,7 @@ Revisions:
 		Jose Leyba - 04/21/2025: Boss drops the "key" (evidence) for final area when killed
 		Brinley Hull - 4/22/2025: Boss movement and vulnerability
 		Brinley Hull - 4/23/2025: Different boss attacks
+		Jose Leyba - 4/24/2025: Stun functionality added
 """
 
 extends CharacterBody2D
@@ -28,7 +29,8 @@ var attack = "Default"
 var chase_player = false
 var attack_player = false
 var dir_facing = 1
-
+var stunned = false
+var current_stun_timer: Timer = null
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $AnimatedSprite2D
@@ -60,7 +62,8 @@ func shoot_player():
 	get_parent().add_child(bullet)
 
 func _physics_process(delta: float) -> void:
-	reduce_enemy_health(20 * delta)
+	if stunned:
+		return
 	if !player.stealth:
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
@@ -97,8 +100,29 @@ func reduce_enemy_health(damage_dealt):
 		queue_free()
 		dead.emit()
 
+
+func apply_stun(duration):
+	if stunned and current_stun_timer:
+		current_stun_timer.stop()
+		current_stun_timer.queue_free()
+	stunned = true
+	current_stun_timer = Timer.new()
+	current_stun_timer.one_shot = true
+	current_stun_timer.wait_time = duration
+	add_child(current_stun_timer)
+	current_stun_timer.connect("timeout", Callable(self, "_on_stun_timeout"))
+	current_stun_timer.start()
+
+func _on_stun_timeout():
+	stunned = false
+	if current_stun_timer:
+		current_stun_timer.queue_free()
+		current_stun_timer = null
+
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	if stunned:
+		return
 	if body.name == "Player":
 		attack_player = true
 		player.reduce_player_health(damage)
@@ -106,6 +130,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player
+	if stunned:
+		return
 	if body.name == "Player":
 		chase_player = true
 
@@ -116,6 +142,8 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 			
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
+	if stunned:
+		return
 	if !player.stealth and chase_player:
 		shoot_player()
 	timer.start()

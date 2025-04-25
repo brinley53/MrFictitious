@@ -53,5 +53,5 @@ offset_bottom = 249.0
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Glossary" to="." method="_on_glossary_pressed"]
-[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]

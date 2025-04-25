@@ -19,6 +19,8 @@ Revisions:
 	Jose Leyba - 4/21/2025: Enemies drop health and/or bullets when killed (randomly)
 	Brinley Hull - 4/21/2025: Better Navigation
 	Brinley Hull - 4/22/2025: Darting Rats
+	Jose Leyba  - 4/24/2025: Stun Function
+
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -41,7 +43,8 @@ var chase_player = false
 var attack_player = false
 var poison = false
 var stand = false
-
+var stunned = false
+var current_stun_timer: Timer = null
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $AnimatedSprite2D
@@ -50,6 +53,7 @@ var stand = false
 @onready var player = players[0]
 @onready var nav_timer = $NavTimer
 @onready var nav_agent = $NavigationAgent2D
+
 var patrol_points
 var dart_timer:Timer
 @export_enum("Wolf", "Rat", "Poison") var type : String
@@ -81,6 +85,10 @@ func reset_patrol():
 	attack_player = false
 
 func _physics_process(delta: float) -> void:
+	if stunned:
+		if type=="Rat":
+			sprite.play("stand")
+		return
 	if player.stealth and chase_player:
 		reset_patrol()
 		
@@ -174,6 +182,24 @@ func chase(body: Node2D) -> void:
 	move_and_slide()
 	
 
+func apply_stun(duration):
+	if stunned and current_stun_timer:
+		current_stun_timer.stop()
+		current_stun_timer.queue_free()
+	stunned = true
+	current_stun_timer = Timer.new()
+	current_stun_timer.one_shot = true
+	current_stun_timer.wait_time = duration
+	add_child(current_stun_timer)
+	current_stun_timer.connect("timeout", Callable(self, "_on_stun_timeout"))
+	current_stun_timer.start()
+
+func _on_stun_timeout():
+	stunned = false
+	if current_stun_timer:
+		current_stun_timer.queue_free()
+		current_stun_timer = null
+
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
 	if body.name == "Player":
@@ -184,6 +210,8 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
+		if stunned:
+			pass
 		player.reduce_player_health(damage)
 		timer.start()
 

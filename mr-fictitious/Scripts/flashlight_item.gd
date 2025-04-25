@@ -19,5 +19,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("entered collision")
 		if body.collectItem(inventory_drop_item):
+			body.collectItem(inventory_drop_item)
+			body.collectItem(inventory_drop_item)
 			body.add_flashlight_item()
+			body.add_flashlight_item()
+			body.add_flashlight_item()
+
 			queue_free()

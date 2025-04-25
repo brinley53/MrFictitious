@@ -13,6 +13,8 @@ Revisions:
 		- Fix Attack Area Body Entered Bug
 		- Poison
 	Brinley Hull - 4/22/2025: Shadows
+	Jose Leyba  - 4/24/2025: Items use inventory now, added new weapons
+
 """
 class_name Player
 extends CharacterBody2D
@@ -235,7 +237,10 @@ func add_flashlight_item():
 func use_flashlight_item():
 	if removeItem(flashResource):
 		flashlight_items-=1
-		increase_player_health(20)
+		var enemies = get_tree().get_nodes_in_group("Enemies")
+		for enemy in enemies:
+			if enemy.has_method("apply_stun"):
+				enemy.apply_stun(5.0)
 
 func use_health_item():
 	if removeItem(healthResource):
