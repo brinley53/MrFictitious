@@ -4,6 +4,7 @@ Authors: Brinley Hull, Jose Leyba
 Creation Date: 04/17/2025
 Revisions:
 	Brinley Hull - 4/23/2025: Create different types of bullets
+	Brinley Hull - 4/25/2025: Change speed of target bullets
 """
 
 extends Area2D
@@ -25,7 +26,7 @@ func _ready():
 	trail.clear_points()
 	trail_points.clear()
 	if type == "Target":
-		speed = 250
+		speed = 200
 	else:
 		speed = 400
 	

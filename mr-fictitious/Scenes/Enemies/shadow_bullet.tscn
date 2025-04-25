@@ -34,7 +34,7 @@ width = 2.0
 gradient = SubResource("Gradient_khrrq")
 
 [node name="Explosion" type="Area2D" parent="."]
-scale = Vector2(1.6, 1.64)
+scale = Vector2(2.76, 2.57198)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
 shape = SubResource("CircleShape2D_a6lxh")

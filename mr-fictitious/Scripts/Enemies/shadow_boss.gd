@@ -7,6 +7,7 @@ Revisions:
 		Brinley Hull - 4/22/2025: Boss movement and vulnerability
 		Brinley Hull - 4/23/2025: Different boss attacks
 		Jose Leyba - 4/24/2025: Stun functionality added
+		Brinley Hull - 4/25/2025: Fix detection/attack areas
 """
 
 extends CharacterBody2D
@@ -39,6 +40,7 @@ var current_stun_timer: Timer = null
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
 @onready var health_bar = $HealthContainer/HealthBar
+@onready var attack_area = $AttackArea
 
 
 func _ready():
@@ -84,6 +86,12 @@ func _physics_process(delta: float) -> void:
 		direction = (player.global_position - detection.global_position).angle() + PI
 		detection.rotation = lerp_angle(detection.rotation, direction, delta)
 		vul_area.scale.x = 1 if (player.global_position - global_position).normalized().x > 0 else -1
+		var offset = Vector2(-67, 29)  # 67 pixels to the right
+		offset.x *= vul_area.scale.x  # flip offset too
+		vul_area.position = offset
+		var attack_offset = Vector2(38, 5)
+		attack_offset *= vul_area.scale.x
+		attack_area.position = attack_offset
 		
 		velocity = (player.global_position - global_position).normalized() * speed
 		move_and_slide()
