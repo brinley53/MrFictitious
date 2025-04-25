@@ -40,11 +40,11 @@ sprite_frames = SubResource("SpriteFrames_heauu")
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(1399, -657, -230, -1511, -1600, -1112, -1914, -208, -1781, 772, -763, 1638, 26, 1792, 712, 1504, 0, 80, 72, -70)
+polygon = PackedVector2Array(-7, -8, 74, -73, 1380, -667, -215, -1520, -1646, -1125, -1955, -132, -1784, 851, -770, 1609, 63, 1780, 757, 1481, 20, 121)
 
 [node name="Polygon2D" type="Polygon2D" parent="Detection"]
 color = Color(0, 0, 0, 0.396078)
-polygon = PackedVector2Array(64, -84, -6, 82, 682, 1477, -10, 1726, -815, 1598, -1784, 693, -1941, -155, -1593, -1114, -251, -1486, 1271, -730)
+polygon = PackedVector2Array(16, 120, -4, 8, 72, -78, 1393, -675, -200, -1516, -1642, -1108, -1937, -157, -1793, 817, -827, 1580, 64, 1791, 744, 1482)
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(-38, 5)

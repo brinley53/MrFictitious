@@ -161,7 +161,7 @@ func _on_vulnerable_area_body_entered(body: Node2D) -> void:
 	pass
 
 func _on_vulnerable_timer_timeout() -> void:
-	is_vulnerable = true
+	is_vulnerable = false
 	
 func _on_vulnerable_area_area_entered(area: Area2D) -> void:
 	if !chase_player:
