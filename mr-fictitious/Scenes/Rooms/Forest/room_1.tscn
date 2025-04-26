@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://b6nm48xxmu3fh"]
+[gd_scene load_steps=13 format=4 uid="uid://b6nm48xxmu3fh"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_1olu5"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_782c6"]
+[ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="4_d2h0u"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="4_s7cbr"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_u24np"]
 
@@ -25,6 +26,18 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_e34wt")
 
+[sub_resource type="Gradient" id="Gradient_8polq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iw0r1"]
+seed = 2
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5bhej"]
+width = 1920
+height = 1080
+color_ramp = SubResource("Gradient_8polq")
+noise = SubResource("FastNoiseLite_iw0r1")
+
 [node name="Room1" type="Node2D"]
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
@@ -39,6 +52,12 @@ tile_set = SubResource("TileSet_u8210")
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_u24np")]
 metadata/_edit_use_anchors_ = true
+
+[node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
+material = ExtResource("4_d2h0u")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("NoiseTexture2D_5bhej")
 
 [node name="Damage_Item" parent="." instance=ExtResource("4_s7cbr")]
 position = Vector2(956, 545)

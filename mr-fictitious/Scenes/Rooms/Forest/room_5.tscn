@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://bnowu5qauy6m0"]
+[gd_scene load_steps=16 format=4 uid="uid://bnowu5qauy6m0"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_fwphx"]
 [ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="3_q34h4"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_vmfpb"]
+[ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="4_ynyxx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
 texture = ExtResource("1_fwphx")
@@ -237,6 +238,18 @@ sources/1 = SubResource("TileSetAtlasSource_hdftj")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eaats"]
 
+[sub_resource type="Gradient" id="Gradient_odapn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k0v4u"]
+seed = 2
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a6wo4"]
+width = 1920
+height = 1080
+color_ramp = SubResource("Gradient_odapn")
+noise = SubResource("FastNoiseLite_k0v4u")
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0quh8"]
 vertices = PackedVector2Array(1817.15, 428.883, 1821.88, 665.461, 1755.13, 706.313, 1568.72, 666.563, 1768.73, 417.023, 1546.15, 914.844, 1552.49, 946.75, 1558.25, 981.313, 1392.1, 985.93, 1272.69, 929.742, 1750.19, 914.461, 592.148, 934.211, 597.109, 993.859, 371.508, 991.063, 328.82, 924.563, 372.102, 907.891, 105.719, 284.227, 100.242, 153.547, 152.273, 122.68, 217.898, 115.109, 228.773, 243.523, 168, 310.352, 1063.25, 953.641, 1063.81, 957.844, 880.867, 990.609, 861.273, 928.852, 156.688, 734.969, 90.8594, 727.992, 87.0938, 489.094, 168, 448.148, 369.938, 694.031, 162.68, 906.969, 1058.22, 915.891, 1059.24, 923.57, 1539.93, 222.781, 1580.11, 103.219, 1692.04, 106.844, 1745.33, 173.898, 1457.07, 636.109, 1401.97, 208.32, 1307.87, 190.227, 1331.27, 146.477, 1375.48, 142.602, 1376.88, 692.938, 541.758, 680.039, 1166.82, 184.852, 1095.26, 116.273, 472.219, 639.547, 865.148, 190.258, 894.461, 129.594, 333.344, 249.141, 415.133, 203.688, 617.367, 180.023)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9), PackedInt32Array(5, 3, 2, 10, 6), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19, 20, 21), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(26, 27, 28, 29, 30), PackedInt32Array(14, 31, 26, 30, 15), PackedInt32Array(11, 15, 32, 33, 25), PackedInt32Array(34, 35, 36, 37, 4, 3, 38), PackedInt32Array(39, 34, 38), PackedInt32Array(40, 41, 42, 39, 38, 43), PackedInt32Array(40, 43, 44, 45), PackedInt32Array(46, 45, 44, 47, 48), PackedInt32Array(48, 49, 46), PackedInt32Array(50, 51, 52, 48, 47, 30), PackedInt32Array(21, 20, 50, 30, 29), PackedInt32Array(22, 25, 33, 9), PackedInt32Array(9, 33, 5)])
@@ -288,6 +301,12 @@ shape = SubResource("CircleShape2D_eaats")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_vmfpb")]
+
+[node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
+material = ExtResource("4_ynyxx")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("NoiseTexture2D_a6wo4")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0quh8")

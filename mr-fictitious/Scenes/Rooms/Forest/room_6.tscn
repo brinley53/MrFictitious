@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://cskvio3hsixhn"]
+[gd_scene load_steps=17 format=4 uid="uid://cskvio3hsixhn"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_5c4g0"]
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="4_g1e1g"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="5_8cj0r"]
+[ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="6_7kfbt"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="6_sr8j1"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="7_cxmjc"]
 
@@ -240,6 +241,18 @@ sources/1 = SubResource("TileSetAtlasSource_hdftj")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eaats"]
 
+[sub_resource type="Gradient" id="Gradient_h8s3w"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vxlhi"]
+seed = 2
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4rwn5"]
+width = 1920
+height = 1080
+color_ramp = SubResource("Gradient_h8s3w")
+noise = SubResource("FastNoiseLite_vxlhi")
+
 [node name="Room5" type="Node2D"]
 
 [node name="BaseLayer" type="TileMapLayer" parent="."]
@@ -311,3 +324,9 @@ position = Vector2(969, 405)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("7_cxmjc")]
+
+[node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
+material = ExtResource("6_7kfbt")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("NoiseTexture2D_4rwn5")
