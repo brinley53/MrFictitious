@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://bnowu5qauy6m0"]
+[gd_scene load_steps=15 format=4 uid="uid://bnowu5qauy6m0"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_fwphx"]
 [ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="3_q34h4"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_vmfpb"]
-[ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="4_ynyxx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duv2k"]
 texture = ExtResource("1_fwphx")
@@ -303,7 +302,7 @@ shape = SubResource("CircleShape2D_eaats")
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_vmfpb")]
 
 [node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
-material = ExtResource("4_ynyxx")
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("NoiseTexture2D_a6wo4")
