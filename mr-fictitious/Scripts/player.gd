@@ -110,14 +110,12 @@ func _ready():
 	Wwise.load_bank_id(AK.BANKS.MUSIC)
 	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
-<<<<<<< Updated upstream
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
 	
 	# Dialogue signal connections
 	dialogue_manager.connect("dialogue_ended", Callable(self, "_on_dialogue_finished"))
 	dialogue_manager.connect("dialogue_started", Callable(self, "_on_dialogue_started"))
-=======
->>>>>>> Stashed changes
+
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
