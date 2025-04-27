@@ -31,19 +31,18 @@ const BOSS_INDEX:Dictionary = {
 	Location.CRYPT: 3
 }
 
+const BASE_ROOMS:Dictionary = {
+	Location.FOREST: preload("res://Scenes/Rooms/Forest/forest_base.tscn"),
+	Location.CRYPT: preload("res://Scenes/Rooms/Crypt/room_1.tscn")
+}
+
 const ROOMS:Dictionary = {
 	Location.CENTRAL: [
 		preload("res://Scenes/Rooms/central_room.tscn")
 	],
 	Location.FOREST: [
-		preload("res://Scenes/Rooms/Forest/room_1.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_2.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_3.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_4.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_5.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_6.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_7.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_8.tscn")
+		preload("res://Scenes/Rooms/Forest/room_11.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_12.tscn")
 	],
 	Location.CRYPT: [
 		preload("res://Scenes/Rooms/Crypt/room_1.tscn"),
@@ -77,6 +76,7 @@ var playerInstance:Player
 var active_location:Location
 var active_room:int
 
+var base_rooms:Dictionary
 var rooms:Dictionary
 var edges:Dictionary
 
@@ -99,6 +99,11 @@ func _ready() -> void:
 		if location == Location.CENTRAL:
 			continue
 
+		base_rooms[location] = BASE_ROOMS[location].instantiate()
+		if location == Location.FOREST:
+			base_rooms[Location.CENTRAL] = base_rooms[location]
+			add_child(base_rooms[Location.CENTRAL])
+
 		rooms[location] = []
 		for room in ROOMS[location]:
 			rooms[location].append(room.instantiate())
@@ -113,6 +118,11 @@ func get_active_room() -> Node:
 	return rooms[active_location][active_room]
 
 func set_active_room(location:Location, room:int) -> void:
+	# Set the new base room if needed
+	if base_rooms[location] != base_rooms[active_location]:
+		remove_child(base_rooms[active_location])
+		add_child(base_rooms[location])
+
 	# Remove the old active room.
 	remove_child(rooms[active_location][active_room])
 
@@ -120,7 +130,6 @@ func set_active_room(location:Location, room:int) -> void:
 	for direction in range(Direction.COUNT):
 		remove_child(edges[active_location][direction])
 
-	# Add the new active room.
 	active_location = location
 	active_room = room
 	add_child(rooms[active_location][active_room])
