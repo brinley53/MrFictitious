@@ -42,6 +42,9 @@ var total_health:int
 @onready var pound_area = $PoundArea
 @onready var pound_sprite = $PoundArea/Sprite2D
 @onready var pound_timer = $PoundTimer
+@onready var head = $Head
+@onready var r_wing = $RightWing
+@onready var l_wing = $LeftWing
 
 
 func _ready():
@@ -117,22 +120,36 @@ func _on_stun_timeout():
 		current_stun_timer.queue_free()
 		current_stun_timer = null
 
+func reduce_enemy_health(damage_dealt):
+	var head_areas = head.get_overlapping_areas()
+	var lwing_areas = l_wing.get_overlapping_areas()
+	var rwing_areas = r_wing.get_overlapping_areas()
+	if left_wing_health > 0:
+		for area in lwing_areas:
+			if area.is_in_group("Weapon"):
+				left_wing_health -= 1
+				return
+	if right_wing_health > 0:
+		for area in rwing_areas:
+			if area.is_in_group("Weapon"):
+				right_wing_health -= 1
+				return
+	if head_health > 0:
+		for area in head_areas:
+			if area.is_in_group("Weapon"):
+				head_health -= 1
+				return
+
 func _on_head_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Weapon"):
-		if(head_health>0):
-			head_health -= 1
+	pass
 
 
 func _on_right_wing_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Weapon"):
-		if(right_wing_health>0):
-			right_wing_health -= 1
+	pass
 
 
 func _on_left_wing_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Weapon"):
-		if(left_wing_health>0):
-			left_wing_health -= 1
+	pass
 
 func ground_pound():
 	sprite.play("pound")

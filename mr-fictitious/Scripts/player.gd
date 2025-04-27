@@ -202,6 +202,15 @@ func attack():
 	for body in bodies:
 		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(5)
+			
+	# Check for statue area hit
+	var areas = $AttackArea.get_overlapping_areas()
+	for area in areas:
+		var body = area.get_parent()
+		if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+			if body.has_method("reduce_enemy_health"):
+				body.reduce_enemy_health(10)
+				break
 	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
 	attack_area.monitoring = true  
 	attack_area.monitorable = true

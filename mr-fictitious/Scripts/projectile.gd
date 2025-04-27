@@ -4,6 +4,7 @@ Authors: Jose Leyba
 Creation Date: 04/03/2025
 Revisions:
 	Brinley Hull - 4/24/2025: Disappear on hit enemy
+	Brinley Hull - 4/27/2025: Update statue boss bullet hit logic
 """
 
 extends Node2D
@@ -39,10 +40,13 @@ func _on_body_entered(body: Node2D) -> void:
 		print("Hit an Enemy!")
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10)
-			print("Enemy health reduced.")
 		queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.get_parent().name == "Statue":
+	# attacking statue boss wings and head
+	var body = area.get_parent()
+	if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+		if body.has_method("reduce_enemy_health"):
+			body.reduce_enemy_health(10)
 		queue_free()

@@ -130,7 +130,7 @@ radius = 271.144
 
 [node name="Statue" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ounb0")
-damage = 50.0
+damage = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 3.5)
@@ -148,14 +148,14 @@ position = Vector2(-83, -146)
 scale = Vector2(4.92, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWing"]
-polygon = PackedVector2Array(7.92683, 45, 0.406504, 32, -5.28455, 76, -5.28455, 189, 4.06504, 151, 3.65854, 85)
+polygon = PackedVector2Array(7.92683, 45, 0, 20, -7.72358, 73, -6.30081, 241, 5.69106, 169, 3.65854, 85)
 
 [node name="RightWing" type="Area2D" parent="."]
 position = Vector2(100, -144)
 scale = Vector2(5.32, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWing"]
-polygon = PackedVector2Array(-10.7143, 42, -5.45113, 24, 1.12782, 68, 0.751879, 158, -2.81955, 186, -7.70677, 146, -6.76692, 72)
+polygon = PackedVector2Array(-12.218, 38, -4.32331, 13, 2.44361, 69, 1.8797, 163, -2.81955, 205, -8.27068, 165, -6.76692, 72)
 
 [node name="Head" type="Area2D" parent="."]
 position = Vector2(1, -120)
@@ -167,7 +167,7 @@ shape = SubResource("CircleShape2D_4vast")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="BigAttackTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.0
 autostart = true
 
 [node name="AttackArea" type="Area2D" parent="."]
