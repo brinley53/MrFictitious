@@ -14,6 +14,7 @@ Revisions:
 		- Poison
 	Brinley Hull - 4/22/2025: Shadows
 	Jose Leyba  - 4/24/2025: Items use inventory now, added new weapons
+	Brinley Hull - 4/27/2025: Dialogue pause boolean
 """
 class_name Player
 extends CharacterBody2D
@@ -56,10 +57,13 @@ var current_proc_count = 0
 var poison_proc_count = 0
 var poison_damage = 0
 
+var dialogue_balloon
+
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
 var evidence_collected = 0
+var in_dialogue = false
 
 var spin_attack_active = false
 var orbit_timer = 0.0
@@ -107,6 +111,10 @@ func _ready():
 	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
+	
+	# Dialogue signal connections
+	dialogue_manager.connect("dialogue_ended", Callable(self, "_on_dialogue_finished"))
+	dialogue_manager.connect("dialogue_started", Callable(self, "_on_dialogue_started"))
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
@@ -393,12 +401,23 @@ func shovel(damage_increase: int, shrink_factor: float):
 	if attack_sprite:
 		attack_sprite.scale *= shrink_factor
 
+func _on_dialogue_started(resource: DialogueResource):
+	# Function to pause everything while dialogue is on
+	in_dialogue = true
 
+func _on_dialogue_finished(resource: DialogueResource):
+	# Function to resume everything when dialogue is done
+	in_dialogue = false
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_E):
-		dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start")
 		return
+		
+	# Skip dialogue option
+	if in_dialogue and Input.is_key_pressed(KEY_ENTER):
+		dialogue_balloon.end_dialogue()
+		in_dialogue = false
 	
 	if event.is_action_pressed("inventorySlot"):
 		inventory.equipSlot(int(event.as_text())-1)

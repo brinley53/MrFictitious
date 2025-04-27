@@ -106,6 +106,9 @@ func _ready() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()
+	
+func end_dialogue():
+	queue_free()
 
 func _notification(what: int) -> void:
 	## Detect a change of locale and update the current dialogue line to show the new language
