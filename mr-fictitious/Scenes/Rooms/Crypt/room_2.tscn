@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://l40mu5uwpvya"]
+[gd_scene load_steps=8 format=4 uid="uid://l40mu5uwpvya"]
 
 [ext_resource type="Texture2D" uid="uid://f08qhyswc6d8" path="res://images/crypt_tiles.png" id="1_17u7l"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="2_c8uri"]
+[ext_resource type="PackedScene" uid="uid://c4vff8h827008" path="res://Scenes/Enemies/skull.tscn" id="3_a5ks5"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_07npq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r6jj8"]
 texture = ExtResource("1_17u7l")
@@ -19,6 +21,11 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_r6jj8")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x0lad"]
+vertices = PackedVector2Array(1785, 946, 162.773, 946, 144.227, 157.859, 1785, 135.141)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(134, 148, 1795, 125, 1795, 956, 153, 956)])
+
 [node name="Room2" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -28,3 +35,21 @@ tile_set = SubResource("TileSet_s8pw6")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("2_c8uri")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_a5ks5")]
+position = Vector2(502, 467)
+
+[node name="Patrol" parent="." instance=ExtResource("4_07npq")]
+position = Vector2(352, 228)
+
+[node name="Patrol2" parent="." instance=ExtResource("4_07npq")]
+position = Vector2(1638, 284)
+
+[node name="Patrol3" parent="." instance=ExtResource("4_07npq")]
+position = Vector2(1601, 840)
+
+[node name="Patrol4" parent="." instance=ExtResource("4_07npq")]
+position = Vector2(410, 818)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_x0lad")

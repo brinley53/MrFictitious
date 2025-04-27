@@ -20,7 +20,7 @@ Revisions:
 	Brinley Hull - 4/21/2025: Better Navigation
 	Brinley Hull - 4/22/2025: Darting Rats
 	Jose Leyba  - 4/24/2025: Stun Function
-
+	Brinley Hull - 4/26/2024: Ranged Enemy
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -45,6 +45,7 @@ var poison = false
 var stand = false
 var stunned = false
 var current_stun_timer: Timer = null
+const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn") 
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $AnimatedSprite2D
@@ -53,10 +54,11 @@ var current_stun_timer: Timer = null
 @onready var player = players[0]
 @onready var nav_timer = $NavTimer
 @onready var nav_agent = $NavigationAgent2D
+var shot_timer:Timer
 
 var patrol_points
 var dart_timer:Timer
-@export_enum("Wolf", "Rat", "Poison") var type : String
+@export_enum("Wolf", "Rat", "Poison", "Ranged") var type : String
 
 
 func _ready():
@@ -74,6 +76,8 @@ func _ready():
 	if type=="Rat":
 		dart_timer = $DartTimer
 		dart_timer.start()
+	if type=="Ranged":
+		shot_timer = $ShotTimer
 	
 func reset_patrol():
 	if len(patrol_points) == 0:
@@ -104,6 +108,13 @@ func _physics_process(delta: float) -> void:
 		target_point = player
 		
 	check_patrol()
+	
+func shoot_player():
+	var bullet = BULLET_SCENE.instantiate()
+	bullet.body_entered.connect(bullet._on_body_entered)
+	bullet.global_position = global_position
+	bullet.initialize_bullet(player.global_position)
+	get_parent().add_child(bullet)
 	
 func check_patrol():
 	#if we're close to the target point, change patrol points as the target point
@@ -153,6 +164,8 @@ func _on_detection_body_entered(body: Node2D) -> void:
 		if !body.stealth:
 			player.initiate_combat()
 			chase_player = true
+			if type=="Ranged":
+				shot_timer.start()
 		
 func chase(body: Node2D) -> void:
 	# Change target point
@@ -221,3 +234,11 @@ func _on_dart_timer_timeout() -> void:
 
 func _on_nav_timer_timeout() -> void:
 	pass # Replace with function body.
+
+
+func _on_shot_timer_timeout() -> void:
+	if chase_player:
+		if stunned:
+			pass
+		shoot_player()
+		shot_timer.start()

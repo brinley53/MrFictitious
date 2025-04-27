@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=4 uid="uid://b6nm48xxmu3fh"]
+[gd_scene load_steps=12 format=4 uid="uid://b6nm48xxmu3fh"]
 
 [ext_resource type="Texture2D" uid="uid://bqf0frk8xnwb5" path="res://images/grass.png" id="2_1olu5"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="3_782c6"]
-[ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="4_d2h0u"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="4_s7cbr"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_u24np"]
 
@@ -54,7 +53,7 @@ tile_set = SubResource("TileSet_u8210")
 metadata/_edit_use_anchors_ = true
 
 [node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
-material = ExtResource("4_d2h0u")
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("NoiseTexture2D_5bhej")

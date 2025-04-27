@@ -41,6 +41,7 @@ var current_stun_timer: Timer = null
 @onready var player = players[0]
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var attack_area = $AttackArea
+@onready var melee_timer = $MeleeAttackTimer
 
 
 func _ready():
@@ -139,7 +140,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		attack_player = true
 		player.reduce_player_health(damage)
-		timer.start()
+		melee_timer.start()
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	# If player enters cone of detection, chase the player
@@ -175,3 +176,11 @@ func _on_vulnerable_area_area_entered(area: Area2D) -> void:
 	if !chase_player:
 		is_vulnerable = true
 		vul_timer.start()
+
+
+func _on_melee_attack_timer_timeout() -> void:
+	if attack_player:
+		if stunned:
+			pass
+		player.reduce_player_health(damage)
+		melee_timer.start()

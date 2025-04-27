@@ -24,7 +24,7 @@ texture = ExtResource("3_8ixf2")
 position = Vector2(-0.5, 64.5)
 shape = SubResource("RectangleShape2D_dwbr3")
 
-[node name="HitArea" type="Area2D" parent="."]
+[node name="HitArea" type="Area2D" parent="." groups=["Depth_Object"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 position = Vector2(-2.5, -1)

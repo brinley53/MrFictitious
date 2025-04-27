@@ -349,7 +349,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1kuj"]
 size = Vector2(28, 109)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Depth_Object", "Player"]]
 script = ExtResource("1_qm5xk")
 inventory = ExtResource("2_dulbo")
 

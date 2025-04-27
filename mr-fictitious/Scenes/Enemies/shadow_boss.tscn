@@ -29,7 +29,7 @@ damage = 100.0
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-31.8302, 10)
 scale = Vector2(6.53397, -4.71009)
-polygon = PackedVector2Array(17.5743, 0.21231, 21.0944, 4.03389, 13.9012, 15.074, 10.3812, 15.4986, 9.92202, 20.8064, 5.94281, 20.1695, 4.2593, 11.4647, 1.50447, 9.34165, -6.30089, 15.9233, -10.8923, 14.8617, -12.4227, 0.84924, -6.60699, -2.1231, -7.52526, -15.711, 5.94281, -14.8617, 11.1464, -5.73237, 13.136, -0.21231)
+polygon = PackedVector2Array(12.9829, -0.21231, 11.7586, 3.18465, 13.9012, 15.074, 10.3812, 15.4986, 9.92202, 20.8064, 5.94281, 20.1695, 4.2593, 11.4647, 1.50447, 9.34165, -6.30089, 15.9233, -10.8923, 14.8617, -12.4227, 0.84924, -6.60699, -2.1231, -7.52526, -15.711, 5.94281, -14.8617, 11.1464, -5.73237, 13.136, -0.21231)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_heauu")
@@ -49,14 +49,13 @@ scale = Vector2(2.8819, -2.85684)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-1.5, -0.875096)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_arxui")
 
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="VulnerableArea" type="Area2D" parent="."]
 position = Vector2(67, 29)
-scale = Vector2(1.6, 1.64)
+scale = Vector2(2.76, 2.6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VulnerableArea"]
 shape = SubResource("CircleShape2D_wuf0x")
@@ -81,6 +80,8 @@ value = 100.0
 texture_progress = ExtResource("4_p6ikl")
 tint_over = Color(1, 0, 0, 1)
 
+[node name="MeleeAttackTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
@@ -89,3 +90,4 @@ tint_over = Color(1, 0, 0, 1)
 [connection signal="area_entered" from="VulnerableArea" to="." method="_on_vulnerable_area_area_entered"]
 [connection signal="body_entered" from="VulnerableArea" to="." method="_on_vulnerable_area_body_entered"]
 [connection signal="timeout" from="VulnerableTimer" to="." method="_on_vulnerable_timer_timeout"]
+[connection signal="timeout" from="MeleeAttackTimer" to="." method="_on_melee_attack_timer_timeout"]
