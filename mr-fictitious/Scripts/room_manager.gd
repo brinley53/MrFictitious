@@ -33,7 +33,7 @@ const BOSS_INDEX:Dictionary = {
 
 const BASE_ROOMS:Dictionary = {
 	Location.FOREST: preload("res://Scenes/Rooms/Forest/forest_base.tscn"),
-	Location.CRYPT: preload("res://Scenes/Rooms/Crypt/room_1.tscn")
+	Location.CRYPT: preload("res://Scenes/Rooms/Crypt/crypt_base.tscn")
 }
 
 const ROOMS:Dictionary = {
