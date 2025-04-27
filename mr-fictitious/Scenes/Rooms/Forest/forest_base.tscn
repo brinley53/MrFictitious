@@ -135,19 +135,15 @@ position = Vector2(1712, 59)
 position = Vector2(1896, 40)
 
 [node name="ForestTree23" parent="." instance=ExtResource("2_388ts")]
-z_index = 1
 position = Vector2(63, 163)
 
 [node name="ForestTree24" parent="." instance=ExtResource("2_388ts")]
-z_index = 1
 position = Vector2(24, 310)
 
 [node name="ForestTree25" parent="." instance=ExtResource("2_388ts")]
-z_index = 1
 position = Vector2(1903, 163)
 
 [node name="ForestTree26" parent="." instance=ExtResource("2_388ts")]
-z_index = 1
 position = Vector2(1864, 310)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
