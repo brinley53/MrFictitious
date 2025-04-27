@@ -15,6 +15,7 @@ Revisions:
 	Brinley Hull - 4/22/2025: Shadows
 	Jose Leyba  - 4/24/2025: Items use inventory now, added new weapons
 	Brinley Hull - 4/27/2025: Dialogue pause boolean
+	Tej Gumaste - 4/27/2025 : Removed Overlapping music
 """
 class_name Player
 extends CharacterBody2D

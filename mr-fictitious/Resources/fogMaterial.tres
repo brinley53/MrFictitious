@@ -4,4 +4,4 @@
 
 [resource]
 shader = ExtResource("1_v665p")
-shader_parameter/base_color = Color(0.949351, 0.987666, 0.986012, 0.678431)
+shader_parameter/base_color = Color(0.94902, 0.988235, 0.984314, 0.443137)
