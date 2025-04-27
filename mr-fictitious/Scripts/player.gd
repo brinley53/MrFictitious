@@ -110,11 +110,14 @@ func _ready():
 	Wwise.load_bank_id(AK.BANKS.MUSIC)
 	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
+<<<<<<< Updated upstream
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
 	
 	# Dialogue signal connections
 	dialogue_manager.connect("dialogue_ended", Callable(self, "_on_dialogue_finished"))
 	dialogue_manager.connect("dialogue_started", Callable(self, "_on_dialogue_started"))
+=======
+>>>>>>> Stashed changes
 
 func set_stealth(is_stealthy):
 	stealth = is_stealthy
@@ -262,6 +265,8 @@ func reduce_player_health(damage):
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
 	if health <= 0:
 		play_sound(AK.EVENTS.PLAYER_DEATH)
+		Wwise.unload_bank_id(AK.BANKS.SOUND)
+		Wwise.unload_bank_id(AK.BANKS.MUSIC)
 		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
 	
 func increase_player_health(amount:int):
@@ -462,9 +467,9 @@ func play_footstep_sound(location:int):
 			print("Wrong room loser")
 
 func receive_current_location(location:int):
-	print(location)
-	play_sound(AK.EVENTS.EXPLORE)
+	print("Location recevived %d", location)
 	current_player_state = PLAYER_STATE.Explore
+	play_sound(AK.EVENTS.EXPLORE)
 	if current_location!=location:
 		current_location=location
 		play_ambient_sound(current_location)
