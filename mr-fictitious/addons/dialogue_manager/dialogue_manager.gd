@@ -279,8 +279,11 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 
 
 ## Show the configured dialogue balloon
-func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:
-	var balloon_path: String = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = [], custom_balloon_path: String = "") -> Node:
+	var balloon_path: String = custom_balloon_path
+	if balloon_path == "":
+		balloon_path = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
+
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_example_balloon_path()
 	dialogue_started.emit(resource)

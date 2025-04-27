@@ -14,7 +14,6 @@ Revisions:
 		- Poison
 	Brinley Hull - 4/22/2025: Shadows
 	Jose Leyba  - 4/24/2025: Items use inventory now, added new weapons
-
 """
 class_name Player
 extends CharacterBody2D

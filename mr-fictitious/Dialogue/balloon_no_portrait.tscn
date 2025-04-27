@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdohypdfdd3f0"]
+[gd_scene load_steps=10 format=3 uid="uid://crx13qmxjslwf"]
 
-[ext_resource type="Script" path="res://Dialogue/balloon.gd" id="1_36de5"]
-[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
-[ext_resource type="Texture2D" uid="uid://dugg4v00dl7b7" path="res://images/textbox.png" id="2_ndw4o"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
-[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_exkru"]
+[ext_resource type="Script" path="res://Dialogue/balloon.gd" id="1_q2qfo"]
+[ext_resource type="Texture2D" uid="uid://djyhix5xpsri3" path="res://images/advement text box.png" id="2_e3oc2"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_f6lm6"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="4_xu8j0"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="5_tsnme"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhllp"]
 
@@ -24,7 +24,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
-script = ExtResource("1_36de5")
+script = ExtResource("1_q2qfo")
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
@@ -43,10 +43,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -210.0
-offset_right = -21.0
-offset_bottom = -46.0
+offset_left = 27.0
+offset_top = -234.0
+offset_right = -13.0
+offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
@@ -58,7 +58,7 @@ offset_left = -5.0
 offset_top = 1.0
 offset_right = 1882.0
 offset_bottom = 164.0
-texture = ExtResource("2_ndw4o")
+texture = ExtResource("2_e3oc2")
 
 [node name="Dialogue" type="MarginContainer" parent="Balloon/Panel"]
 layout_mode = 1
@@ -71,7 +71,7 @@ theme_override_constants/margin_left = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Balloon/Panel/Dialogue"]
 layout_mode = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 45
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Panel/Dialogue/HBoxContainer"]
 layout_mode = 2
@@ -81,7 +81,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(128, 75)
 layout_mode = 2
 size_flags_vertical = 3
 stretch_mode = 5
@@ -99,17 +98,17 @@ modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 0)
-theme_override_fonts/normal_font = ExtResource("3_exkru")
+theme_override_fonts/normal_font = ExtResource("3_f6lm6")
 bbcode_enabled = true
 text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="D" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer2/VBoxContainer2" instance=ExtResource("2_a8ve6")]
+[node name="D" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer2/VBoxContainer2" instance=ExtResource("4_xu8j0")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 0)
-theme_override_fonts/normal_font = ExtResource("3_exkru")
+theme_override_fonts/normal_font = ExtResource("3_f6lm6")
 text = "Dialogue..."
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer2"]
@@ -124,18 +123,18 @@ modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_exkru")
+theme_override_fonts/normal_font = ExtResource("3_f6lm6")
 bbcode_enabled = true
 text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("2_a8ve6")]
+[node name="DialogueLabel" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("4_xu8j0")]
 unique_name_in_owner = true
 layout_mode = 2
 localize_numeral_system = false
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_exkru")
+theme_override_fonts/normal_font = ExtResource("3_f6lm6")
 text = "Dialogue..."
 
 [node name="ColorRect" type="ColorRect" parent="Balloon/Panel/Dialogue/HBoxContainer"]
@@ -167,12 +166,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 2
-script = ExtResource("3_72ixx")
+script = ExtResource("5_tsnme")
 response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_exkru")
+theme_override_fonts/font = ExtResource("3_f6lm6")
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
