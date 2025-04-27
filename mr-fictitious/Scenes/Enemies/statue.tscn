@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://crdsaeocr2klm"]
+[gd_scene load_steps=25 format=3 uid="uid://crdsaeocr2klm"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/statue.gd" id="1_ounb0"]
 [ext_resource type="Texture2D" uid="uid://bmw4pg4kcv4fn" path="res://images/angel attack sprite-Sheet.png" id="2_iwsbr"]
 [ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="3_syafe"]
 [ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="4_bbbje"]
+[ext_resource type="Texture2D" uid="uid://hi6a1i728f6e" path="res://images/pngimg.com - cloud_PNG112253.png" id="5_xph3c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yah7x"]
 size = Vector2(15.6977, 15.3553)
@@ -124,6 +125,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5xbk"]
 size = Vector2(73.7309, 96.0696)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bte8g"]
+radius = 271.144
+
 [node name="Statue" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ounb0")
 damage = 50.0
@@ -134,6 +138,7 @@ scale = Vector2(3.44, 7.88)
 shape = SubResource("RectangleShape2D_yah7x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_i7t77")
 animation = &"pound"
 autoplay = "default"
@@ -143,14 +148,14 @@ position = Vector2(-83, -146)
 scale = Vector2(4.92, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWing"]
-polygon = PackedVector2Array(9.14634, 33, 1.42276, 18, -7.31707, 73, -5.4878, 225, 5.0813, 156, 3.65854, 85)
+polygon = PackedVector2Array(7.92683, 45, 0.406504, 32, -5.28455, 76, -5.28455, 189, 4.06504, 151, 3.65854, 85)
 
 [node name="RightWing" type="Area2D" parent="."]
 position = Vector2(100, -144)
 scale = Vector2(5.32, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWing"]
-polygon = PackedVector2Array(-11.6541, 34, -5.45113, 12, 2.06767, 59, 2.25564, 157, -2.44361, 191, -7.70677, 145, -6.76692, 72)
+polygon = PackedVector2Array(-10.7143, 42, -5.45113, 24, 1.12782, 68, 0.751879, 158, -2.81955, 186, -7.70677, 146, -6.76692, 72)
 
 [node name="Head" type="Area2D" parent="."]
 position = Vector2(1, -120)
@@ -162,7 +167,7 @@ shape = SubResource("CircleShape2D_4vast")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="BigAttackTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [node name="AttackArea" type="Area2D" parent="."]
@@ -173,6 +178,7 @@ scale = Vector2(1.99374, 2.4971)
 shape = SubResource("RectangleShape2D_q5xbk")
 
 [node name="HealthContainer" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(-3, -199)
 scale = Vector2(1.7, 1.7)
 texture = ExtResource("3_syafe")
@@ -189,6 +195,21 @@ value = 100.0
 texture_progress = ExtResource("4_bbbje")
 tint_over = Color(1, 0, 0, 1)
 
+[node name="PoundArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoundArea"]
+position = Vector2(2, 80)
+scale = Vector2(0.964294, 0.890442)
+shape = SubResource("CircleShape2D_bte8g")
+
+[node name="Sprite2D" type="Sprite2D" parent="PoundArea"]
+position = Vector2(-28, 61)
+scale = Vector2(0.428303, 0.901259)
+texture = ExtResource("5_xph3c")
+
+[node name="PoundTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="LeftWing" to="." method="_on_left_wing_area_entered"]
 [connection signal="area_entered" from="RightWing" to="." method="_on_right_wing_area_entered"]
@@ -197,3 +218,4 @@ tint_over = Color(1, 0, 0, 1)
 [connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="PoundTimer" to="." method="_on_pound_timer_timeout"]

@@ -8,6 +8,7 @@ Revisions:
 		- Death Logic
 		- Basic Attacks
 	Jose Leyba  4/24/2025: Statue Stun
+	Brinley Hull - 4/27/2025: Ground pound attack
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -38,6 +39,9 @@ var total_health:int
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
 @onready var health_bar = $HealthContainer/HealthBar
+@onready var pound_area = $PoundArea
+@onready var pound_sprite = $PoundArea/Sprite2D
+@onready var pound_timer = $PoundTimer
 
 
 func _ready():
@@ -49,6 +53,7 @@ func _ready():
 	head_health = 5
 	charge_speed = 750.0
 	total_health = left_wing_health + right_wing_health + head_health
+	pound_sprite.visible = false
 
 func _physics_process(delta: float) -> void:
 	health_bar.value = (left_wing_health+right_wing_health+head_health)*100/total_health
@@ -131,6 +136,7 @@ func _on_left_wing_area_entered(area: Area2D) -> void:
 
 func ground_pound():
 	sprite.play("pound")
+	pound_timer.start()
 	
 func charge():
 	speed = charge_speed
@@ -147,4 +153,12 @@ func _on_big_attack_timer_timeout() -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	pound_sprite.visible = true
+	for body in pound_area.get_overlapping_bodies():
+		if body == player:
+			player.reduce_player_health(damage)
 	sprite.play("default")
+
+
+func _on_pound_timer_timeout() -> void:
+	pound_sprite.visible = false
