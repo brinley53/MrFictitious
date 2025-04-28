@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb4i5bv71fnlp"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/mendoza.gd" id="1_ctcfq"]
+[ext_resource type="Texture2D" uid="uid://ck3j0ma8jhiqp" path="res://images/cryptbossidle.webp" id="2_vh7cy"]
+[ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="3_3tbpn"]
+[ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="4_eg2uw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_heauu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vh7cy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arxui"]
+size = Vector2(65, 66.157)
+
+[node name="Mendoza" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_ctcfq")
+health = 500.0
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-31.8302, 10)
+scale = Vector2(6.53397, -4.71009)
+polygon = PackedVector2Array(12.9829, -0.21231, 11.7586, 3.18465, 13.9012, 15.074, 10.3812, 15.4986, 9.92202, 20.8064, 5.94281, 20.1695, 4.2593, 11.4647, 1.50447, 9.34165, -6.30089, 15.9233, -10.8923, 14.8617, -12.4227, 0.84924, -6.60699, -2.1231, -7.52526, -15.711, 5.94281, -14.8617, 11.1464, -5.73237, 13.136, -0.21231)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_heauu")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(-31, -2)
+scale = Vector2(2.22435, -2.32386)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-1.5, -0.875096)
+shape = SubResource("RectangleShape2D_arxui")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="HealthContainer" type="Sprite2D" parent="."]
+position = Vector2(-3, -130)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_3tbpn")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.941
+offset_left = -95.0
+offset_top = -15.0
+offset_right = -99.0
+offset_bottom = -16.994
+value = 100.0
+texture_progress = ExtResource("4_eg2uw")
+tint_over = Color(1, 0, 0, 1)
+
+[node name="BigAttackTimer" type="Timer" parent="."]
+wait_time = 7.0
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="TripleShotTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="TripleShotTimer" to="." method="_on_triple_shot_timer_timeout"]
