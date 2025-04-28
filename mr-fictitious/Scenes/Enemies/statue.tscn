@@ -130,7 +130,7 @@ radius = 271.144
 
 [node name="Statue" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_ounb0")
-damage = 25.0
+damage = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 3.5)

@@ -173,7 +173,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	pound_sprite.visible = true
 	for body in pound_area.get_overlapping_bodies():
 		if body == player:
-			player.reduce_player_health(damage)
+			player.reduce_player_health(30)
 	sprite.play("default")
 
 
