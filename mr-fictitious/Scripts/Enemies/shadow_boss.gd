@@ -46,6 +46,7 @@ var current_stun_timer: Timer = null
 
 func _ready():
 	#set initial variables
+	players.play_sound(AK.EVENTS.BOSS)
 	speed = 10.0
 	timer.start()
 	
