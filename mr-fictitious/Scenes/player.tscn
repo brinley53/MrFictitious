@@ -374,7 +374,7 @@ shape = SubResource("RectangleShape2D_jal5q")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6qceo")
 animation = &"walk_right"
-frame_progress = 0.247533
+frame_progress = 0.498321
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Weapon"]]
 position = Vector2(12.75, 1)
