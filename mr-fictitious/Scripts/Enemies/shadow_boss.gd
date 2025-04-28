@@ -103,7 +103,6 @@ func reduce_enemy_health(damage_dealt):
 		return
 	health = health - damage_dealt
 	health_bar.value = health
-	print("Health taken")
 	if health <= 0:
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 
@@ -158,7 +157,7 @@ func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if stunned:
 		return
-	if (!player.stealth and chase_player) or is_vulnerable:
+	if (!player.stealth and chase_player):
 		shoot_player()
 	timer.start()
 

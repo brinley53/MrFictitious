@@ -44,8 +44,8 @@ color = Color(0, 0, 0, 0.396078)
 polygon = PackedVector2Array(16, 120, -4, 8, 72, -78, 1393, -675, -200, -1516, -1642, -1108, -1937, -157, -1793, 817, -827, 1580, 64, 1791, 744, 1482)
 
 [node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(-38, 5)
-scale = Vector2(2.8819, -2.85684)
+position = Vector2(-31, -2)
+scale = Vector2(2.22435, -2.32386)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-1.5, -0.875096)
