@@ -1,11 +1,14 @@
 extends Node
-
+#const PlayerScene: PackedScene = preload("res://Scenes/player.tscn")
 const RoomManager:PackedScene = preload("res://Scenes/room_manager.tscn")
 
 @onready var player:Player = $Player
 @onready var menu = $PauseMenu/CanvasLayer
 
 func _ready():
+	#var player = PlayerScene.instantiate()	
+	#player.position = Vector2(939, 534)
+	#add_child(player)
 	var room_manager = RoomManager.instantiate()
 	add_child(room_manager)
 	room_manager.receive_player(player)

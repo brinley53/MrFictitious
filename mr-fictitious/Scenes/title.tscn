@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://br2u722xc5scc"]
 
-[ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_7cqpi"]
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_ktvh1"]
 [ext_resource type="Texture2D" uid="uid://dxco5ak06tp67" path="res://images/ROUGH title screen.PNG" id="2_phwex"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_bv411"]
 
-[node name="Lost" type="Control"]
+[node name="Start" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_7cqpi")
+script = ExtResource("1_ktvh1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

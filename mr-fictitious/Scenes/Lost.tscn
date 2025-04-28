@@ -36,5 +36,5 @@ theme_override_fonts/font = ExtResource("3_nmyku")
 text = "Exit Game"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="Reload" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Reload" to="." method="_on_reload_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_button_2_pressed"]
