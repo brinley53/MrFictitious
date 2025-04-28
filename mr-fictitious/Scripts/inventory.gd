@@ -44,6 +44,13 @@ func remove(item:InventoryItem):
 	update.emit()
 	return itemFound
 
+func clear():
+	for slot in slots:
+		slot.item = null
+		slot.amount = 0
+	evidence_inventory.clear()
+	update.emit()
+
 func equipSlot(index:int):
 	print(index)
 	if(index>=0 and index<slots.size()):
