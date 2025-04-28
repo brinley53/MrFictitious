@@ -3,7 +3,7 @@ extends Control
 @export var playTitle:WwiseEvent
 @export var playAgain:WwiseEvent
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/opening_dialogue.tscn")
+	pass
 
 
 func _on_button_2_pressed() -> void:
@@ -33,3 +33,7 @@ func _on_tree_exiting() -> void:
 	Wwise.unload_bank_id(AK.BANKS.MUSIC)
 	print("Exiting objects")
 	pass # Replace with function body.
+
+
+func _on_reload_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/opening_dialogue.tscn")
