@@ -146,7 +146,7 @@ func reduce_enemy_health(damage_dealt):
 	player.initiate_combat()
 	if health <= 0:
 		var loot_options = [bullet_scene, health_scene]
-		var num_loot = randi_range(0, 1)
+		var num_loot = randi_range(1, 3)
 		for i in range(num_loot):
 			var item_scene = loot_options[randi() % loot_options.size()]
 			var item = item_scene.instantiate()
