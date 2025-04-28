@@ -277,6 +277,7 @@ func reduce_player_health(damage):
 		Wwise.unload_bank_id(AK.BANKS.MUSIC)
 		if inventory:
 			inventory.clear()
+		Wwise.stop_all(self)
 		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
 	
 func increase_player_health(amount:int):
