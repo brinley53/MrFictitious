@@ -41,8 +41,13 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/central_room.tscn")
 	],
 	Location.FOREST: [
+		preload("res://Scenes/Rooms/Forest/room_10.tscn"),
 		preload("res://Scenes/Rooms/Forest/room_11.tscn"),
-		preload("res://Scenes/Rooms/Forest/room_12.tscn")
+		preload("res://Scenes/Rooms/Forest/room_12.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_13.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_14.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_15.tscn"),
+		preload("res://Scenes/Rooms/Forest/room_16.tscn")
 	],
 	Location.CRYPT: [
 		preload("res://Scenes/Rooms/Crypt/room_1.tscn"),
