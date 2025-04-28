@@ -1,13 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhno8o54h6ast"]
+[gd_scene load_steps=7 format=3 uid="uid://br2u722xc5scc"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_ktvh1"]
+[ext_resource type="WwiseEvent" uid="uid://j08qt3xhp32m" path="res://Wwise/resources/Event/{586376CD-FD40-471B-8A58-39CB1BBA35C4}.tres" id="2_lr6uc"]
 [ext_resource type="Texture2D" uid="uid://dxco5ak06tp67" path="res://images/ROUGH title screen.PNG" id="2_phwex"]
+[ext_resource type="WwiseEvent" uid="uid://rgefvysddf03" path="res://Wwise/resources/Event/{C70523CD-653E-4D4F-BA40-E0A59882D3BF}.tres" id="3_7sptj"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_bv411"]
+[ext_resource type="WwiseEvent" uid="uid://du38fr6t58bjk" path="res://Wwise/resources/Event/{008F1A42-5AF2-43A2-BE64-4E2806373475}.tres" id="4_o0c8x"]
 
 [node name="Lost" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ktvh1")
+PlayMusic = ExtResource("2_lr6uc")
+playTitle = ExtResource("3_7sptj")
+playAgain = ExtResource("4_o0c8x")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
