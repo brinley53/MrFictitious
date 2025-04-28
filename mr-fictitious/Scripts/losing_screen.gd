@@ -1,5 +1,10 @@
 extends Control
 
+@export var PlayMusic:WwiseEvent
+@export var playTitle:WwiseEvent
+@export var playAgain:WwiseEvent
+
+
 func _on_reload_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
@@ -8,9 +13,8 @@ func _hard_reset():
 	var new_scene = load("res://Scenes/main.tscn").instantiate()
 	get_tree().root.add_child(new_scene)
 	get_tree().current_scene = new_scene
-@export var PlayMusic:WwiseEvent
-@export var playTitle:WwiseEvent
-@export var playAgain:WwiseEvent
+
+
 func _on_button_pressed() -> void:
 	pass
 
@@ -32,7 +36,3 @@ func _on_tree_entered() -> void:
 	Wwise.unload_bank_id(AK.BANKS.MUSIC)
 	print("Exiting objects")
 	pass # Replace with function body.
-
-
-func _on_reload_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/opening_dialogue.tscn")

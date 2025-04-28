@@ -1,19 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2qah4iahw0li"]
+[gd_scene load_steps=7 format=3 uid="uid://ebxyk8h3gxwc"]
 
 [ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_pr35b"]
 [ext_resource type="Texture2D" uid="uid://xhdu76441sre" path="res://images/ROUGH death screen.PNG" id="2_e54j1"]
-[ext_resource type="WwiseEvent" uid="uid://j08qt3xhp32m" path="res://Wwise/resources/Event/{586376CD-FD40-471B-8A58-39CB1BBA35C4}.tres" id="2_m0imb"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_nmyku"]
-[ext_resource type="WwiseEvent" uid="uid://rgefvysddf03" path="res://Wwise/resources/Event/{C70523CD-653E-4D4F-BA40-E0A59882D3BF}.tres" id="3_w8ucv"]
-[ext_resource type="WwiseEvent" uid="uid://du38fr6t58bjk" path="res://Wwise/resources/Event/{008F1A42-5AF2-43A2-BE64-4E2806373475}.tres" id="4_g5auw"]
+
+[sub_resource type="Resource" id="Resource_jwbk2"]
+metadata/__load_path__ = "res://Wwise/resources/Event/{586376CD-FD40-471B-8A58-39CB1BBA35C4}.tres"
+
+[sub_resource type="Resource" id="Resource_wnnqf"]
+metadata/__load_path__ = "res://Wwise/resources/Event/{C70523CD-653E-4D4F-BA40-E0A59882D3BF}.tres"
+
+[sub_resource type="Resource" id="Resource_xaxqk"]
+metadata/__load_path__ = "res://Wwise/resources/Event/{008F1A42-5AF2-43A2-BE64-4E2806373475}.tres"
 
 [node name="Lost" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_pr35b")
-PlayMusic = ExtResource("2_m0imb")
-playTitle = ExtResource("3_w8ucv")
-playAgain = ExtResource("4_g5auw")
+PlayMusic = SubResource("Resource_jwbk2")
+playTitle = SubResource("Resource_wnnqf")
+playAgain = SubResource("Resource_xaxqk")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
