@@ -20,6 +20,7 @@ animations = [{
 size = Vector2(65, 66.157)
 
 [node name="Mendoza" type="CharacterBody2D" groups=["Enemies"]]
+motion_mode = 1
 script = ExtResource("1_ctcfq")
 health = 500.0
 damage = 10.0
@@ -62,12 +63,13 @@ tint_over = Color(1, 0, 0, 1)
 
 [node name="BigAttackTimer" type="Timer" parent="."]
 wait_time = 7.0
+autostart = true
 
 [node name="ShotTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 
 [node name="TripleShotTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 
 [connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]

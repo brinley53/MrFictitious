@@ -39,22 +39,25 @@ var num_shots = 0
 
 func _ready():
 	#set initial variables
-	speed = 350.0
+	speed = 150.0
 	
 func change_attack(attack_type):
 	if stunned:
 		return
 	attack = attack_type
+	if attack == "Shot":
+		shoot_player()
 	
 func shoot_player():
-	if stunned:
+	if stunned or player.stealth or attack != "Shot":
 		return
 	shot_timer.start()
+	triple_timer.start()
 
 func _physics_process(delta: float) -> void:
 	if stunned:
 		return
-	if !player.stealth or is_vulnerable:
+	if !player.stealth:
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
 
@@ -63,27 +66,18 @@ func _physics_process(delta: float) -> void:
 			sprite.flip_h = true  # Not flipped
 		else:
 			sprite.flip_h = false  # Flip horizontally
-			
-
-		# Rotate the detection area to face the playe
+				
+		if attack == "Chase":
+			velocity = (player.global_position - global_position).normalized() * speed
+			move_and_slide()
+	else:
+		summon_workers()
 		
-		direction = (player.global_position - detection.global_position).angle() + PI
-		detection.rotation = lerp_angle(detection.rotation, direction, delta)
-		vul_area.scale.x = 1 if (player.global_position - global_position).normalized().x > 0 else -1
-		var offset = Vector2(-67, 29)  # 67 pixels to the right
-		offset.x *= vul_area.scale.x  # flip offset too
-		vul_area.position = offset
-		var attack_offset = Vector2(38, 5)
-		attack_offset *= vul_area.scale.x
-		attack_area.position = attack_offset
-		
-		velocity = (player.global_position - global_position).normalized() * speed
-		move_and_slide()
+func summon_workers():
+	pass
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
-	if !is_vulnerable:
-		return
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:
@@ -95,7 +89,6 @@ func reduce_enemy_health(damage_dealt):
 		get_tree().current_scene.add_child(item)
 		queue_free()
 		dead.emit()
-
 
 func apply_stun(duration):
 	if stunned and current_stun_timer:
@@ -124,13 +117,6 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		player.reduce_player_health(damage)
 		attack_timer.start()
 
-func _on_detection_body_entered(body: Node2D) -> void:
-	# If player enters cone of detection, chase the player
-	if stunned:
-		return
-	if body.name == "Player":
-		chase_player = true
-
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
 	if body.name == "Player":
@@ -143,13 +129,12 @@ func _on_attack_timer_timeout() -> void:
 	if attack_player:
 		player.reduce_player_health(damage)
 		attack_timer.start()
-	if (!player.stealth and attack == ""):
-		shoot_player()
 
 func _on_shot_timer_timeout() -> void:
 	# Time between each individual shot for quick triple shot succession
-	if num_shots == 2:
+	if num_shots >= 3:
 		num_shots = 0
+		shot_timer.stop()
 		return
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.body_entered.connect(bullet._on_body_entered)
@@ -160,10 +145,8 @@ func _on_shot_timer_timeout() -> void:
 	shot_timer.start()
 
 func _on_triple_shot_timer_timeout() -> void:
-	# time between triple shots
-	if !player.stealth and attack == "Shoot":
-		shoot_player()
-		triple_timer.start()
+	# time between triple shotssss
+	shoot_player()
 
 func _on_big_attack_timer_timeout() -> void:
 	if attack == "Shot":

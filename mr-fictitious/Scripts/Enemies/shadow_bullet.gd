@@ -9,7 +9,7 @@ Revisions:
 
 extends Area2D
 var velocity = Vector2.ZERO  
-var damage = 50
+var damage = 10
 @onready var trail := $Trail
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
@@ -56,7 +56,7 @@ func _on_timer_timeout() -> void:
 	var bodies = explosion_area.get_overlapping_bodies()
 	for body in bodies:
 		if body.name == "Player":
-			player.reduce_player_health(15)
+			player.reduce_player_health(damage/2)
 	queue_free()
 	
 func initialize_bullet(target_position: Vector2, type_str="Default") -> void:

@@ -198,6 +198,8 @@ func move_character(delta):
 
 #Will attack directing at the position of the map, uses radius 
 func attack():
+	attack_area.monitoring = true  
+	attack_area.monitorable = true
 	var bodies = $AttackArea.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
@@ -212,8 +214,6 @@ func attack():
 				body.reduce_enemy_health(10)
 				break
 	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
-	attack_area.monitoring = true  
-	attack_area.monitorable = true
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
 	var mouse_position = get_global_mouse_position()
 	var attack_direction = (mouse_position - global_position).normalized()

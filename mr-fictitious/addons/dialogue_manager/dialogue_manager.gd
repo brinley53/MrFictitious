@@ -10,7 +10,7 @@ const DialogueResponse = preload("./dialogue_response.gd")
 const DialogueManagerParser = preload("./components/parser.gd")
 const DialogueManagerParseResult = preload("./components/parse_result.gd")
 const ResolvedLineData = preload("./components/resolved_line_data.gd")
-@onready var dialogue_manager = $DialogueManager
+@onready var dialogue_manager = $"."
 
 
 ## Emitted when a dialogue balloon is created and dialogue starts

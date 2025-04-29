@@ -3,6 +3,7 @@ Creation Date: 04/03/2025
 Revisions:
 	Sean Hammell - Added room generation logic
 	Brinley Hull - 4/4/2025, fix left transition
+	Brinley Hull - 4/28/2025, fix a ton of errors by adding call deferred
 """
 extends Node2D
 
@@ -154,19 +155,23 @@ func set_active_room(location:Location, room:int) -> void:
 	# Set the new base room if needed
 	if base_rooms[location] != base_rooms[active_location]:
 		remove_child(base_rooms[active_location])
-		add_child(base_rooms[location])
+		call_deferred("add_child", base_rooms[location])
 
 	# Remove the old active room.
-	remove_child(rooms[active_location][active_room])
+	var old_room = rooms[active_location][active_room]
+	if old_room and old_room.get_parent() == self:
+		remove_child(old_room)
 
-	# Remove the old active room's edges.
+	# Remove the old active room's edges.			
 	if edges.has(active_location):
 		for direction in range(Direction.COUNT):
-			remove_child(edges[active_location][direction])
+			var edge = edges[active_location][direction]
+			if edge and edge.get_parent() == self:
+				remove_child(edge)
 
 	active_location = location
 	active_room = room
-	add_child(rooms[active_location][active_room])
+	call_deferred("add_child", rooms[active_location][active_room])
 
 	# Send the updated location to the player.
 	print("Sending Player Location")
@@ -176,7 +181,7 @@ func set_active_room(location:Location, room:int) -> void:
 	if edges.has(active_location):
 		for direction in range(Direction.COUNT):
 			if connections[active_location][active_room][direction]["room"] == null:
-				add_child(edges[active_location][direction])
+				call_deferred("add_child", edges[active_location][direction])
 
 	if BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location]:
 		rooms[active_location][active_room].block_edges(edges[active_location])
