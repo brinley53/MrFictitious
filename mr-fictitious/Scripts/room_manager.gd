@@ -10,6 +10,7 @@ enum Location {
 	CENTRAL,
 	FOREST,
 	CRYPT,
+	VILLAGE,
 	COUNT
 }
 
@@ -23,17 +24,20 @@ enum Direction {
 
 const DIRECTION_FROM_CENTRAL:Dictionary = {
 	Location.FOREST: Direction.DOWN,
-	Location.CRYPT: Direction.LEFT
+	Location.CRYPT: Direction.LEFT,
+	Location.VILLAGE: Direction.RIGHT
 }
 
 const BOSS_INDEX:Dictionary = {
 	Location.FOREST: -1,
-	Location.CRYPT: -1
+	Location.CRYPT: -1,
+	Location.VILLAGE: -1
 }
 
 const BASE_ROOMS:Dictionary = {
 	Location.FOREST: preload("res://Scenes/Rooms/Forest/forest_base.tscn"),
-	Location.CRYPT: preload("res://Scenes/Rooms/Crypt/crypt_base.tscn")
+	Location.CRYPT: preload("res://Scenes/Rooms/Crypt/crypt_base.tscn"),
+	Location.VILLAGE: preload("res://Scenes/Rooms/Village/village_base.tscn")
 }
 
 const ROOMS:Dictionary = {
@@ -57,6 +61,15 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/Crypt/room_14.tscn"),
 		preload("res://Scenes/Rooms/Crypt/room_15.tscn"),
 		preload("res://Scenes/Rooms/Crypt/room_16.tscn")
+	],
+	Location.VILLAGE: [
+		preload("res://Scenes/Rooms/Village/room_10.tscn"),
+		preload("res://Scenes/Rooms/Village/room_11.tscn"),
+		preload("res://Scenes/Rooms/Village/room_12.tscn"),
+		preload("res://Scenes/Rooms/Village/room_13.tscn"),
+		preload("res://Scenes/Rooms/Village/room_14.tscn"),
+		preload("res://Scenes/Rooms/Village/room_15.tscn"),
+		preload("res://Scenes/Rooms/Village/room_16.tscn")
 	]
 }
 
@@ -78,6 +91,12 @@ const EDGES:Dictionary = {
 		preload("res://Scenes/Rooms/Crypt/down_blocking_edge.tscn"),
 		preload("res://Scenes/Rooms/Crypt/left_blocking_edge.tscn"),
 		preload("res://Scenes/Rooms/Crypt/right_blocking_edge.tscn")
+	],
+	Location.VILLAGE: [
+		preload("res://Scenes/Rooms/Village/up_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Village/down_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Village/left_blocking_edge.tscn"),
+		preload("res://Scenes/Rooms/Village/right_blocking_edge.tscn")
 	]
 }
 var playerInstance:Player
