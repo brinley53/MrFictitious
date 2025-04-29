@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5yvuv5stab68"]
+[gd_scene load_steps=9 format=3 uid="uid://b5yvuv5stab68"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_glossary.gd" id="1_o3r84"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_c4ykj"]
 [ext_resource type="Texture2D" uid="uid://45ops2nxrg6d" path="res://images/GlossaryCuts/Ratstanding.png" id="3_4gk1n"]
 [ext_resource type="Texture2D" uid="uid://cxv5k13lyiao4" path="res://images/GlossaryCuts/Wolf_White_Background.png" id="4_wqjot"]
+[ext_resource type="Texture2D" uid="uid://blc1t5mdtvj7f" path="res://images/GlossaryCuts/cryptbossidle.webp" id="5_aisjq"]
+[ext_resource type="Texture2D" uid="uid://w8iim8kes6k2" path="res://images/GlossaryCuts/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg" id="6_5ogj0"]
+[ext_resource type="Texture2D" uid="uid://b7vgkh2hmfk7x" path="res://images/GlossaryCuts/hoodenemyrightface.png" id="7_imhqx"]
+[ext_resource type="Texture2D" uid="uid://b2xfm42an77rf" path="res://images/GlossaryCuts/angel attack sprite-Sheet.png" id="8_jdkyt"]
 
 [node name="EnemyGlossary" type="Control"]
 layout_mode = 3
@@ -27,6 +31,26 @@ icon = ExtResource("3_4gk1n")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("4_wqjot")
+
+[node name="poison" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("6_5ogj0")
+
+[node name="skull" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("7_imhqx")
+
+[node name="statue" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("8_jdkyt")
+
+[node name="mendoza" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("5_aisjq")
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0

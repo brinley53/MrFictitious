@@ -10,13 +10,49 @@ var enemy_data = {
 		"texture": preload("res://images/GlossaryCuts/Ratstanding.png"),
 		"name": "Sewer Rat",
 		"type": "Basic Enemy",
-		"description": "This type of rat has been invading towns in search for food, they hunger for human flesh."
+		"description": "Small enemies that have infested the map with disease and distress.\n
+		 Perhaps these pests have been taking advantage of the dead all around.  "
 	},
 	"wolf": {
 		"texture": preload("res://images/GlossaryCuts/Wolf_White_Background.png"),
 		"name": "Wolf",
 		"type": "Basic Enemy",
-		"description": "Wolfs have been living in the forest for longer than the town has been around, be \n careful not to perturb them."
+		"description": "During the war wolves would hunt injured and dead soldiers. These \n
+		critters can be found across the map."
+	},
+	"mendoza": {
+		"texture": preload("res://images/GlossaryCuts/cryptbossidle.webp"),
+		"name": "Mendoza",
+		"type": "Head of the Asylum",
+		"description": "Head of the Asylum. Responsible for all the misfortune that has befallen \n
+		you. His journal entries give a deeper look at his psyche. They can be discovered in each \n
+		location on the map."
+	},
+	"posion": {
+		"texture": preload("res://images/GlossaryCuts/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg"),
+		"name": "Asylum Workers",
+		"type": "Basic Enemy",
+		"description": "Enemies you’re quite familiar with these foes. Mendoza has sent them to hunt \n
+		you down after your escape from the asylum."
+	},
+	"statue": {
+		"texture": preload("res://images/GlossaryCuts/angel attack sprite-Sheet.png"),
+		"name": "The Fallen Archangel",
+		"type": "Town Center Statue",
+		"description": "Serves as the main spectator on all activities in the village."
+	},
+	"skull": {
+		"texture": preload("res://images/GlossaryCuts/hoodenemyrightface.png"),
+		"name": "Asylum Workers",
+		"type": "Minion Enemies",
+		"description": "Enemies located in the Crypt. Their purpose is to guard The Horseman."
+	},
+	"horseman": {
+		"texture": preload("res://images/GlossaryCuts/hoodenemyrightface.png"),
+		"name": "The Horseman",
+		"type": "Pr	otector of Dead Souls",
+		"description": "Located in Crypt, this boss is the pride and joy of its creator.\n
+		 It is guarded by Hooded creatures. "
 	}
 	# Add more...
 }
