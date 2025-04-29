@@ -11,6 +11,7 @@ enum Location {
 	FOREST,
 	CRYPT,
 	VILLAGE,
+	ASYLUM,
 	COUNT
 }
 
@@ -25,13 +26,15 @@ enum Direction {
 const DIRECTION_FROM_CENTRAL:Dictionary = {
 	Location.FOREST: Direction.DOWN,
 	Location.CRYPT: Direction.LEFT,
-	Location.VILLAGE: Direction.RIGHT
+	Location.VILLAGE: Direction.RIGHT,
+	Location.ASYLUM: Direction.UP
 }
 
 const BOSS_INDEX:Dictionary = {
 	Location.FOREST: -1,
 	Location.CRYPT: -1,
-	Location.VILLAGE: -1
+	Location.VILLAGE: -1,
+	Location.ASYLUM: -1
 }
 
 const BASE_ROOMS:Dictionary = {
@@ -70,16 +73,13 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/Village/room_14.tscn"),
 		preload("res://Scenes/Rooms/Village/room_15.tscn"),
 		preload("res://Scenes/Rooms/Village/room_16.tscn")
+	],
+	Location.ASYLUM: [
+		preload("res://Scenes/Rooms/asylum_room.tscn")
 	]
 }
 
 const EDGES:Dictionary = {
-	Location.CENTRAL: [
-		preload("res://Scenes/Rooms/Forest/up_blocking_edge.tscn"),
-		preload("res://Scenes/Rooms/Forest/down_blocking_edge.tscn"),
-		preload("res://Scenes/Rooms/Forest/left_blocking_edge.tscn"),
-		preload("res://Scenes/Rooms/Forest/right_blocking_edge.tscn")
-	],
 	Location.FOREST: [
 		preload("res://Scenes/Rooms/Forest/up_blocking_edge.tscn"),
 		preload("res://Scenes/Rooms/Forest/down_blocking_edge.tscn"),
@@ -116,15 +116,21 @@ func _ready() -> void:
 	rooms[Location.CENTRAL] = [ROOMS[Location.CENTRAL][0].instantiate()]
 	add_connection_entry(Location.CENTRAL, 0)
 
+	# The Asylum is a special case because it only has one room and does
+	# not share a theme with another location.
+	# Also, because I can't be bothered to make an empty base scene.
+	base_rooms[Location.ASYLUM] = null
+	rooms[Location.ASYLUM] = [ROOMS[Location.ASYLUM][0].instantiate()]
+
 	# Instantiate the rooms and edges for each location.
 	for location in range(Location.COUNT):
+		# The Central and Asylum rooms are taken care of above.
+		if location == Location.CENTRAL or location == Location.ASYLUM:
+			continue
+
 		edges[location] = []
 		for edge in EDGES[location]:
 			edges[location].append(edge.instantiate())
-
-		# The Central room is taken care of above.
-		if location == Location.CENTRAL:
-			continue
 
 		base_rooms[location] = BASE_ROOMS[location].instantiate()
 		if location == Location.FOREST:
@@ -154,8 +160,9 @@ func set_active_room(location:Location, room:int) -> void:
 	remove_child(rooms[active_location][active_room])
 
 	# Remove the old active room's edges.
-	for direction in range(Direction.COUNT):
-		remove_child(edges[active_location][direction])
+	if edges.has(active_location):
+		for direction in range(Direction.COUNT):
+			remove_child(edges[active_location][direction])
 
 	active_location = location
 	active_room = room
@@ -166,9 +173,10 @@ func set_active_room(location:Location, room:int) -> void:
 	playerInstance.receive_current_location(location)
 
 	# Update the new active room's edges.
-	for direction in range(Direction.COUNT):
-		if connections[active_location][active_room][direction]["room"] == null:
-			add_child(edges[active_location][direction])
+	if edges.has(active_location):
+		for direction in range(Direction.COUNT):
+			if connections[active_location][active_room][direction]["room"] == null:
+				add_child(edges[active_location][direction])
 
 	if BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location]:
 		rooms[active_location][active_room].block_edges(edges[active_location])
