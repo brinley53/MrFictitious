@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfyqqf45abkf"]
+[gd_scene load_steps=6 format=3 uid="uid://bfyqqf45abkf"]
 
 [ext_resource type="Script" path="res://Scripts/opening_dialogue.gd" id="1_3gs3v"]
 [ext_resource type="Texture2D" uid="uid://dxco5ak06tp67" path="res://images/ROUGH title screen.PNG" id="1_6ls6e"]
 [ext_resource type="PackedScene" uid="uid://c65b4rqdkx1su" path="res://Scenes/generic_dialogue.tscn" id="4_xbasc"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="5_mpg0a"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="5_yaqev"]
 
 [node name="OpeningDialogue" type="Node2D"]
@@ -18,3 +19,11 @@ polygon = PackedVector2Array(-342, -350, -335, 1568, 2383, 1500, 2268, -390)
 
 [node name="DialogueManager" parent="." instance=ExtResource("4_xbasc")]
 script = ExtResource("5_yaqev")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1748.0
+offset_top = 800.0
+offset_right = 1909.0
+offset_bottom = 854.0
+theme_override_fonts/font = ExtResource("5_mpg0a")
+text = "Press Enter to Skip"

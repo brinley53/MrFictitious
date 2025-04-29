@@ -4,7 +4,7 @@ extends CharacterBody2D
 var in_enter_area := false
 
 func _process(delta):
-	if in_enter_area and Input.is_action_just_pressed("interact"):
+	if in_enter_area and Input.is_action_just_pressed("attack"):
 		dialogue_manager.show_dialogue_balloon(dialogue, "start")
 
 func _on_enter_area_body_entered(body: Node2D) -> void:
