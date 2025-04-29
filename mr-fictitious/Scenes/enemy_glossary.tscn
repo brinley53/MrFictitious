@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5yvuv5stab68"]
+[gd_scene load_steps=10 format=3 uid="uid://b5yvuv5stab68"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_glossary.gd" id="1_o3r84"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_c4ykj"]
+[ext_resource type="Texture2D" uid="uid://c0hfhfyox1nbh" path="res://images/title_screen.jpg" id="2_yh1rq"]
 [ext_resource type="Texture2D" uid="uid://45ops2nxrg6d" path="res://images/GlossaryCuts/Ratstanding.png" id="3_4gk1n"]
 [ext_resource type="Texture2D" uid="uid://cxv5k13lyiao4" path="res://images/GlossaryCuts/Wolf_White_Background.png" id="4_wqjot"]
 [ext_resource type="Texture2D" uid="uid://blc1t5mdtvj7f" path="res://images/GlossaryCuts/cryptbossidle.webp" id="5_aisjq"]
@@ -13,6 +14,14 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_o3r84")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+texture = ExtResource("2_yh1rq")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.827451)
+polygon = PackedVector2Array(-342, -350, -335, 1568, 2383, 1500, 2268, -390)
 
 [node name="EnemyGrid" type="GridContainer" parent="."]
 layout_mode = 0
@@ -76,11 +85,12 @@ theme_override_fonts/font = ExtResource("2_c4ykj")
 
 [node name="Title" type="Button" parent="."]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 57.0
-offset_bottom = 46.0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 73.0
+offset_bottom = 69.0
 theme_override_fonts/font = ExtResource("2_c4ykj")
+theme_override_font_sizes/font_size = 40
 text = "X"
 
 [connection signal="pressed" from="Title" to="." method="_on_button_pressed"]

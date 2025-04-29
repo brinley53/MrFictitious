@@ -50,3 +50,7 @@ func _on_area_entered(area: Area2D) -> void:
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10)
 		queue_free()
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

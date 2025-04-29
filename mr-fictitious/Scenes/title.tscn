@@ -1,19 +1,25 @@
 [gd_scene load_steps=7 format=3 uid="uid://br2u722xc5scc"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_ktvh1"]
-[ext_resource type="WwiseEvent" uid="uid://j08qt3xhp32m" path="res://Wwise/resources/Event/{586376CD-FD40-471B-8A58-39CB1BBA35C4}.tres" id="2_lr6uc"]
-[ext_resource type="Texture2D" uid="uid://dxco5ak06tp67" path="res://images/ROUGH title screen.PNG" id="2_phwex"]
-[ext_resource type="WwiseEvent" uid="uid://rgefvysddf03" path="res://Wwise/resources/Event/{C70523CD-653E-4D4F-BA40-E0A59882D3BF}.tres" id="3_7sptj"]
+[ext_resource type="Texture2D" uid="uid://c0hfhfyox1nbh" path="res://images/title_screen.jpg" id="2_pt5yk"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_bv411"]
-[ext_resource type="WwiseEvent" uid="uid://du38fr6t58bjk" path="res://Wwise/resources/Event/{008F1A42-5AF2-43A2-BE64-4E2806373475}.tres" id="4_o0c8x"]
+
+[sub_resource type="Resource" id="Resource_bm3wi"]
+metadata/__load_path__ = "res://Wwise/resources/Event/{586376CD-FD40-471B-8A58-39CB1BBA35C4}.tres"
+
+[sub_resource type="Resource" id="Resource_1l2pr"]
+metadata/__load_path__ = "res://Wwise/resources/Event/{C70523CD-653E-4D4F-BA40-E0A59882D3BF}.tres"
+
+[sub_resource type="Resource" id="Resource_fvapo"]
+metadata/__load_path__ = "res://Wwise/resources/Event/{008F1A42-5AF2-43A2-BE64-4E2806373475}.tres"
 
 [node name="Lost" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ktvh1")
-PlayMusic = ExtResource("2_lr6uc")
-playTitle = ExtResource("3_7sptj")
-playAgain = ExtResource("4_o0c8x")
+PlayMusic = SubResource("Resource_bm3wi")
+playTitle = SubResource("Resource_1l2pr")
+playAgain = SubResource("Resource_fvapo")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -21,24 +27,26 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(959, 540)
-texture = ExtResource("2_phwex")
+texture = ExtResource("2_pt5yk")
 
-[node name="Button" type="Button" parent="."]
+[node name="Controls" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
 offset_top = 784.0
 offset_right = 1108.0
 offset_bottom = 873.0
 theme_override_fonts/font = ExtResource("3_bv411")
-text = "Start Game"
+theme_override_font_sizes/font_size = 20
+text = "Controls"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Exit" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
 offset_top = 978.0
 offset_right = 1108.0
 offset_bottom = 1067.0
 theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
 text = "Exit Game"
 
 [node name="Glossary" type="Button" parent="."]
@@ -48,12 +56,23 @@ offset_top = 882.0
 offset_right = 1108.0
 offset_bottom = 971.0
 theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
 text = "Glossary"
+
+[node name="Start" type="Button" parent="."]
+offset_left = 869.0
+offset_top = 687.0
+offset_right = 1108.0
+offset_bottom = 776.0
+theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
+text = "Start Game"
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Glossary" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_button_pressed"]

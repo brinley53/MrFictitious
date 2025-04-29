@@ -54,6 +54,6 @@ text = "X
 "
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]
