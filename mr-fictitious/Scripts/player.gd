@@ -70,7 +70,9 @@ var spin_attack_active = false
 var orbit_timer = 0.0
 var orbit_duration = 1.5  # How long the orbit lasts
 var orbit_speed = 2 * PI 
-var sword = false
+var sword = true
+var sword_attack_uses = 0
+var max_sword_attacks = 45
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -250,20 +252,29 @@ func shoot_projectile():
 
 #Functions for swinging attack
 func start_spin_attack():
-	spin_attack_active = true
-	orbit_timer = 0.0
-	can_attack = false
-	spin_node.visible = true
-	spin_area.monitoring = true
-	spin_area.monitorable = true
+	if sword and sword_attack_uses < max_sword_attacks:
+		spin_attack_active = true
+		orbit_timer = 0.0
+		can_attack = false
+		spin_node.visible = true
+		spin_area.visible = true
+		spin_area.monitoring = true
+		spin_area.monitorable = true
+		sword_attack_uses += 1
+		if sword_attack_uses >= max_sword_attacks:
+			sword = false
 
 func end_spin_attack():
 	spin_attack_active = false
 	can_attack = true
+	spin_node.visible = false
 	spin_area.visible = false
 	spin_area.monitoring = false
+	spin_area.monitorable = false
 
-
+func collect_sword_weapon():
+	sword = true
+	sword_attack_uses = 0
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):

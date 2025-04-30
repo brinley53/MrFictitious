@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jip1a"]
 size = Vector2(138, 130)
 
-[node name="flashlight_item" type="Area2D"]
+[node name="health_item" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_2mle4")
 inventory_drop_item = ExtResource("2_osmog")
