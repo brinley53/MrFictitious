@@ -49,13 +49,13 @@ func change_attack(attack_type):
 		shoot_player()
 	
 func shoot_player():
-	if stunned or player.stealth or attack != "Shot":
+	if stunned or player.stealth or attack != "Shot" or player.in_dialogue:
 		return
 	shot_timer.start()
 	triple_timer.start()
 
-func _physics_process(delta: float) -> void:
-	if stunned:
+func _physics_process(_delta: float) -> void:
+	if stunned or player.in_dialogue:
 		return
 	if !player.stealth:
 		# Calculate the direction vector towards the player

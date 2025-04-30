@@ -16,6 +16,7 @@ Revisions:
 	Jose Leyba  - 4/24/2025: Items use inventory now, added new weapons
 	Brinley Hull - 4/27/2025: Dialogue pause boolean
 	Tej Gumaste - 4/27/2025 : Removed Overlapping music
+	Brinley Hull - 4/29/2025: All dialogue
 """
 class_name Player
 extends CharacterBody2D
@@ -43,10 +44,10 @@ var attack_radius_y = 35
 var attack_radius = 35
 var can_attack = true  
 var stealth = false
-var health_items = 0;
-var flashlight_items = 0;
-var dmg_items = 0;
-var speed_items = 0;
+var health_items = 0
+var flashlight_items = 0
+var dmg_items = 0
+var speed_items = 0
 
 var base_damage = 1
 var current_damage = base_damage
@@ -63,7 +64,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 2
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -141,6 +142,11 @@ func _process(delta):
 			break
 	
 	move_character(delta)
+	if in_dialogue:
+		if dialogue_balloon == null or dialogue_manager.dialogue_end:
+			in_dialogue = false
+		else:
+			return
 	if Input.is_action_just_pressed("attack") and can_attack and !sword:
 		attack_sprite.play("attacking")
 		attack()
@@ -169,7 +175,7 @@ func get_size() -> Vector2:
 	return collision_shape.shape.size
 
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
-func move_character(delta):
+func move_character(_delta):
 	var direction = Vector2.ZERO
 	var animation = "stand_down" 
 	if Input.is_action_pressed("move_up"):
@@ -228,12 +234,39 @@ func attack():
 func new_evidence_collected():
 	evidence_collected += 1
 	if evidence_collected == 1:
-		dialogue_manager.show_dialogue_balloon(proof1, "start")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
 	if evidence_collected == 2:
-		dialogue_manager.show_dialogue_balloon(proof1, "start")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
 	if evidence_collected == 3:
-		dialogue_manager.show_dialogue_balloon(proof1, "start")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
+	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
+# Dialogue start functions
+func final_boss_dialogue():
+	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "mendoza")
+	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+
+func starting_dialogue():
+	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start")
+	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+
+func inmate_dialogue():
+	if in_dialogue:
+		return
+	if evidence_collected < 2:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "inmate")
+	else:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence2")	
+	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	
+func evidence_dialogue():
+	if in_dialogue:
+		return
+	if evidence_collected == 0:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence0")
+	elif evidence_collected == 1:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence1")
+	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
@@ -296,10 +329,10 @@ func increase_player_health(amount:int):
 	health_bar.value=health
 
 #Attacks enemies when entering the attack area
-func _on_attack_area_body_entered(body: Node2D) -> void:
+func _on_attack_area_body_entered(_body: Node2D) -> void:
 	pass
 
-func _on_spin_area_area_entered(area: Area2D) -> void:
+func _on_spin_area_area_entered(_area: Area2D) -> void:
 	pass # Replace with function body.
 
 
@@ -428,23 +461,26 @@ func shovel(damage_increase: int, shrink_factor: float):
 	if attack_sprite:
 		attack_sprite.scale *= shrink_factor
 
-func _on_dialogue_started(resource: DialogueResource):
+func _on_dialogue_started(_resource: DialogueResource):
 	# Function to pause everything while dialogue is on
 	in_dialogue = true
+	print('in dialogue')
 
-func _on_dialogue_finished(resource: DialogueResource):
+func _on_dialogue_finished(_resource: DialogueResource):
 	# Function to resume everything when dialogue is done
 	in_dialogue = false
+	print('ended')
+	
+func _on_balloon_closed(_resource: DialogueResource):
+	in_dialogue = false
+	print('closed')
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_E):
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start")
-		return
-		
 	# Skip dialogue option
 	if in_dialogue and Input.is_key_pressed(KEY_ENTER):
-		dialogue_balloon.end_dialogue()
 		in_dialogue = false
+		if dialogue_balloon != null:
+			dialogue_balloon.end_dialogue()
 	
 	if event.is_action_pressed("inventorySlot"):
 		inventory.equipSlot(int(event.as_text())-1)
@@ -490,6 +526,9 @@ func play_footstep_sound(location:int):
 
 func receive_current_location(location:int):
 	print("Location recevived %d", location)
+	if dialogue_balloon != null:
+		dialogue_balloon.end_dialogue()
+		in_dialogue = false
 	current_player_state = PLAYER_STATE.Explore
 	play_sound(AK.EVENTS.EXPLORE)
 	if current_location!=location:

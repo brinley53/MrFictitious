@@ -60,6 +60,7 @@ theme_override_font_sizes/font_size = 20
 text = "Glossary"
 
 [node name="Start" type="Button" parent="."]
+layout_mode = 0
 offset_left = 869.0
 offset_top = 687.0
 offset_right = 1108.0

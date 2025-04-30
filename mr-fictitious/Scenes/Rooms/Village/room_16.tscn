@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://bvwtgd53nvtqx"]
+[gd_scene load_steps=2 format=3 uid="uid://bvwtgd53nvtqx"]
+
+[ext_resource type="PackedScene" uid="uid://crdsaeocr2klm" path="res://Scenes/Enemies/statue.tscn" id="1_p55qe"]
 
 [node name="Room16" type="Node2D"]
+
+[node name="Statue" parent="." instance=ExtResource("1_p55qe")]
+position = Vector2(962, 509)
