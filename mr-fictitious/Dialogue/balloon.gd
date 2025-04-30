@@ -39,7 +39,6 @@ var dialogue_line: DialogueLine:
 
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
-			emit_signal("balloon_closed")
 			closed = true
 			queue_free()
 			return
@@ -114,7 +113,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	
 func end_dialogue():
-	emit_signal("balloon_closed")
 	closed = true
 	queue_free()
 
