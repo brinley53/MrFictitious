@@ -71,7 +71,7 @@ var spin_attack_active = false
 var orbit_timer = 0.0
 var orbit_duration = 1.5  # How long the orbit lasts
 var orbit_speed = 2 * PI 
-var sword = true
+var sword = false
 var sword_attack_uses = 0
 var max_sword_attacks = 45
 #ONREADY VARIABLES
@@ -86,6 +86,7 @@ var max_sword_attacks = 45
 @onready var SpeedResource = preload("res://Resources/speed_item.tres")
 @onready var proof1 = preload("res://proof1.dialogue")
 @onready var attack_sprite = $AttackArea/AttackSprite
+@onready var attack_sprite_spin = $SpinNode/SpinArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var footstep_timer = $FootstepTimer
 @onready var dialogue_manager = $DialogueManager
@@ -161,6 +162,7 @@ func _process(delta):
 			end_spin_attack()
 
 	if Input.is_action_just_pressed("attack") and can_attack and sword:
+		attack_sprite_spin.play("attacking_spin")
 		start_spin_attack()
 	
 	if Input.is_action_just_pressed("increaseBullet"):
