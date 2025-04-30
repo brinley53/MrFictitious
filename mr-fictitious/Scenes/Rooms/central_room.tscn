@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="3_dar36"]
 [ext_resource type="PackedScene" uid="uid://dmmq47i6qhui7" path="res://Scenes/tent.tscn" id="5_7bh2k"]
 [ext_resource type="PackedScene" uid="uid://c65b4rqdkx1su" path="res://Scenes/generic_dialogue.tscn" id="5_yj55d"]
-[ext_resource type="PackedScene" uid="uid://daxskvbh0lox0" path="res://Scenes/sword.tscn" id="6_1haym"]
+[ext_resource type="PackedScene" path="res://Scenes/sword.tscn" id="6_1haym"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="6_6domw"]
 
 [node name="CentralRoom" type="Node2D"]

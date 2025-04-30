@@ -54,11 +54,12 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")
 @onready var player = players[0]
 @onready var nav_timer = $NavTimer
 @onready var nav_agent = $NavigationAgent2D
+var vulnerable_area:Area2D
 var shot_timer:Timer
 
 var patrol_points
 var dart_timer:Timer
-@export_enum("Wolf", "Rat", "Poison", "Ranged") var type : String
+@export_enum("Wolf", "Rat", "Poison", "Ranged", "Griffin") var type : String
 
 
 func _ready():
@@ -78,6 +79,9 @@ func _ready():
 		dart_timer.start()
 	if type=="Ranged":
 		shot_timer = $ShotTimer
+		
+	if type == "Griffin":
+		vulnerable_area = $Vulnerable
 	
 func reset_patrol():
 	if len(patrol_points) == 0:
@@ -141,6 +145,14 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
+	if type == "Griffin":
+		var vulnerable_areas = vulnerable_area.get_overlapping_areas()
+		var vulnerable = false
+		for area in vulnerable_areas:
+			if area.is_in_group("Weapon"):
+				vulnerable = true
+		if !vulnerable:
+			return
 	health = health - damage_dealt
 	chase_player = true
 	player.initiate_combat()
@@ -175,7 +187,7 @@ func chase(body: Node2D) -> void:
 	# change sprite
 	if chase_player:
 		sprite.play("run")
-		if (type == "Wolf"):
+		if (type == "Wolf" or type == "Griffin"):
 			speed = base_speed * 2.5
 	else:
 		sprite.play("walk")
@@ -194,7 +206,6 @@ func chase(body: Node2D) -> void:
 	
 	move_and_slide()
 	
-
 func apply_stun(duration):
 	if stunned and current_stun_timer:
 		current_stun_timer.stop()

@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://d3aiygb0m303c"]
+[gd_scene load_steps=2 format=3 uid="uid://d3aiygb0m303c"]
+
+[ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="1_ork8r"]
 
 [node name="Room10" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_ork8r")]
+position = Vector2(897, 520)

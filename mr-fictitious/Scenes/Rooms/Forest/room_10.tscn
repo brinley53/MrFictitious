@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://bn87n0ngc34bw"]
+[gd_scene load_steps=2 format=3 uid="uid://bn87n0ngc34bw"]
+
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="1_t1hpc"]
 
 [node name="Room10" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_t1hpc")]
+position = Vector2(887, 500)

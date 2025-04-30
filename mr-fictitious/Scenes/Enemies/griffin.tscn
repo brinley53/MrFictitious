@@ -1,0 +1,211 @@
+[gd_scene load_steps=20 format=3 uid="uid://dcumsafep2m5"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy.gd" id="1_ajgps"]
+[ext_resource type="Texture2D" uid="uid://cajs0ydsfqpft" path="res://images/Wolf_White_Background.png" id="2_daues"]
+[ext_resource type="Texture2D" uid="uid://c7lw7t5c4ueuc" path="res://images/small griffin staute sprite sheet right facing .png" id="3_et11r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vweiy"]
+radius = 21.0238
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr45q"]
+atlas = ExtResource("2_daues")
+region = Rect2(0, 0, 247, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dggi0"]
+atlas = ExtResource("3_et11r")
+region = Rect2(0, 0, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sck3a"]
+atlas = ExtResource("3_et11r")
+region = Rect2(175, 0, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmwwh"]
+atlas = ExtResource("3_et11r")
+region = Rect2(350, 0, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7nso"]
+atlas = ExtResource("3_et11r")
+region = Rect2(525, 0, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjrqb"]
+atlas = ExtResource("3_et11r")
+region = Rect2(0, 150, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw4se"]
+atlas = ExtResource("3_et11r")
+region = Rect2(175, 150, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oret7"]
+atlas = ExtResource("3_et11r")
+region = Rect2(350, 150, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy5co"]
+atlas = ExtResource("3_et11r")
+region = Rect2(525, 150, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijxi7"]
+atlas = ExtResource("3_et11r")
+region = Rect2(0, 300, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfg0u"]
+atlas = ExtResource("3_et11r")
+region = Rect2(175, 300, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovlsp"]
+atlas = ExtResource("3_et11r")
+region = Rect2(350, 300, 175, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd7u0"]
+atlas = ExtResource("3_et11r")
+region = Rect2(525, 300, 175, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dolo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr45q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_dggi0")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_sck3a")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cmwwh")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_e7nso")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cjrqb")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_kw4se")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_oret7")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_iy5co")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ijxi7")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_qfg0u")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ovlsp")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_qd7u0")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_dggi0")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_sck3a")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_cmwwh")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_e7nso")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_cjrqb")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_kw4se")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_oret7")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_iy5co")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_ijxi7")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_qfg0u")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_ovlsp")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_qd7u0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
+size = Vector2(80, 69.8261)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+motion_mode = 1
+script = ExtResource("1_ajgps")
+health = 20
+base_speed = 45.0
+damage = 10.0
+type = "Griffin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(1.432, 1.01077)
+shape = SubResource("CircleShape2D_vweiy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_0dolo")
+animation = &"walk"
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(5, -2)
+scale = Vector2(0.880001, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(3, 2.09272)
+scale = Vector2(0.875, 0.913907)
+shape = SubResource("RectangleShape2D_xb3p1")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
+scale = Vector2(1.3725, 1.1625)
+polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Vulnerable" type="Area2D" parent="."]
+position = Vector2(-24, 4)
+scale = Vector2(0.32, 0.559999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vulnerable"]
+position = Vector2(3, 2.09272)
+scale = Vector2(0.875, 0.913907)
+shape = SubResource("RectangleShape2D_xb3p1")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

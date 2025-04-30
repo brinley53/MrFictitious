@@ -1,15 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://m653te6y8pka"]
+[gd_scene load_steps=10 format=3 uid="uid://m653te6y8pka"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy.gd" id="1_bt5o5"]
-[ext_resource type="Texture2D" uid="uid://b5xc4eugaqgrv" path="res://images/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg" id="2_8371w"]
+[ext_resource type="Texture2D" uid="uid://ht0h25cctxkp" path="res://images/assylum worker sprite-Sheet-Sheet.png" id="2_4ug4f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w87jh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3asu"]
+atlas = ExtResource("2_4ug4f")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo80w"]
+atlas = ExtResource("2_4ug4f")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb55a"]
+atlas = ExtResource("2_4ug4f")
+region = Rect2(0, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbwom"]
+atlas = ExtResource("2_4ug4f")
+region = Rect2(150, 150, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_42n1k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_8371w")
+"texture": SubResource("AtlasTexture_p3asu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo80w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb55a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbwom")
 }],
 "loop": true,
 "name": &"run",
@@ -17,7 +42,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_8371w")
+"texture": SubResource("AtlasTexture_p3asu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo80w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb55a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbwom")
 }],
 "loop": true,
 "name": &"walk",
@@ -43,9 +77,12 @@ scale = Vector2(3.36, 3.42706)
 shape = SubResource("CircleShape2D_w87jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+position = Vector2(1, -2)
+scale = Vector2(0.456667, 0.406667)
 sprite_frames = SubResource("SpriteFrames_42n1k")
-animation = &"run"
+animation = &"walk"
+frame_progress = 0.311425
+flip_h = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 scale = Vector2(1.4, 1.25035)
