@@ -31,6 +31,8 @@ var stunned = false
 var current_stun_timer: Timer = null
 var total_health:int
 
+var sprite_string = "lhr"
+
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var big_attack_timer = $BigAttackTimer
@@ -40,7 +42,7 @@ var total_health:int
 @onready var player = players[0]
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var pound_area = $PoundArea
-@onready var pound_sprite = $PoundArea/Sprite2D
+@onready var pound_sprite = $PoundArea/AnimatedSprite2D
 @onready var pound_timer = $PoundTimer
 @onready var head = $Head
 @onready var r_wing = $RightWing
@@ -62,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	health_bar.value = (left_wing_health+right_wing_health+head_health)*100/total_health
 	if stunned:
 		return
-	if global_position.distance_to(target) < sprite.sprite_frames.get_frame_texture("default", 0).get_size().x/4:
+	if global_position.distance_to(target) < sprite.sprite_frames.get_frame_texture("default_" + sprite_string, 0).get_size().x/4:
 		speed = 0.0
 	# Die if its arms are off
 	if left_wing_health <= 0 and right_wing_health <= 0 and head_health <= 0:
@@ -121,27 +123,40 @@ func _on_stun_timeout():
 		current_stun_timer = null
 
 func reduce_enemy_health(_damage_dealt):
+	var rwing_areas = r_wing.get_overlapping_areas()
 	var head_areas = head.get_overlapping_areas()
 	var lwing_areas = l_wing.get_overlapping_areas()
-	var rwing_areas = r_wing.get_overlapping_areas()
 	if left_wing_health > 0:
 		for area in lwing_areas:
 			if area.is_in_group("Weapon"):
 				left_wing_health -= 1
+				change_sprite()
 				return
 	if right_wing_health > 0:
 		for area in rwing_areas:
 			if area.is_in_group("Weapon"):
 				right_wing_health -= 1
+				change_sprite()
 				return
 	if head_health > 0:
 		for area in head_areas:
 			if area.is_in_group("Weapon"):
 				head_health -= 1
+				change_sprite()
 				return
+				
+func change_sprite():
+	sprite_string = ""
+	if left_wing_health > 0:
+		sprite_string += "l"
+	if head_health > 0:
+		sprite_string += "h"
+	if right_wing_health > 0:
+		sprite_string += "r"
+	sprite.play("default_" + sprite_string)
 
 func ground_pound():
-	sprite.play("pound")
+	sprite.play("pound_" + sprite_string)
 	pound_timer.start()
 	
 func charge():
@@ -160,11 +175,19 @@ func _on_big_attack_timer_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	pound_sprite.visible = true
-	for body in pound_area.get_overlapping_bodies():
-		if body == player:
-			player.reduce_player_health(30)
-	sprite.play("default")
-
+	pound_sprite.play("pound")
+	sprite.play("default_" + sprite_string)
 
 func _on_pound_timer_timeout() -> void:
-	pound_sprite.visible = false
+	#pound_sprite.visible = false
+	pass
+
+func _on_pound_sprite_2d_animation_finished() -> void:
+	if pound_sprite.animation == "pound":
+		pound_sprite.play("unpound")
+		for body in pound_area.get_overlapping_bodies():
+			if body == player:
+				player.reduce_player_health(30)
+	elif pound_sprite.animation == "unpound":
+		pound_sprite.visible = false
+		
