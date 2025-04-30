@@ -1,5 +1,6 @@
 extends Node2D
 @onready var up = $Up
+@onready var inv = $InventoryOpen
 @onready var down = $Down
 @onready var left = $Left
 @onready var right = $Right
@@ -27,6 +28,7 @@ func _process(delta: float) -> void:
 	melee.play("stand_right")
 	attack_sprite.play("attacking")
 	shoot.play("stand_right")
+	inv.play("default")
 	time_since_last_shot += delta
 	if time_since_last_shot >= SHOOT_COOLDOWN:
 		var projectile = PROJECTILE_SCENE.instantiate()
