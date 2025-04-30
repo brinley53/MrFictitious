@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdohypdfdd3f0"]
+[gd_scene load_steps=12 format=3 uid="uid://cdohypdfdd3f0"]
 
 [ext_resource type="Script" path="res://Dialogue/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -6,10 +6,20 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_exkru"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4th3v"]
+bg_color = Color(0.788235, 0.803922, 0.72549, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhllp"]
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font_size = 20
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_4th3v")
 MarginContainer/constants/margin_bottom = 15
 MarginContainer/constants/margin_left = 30
 MarginContainer/constants/margin_right = 30
@@ -21,6 +31,8 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Theme" id="Theme_mr7lw"]
 /styles/color = SubResource("StyleBoxFlat_e6jqp")
+
+[sub_resource type="Theme" id="Theme_eqkk8"]
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
@@ -155,12 +167,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -147.0
-offset_top = -558.0
-offset_right = 494.0
-offset_bottom = -154.0
+offset_left = 264.0
+offset_top = -583.0
+offset_right = 905.0
+offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.920002, 1)
+theme = SubResource("Theme_eqkk8")
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/Responses" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
@@ -172,6 +186,12 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
 layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.788235, 0.803922, 0.72549, 1)
+theme_override_colors/icon_focus_color = Color(0.788235, 0.803922, 0.72549, 1)
+theme_override_colors/icon_pressed_color = Color(0.788235, 0.803922, 0.72549, 1)
+theme_override_colors/icon_hover_color = Color(0.788235, 0.803922, 0.72549, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.788235, 0.803922, 0.72549, 1)
+theme_override_colors/icon_disabled_color = Color(0.788235, 0.803922, 0.72549, 1)
 theme_override_fonts/font = ExtResource("3_exkru")
 text = "Response example"
 

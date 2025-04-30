@@ -120,7 +120,7 @@ func _on_stun_timeout():
 		current_stun_timer.queue_free()
 		current_stun_timer = null
 
-func reduce_enemy_health(damage_dealt):
+func reduce_enemy_health(_damage_dealt):
 	var head_areas = head.get_overlapping_areas()
 	var lwing_areas = l_wing.get_overlapping_areas()
 	var rwing_areas = r_wing.get_overlapping_areas()
@@ -139,17 +139,6 @@ func reduce_enemy_health(damage_dealt):
 			if area.is_in_group("Weapon"):
 				head_health -= 1
 				return
-
-func _on_head_area_entered(area: Area2D) -> void:
-	pass
-
-
-func _on_right_wing_area_entered(area: Area2D) -> void:
-	pass
-
-
-func _on_left_wing_area_entered(area: Area2D) -> void:
-	pass
 
 func ground_pound():
 	sprite.play("pound")

@@ -16,6 +16,10 @@ var temporary_game_states: Array = []
 ## See if we are waiting for the player
 var is_waiting_for_input: bool = false
 
+var closed = false
+
+signal balloon_closed
+
 @onready var portrait = $Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer/Portrait
 
 ## See if we are running a long mutation and should hide the balloon
@@ -35,6 +39,8 @@ var dialogue_line: DialogueLine:
 
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
+			emit_signal("balloon_closed")
+			closed = true
 			queue_free()
 			return
 
@@ -108,6 +114,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	
 func end_dialogue():
+	emit_signal("balloon_closed")
+	closed = true
 	queue_free()
 
 func _notification(what: int) -> void:

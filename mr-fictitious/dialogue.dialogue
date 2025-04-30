@@ -1,9 +1,16 @@
-~ start
+~ opening
 The great war is over… but yours isn’t. 
 The world outside the asylum is worse than you remember.  
 You know what you saw was real and now it’s time to prove your sanity. 
 Travel through the village and enter the crypt, collect various items to help you along the way, battle asylum guards and villagers attempting to send you back, and gather the evidence you need. When ready, return to the asylum to prove your innocence.  
 Just remember, the asylum employees are the least of your concerns compared to what's coming… 
+=> END
+~ start
+INMATE: That was quite the escape. 
+JIM: Where are the others? 
+INMATE: They were captured by the asylum guards. 
+JIM: I need to save them.  
+INMATE: Start by finding the evidence we came searching for. Look around and I’ll keep an eye out around here. 
 => END
 ~ mendoza
 JIM: MENDOZA!
@@ -17,4 +24,19 @@ JIM: Still pretending I’m crazy? Well I found your little journal entries and 
 MENDOZA: I know I don’t know your pain but I can help. The war is over. You can stop fighting.
 JIM: I’ll stop fighting when you’re in the ground.
 MENDOZA: So be it.
+=> END
+~ inmate
+JIM: You still believe in the monsters? 
+INMATE: I don’t remember what I saw. Dr. Mendoza said it was part of a psychotic break. 
+JIM: And you believe him? 
+INMATE: I don’t know.  
+=> END
+~ evidence0
+INMATE: If you plan on proving your sanity you should collect some evidence.
+=> END
+~ evidence1
+INMATE: If you plan on proving your sanity you should collect more evidence. You can probably find some in the [[crypt|village]]. 
+=> END
+~ evidence2
+INMATE: If that doesn’t prove your sanity, I don’t know what will… 
 => END
