@@ -30,7 +30,8 @@ const SPEED = 300.0
 const ATTACK_LOCK_TIME_MELEE = 0.5
 const FOOTSTEP_FREQUENCY=0.4
 const ATTACK_LOCK_TIME_Range = 2
-const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")  
+const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")
+const MUSKET_PROJECTILE_SCENE = preload("res://Scenes/musket_projectile.tscn")
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
 var base_speed := SPEED
@@ -50,6 +51,7 @@ var dmg_items = 0
 var speed_items = 0
 
 var base_damage = 1
+var damage_difference = 0
 var current_damage = base_damage
 var speed_buff_timer :Timer = null
 var damage_buff_timer :Timer = null
@@ -71,9 +73,19 @@ var spin_attack_active = false
 var orbit_timer = 0.0
 var orbit_duration = 1.5  # How long the orbit lasts
 var orbit_speed = 2 * PI 
+
+#Weapon Variables
 var sword = false
+var has_shovel = false
+var has_musket = true
 var sword_attack_uses = 0
 var max_sword_attacks = 45
+var shovel_attack_uses = 0
+var max_shovel_attacks = 40
+var musket_attack_uses = 0
+var max_musket_attacks = 5
+var original_polygon = []
+var original_sprite_scale = Vector2.ONE
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -149,6 +161,10 @@ func _process(delta):
 		else:
 			return
 	if Input.is_action_just_pressed("attack") and can_attack and !sword:
+		if has_shovel:
+			shovel_attack_uses += 1
+			if shovel_attack_uses >= max_shovel_attacks:
+				reset_shovel()
 		attack_sprite.play("attacking")
 		attack()
 		can_attack = false
@@ -276,14 +292,27 @@ func shoot_projectile():
 		play_sound(AK.EVENTS.PLAYER_GUN_SHOOT)
 		removeItem(bulletResource)
 		bullets -= 1 
-		var projectile = PROJECTILE_SCENE.instantiate()
-		var manager = get_node("/root/Main/RoomManager")
-		var room = manager.get_active_room()
-		room.add_child(projectile)
-		projectile.global_position = global_position
-		var target_position = get_global_mouse_position()
-		var direction = (target_position - global_position).normalized()
-		projectile.velocity = direction * PROJECTILE_SPEED
+		if has_musket:
+			musket_attack_uses += 1
+			if musket_attack_uses >= max_musket_attacks:
+				has_musket = false
+			var projectile = MUSKET_PROJECTILE_SCENE.instantiate()
+			var manager = get_node("/root/Main/RoomManager")
+			var room = manager.get_active_room()
+			room.add_child(projectile)
+			projectile.global_position = global_position
+			var target_position = get_global_mouse_position()
+			var direction = (target_position - global_position).normalized()
+			projectile.velocity = direction * PROJECTILE_SPEED
+		else:
+			var projectile = PROJECTILE_SCENE.instantiate()
+			var manager = get_node("/root/Main/RoomManager")
+			var room = manager.get_active_room()
+			room.add_child(projectile)
+			projectile.global_position = global_position
+			var target_position = get_global_mouse_position()
+			var direction = (target_position - global_position).normalized()
+			projectile.velocity = direction * PROJECTILE_SPEED
 
 #Functions for swinging attack
 func start_spin_attack():
@@ -309,6 +338,9 @@ func end_spin_attack():
 
 func collect_sword_weapon():
 	sword = true
+	if has_shovel:
+		has_shovel = false
+		shovel_attack_uses = 0
 	sword_attack_uses = 0
 
 #Called from enemies when dealing damage, when health reaches 0 you die
@@ -452,8 +484,13 @@ func _remove_damage_buff():
 #PERMANENT CHANGES
 #Trades Attack Area for DMG
 func shovel(damage_increase: int, shrink_factor: float):
+	has_shovel = true
+	if sword:
+		sword = false
+		sword_attack_uses = 0
 	base_damage += damage_increase
-	current_damage = base_damage  
+	damage_difference = damage_increase
+	current_damage = base_damage 
 	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
 	if poly_node:
 		var points = poly_node.polygon.duplicate()
@@ -462,6 +499,22 @@ func shovel(damage_increase: int, shrink_factor: float):
 		poly_node.polygon = points
 	if attack_sprite:
 		attack_sprite.scale *= shrink_factor
+
+func reset_shovel():
+	base_damage -= damage_difference
+	damage_difference = 0
+	current_damage = base_damage
+	has_shovel = false
+	shovel_attack_uses = 0
+
+	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
+	if poly_node:
+		var points = poly_node.polygon.duplicate()
+		for i in range(points.size()):
+			points[i] *= 1.3
+		poly_node.polygon = points
+	if attack_sprite:
+		attack_sprite.scale *= 1.3
 
 func _on_dialogue_started(_resource: DialogueResource):
 	# Function to pause everything while dialogue is on
