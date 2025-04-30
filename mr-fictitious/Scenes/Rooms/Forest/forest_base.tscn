@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://iv3rs44ndq5c"]
 
 [ext_resource type="Texture2D" uid="uid://dnjhg25t0nm6a" path="res://images/revisedforesttiles.png" id="1_2s6mq"]
-[ext_resource type="PackedScene" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="2_388ts"]
+[ext_resource type="PackedScene" uid="uid://cu51fnslx4l0e" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="2_388ts"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="3_fkc5h"]
 [ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="4_jg1eg"]
 
@@ -30,17 +30,17 @@ tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_y838u")
 pattern_0 = SubResource("TileMapPattern_ht1my")
 
-[sub_resource type="Gradient" id="Gradient_8polq"]
+[sub_resource type="Gradient" id="Gradient_3y41c"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_iw0r1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qlopg"]
 seed = 2
 frequency = 0.0075
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mnk8d"]
 width = 1920
 height = 1080
-color_ramp = SubResource("Gradient_8polq")
-noise = SubResource("FastNoiseLite_iw0r1")
+color_ramp = SubResource("Gradient_3y41c")
+noise = SubResource("FastNoiseLite_qlopg")
 
 [node name="ForestBase" type="Node2D"]
 
