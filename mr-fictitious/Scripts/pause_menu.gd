@@ -6,6 +6,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	menu.layer = 10000000000
 	menu.hide()
 	#glossary.hide()
 	close_glossary.hide()
