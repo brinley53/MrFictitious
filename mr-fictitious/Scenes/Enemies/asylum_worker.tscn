@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ht0h25cctxkp" path="res://images/assylum worker sprite-Sheet-Sheet.png" id="2_4ug4f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w87jh"]
+radius = 15.7907
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3asu"]
 atlas = ExtResource("2_4ug4f")
@@ -59,7 +60,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(65, 72)
+size = Vector2(93.5714, 123.965)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
@@ -72,29 +73,27 @@ poison_proc_count = 3
 type = "Poison"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -0.5)
-scale = Vector2(3.36, 3.42706)
+position = Vector2(-11, 2)
+scale = Vector2(3.36, 4.22706)
 shape = SubResource("CircleShape2D_w87jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
-scale = Vector2(0.456667, 0.406667)
 sprite_frames = SubResource("SpriteFrames_42n1k")
-animation = &"walk"
-frame_progress = 0.311425
+animation = &"run"
 flip_h = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 scale = Vector2(1.4, 1.25035)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-1.5, -1)
+position = Vector2(-3.21428, -2.79922)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
+polygon = PackedVector2Array(-2, 66, 615, 244, 649, -236, -1, -73)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
