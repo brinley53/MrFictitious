@@ -156,3 +156,4 @@ material = ExtResource("4_jg1eg")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("NoiseTexture2D_mnk8d")
+metadata/_edit_use_anchors_ = true

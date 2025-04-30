@@ -1,3 +1,123 @@
-[gd_scene format=3 uid="uid://bnforrw8frynl"]
+[gd_scene load_steps=7 format=4 uid="uid://bnforrw8frynl"]
+
+[ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_xi3pu"]
+[ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="2_u3xac"]
+[ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="3_a8ffw"]
+[ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="4_7tyhb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfb3n"]
+texture = ExtResource("1_xi3pu")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:1/0 = 0
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:2/0 = 0
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+7:4/0 = 0
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:6/0 = 0
+1:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_34b0n"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rfb3n")
 
 [node name="Room12" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAIAAUAAAABAAQAAAAJAAUAAAABAAQAAAAKAAUAAAABAAQAAAALAAUAAAABAAQAAAAMAAUAAAABAAQAAAANAAUAAAABAAQAAAAOAAUAAAABAAQAAAAPAAUAAAABAAQAAAAQAAUAAAABAAQAAAARAAUAAAABAAQAAAASAAUAAAABAAQAAAATAAUAAAABAAQAAAAUAAUAAAABAAQAAAAVAAUAAAABAAQAAAAWAAUAAAACAAQAAAAHAAUAAAAAAAQAAAA=")
+tile_set = SubResource("TileSet_34b0n")
+
+[node name="Bush2" parent="." instance=ExtResource("2_u3xac")]
+position = Vector2(1038, 530)
+
+[node name="Bush3" parent="." instance=ExtResource("2_u3xac")]
+position = Vector2(913, 686)
+
+[node name="ForestTreeSmall" parent="." instance=ExtResource("3_a8ffw")]
+position = Vector2(881, 399)
+
+[node name="ForestTreeSmall2" parent="." instance=ExtResource("3_a8ffw")]
+position = Vector2(1057, 428)
+
+[node name="ForestTreeSmall3" parent="." instance=ExtResource("3_a8ffw")]
+position = Vector2(859, 525)
+
+[node name="ForestTreeMedium" parent="." instance=ExtResource("4_7tyhb")]
+position = Vector2(1029, 619)
+
+[node name="ForestTreeMedium2" parent="." instance=ExtResource("4_7tyhb")]
+position = Vector2(973, 457)
+
+[node name="Bush" parent="." instance=ExtResource("2_u3xac")]
+position = Vector2(858, 643)
+
+[node name="Bush4" parent="." instance=ExtResource("2_u3xac")]
+position = Vector2(926, 596)
