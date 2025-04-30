@@ -46,7 +46,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	# attacking statue boss wings and head
 	var body = area.get_parent()
-	if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+	if body.name == "Statue" and area.name in ["LeftWing", "RightWing", "Head"]:
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10)
 		queue_free()
