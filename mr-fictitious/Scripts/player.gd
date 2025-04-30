@@ -64,7 +64,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 2
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -513,6 +513,9 @@ func play_footstep_sound(location:int):
 
 func receive_current_location(location:int):
 	print("Location recevived %d", location)
+	if dialogue_balloon != null:
+		dialogue_balloon.end_dialogue()
+		in_dialogue = false
 	current_player_state = PLAYER_STATE.Explore
 	play_sound(AK.EVENTS.EXPLORE)
 	if current_location!=location:
