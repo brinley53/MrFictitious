@@ -2,4 +2,6 @@
 Tactical Shovel: Attack Damage Up, Attack Area Down (30 Uses)
 ~ sword
 Saber: Damage is dealt in a circle around the player (45 Uses)
+~ musket
+Musket: Bullets divide into 3 and explode after 4 seconds (15 Uses)
 => END

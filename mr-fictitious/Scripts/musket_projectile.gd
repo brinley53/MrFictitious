@@ -37,7 +37,7 @@ func _physics_process(delta):
 	for point in trail_points:
 		trail.add_point(to_local(point))
 
-# Deals damage to player when hit
+# Deals damage to enemies when hit
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
 		print("Hit an Enemy!")
@@ -60,37 +60,37 @@ func _on_timer_timeout() -> void:
 	if btype == "Mini":
 		pass
 	var bodies = explosion_area.get_overlapping_bodies()
+	var areas = explosion_area.get_overlapping_areas()
 	for body in bodies:
 		if body.is_in_group("Enemies"):
 			body.reduce_enemy_health(5)
+	for area in areas:
+		var body = area.get_parent()
+		if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+			if body.has_method("reduce_enemy_health"):
+				body.reduce_enemy_health(10)
 	queue_free()
 
 
-func create_mini_bullet(target_pos):
-	# Function to create a mini bullet
+func create_mini_bullet(velocity: Vector2):
 	var bullet = BULLET_SCENE.instantiate()
-	bullet.body_entered.connect(bullet._on_body_entered)
 	bullet.global_position = global_position
-	bullet.initialize_bullet(target_pos, "Mini")
+	bullet.initialize_velocity(velocity.normalized() * speed, "Mini")
 	bullet.scale = Vector2(0.75, 0.75)
-	get_parent().add_child(bullet)
+	get_tree().get_current_scene().add_child(bullet)
 
 func _on_split_timer_timeout() -> void:
-	#instantiate 3 more bullets to split the current bullet
-	var to_bullet = (global_position - target).normalized()
-	var angle_offset = deg_to_rad(45)
-	# Slightly rotate left or right
-	var left_offset = to_bullet.rotated(-angle_offset) * 100.0
-	var right_offset = to_bullet.rotated(angle_offset) * 100.0
-	#create_mini_bullet(target + left_offset)
-	#create_mini_bullet(target)
-	#create_mini_bullet(target + right_offset)
-	#queue_free()
-
-func initialize_bullet(target_position: Vector2, type_str="Default") -> void:
-	type = type_str
-	target = target_position
-	var direction = (target_position - global_position).normalized()
-	velocity = direction * speed
 	if type == "Mini":
-		damage = damage/2
+		return 
+
+	create_mini_bullet(velocity)
+	create_mini_bullet(velocity.rotated(deg_to_rad(20))) 
+	create_mini_bullet(velocity.rotated(deg_to_rad(-20)))
+
+	queue_free()
+
+func initialize_velocity(vel: Vector2, type_str = "Default") -> void:
+	type = type_str
+	velocity = vel
+	if type == "Mini":
+		damage = damage / 2

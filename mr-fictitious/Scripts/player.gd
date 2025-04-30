@@ -77,13 +77,13 @@ var orbit_speed = 2 * PI
 #Weapon Variables
 var sword = false
 var has_shovel = false
-var has_musket = true
+var has_musket = false
 var sword_attack_uses = 0
 var max_sword_attacks = 45
 var shovel_attack_uses = 0
 var max_shovel_attacks = 40
 var musket_attack_uses = 0
-var max_musket_attacks = 5
+var max_musket_attacks = 15
 var original_polygon = []
 var original_sprite_scale = Vector2.ONE
 #ONREADY VARIABLES
@@ -342,6 +342,10 @@ func collect_sword_weapon():
 		has_shovel = false
 		shovel_attack_uses = 0
 	sword_attack_uses = 0
+
+func collect_musket_weapon():
+	has_musket = true
+	musket_attack_uses = 0
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
