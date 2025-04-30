@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://brrl7fn5jkv2n" path="res://Scenes/hazard_goo.tscn" id="15_vu1k3"]
 [ext_resource type="PackedScene" uid="uid://3tegx7n1mwtx" path="res://Scenes/chest.tscn" id="16_ogyyp"]
 [ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="17_xsx77"]
-[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/poison_enemy.tscn" id="18_1db15"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="18_1db15"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="18_jvhr2"]
 [ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/shovel.tscn" id="19_3js83"]
 
