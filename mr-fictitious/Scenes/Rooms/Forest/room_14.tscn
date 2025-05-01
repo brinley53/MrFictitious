@@ -35,16 +35,16 @@ position = Vector2(1327, 742)
 position = Vector2(612, 763)
 
 [node name="Patrol5" parent="." instance=ExtResource("3_fv52u")]
-position = Vector2(329, 517)
+position = Vector2(427, 566)
 
 [node name="Patrol6" parent="." instance=ExtResource("3_fv52u")]
-position = Vector2(935, 119)
+position = Vector2(937, 247)
 
 [node name="Patrol7" parent="." instance=ExtResource("3_fv52u")]
-position = Vector2(1568, 559)
+position = Vector2(1524, 529)
 
 [node name="Patrol8" parent="." instance=ExtResource("3_fv52u")]
-position = Vector2(959, 941)
+position = Vector2(1007, 871)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_2hdmr")

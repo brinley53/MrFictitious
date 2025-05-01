@@ -48,7 +48,7 @@ func _on_area_entered(area: Area2D) -> void:
 	var body = area.get_parent()
 	if body.name == "Statue" and area.name in ["LeftWing", "RightWing", "Head"]:
 		if body.has_method("reduce_enemy_health"):
-			body.reduce_enemy_health(10)
+			body.reduce_enemy_health(10, area.name)
 		queue_free()
 
 

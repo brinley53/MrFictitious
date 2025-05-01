@@ -9,6 +9,7 @@ Revisions:
 		- Basic Attacks
 	Jose Leyba  4/24/2025: Statue Stun
 	Brinley Hull - 4/27/2025: Ground pound attack
+	Brinley Hull - 4/30/2025: Fix vulnerable area bullet detection
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -122,28 +123,42 @@ func _on_stun_timeout():
 		current_stun_timer.queue_free()
 		current_stun_timer = null
 
-func reduce_enemy_health(_damage_dealt):
-	var rwing_areas = r_wing.get_overlapping_areas()
-	var head_areas = head.get_overlapping_areas()
-	var lwing_areas = l_wing.get_overlapping_areas()
-	if left_wing_health > 0:
-		for area in lwing_areas:
-			if area.is_in_group("Weapon"):
-				left_wing_health -= 1
-				change_sprite()
-				return
-	if right_wing_health > 0:
-		for area in rwing_areas:
-			if area.is_in_group("Weapon"):
-				right_wing_health -= 1
-				change_sprite()
-				return
-	if head_health > 0:
-		for area in head_areas:
-			if area.is_in_group("Weapon"):
-				head_health -= 1
-				change_sprite()
-				return
+func reduce_enemy_health(_damage_dealt, area_hit=""):
+	if area_hit == "":
+		var rwing_areas = r_wing.get_overlapping_areas()
+		var head_areas = head.get_overlapping_areas()
+		var lwing_areas = l_wing.get_overlapping_areas()
+		if left_wing_health > 0:
+			for area in lwing_areas:
+				if area.is_in_group("Weapon"):
+					left_wing_health -= 1
+					change_sprite()
+					return
+		if right_wing_health > 0:
+			for area in rwing_areas:
+				if area.is_in_group("Weapon"):
+					right_wing_health -= 1
+					change_sprite()
+					return
+		if head_health > 0:
+			for area in head_areas:
+				if area.is_in_group("Weapon"):
+					head_health -= 1
+					change_sprite()
+					return
+	else:
+		if area_hit == "LeftWing" and left_wing_health > 0:
+			left_wing_health -= 1
+			change_sprite()
+			return
+		if area_hit == "RightWing" and right_wing_health > 0:
+			right_wing_health -= 1
+			change_sprite()
+			return
+		if area_hit == "Head" and head_health > 0:
+			head_health -= 1
+			change_sprite()
+			return
 				
 func change_sprite():
 	sprite_string = ""

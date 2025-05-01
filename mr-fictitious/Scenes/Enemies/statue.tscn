@@ -927,7 +927,6 @@ texture_progress = ExtResource("4_bbbje")
 tint_over = Color(1, 0, 0, 1)
 
 [node name="PoundArea" type="Area2D" parent="."]
-visible = false
 scale = Vector2(1.25, 1.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PoundArea"]

@@ -79,7 +79,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_7w4eh")
 health = 15
-base_speed = 400.0
+base_speed = 300.0
 damage = 20.0
 type = "Rat"
 
