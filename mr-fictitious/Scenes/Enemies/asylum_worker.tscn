@@ -63,14 +63,14 @@ animations = [{
 size = Vector2(54.2857, 94.3736)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_bt5o5")
-health = 15
-base_speed = 100.0
-damage = 5.0
-poison_proc_count = 3
-type = "Poison"
+health = 50
+base_speed = 50.0
+damage = 20.0
+type = "Worker"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-12, 8)
@@ -101,6 +101,7 @@ polygon = PackedVector2Array(0, 20, 600, 149, 604, -172, -2, -66)
 path_max_distance = 200.0
 simplify_path = true
 avoidance_enabled = true
+radius = 101.91
 
 [node name="NavTimer" type="Timer" parent="."]
 autostart = true

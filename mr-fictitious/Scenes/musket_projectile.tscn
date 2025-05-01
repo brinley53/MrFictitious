@@ -14,6 +14,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.81, 0.81, 0.81, 0)
 radius = 42.19
 
 [node name="MusketProjectile" type="Area2D" groups=["Bullet"]]
+collision_mask = 3
 script = ExtResource("1_w0858")
 btype = "Mini"
 

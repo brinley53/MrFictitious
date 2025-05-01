@@ -61,7 +61,7 @@ var shot_timer:Timer
 
 var patrol_points
 var dart_timer:Timer
-@export_enum("Wolf", "Rat", "Poison", "Ranged", "Griffin") var type : String
+@export_enum("Wolf", "Rat", "Worker", "Ranged", "Griffin") var type : String
 
 
 func _ready():
@@ -238,7 +238,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
 	if body.name == "Player":
 		attack_player = false
-		if (type == 'Poison'):
+		if (type == 'Wolf'):
 			player.poison(poison_proc_count, damage)			
 
 func _on_attack_timer_timeout() -> void:

@@ -20,6 +20,7 @@ animations = [{
 size = Vector2(65, 66.157)
 
 [node name="Mendoza" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ctcfq")
 health = 500.0

@@ -857,6 +857,7 @@ animations = [{
 }]
 
 [node name="Statue" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 script = ExtResource("1_ounb0")
 damage = 20.0
 

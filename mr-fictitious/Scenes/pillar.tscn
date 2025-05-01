@@ -30,4 +30,6 @@ shape = SubResource("RectangleShape2D_dwbr3")
 position = Vector2(-2.5, -1)
 shape = SubResource("RectangleShape2D_hs1oa")
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
 [connection signal="area_shape_entered" from="HitArea" to="." method="_on_hit_area_area_shape_entered"]

@@ -156,6 +156,7 @@ animations = [{
 size = Vector2(80, 69.8261)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ajgps")
 health = 20

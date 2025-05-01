@@ -10,6 +10,7 @@ radius = 3.0
 colors = PackedColorArray(1, 1, 1, 1, 0.87, 0.87, 0.87, 0)
 
 [node name="Bullet" type="Area2D" groups=["Bullet", "Weapon"]]
+collision_mask = 3
 script = ExtResource("1_tscs5")
 
 [node name="Timer" type="Timer" parent="."]

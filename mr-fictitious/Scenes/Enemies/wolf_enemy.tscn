@@ -96,11 +96,13 @@ animations = [{
 size = Vector2(114, 81)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ocemh")
-health = 25
+health = 35
 base_speed = 60.0
-damage = 25.0
+damage = 5.0
+poison_proc_count = 3
 type = "Wolf"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -128,10 +130,14 @@ polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+simplify_path = true
 avoidance_enabled = true
+radius = 100.91
 
 [node name="NavTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

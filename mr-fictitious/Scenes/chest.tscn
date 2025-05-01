@@ -19,4 +19,6 @@ texture = ExtResource("2_ncoq5")
 position = Vector2(-3, 1.90735e-06)
 shape = SubResource("RectangleShape2D_uxki8")
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

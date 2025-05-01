@@ -22,6 +22,7 @@ size = Vector2(65, 66.157)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wuf0x"]
 
 [node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 script = ExtResource("1_ccgou")
 health = 100.0
 damage = 100.0

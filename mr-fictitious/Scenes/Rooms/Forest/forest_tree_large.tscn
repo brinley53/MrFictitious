@@ -13,3 +13,5 @@ shape = SubResource("RectangleShape2D_uh76n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_h22di")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

@@ -13,3 +13,5 @@ texture = ExtResource("1_h8ea3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_l66sk")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

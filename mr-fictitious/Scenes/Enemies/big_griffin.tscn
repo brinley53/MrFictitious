@@ -156,6 +156,7 @@ animations = [{
 size = Vector2(109.091, 98.4783)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ebbb6")
 health = 20

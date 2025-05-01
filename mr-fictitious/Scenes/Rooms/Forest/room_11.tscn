@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1qkiafyadplm"]
+[gd_scene load_steps=10 format=3 uid="uid://b1qkiafyadplm"]
 
 [ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_boqkt"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="1_dygw5"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="2_7bf8q"]
 [ext_resource type="PackedScene" uid="uid://bilvi6f3lpo41" path="res://Scenes/Rooms/Forest/forest_tree_large.tscn" id="3_vkc1f"]
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="5_m0fcl"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="6_y2kf6"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="7_6ajdu"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="8_t3s8t"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1wrl7"]
+vertices = PackedVector2Array(1822, 970.969, 106.289, 967.023, 129.727, 146.617, 1822, 81.3906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(120, 137, 96, 977, 1832, 981, 1832, 71)])
 
 [node name="Room11" type="Node2D"]
 
@@ -157,3 +166,54 @@ position = Vector2(1723, 874)
 
 [node name="Bush21" parent="." instance=ExtResource("1_boqkt")]
 position = Vector2(290, 200)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("5_m0fcl")]
+position = Vector2(426, 538)
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("6_y2kf6")]
+position = Vector2(985, 807)
+patrol_a = NodePath("../Patrol3")
+patrol_b = NodePath("../Patrol4")
+
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("6_y2kf6")]
+position = Vector2(969, 203)
+patrol_a = NodePath("../Patrol4")
+patrol_b = NodePath("../Patrol3")
+
+[node name="CharacterBody2D4" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("7_6ajdu")]
+position = Vector2(1559, 515)
+patrol_a = NodePath("../Patrol")
+patrol_b = NodePath("../Patrol2")
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("5_m0fcl")]
+position = Vector2(821, 373)
+
+[node name="Patrol" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(306, 543)
+
+[node name="Patrol2" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(1582, 525)
+
+[node name="Patrol3" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(965, 233)
+
+[node name="Patrol4" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(979, 889)
+
+[node name="Patrol5" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(1172, 403)
+
+[node name="Patrol6" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(771, 605)
+
+[node name="Patrol7" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(1366, 479)
+
+[node name="Patrol8" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(621, 465)
+
+[node name="Patrol9" parent="." instance=ExtResource("8_t3s8t")]
+position = Vector2(1049, 500)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1wrl7")
