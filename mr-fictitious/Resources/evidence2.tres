@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Evidence" load_steps=2 format=3 uid="uid://ba1wqe46ht6i"]
+[gd_resource type="Resource" script_class="Evidence" load_steps=3 format=3 uid="uid://ba1wqe46ht6i"]
 
 [ext_resource type="Script" path="res://Scripts/evidence.gd" id="1_kwoyi"]
+[ext_resource type="Texture2D" uid="uid://dh0447ynepkbf" path="res://images/inventory-background.png" id="2_rg7hj"]
 
 [resource]
 script = ExtResource("1_kwoyi")
+texture = ExtResource("2_rg7hj")
 evidence_number = 2
 in_player_possession = false
 evidence_text = "This is evidence 2"

@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Evidence" load_steps=2 format=3 uid="uid://rydy18crntrf"]
+[gd_resource type="Resource" script_class="Evidence" load_steps=3 format=3 uid="uid://rydy18crntrf"]
 
 [ext_resource type="Script" path="res://Scripts/evidence.gd" id="1_c47b0"]
+[ext_resource type="Texture2D" uid="uid://dqmcje7xxo6n4" path="res://images/health pack.png" id="2_toc64"]
 
 [resource]
 script = ExtResource("1_c47b0")
+texture = ExtResource("2_toc64")
 evidence_number = 3
 in_player_possession = false
 evidence_text = "This is evidence3 1"

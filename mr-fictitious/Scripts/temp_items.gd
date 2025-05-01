@@ -10,6 +10,7 @@ extends Area2D
 #Possible Buffs
 @export_enum("Speed", "Dmg", "Nothing fr", "Evidence") var type : String
 @export var inventory_drop_item:InventoryItem;
+@export var evidence_item:Evidence;
 
 #BOOST VALUES
 var speed_boost: float = 1.5
@@ -30,5 +31,5 @@ func _on_body_entered(body: Node2D) -> void:
 				body.add_damage_item()
 				queue_free()
 		if type == "Evidence":
-			body.new_evidence_collected()
+			body.new_evidence_collected(evidence_item)
 			queue_free()

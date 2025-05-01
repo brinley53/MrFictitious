@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://iv3rs44ndq5c"]
+[gd_scene load_steps=12 format=4 uid="uid://iv3rs44ndq5c"]
 
 [ext_resource type="Texture2D" uid="uid://dnjhg25t0nm6a" path="res://images/revisedforesttiles.png" id="1_2s6mq"]
 [ext_resource type="PackedScene" uid="uid://ws7aumqg0k22" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="2_388ts"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="3_fkc5h"]
+[ext_resource type="PackedScene" uid="uid://cooahijcadpxe" path="res://Scenes/Inventory_evidence.tscn" id="4_1faor"]
 [ext_resource type="Material" uid="uid://c5pmjs1jtdnge" path="res://Resources/fogMaterial.tres" id="4_jg1eg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ht1my"]
@@ -149,7 +150,15 @@ position = Vector2(1864, 310)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("3_fkc5h")]
+offset_top = 2.0
+offset_bottom = -908.0
 metadata/_edit_use_anchors_ = true
+
+[node name="InventoryEvidence" parent="CanvasLayer" instance=ExtResource("4_1faor")]
+offset_left = 1336.0
+offset_top = 5.0
+offset_right = -18.0
+offset_bottom = -905.0
 
 [node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
 material = ExtResource("4_jg1eg")

@@ -249,7 +249,8 @@ func attack():
 	attack_area.position = attack_offset
 	attack_area.rotation = attack_direction.angle()
 
-func new_evidence_collected():
+func new_evidence_collected(evidence:Evidence):
+	inventory.collect_evidence(evidence)
 	evidence_collected += 1
 	if evidence_collected == 1:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")

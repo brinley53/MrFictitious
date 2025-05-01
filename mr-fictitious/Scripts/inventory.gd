@@ -3,9 +3,11 @@ extends Resource
 class_name Inventory
 
 @export var slots:Array[InventorySlot];
-@export var evidence_inventory:Array[Evidence]
+#@export var evidence_inventory:Array[Evidence]
+@export var evidenceSlots:Array[EvidenceSlot]
 var activeSlot:int=0
 signal update
+signal evidence_update
 func insert(item:InventoryItem):
 
 	var itemFound:bool = false
@@ -48,7 +50,8 @@ func clear():
 	for slot in slots:
 		slot.item = null
 		slot.amount = 0
-	evidence_inventory.clear()
+	for slot in evidenceSlots:
+		slot.item = null
 	update.emit()
 
 func equipSlot(index:int):
@@ -61,6 +64,18 @@ func use_item():
 	if not slots[activeSlot] or not slots[activeSlot].item:
 		return "NULL"
 	return slots[activeSlot].item.action
+	
+func collect_evidence(evi:Evidence):
+	insert_evidence(evi)
+	
+func insert_evidence(item:Evidence):
+	evidenceSlots[item.evidence_number-1].item = item
+	evidence_update.emit()
+
+func remove_evidence(item:Evidence):
+	evidenceSlots[item.evidence_number-1].item = null
+	evidence_update.emit()
+	
 	
 		
 		

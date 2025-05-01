@@ -50,4 +50,8 @@ tile_set = SubResource("TileSet_bv5rh")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("2_v5yvk")]
+offset_left = 6.0
+offset_top = 2.0
+offset_right = -1348.0
+offset_bottom = -908.0
 metadata/_edit_use_anchors_ = true
