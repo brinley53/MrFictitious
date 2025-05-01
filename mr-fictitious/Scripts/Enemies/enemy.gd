@@ -32,6 +32,8 @@ var speed : float
 @export var poison_proc_count : int
 @export var bullet_scene: PackedScene = preload("res://Scenes/bullet.tscn")
 @export var health_scene: PackedScene = preload("res://Scenes/health_item.tscn")
+@export var patrol_a : Area2D
+@export var patrol_b : Area2D
 var current_proc_count = 0
 
 var target_point:Node2D
@@ -65,14 +67,17 @@ var dart_timer:Timer
 func _ready():
 	#set initial variables
 	patrol_points = get_tree().get_nodes_in_group("Patrol")
-	if len(patrol_points) != 0:
-		point_a = randi_range(0, len(patrol_points)-1)
-		point_b = randi_range(0, len(patrol_points)-1)
-		while point_b == point_a:
+	if patrol_a == null or patrol_b == null:
+		if len(patrol_points) != 0:
+			point_a = randi_range(0, len(patrol_points)-1)
 			point_b = randi_range(0, len(patrol_points)-1)
-		target_point = patrol_points[point_a]
+			while point_b == point_a:
+				point_b = randi_range(0, len(patrol_points)-1)
+			target_point = patrol_points[point_a]
+		else:
+			target_point = player
 	else:
-		target_point = player
+		target_point = patrol_a
 	speed = base_speed
 	if type=="Rat":
 		dart_timer = $DartTimer
@@ -84,10 +89,13 @@ func _ready():
 		vulnerable_area = $Vulnerable
 	
 func reset_patrol():
-	if len(patrol_points) == 0:
-		target_point = player
+	if patrol_a == null or patrol_b == null:
+		if len(patrol_points) == 0:
+			target_point = player
+		else:
+			target_point = patrol_points[point_a]
 	else:
-		target_point = patrol_points[point_a]
+		target_point = patrol_a
 	chase_player = false
 	speed = base_speed
 	attack_player = false
@@ -124,7 +132,10 @@ func check_patrol():
 	#if we're close to the target point, change patrol points as the target point
 	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player and len(patrol_points) > 0:
 		# Swap target between point A and B
-		target_point = patrol_points[point_a] if target_point == patrol_points[point_b] else patrol_points[point_b]
+		if patrol_a == null or patrol_b == null:
+			target_point = patrol_points[point_a] if target_point == patrol_points[point_b] else patrol_points[point_b]
+		else:
+			target_point = patrol_a if target_point == patrol_b else patrol_b
 		if type == "Rat":
 			point_a = randi_range(0, len(patrol_points)-1)
 			point_b = randi_range(0, len(patrol_points)-1)
@@ -132,8 +143,7 @@ func check_patrol():
 				point_b = randi_range(0, len(patrol_points)-1)
 		
 	if target_point == null and len(patrol_points) > 0:
-		target_point = point_a
-		chase_player = false
+		reset_patrol()
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:

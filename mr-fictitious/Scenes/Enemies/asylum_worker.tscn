@@ -60,7 +60,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(93.5714, 123.965)
+size = Vector2(54.2857, 94.3736)
 
 [node name="CharacterBody2D2" type="CharacterBody2D" groups=["Enemies"]]
 motion_mode = 1
@@ -73,8 +73,8 @@ poison_proc_count = 3
 type = "Poison"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-11, 2)
-scale = Vector2(3.36, 4.22706)
+position = Vector2(-12, 8)
+scale = Vector2(2.12, 3.50706)
 shape = SubResource("CircleShape2D_w87jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -87,13 +87,13 @@ flip_h = true
 scale = Vector2(1.4, 1.25035)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-3.21428, -2.79922)
+position = Vector2(-7.14286, 5.59843)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(-2, 66, 615, 244, 649, -236, -1, -73)
+polygon = PackedVector2Array(0, 20, 600, 149, 604, -172, -2, -66)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -101,7 +101,6 @@ polygon = PackedVector2Array(-2, 66, 615, 244, 649, -236, -1, -73)
 path_max_distance = 200.0
 simplify_path = true
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="NavTimer" type="Timer" parent="."]
 autostart = true

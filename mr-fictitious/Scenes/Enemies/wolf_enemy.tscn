@@ -109,7 +109,6 @@ scale = Vector2(1.792, 1.45077)
 shape = SubResource("CircleShape2D_vweiy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_0dolo")
 animation = &"run"
 frame_progress = 0.434067

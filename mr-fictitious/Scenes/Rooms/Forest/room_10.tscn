@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bn87n0ngc34bw"]
+[gd_scene load_steps=9 format=4 uid="uid://bn87n0ngc34bw"]
 
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="1_bd7pk"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="1_t1hpc"]
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="2_qr4t7"]
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="3_wpxyf"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="4_b75kg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jb1d2"]
 texture = ExtResource("2_qr4t7")
@@ -87,11 +90,97 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jb1d2")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1mxmk"]
+vertices = PackedVector2Array(1773.39, 53.4922, 1804.95, 29.6406, 1802.77, 53.2109, 1786, 234.578, 124.023, 223.617, 107.133, 68.8906, 454, 65.6797, 454, 213.602, 408.844, 301.906, 98.3281, 994, 443.406, 810.352, 661.18, 628, 605, 628, 605, 370.531, 811.453, 381.297, 733.117, 583.797, 1479.04, 287.523, 1451.42, 221.602, 1447.26, 56.4922, 1791.92, 994, 1480, 738.578, 1443.43, 850.469, 1179.84, 870.422, 1114.4, 778.492, 1120.41, 778.75, 534.406, 856.398, 794.828, 813.172, 828.969, 217.594, 825.203, 62.25, 1100.78, 59.7031, 1112.75, 208.43, 1078.03, 262.594, 853.75, 311.563, 1107.62, 353.641, 1324, 364.508, 1324, 631.219, 1251.22, 632.938, 1167.37, 591.531, 1107.75, 629.688, 821.563, 620.563, 807.273, 795.07)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 4, 8, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(16, 17, 18, 0, 3, 19), PackedInt32Array(20, 16, 19), PackedInt32Array(21, 20, 19), PackedInt32Array(21, 19, 9, 22), PackedInt32Array(23, 24, 22, 9, 25, 26), PackedInt32Array(27, 28, 29, 30, 31, 32), PackedInt32Array(33, 34, 35, 36, 37), PackedInt32Array(38, 39, 15, 14, 32, 31, 33, 37), PackedInt32Array(40, 39, 38, 23), PackedInt32Array(9, 10, 25), PackedInt32Array(23, 26, 40)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1118, 635, 1126, 814, 797, 798, 811, 627, 734, 595, 664, 638, 595, 638, 595, 360, 806, 371, 843, 310, 819, 219, 815, 54, 464, 54, 464, 216, 419, 304, 453, 804, 536, 846, 789, 804, 822, 756, 1126, 769, 1185, 860, 1436, 841, 1470, 737, 1469, 271, 1817, 8, 1796, 235, 1802, 1004, 88, 1004, 114, 224, 96, 59, 1826, 43, 1473, 299, 1441.47, 223.72, 1437, 46, 1109, 37, 1123, 211, 1089, 264, 1115, 344, 1334, 355, 1334, 641, 1249, 643, 1168, 603)])
+
 [node name="Room10" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_t1hpc")]
-position = Vector2(887, 500)
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("1_t1hpc")]
+position = Vector2(1228, 579)
+patrol_a = NodePath("../Patrol4")
+patrol_b = NodePath("../Patrol3")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAKAAsAAAABAAQAAAAJAAsAAAABAAQAAAATAAsAAAABAAQAAAAUAAsAAAABAAQAAAAVAAsAAAAFAAIAAAAIAAsAAAAEAAIAAAAVAAoAAAAHAAAAAAAVAAkAAAAHAAAAAAAVAAgAAAAHAAAAAAAVAAcAAAAHAAAAAAAVAAYAAAAHAAAAAAAVAAUAAAAHAAAAAAAIAAoAAAAHAAEAAAAIAAkAAAAHAAEAAAAIAAgAAAAHAAEAAAAIAAcAAAAHAAEAAAAIAAYAAAAHAAEAAAAIAAUAAAAHAAEAAAALAAoAAAAFAAEAAAALAAsAAAAFAAIAAAASAAoAAAAEAAEAAAASAAsAAAAEAAIAAAAIAAQAAAAHAAIAAAAVAAQAAAAHAAQAAAAUAAQAAAABAAQAAAATAAQAAAABAAQAAAAJAAQAAAABAAQAAAAKAAQAAAABAAQAAAALAAQAAAACAAQAAAASAAQAAAAAAAQAAAA=")
 tile_set = SubResource("TileSet_37fef")
+
+[node name="Shadow" parent="." instance=ExtResource("3_wpxyf")]
+visible = false
+position = Vector2(604, 117)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
+polygon = PackedVector2Array(-35.3333, -74.6667, -66.6667, -18, -29.3333, 43.3333, -25.3333, 92.6667, 99.3333, 100, 114, 26.6667, 108, -64, 118.667, -78)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-22, 97.3333, -31.3333, 37.3333, -54.6667, 10.6667, -64, -13.3333, -60.6667, -40.6667, -44.6667, -64, -32.6667, -146, 108.667, -146, 108, -50.6667, 111.333, -25.3333, 121.333, 25.3333, 120, 56.6667, 96, 97.3333)
+
+[node name="Shadow2" parent="." instance=ExtResource("3_wpxyf")]
+position = Vector2(608, 865)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow2"]
+polygon = PackedVector2Array(-35.3333, -74.6667, -62, -28, -40.6667, 27.3333, -60, 64.6667, -30, 143.333, 107.333, 143.333, 102, 86, 109.333, -17.3333, 84.6667, -72)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow2"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-30, 212, -51.3333, 78.6667, -42, 32.6667, -52.6667, -15.3333, -60.6667, -40.6667, -44.6667, -64, -22, -72, 93.3333, -68.6667, 108, -50.6667, 111.333, -25.3333, 121.333, 25.3333, 112.667, 64.6667, 102, 100, 90.6667, 242)
+
+[node name="Shadow3" parent="." instance=ExtResource("3_wpxyf")]
+visible = false
+position = Vector2(1215, 110)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow3"]
+polygon = PackedVector2Array(-50, -78, -58.6666, -5.33334, -37.3333, 59.3333, -37.3333, 96.6667, 99.3333, 100, 106.667, 32, 108, -64, 118.667, -78)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow3"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-42.6666, 57.3333, -48, 10.6667, -52, -38.6667, -44.6667, -64, -36.6666, -148.667, 89.3334, -180.667, 108, -50.6667, 111.333, -25.3333, 110, 32, 115.333, 76.6667, 90.6667, 105.333, -32, 105.333)
+
+[node name="Shadow4" parent="." instance=ExtResource("3_wpxyf")]
+position = Vector2(1242, 869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow4"]
+polygon = PackedVector2Array(-35.3333, -74.6667, -41.3333, -5.33337, -39.3333, 72.6666, -25.3333, 131.333, 113.333, 135.333, 142, 40.6666, 113.333, -5.33337, 108, -64, 118.667, -78)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow4"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-34, 203.333, -44.6666, 56.6666, -30.6666, 76, -32.6666, 21.3333, -41.3333, -14.6667, -44.6666, -44.6667, -22, -72, 93.3333, -68.6667, 108, -50.6667, 104.667, -14.6667, 142, 28, 140, 62, 132, 198)
+
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("1_t1hpc")]
+position = Vector2(700, 428)
+patrol_a = NodePath("../Patrol")
+patrol_b = NodePath("../Patrol2")
+
+[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("4_b75kg")]
+position = Vector2(968, 901)
+patrol_a = NodePath("../Patrol8")
+patrol_b = NodePath("../Patrol7")
+
+[node name="Patrol" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(648, 396)
+
+[node name="Patrol2" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(1266, 402)
+
+[node name="Patrol3" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(658, 584)
+
+[node name="Patrol4" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(1262, 576)
+
+[node name="Patrol5" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(230, 156)
+
+[node name="Patrol6" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(1734, 146)
+
+[node name="Patrol7" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(184, 886)
+
+[node name="Patrol8" parent="." instance=ExtResource("1_bd7pk")]
+position = Vector2(1726, 886)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1mxmk")
