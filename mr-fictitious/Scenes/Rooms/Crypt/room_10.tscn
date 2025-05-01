@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://carm2pyrsmujo"]
+[gd_scene load_steps=2 format=3 uid="uid://carm2pyrsmujo"]
+
+[ext_resource type="PackedScene" uid="uid://3np4nw4ssrca" path="res://Scenes/pillar.tscn" id="1_wimbp"]
 
 [node name="Room10" type="Node2D"]
+
+[node name="Pillar" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(198, 296)
+
+[node name="Pillar2" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(1722, 768)
+
+[node name="Pillar3" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(1594, 768)
+
+[node name="Pillar4" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(1466, 768)
+
+[node name="Pillar5" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(1722, 296)
+
+[node name="Pillar6" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(1594, 296)
+
+[node name="Pillar7" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(1466, 296)
+
+[node name="Pillar8" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(454, 768)
+
+[node name="Pillar9" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(326, 768)
+
+[node name="Pillar10" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(198, 768)
+
+[node name="Pillar11" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(454, 296)
+
+[node name="Pillar12" parent="." instance=ExtResource("1_wimbp")]
+position = Vector2(326, 296)

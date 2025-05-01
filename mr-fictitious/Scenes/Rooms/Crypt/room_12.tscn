@@ -1,3 +1,59 @@
-[gd_scene format=3 uid="uid://bsofmr6qyyvbm"]
+[gd_scene load_steps=2 format=3 uid="uid://bsofmr6qyyvbm"]
+
+[ext_resource type="PackedScene" uid="uid://3np4nw4ssrca" path="res://Scenes/pillar.tscn" id="1_ga3pi"]
 
 [node name="Room12" type="Node2D"]
+
+[node name="Pillar" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(390, 864)
+
+[node name="Pillar2" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1722, 768)
+
+[node name="Pillar3" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1722, 864)
+
+[node name="Pillar4" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1626, 864)
+
+[node name="Pillar5" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1530, 864)
+
+[node name="Pillar6" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1434, 864)
+
+[node name="Pillar7" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1338, 864)
+
+[node name="Pillar8" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(294, 864)
+
+[node name="Pillar10" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(198, 768)
+
+[node name="Pillar9" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(198, 864)
+
+[node name="Pillar11" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(582, 864)
+
+[node name="Pillar12" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(486, 864)
+
+[node name="Pillar13" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1722, 198)
+
+[node name="Pillar14" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(198, 198)
+
+[node name="Pillar15" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(768, 348)
+
+[node name="Pillar16" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1152, 348)
+
+[node name="Pillar17" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(768, 732)
+
+[node name="Pillar18" parent="." instance=ExtResource("1_ga3pi")]
+position = Vector2(1152, 732)
