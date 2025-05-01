@@ -1,41 +1,139 @@
-[gd_scene load_steps=2 format=3 uid="uid://j42kpwebhfw0"]
+[gd_scene load_steps=6 format=3 uid="uid://j42kpwebhfw0"]
 
 [ext_resource type="PackedScene" uid="uid://3np4nw4ssrca" path="res://Scenes/pillar.tscn" id="1_ylo5w"]
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="2_aj6fr"]
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="3_0vkmv"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_8brf1"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4sw6y"]
+vertices = PackedVector2Array(1761.16, 126.5, 1761.16, 126.492, 1769.78, 953.609, 643.477, 166.867, 643.469, 166.859, 1752.02, 126.828, 1348.15, 421.039, 1344.8, 328.383, 1769.77, 953.617, 1699.63, 955.039, 1345.5, 848.883, 1327.6, 749.313, 1285.1, 482.992, 1230.85, 733, 778.789, 484, 1761.13, 123.797, 650.758, 731.992, 658.344, 478.813, 1769.87, 962.813, 627.008, 976.719, 158.133, 981.883, 168.867, 186.594, 610.188, 896.953, 1310.43, 908.406, 760.492, 914.008, 607.93, 793.977, 621.07, 436.883, 618.891, 324.563, 694.117, 276.992, 1266.76, 278.891)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(0, 2, 6, 7, 5), PackedInt32Array(6, 2, 8, 9, 10, 11, 12), PackedInt32Array(12, 11, 13, 14), PackedInt32Array(5, 15, 0), PackedInt32Array(14, 13, 16, 17), PackedInt32Array(8, 18, 9), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 10, 9), PackedInt32Array(23, 9, 19, 24), PackedInt32Array(22, 24, 19), PackedInt32Array(25, 22, 21), PackedInt32Array(17, 16, 25, 21, 26), PackedInt32Array(27, 26, 21), PackedInt32Array(27, 21, 3, 28), PackedInt32Array(28, 3, 5, 29), PackedInt32Array(5, 7, 29)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(159, 177, 148, 992, 627.211, 986.715, 1801, 963, 1351, 898, 761, 904, 620, 888, 618, 797, 656, 742, 1230, 743, 1319, 758, 1335, 847, 1292, 920, 1780, 974, 1771, 110, 1253, 282, 1335, 334, 1338, 417, 1281, 473, 779, 474, 663, 469, 631, 433, 629, 330, 697, 287, 1301, 289, 1775, 116, 643.06, 156.881)])
 
 [node name="Room13" type="Node2D"]
 
-[node name="Pillar" parent="." instance=ExtResource("1_ylo5w")]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4sw6y")
+
+[node name="Pillar" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1008, 760)
+lit = true
 
-[node name="Pillar2" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar2" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1200, 320)
+lit = true
 
-[node name="Pillar3" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar3" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1104, 320)
+lit = true
 
-[node name="Pillar4" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar4" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1008, 320)
+lit = true
 
-[node name="Pillar5" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar5" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(912, 320)
+lit = true
 
-[node name="Pillar6" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar6" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(816, 320)
+lit = true
 
-[node name="Pillar7" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar7" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(720, 320)
+lit = true
 
-[node name="Pillar8" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar8" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(912, 760)
+lit = true
 
-[node name="Pillar10" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar10" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(720, 760)
+lit = true
 
-[node name="Pillar9" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar9" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(816, 760)
+lit = true
 
-[node name="Pillar11" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar11" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1200, 760)
+lit = true
 
-[node name="Pillar12" parent="." instance=ExtResource("1_ylo5w")]
+[node name="Pillar12" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1104, 760)
+
+[node name="Shadow" parent="." instance=ExtResource("2_aj6fr")]
+position = Vector2(-38, 252)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-162.667, 66, -146, 164.667, -107.333, 286, -54, 312.667, 99.3333, 318, 184.667, 306, 246.667, 286, 260.667, 264, 282, 222, 307.333, 161.333, 304, 124.667, 285.333, 101.333, 257.333, 92.6667, 188, 87.3333, 134.667, 67.3333, 106, 42, 40.6667, 34, 2, 47.3333, -25.3333, 57.3333, -74, 59.3333, -132.667, 57.3333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
+polygon = PackedVector2Array(-42, 300.667, 116, 306, 242, 289.333, 285.333, 213.333, 307.333, 160, 254, 111.333, 174.667, 84, 100.667, 50.6667, 72, 54, 26.6667, 60.6667, -74, 69.3333, -139.333, 72.6667)
+
+[node name="Shadow2" parent="." instance=ExtResource("2_aj6fr")]
+position = Vector2(501, 775)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow2"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-44.6667, 269.333, -66, 225.333, -78.6667, 162.667, -82, 122, -86, 68.6667, -75.3333, 36.6667, -50, 13.3333, -7.33331, 4.66669, 48, 26, 88.6667, 75.3333, 120.667, 98.6667, 154.667, 132.667, 158, 170, 140, 218, 124, 246.667, 58.6667, 253.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow2"]
+polygon = PackedVector2Array(-55.3333, 226.667, -78.6667, 138, -87.3333, 63.3333, -32.6667, 16.6667, 3.33334, 10, 81.3333, 50.6667, 128, 96.6667, 136.667, 159.333, 131.333, 239.333, 117.333, 262.667, -38, 269.333)
+
+[node name="Shadow4" parent="." instance=ExtResource("2_aj6fr")]
+position = Vector2(1775, 46)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow4"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(131.333, 13.3333, 10, 45.3333, -79.3334, 47.3333, -102, 79.3333, -138, 124, -150, 150.667, -155.333, 204, -157.333, 239.333, -141.333, 294.667, -122, 318, -68, 355.333, -30.6666, 367.333, 63.3334, 388.667, 120, 390.667, 172, 372.667, 202, 305.333, 202, 178.667)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow4"]
+polygon = PackedVector2Array(140, 40, -75.3334, 63.3333, -98.6666, 100.667, -116.667, 125.333, -143.333, 159.333, -150, 193.333, -143.333, 273.333, -79.3334, 337.333, 24, 362, 152.667, 364, 196.667, 280.667, 198.667, 154)
+
+[node name="Shadow3" parent="." instance=ExtResource("2_aj6fr")]
+position = Vector2(1503, 796)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow3"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-44.6667, 269.333, -97.3333, 257.333, -108, 202, -111.333, 140, -86, 68.6667, -75.3333, 36.6667, -50, 13.3333, -6, 18.6667, 59.3334, 24, 91.3334, 65.3333, 120.667, 98.6667, 136, 147.333, 148.667, 202, 140, 218, 124, 246.667, 58.6667, 253.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow3"]
+polygon = PackedVector2Array(-86, 243.333, -104, 152.667, -87.3333, 63.3333, -32.6667, 16.6667, 3.33334, 10, 81.3333, 50.6667, 113.333, 113.333, 136.667, 159.333, 131.333, 239.333, 117.333, 262.667, -38, 269.333)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("3_0vkmv")]
+position = Vector2(731, 656)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("3_0vkmv")]
+position = Vector2(732, 579)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("3_0vkmv")]
+position = Vector2(728, 490)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("3_0vkmv")]
+position = Vector2(1167, 669)
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("3_0vkmv")]
+position = Vector2(1165, 581)
+
+[node name="CharacterBody2D8" parent="." instance=ExtResource("3_0vkmv")]
+position = Vector2(1162, 486)
+
+[node name="Patrol" parent="." instance=ExtResource("4_8brf1")]
+position = Vector2(1655, 384)
+
+[node name="Patrol2" parent="." instance=ExtResource("4_8brf1")]
+position = Vector2(1659, 559)
+
+[node name="Patrol3" parent="." instance=ExtResource("4_8brf1")]
+position = Vector2(1666, 756)
+
+[node name="Patrol4" parent="." instance=ExtResource("4_8brf1")]
+position = Vector2(281, 362)
+
+[node name="Patrol5" parent="." instance=ExtResource("4_8brf1")]
+position = Vector2(285, 537)
+
+[node name="Patrol6" parent="." instance=ExtResource("4_8brf1")]
+position = Vector2(292, 734)

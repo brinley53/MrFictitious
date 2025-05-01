@@ -37,8 +37,8 @@ const PROJECTILE_SPEED = 600.0
 var base_speed := SPEED
 var buff_speed := 1.0
 var debuff_speed := 1.0
-var health = 100
-var max_health = 100
+var health = 300
+var max_health = 300
 var bullets = 3
 var attack_radius_x = 20 
 var attack_radius_y = 35
@@ -229,7 +229,7 @@ func attack():
 	var bodies = $AttackArea.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
-			body.reduce_enemy_health(5)
+			body.reduce_enemy_health(current_damage)
 			
 	# Check for statue area hit
 	var areas = $AttackArea.get_overlapping_areas()
@@ -237,7 +237,7 @@ func attack():
 		var body = area.get_parent()
 		if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
 			if body.has_method("reduce_enemy_health"):
-				body.reduce_enemy_health(10)
+				body.reduce_enemy_health(current_damage, area.name)
 				break
 	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)

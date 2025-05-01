@@ -1,41 +1,85 @@
-[gd_scene load_steps=2 format=3 uid="uid://carm2pyrsmujo"]
+[gd_scene load_steps=6 format=3 uid="uid://carm2pyrsmujo"]
 
 [ext_resource type="PackedScene" uid="uid://3np4nw4ssrca" path="res://Scenes/pillar.tscn" id="1_wimbp"]
+[ext_resource type="PackedScene" uid="uid://c4vff8h827008" path="res://Scenes/Enemies/skull.tscn" id="2_w5e4n"]
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="3_rkndk"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_hkngx"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3d3dd"]
+vertices = PackedVector2Array(1421.35, 444.039, 1700.18, 441.117, 1653.27, 724.461, 1623.14, 730.172, 1549.53, 743.906, 1474.03, 737.047, 1413.04, 729.289, 1369.81, 901.094, 524.594, 909.867, 527.117, 892.672, 571.172, 871.156, 1380.25, 779.641, 516.313, 746.008, 167.039, 744.969, 184.422, 445.109, 524.406, 449.063, 178.711, 163.977, 1732.49, 161.023, 1726.5, 282.563, 1466.07, 270.953, 1363.96, 294.844, 507.25, 270.977, 175.477, 273.656, 577.789, 305.109, 1352.39, 385.094, 568.648, 380.492, 568.867, 784.859)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(16, 19, 20, 21), PackedInt32Array(21, 22, 16), PackedInt32Array(23, 21, 20, 24), PackedInt32Array(25, 23, 24), PackedInt32Array(6, 11, 10, 26, 24, 0), PackedInt32Array(12, 15, 25, 24, 26)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(169, 154, 1743, 151, 1736, 293, 1467, 281, 1373, 303, 1363, 381, 1425, 434, 1712, 431, 1662, 733, 1625, 740, 1550, 754, 1473, 747, 1418, 740, 1390, 783, 1379, 911, 513, 920, 518, 886, 561, 865, 559, 790, 513, 756, 156.443, 754.939, 175, 435, 519, 439, 559, 377, 567, 311, 505, 281, 165.179, 283.748)])
 
 [node name="Room10" type="Node2D"]
 
-[node name="Pillar" parent="." instance=ExtResource("1_wimbp")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_w5e4n")]
+position = Vector2(1320, 640)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_w5e4n")]
+position = Vector2(576, 397)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("3_rkndk")]
+position = Vector2(587, 633)
+
+[node name="Patrol" parent="." instance=ExtResource("4_hkngx")]
+position = Vector2(910, 858)
+
+[node name="Patrol2" parent="." instance=ExtResource("4_hkngx")]
+position = Vector2(905, 219)
+
+[node name="Patrol3" parent="." instance=ExtResource("4_hkngx")]
+position = Vector2(1513, 545)
+
+[node name="Patrol4" parent="." instance=ExtResource("4_hkngx")]
+position = Vector2(408, 527)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_3d3dd")
+
+[node name="Pillar" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(198, 296)
+lit = true
 
-[node name="Pillar2" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar2" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(1722, 768)
+lit = true
 
-[node name="Pillar3" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar3" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(1594, 768)
+lit = true
 
-[node name="Pillar4" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar4" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(1466, 768)
+lit = true
 
-[node name="Pillar5" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar5" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(1722, 296)
+lit = true
 
-[node name="Pillar6" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar6" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(1594, 296)
+lit = true
 
-[node name="Pillar7" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar7" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(1466, 296)
+lit = true
 
-[node name="Pillar8" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar8" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(454, 768)
+lit = true
 
-[node name="Pillar9" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar9" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(326, 768)
+lit = true
 
-[node name="Pillar10" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar10" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(198, 768)
+lit = true
 
-[node name="Pillar11" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar11" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(454, 296)
+lit = true
 
-[node name="Pillar12" parent="." instance=ExtResource("1_wimbp")]
+[node name="Pillar12" parent="NavigationRegion2D" instance=ExtResource("1_wimbp")]
 position = Vector2(326, 296)
+lit = true

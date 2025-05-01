@@ -1,59 +1,114 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsofmr6qyyvbm"]
+[gd_scene load_steps=5 format=3 uid="uid://bsofmr6qyyvbm"]
 
 [ext_resource type="PackedScene" uid="uid://3np4nw4ssrca" path="res://Scenes/pillar.tscn" id="1_ga3pi"]
+[ext_resource type="PackedScene" uid="uid://c4vff8h827008" path="res://Scenes/Enemies/skull.tscn" id="2_d32vl"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_4ah3f"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_t3x46"]
+vertices = PackedVector2Array(1257.39, 354.492, 1647.57, 326.813, 1705.27, 344.219, 1747.04, 749.453, 1679.63, 745.859, 1254.97, 440.25, 1623.43, 301.391, 850.938, 130.703, 1077.32, 343.648, 1056.58, 423.32, 879.523, 369.859, 843.961, 339.258, 795.297, 931.953, 796.18, 935.594, 656.789, 931.32, 661.398, 873.297, 1083.01, 726.172, 869.578, 459.313, 1075.54, 481.383, 1130.03, 717, 1748.94, 337.633, 1243.98, 489.094, 1639.93, 768.188, 1303.59, 838.961, 1247.64, 781.359, 1209.71, 717, 1150.5, 487.992, 1640.87, 843.852, 1233.66, 841.969, 1262.49, 860.656, 154.867, 175.617, 154.141, 122.117, 223.063, 180.109, 265.891, 195.492, 286.82, 220.117, 1637.4, 125.992, 1747.98, 125.078, 1747.88, 192.344, 1646.6, 198.43, 1582.3, 129, 1184.53, 865.227, 1248.1, 889.438, 1246.39, 929.383, 1079.05, 921.992, 1152.97, 868.039, 1065.7, 764.523, 1073.3, 818.844, 854.148, 783.156, 838.352, 726.75, 846.211, 856.859, 1093.32, 862.406, 1215.67, 314.461, 1137.64, 305.672, 851.281, 125.961, 1094.91, 125, 1255.68, 130.977, 290.141, 288.742, 777.977, 327.008, 685.703, 325.906, 694.398, 727.32, 239.82, 734.313, 191.773, 729.859, 182.203, 352.656, 262.281, 331.688, 658.367, 412.453, 684.852, 476.922, 735.578, 719.094, 836.07, 496.422, 806.68, 712.813, 754.688, 488.922, 781.406, 874.438, 779.898, 868.156, 749.352, 864.773, 696.406, 841.117, 630.328, 850, 267.789, 755.93, 679.602, 770.5, 309.891, 850, 270.758, 825.328, 1631.22, 245.742, 1252.36, 352.172)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 1, 0), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 10, 9, 18, 19), PackedInt32Array(2, 20, 3), PackedInt32Array(21, 5, 4, 22, 23, 24, 25), PackedInt32Array(26, 21, 25, 19), PackedInt32Array(22, 27, 23), PackedInt32Array(28, 24, 23, 29), PackedInt32Array(30, 31, 7, 32), PackedInt32Array(33, 32, 7), PackedInt32Array(34, 33, 7), PackedInt32Array(35, 36, 37, 38, 39), PackedInt32Array(40, 41, 42, 43, 44), PackedInt32Array(18, 26, 19), PackedInt32Array(45, 46, 47, 48), PackedInt32Array(49, 47, 46, 50, 43), PackedInt32Array(51, 52, 7, 53, 54, 55), PackedInt32Array(56, 34, 7, 57, 58), PackedInt32Array(28, 29, 41, 40), PackedInt32Array(50, 44, 43), PackedInt32Array(59, 60, 61, 62, 63, 64, 65, 66), PackedInt32Array(67, 17, 16, 45, 48, 68), PackedInt32Array(69, 67, 68, 66), PackedInt32Array(65, 69, 66), PackedInt32Array(49, 43, 12, 70), PackedInt32Array(70, 12, 15), PackedInt32Array(71, 70, 15, 72), PackedInt32Array(73, 72, 15, 74), PackedInt32Array(75, 76, 73, 74, 77, 78), PackedInt32Array(55, 39, 79, 6, 0, 80, 51), PackedInt32Array(39, 38, 79), PackedInt32Array(7, 52, 8), PackedInt32Array(7, 11, 57), PackedInt32Array(56, 58, 64, 63), PackedInt32Array(75, 60, 59, 76)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(144, 112, 875, 121, 847, 350, 777, 337, 693, 336, 669, 412, 692, 468, 756, 479, 832, 486, 860, 455, 869, 374, 826, 337, 842, 116, 1095, 115, 1283, 122, 1285, 328, 1247, 361, 1211, 324, 1140, 316, 1086, 350, 1067, 423, 1083, 472, 1151, 478, 1236, 479, 1245, 439, 1254, 121, 1582, 119, 1637, 116, 1758, 115, 1757.87, 201.76, 1654, 208, 1641, 248, 1634, 298, 1653, 318, 1706, 334, 1759, 326, 1757, 760, 1682, 756, 1650, 774, 1651, 854, 1306, 849, 1270, 868, 1258, 892, 1256, 939, 1168, 862, 1225, 835, 1237, 783, 1204, 727, 1131, 727, 1090, 735, 1076, 766, 1083, 816, 1100, 853, 1153, 858, 1198, 854, 1260, 940, 1079, 932, 794, 942, 778, 865, 837, 849, 844, 784, 830, 734, 805, 723, 737, 729, 702, 736, 690, 771, 705, 834, 752, 855, 788, 859, 809, 946, 646, 941, 651, 878, 627, 860, 307, 860, 261, 831, 258, 761, 236, 744, 182, 739, 172, 345, 256, 323, 280, 286, 277, 224, 260, 204, 221, 190, 145, 185)])
 
 [node name="Room12" type="Node2D"]
 
-[node name="Pillar" parent="." instance=ExtResource("1_ga3pi")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_d32vl")]
+position = Vector2(940, 752)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_d32vl")]
+position = Vector2(730, 546)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("2_d32vl")]
+position = Vector2(932, 367)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("2_d32vl")]
+position = Vector2(1176, 537)
+
+[node name="Patrol2" parent="." instance=ExtResource("3_4ah3f")]
+position = Vector2(937, 195)
+
+[node name="Patrol3" parent="." instance=ExtResource("3_4ah3f")]
+position = Vector2(343, 498)
+
+[node name="Patrol4" parent="." instance=ExtResource("3_4ah3f")]
+position = Vector2(951, 532)
+
+[node name="Patrol5" parent="." instance=ExtResource("3_4ah3f")]
+position = Vector2(1573, 519)
+
+[node name="Patrol6" parent="." instance=ExtResource("3_4ah3f")]
+position = Vector2(951, 857)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_t3x46")
+
+[node name="Pillar" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(390, 864)
+lit = true
 
-[node name="Pillar2" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar2" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1722, 768)
+lit = true
 
-[node name="Pillar3" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar3" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1722, 864)
+lit = true
 
-[node name="Pillar4" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar4" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1626, 864)
+lit = true
 
-[node name="Pillar5" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar5" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1530, 864)
+lit = true
 
-[node name="Pillar6" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar6" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1434, 864)
+lit = true
 
-[node name="Pillar7" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar7" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1338, 864)
+lit = true
 
-[node name="Pillar8" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar8" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(294, 864)
+lit = true
 
-[node name="Pillar10" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar10" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(198, 768)
+lit = true
 
-[node name="Pillar9" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar9" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(198, 864)
+lit = true
 
-[node name="Pillar11" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar11" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(582, 864)
+lit = true
 
-[node name="Pillar12" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar12" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(486, 864)
+lit = true
 
-[node name="Pillar13" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar13" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1722, 198)
+lit = true
 
-[node name="Pillar14" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar14" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(198, 198)
+lit = true
 
-[node name="Pillar15" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar15" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(768, 348)
+lit = true
 
-[node name="Pillar16" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar16" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1152, 348)
+lit = true
 
-[node name="Pillar17" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar17" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(768, 732)
+lit = true
 
-[node name="Pillar18" parent="." instance=ExtResource("1_ga3pi")]
+[node name="Pillar18" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1152, 732)
+lit = true

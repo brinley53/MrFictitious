@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=4 uid="uid://bf5geg7bb1bo6"]
 
-[ext_resource type="Script" path="res://Scenes/Rooms/Crypt/crypt_boss_room.gd" id="1_albye"]
+[ext_resource type="Script" path="res://Scripts/crypt_boss_room.gd" id="1_albye"]
 [ext_resource type="Texture2D" uid="uid://f08qhyswc6d8" path="res://images/crypt_tiles.png" id="1_thm4l"]
 [ext_resource type="PackedScene" uid="uid://bm8vr7nfbo4g8" path="res://Scenes/Enemies/shadow_boss.tscn" id="2_euvxa"]
 [ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="3_pjs4q"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="4_sd4ns"]
-[ext_resource type="PackedScene" uid="uid://bhiogteav11a8" path="res://Scenes/pillar.tscn" id="5_xfqq6"]
+[ext_resource type="PackedScene" uid="uid://3np4nw4ssrca" path="res://Scenes/pillar.tscn" id="5_xfqq6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l7m1"]
 texture = ExtResource("1_thm4l")
@@ -69,6 +69,7 @@ position = Vector2(153, 189)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("4_sd4ns")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Red" type="Node2D" parent="."]
 

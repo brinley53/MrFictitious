@@ -1,3 +1,55 @@
-[gd_scene format=3 uid="uid://bqkfsqq8b2454"]
+[gd_scene load_steps=6 format=3 uid="uid://bqkfsqq8b2454"]
+
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="1_76jnc"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="2_xppfl"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_4tqap"]
+[ext_resource type="PackedScene" uid="uid://c4vff8h827008" path="res://Scenes/Enemies/skull.tscn" id="4_1vvgj"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xndow"]
+vertices = PackedVector2Array(1715.82, 944.961, 200.961, 940.031, 198.031, 190.82, 1702.17, 164.172)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(188, 181, 191, 950, 1726, 955, 1712, 154)])
 
 [node name="Room14" type="Node2D"]
+
+[node name="Shadow" parent="." instance=ExtResource("1_76jnc")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-69.3333, -49.3333, -68.6667, 4, -84, 110.667, -78, 192.667, -26.6667, 279.333, 10, 312.667, 56.6667, 336.667, 94.6667, 336.667, 134.667, 326, 176.667, 306.667, 212, 294.667, 256, 288, 277.333, 266.667, 283.333, 224, 304.667, 184.667, 324.667, 174, 340, 169.333, 353.333, 140.667, 365.333, 106, 379.333, 76.6667, 380.667, 28, 372.667, -6.66667, 345.333, -44.6667, 286.667, -81.3333, 200, -105.333, 64.6667, -119.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
+polygon = PackedVector2Array(-29.3333, 273.333, 50.6667, 330.667, 140.667, 310.667, 268, 268.667, 297.333, 191.333, 348.667, 165.333, 353.333, 89.3333, 365.333, 17.3333, 306, -37.3333, 137.333, -94.6667, 10, -85.3333, -61.3333, -40, -68.6667, 83.3333, -44.6667, 170, -26.6667, 209.333)
+
+[node name="Shadow2" parent="." instance=ExtResource("1_76jnc")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow2"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(868, -44, 866.667, -26.6667, 857.333, 16, 857.333, 30.6667, 862.667, 57.3333, 869.333, 94.6667, 873.333, 114.667, 900, 154.667, 920, 170.667, 974.667, 188, 1006.67, 189.333, 1041.33, 193.333, 1064, 206.667, 1078.67, 217.333, 1128, 224, 1164, 224, 1200, 253.333, 1226.67, 276, 1252, 289.333, 1301.33, 294.667, 1333.33, 292, 1394.67, 192, 1393.33, 94.6667, 1385.33, -2.66667, 1341.33, -128, 1240, -145.333, 985.333, -73.3333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow2"]
+polygon = PackedVector2Array(881.333, -49.3333, 862.667, 18.6667, 866.667, 89.3333, 882.667, 130.667, 944, 178.667, 962.667, 185.333, 1020, 190.667, 1053.33, 204, 1074.67, 213.333, 1104, 214.667, 1160, 225.333, 1190.67, 234.667, 1238.67, 265.333, 1297.33, 274.667, 1370.67, 258.667, 1394.67, 178.667, 1376, 33.3333, 1337.33, -77.3333)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_xppfl")]
+position = Vector2(1578, 221)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("2_xppfl")]
+position = Vector2(300, 242)
+
+[node name="Patrol" parent="." instance=ExtResource("3_4tqap")]
+position = Vector2(1561, 221)
+
+[node name="Patrol2" parent="." instance=ExtResource("3_4tqap")]
+position = Vector2(1574, 853)
+
+[node name="Patrol3" parent="." instance=ExtResource("3_4tqap")]
+position = Vector2(289, 859)
+
+[node name="Patrol4" parent="." instance=ExtResource("3_4tqap")]
+position = Vector2(306, 217)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_xndow")
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("4_1vvgj")]
+position = Vector2(931, 727)
