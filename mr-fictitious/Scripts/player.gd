@@ -1,6 +1,6 @@
 """
 Script focused on the player, it has it's movement, attacks, and taking damage
-Authors: Jose Leyba, Brinley Hull
+Authors: Jose Leyba, Brinley Hull, Tej Gumaste
 Creation Date: 03/27/2025
 Revisions:
 	Brinley Hull - 4/2/2025: Animation
@@ -17,6 +17,7 @@ Revisions:
 	Brinley Hull - 4/27/2025: Dialogue pause boolean
 	Tej Gumaste - 4/27/2025 : Removed Overlapping music
 	Brinley Hull - 4/29/2025: All dialogue
+	Brinley Hull - 5/1/2025: Enemy knockback
 """
 class_name Player
 extends CharacterBody2D
@@ -230,6 +231,7 @@ func attack():
 	for body in bodies:
 		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(current_damage)
+			body.knockback(global_position)
 			
 	# Check for statue area hit
 	var areas = $AttackArea.get_overlapping_areas()
