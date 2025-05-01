@@ -79,9 +79,9 @@ shape = SubResource("CircleShape2D_w87jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_42n1k")
 animation = &"run"
-flip_h = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 scale = Vector2(1.4, 1.25035)

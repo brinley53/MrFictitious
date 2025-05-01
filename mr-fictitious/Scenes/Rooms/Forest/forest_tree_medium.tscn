@@ -1,17 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqev1q2d8iw6s"]
+[gd_scene load_steps=2 format=3 uid="uid://cqev1q2d8iw6s"]
 
 [ext_resource type="Texture2D" uid="uid://y0xe1owattki" path="res://images/treesprite2.png" id="1_7kk4a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufjhc"]
-size = Vector2(83, 114)
-
 [node name="ForestTreeMedium" type="StaticBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-19.5, 47)
-shape = SubResource("RectangleShape2D_ufjhc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7kk4a")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-19.5, 47)
+polygon = PackedVector2Array(-18.5, -58, 22.5, -60, 18.5, -4, 34.5, 23, 19.5, 33, 15.5, 50, -0.5, 49, -22.5, 40, -18.5, 28, -31.5, 32, -37.5, 26, -21.5, -1, -18.5, -64)

@@ -50,7 +50,7 @@ var flashlight_items = 0
 var dmg_items = 0
 var speed_items = 0
 
-var base_damage = 1
+var base_damage = 5
 var damage_difference = 0
 var current_damage = base_damage
 var speed_buff_timer :Timer = null

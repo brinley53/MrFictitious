@@ -1,17 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ws7aumqg0k22"]
+[gd_scene load_steps=2 format=3 uid="uid://ws7aumqg0k22"]
 
 [ext_resource type="Texture2D" uid="uid://dcfngxaevryj4" path="res://images/treewall.png" id="1_m88in"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_81b3u"]
-size = Vector2(208, 178)
 
 [node name="ForestTree" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m88in")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 45)
-shape = SubResource("RectangleShape2D_81b3u")
-
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-85, 48, -100, 67, -73, 87, -27, 72, -40, 100, 3, 127, 36, 100, 28, 81, 90, 84, 89, 58, 70, 41, 65, -26, -68, -25, -69, 32)

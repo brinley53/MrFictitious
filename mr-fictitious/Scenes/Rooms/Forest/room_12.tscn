@@ -1,9 +1,17 @@
-[gd_scene load_steps=7 format=4 uid="uid://bnforrw8frynl"]
+[gd_scene load_steps=11 format=4 uid="uid://bnforrw8frynl"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_xi3pu"]
 [ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="2_u3xac"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="3_a8ffw"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="4_7tyhb"]
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="5_ykvox"]
+[ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="6_h58st"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="7_a1tkk"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tgcci"]
+vertices = PackedVector2Array(85.7031, 49.9922, 1872.19, 49.0078, 1868.76, 51.6172, 1536.43, 284.43, 423.953, 261.898, 1849.19, 1009.03, 1554.59, 361.328, 1515.88, 435.438, 382.906, 318.898, 56.3125, 1014.96, 385.109, 399.039, 428.547, 445.906, 774.742, 452.789, 768.898, 679.938, 1123.95, 614.617, 1129.63, 461.789, 1447.51, 454.969, 1084.02, 750.172, 837.719, 750.922, 958.992, 784.367)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(2, 5, 6, 3), PackedInt32Array(7, 6, 5), PackedInt32Array(0, 4, 8), PackedInt32Array(9, 0, 8, 10), PackedInt32Array(9, 10, 11), PackedInt32Array(11, 12, 13, 9), PackedInt32Array(14, 15, 16, 5), PackedInt32Array(16, 7, 5), PackedInt32Array(17, 14, 5), PackedInt32Array(9, 13, 18), PackedInt32Array(9, 18, 19), PackedInt32Array(5, 9, 19), PackedInt32Array(5, 19, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(76, 40, 46, 1025, 1859, 1019, 1879, 40, 1527, 288, 1544, 360, 1509, 427, 1446, 445, 1120, 452, 1114, 613, 1076, 742, 959, 774, 843, 742, 779, 676, 785, 443, 433, 436, 395, 395, 393, 322, 429, 272, 1564, 295, 1902, 39)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfb3n"]
 texture = ExtResource("1_xi3pu")
@@ -91,33 +99,75 @@ sources/0 = SubResource("TileSetAtlasSource_rfb3n")
 
 [node name="Room12" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="CharacterBody2D3" parent="." instance=ExtResource("5_ykvox")]
+position = Vector2(376, 208)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("5_ykvox")]
+position = Vector2(1175, 145)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("5_ykvox")]
+position = Vector2(1582, 455)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("5_ykvox")]
+position = Vector2(1203, 838)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_h58st")]
+position = Vector2(438, 705)
+
+[node name="Patrol" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(392, 510)
+
+[node name="Patrol2" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(916, 924)
+
+[node name="Patrol3" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(921, 184)
+
+[node name="Patrol4" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(1338, 529)
+
+[node name="Patrol5" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(1519, 721)
+
+[node name="Patrol6" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(665, 702)
+
+[node name="Patrol7" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(1642, 238)
+
+[node name="Patrol8" parent="." instance=ExtResource("7_a1tkk")]
+position = Vector2(358, 174)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_tgcci")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAAIAAUAAAABAAQAAAAJAAUAAAABAAQAAAAKAAUAAAABAAQAAAALAAUAAAABAAQAAAAMAAUAAAABAAQAAAANAAUAAAABAAQAAAAOAAUAAAABAAQAAAAPAAUAAAABAAQAAAAQAAUAAAABAAQAAAARAAUAAAABAAQAAAASAAUAAAABAAQAAAATAAUAAAABAAQAAAAUAAUAAAABAAQAAAAVAAUAAAABAAQAAAAWAAUAAAACAAQAAAAHAAUAAAAAAAQAAAA=")
 tile_set = SubResource("TileSet_34b0n")
 
-[node name="Bush2" parent="." instance=ExtResource("2_u3xac")]
+[node name="Bush2" parent="NavigationRegion2D" instance=ExtResource("2_u3xac")]
 position = Vector2(1038, 530)
 
-[node name="Bush3" parent="." instance=ExtResource("2_u3xac")]
+[node name="Bush3" parent="NavigationRegion2D" instance=ExtResource("2_u3xac")]
 position = Vector2(913, 686)
 
-[node name="ForestTreeSmall" parent="." instance=ExtResource("3_a8ffw")]
+[node name="ForestTreeSmall" parent="NavigationRegion2D" instance=ExtResource("3_a8ffw")]
 position = Vector2(881, 399)
 
-[node name="ForestTreeSmall2" parent="." instance=ExtResource("3_a8ffw")]
+[node name="ForestTreeSmall2" parent="NavigationRegion2D" instance=ExtResource("3_a8ffw")]
 position = Vector2(1057, 428)
 
-[node name="ForestTreeSmall3" parent="." instance=ExtResource("3_a8ffw")]
+[node name="ForestTreeSmall3" parent="NavigationRegion2D" instance=ExtResource("3_a8ffw")]
 position = Vector2(859, 525)
 
-[node name="ForestTreeMedium" parent="." instance=ExtResource("4_7tyhb")]
+[node name="ForestTreeMedium" parent="NavigationRegion2D" instance=ExtResource("4_7tyhb")]
 position = Vector2(1029, 619)
 
-[node name="ForestTreeMedium2" parent="." instance=ExtResource("4_7tyhb")]
+[node name="ForestTreeMedium2" parent="NavigationRegion2D" instance=ExtResource("4_7tyhb")]
 position = Vector2(973, 457)
 
-[node name="Bush" parent="." instance=ExtResource("2_u3xac")]
+[node name="Bush" parent="NavigationRegion2D" instance=ExtResource("2_u3xac")]
 position = Vector2(858, 643)
 
-[node name="Bush4" parent="." instance=ExtResource("2_u3xac")]
+[node name="Bush4" parent="NavigationRegion2D" instance=ExtResource("2_u3xac")]
 position = Vector2(926, 596)

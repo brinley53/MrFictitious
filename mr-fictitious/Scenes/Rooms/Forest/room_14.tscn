@@ -1,3 +1,50 @@
-[gd_scene format=3 uid="uid://cbt4p8qkdcbkk"]
+[gd_scene load_steps=4 format=3 uid="uid://cbt4p8qkdcbkk"]
+
+[ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="2_i3ryt"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_fv52u"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2hdmr"]
+vertices = PackedVector2Array(730.523, 113.75, 719.547, 38, 1198.28, 38, 1238.41, 136.313, 1825, 109.461, 1825, 991.008, 141.367, 992.977, 173.633, 125.789)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(3, 6, 7, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(164, 116, 719, 104, 708, 28, 1205, 28, 1245, 126, 1835, 99, 1835, 1001, 131, 1003)])
 
 [node name="Room14" type="Node2D"]
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("2_i3ryt")]
+position = Vector2(916, 360)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("2_i3ryt")]
+position = Vector2(1079, 502)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("2_i3ryt")]
+position = Vector2(734, 505)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("2_i3ryt")]
+position = Vector2(929, 646)
+
+[node name="Patrol" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(577, 304)
+
+[node name="Patrol2" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(1335, 312)
+
+[node name="Patrol3" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(1327, 742)
+
+[node name="Patrol4" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(612, 763)
+
+[node name="Patrol5" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(329, 517)
+
+[node name="Patrol6" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(935, 119)
+
+[node name="Patrol7" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(1568, 559)
+
+[node name="Patrol8" parent="." instance=ExtResource("3_fv52u")]
+position = Vector2(959, 941)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_2hdmr")

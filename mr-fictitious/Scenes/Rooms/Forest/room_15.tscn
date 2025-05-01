@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=4 uid="uid://ctyfrk076mbsv"]
+[gd_scene load_steps=11 format=4 uid="uid://ctyfrk076mbsv"]
 
 [ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_daw6s"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="2_lkhss"]
 [ext_resource type="PackedScene" uid="uid://bilvi6f3lpo41" path="res://Scenes/Rooms/Forest/forest_tree_large.tscn" id="3_tjce0"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="4_a553k"]
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="5_pwlcn"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="6_3v78w"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="7_j281l"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_glbeh"]
+vertices = PackedVector2Array(1743.98, 757.68, 1737.46, 831.117, 1687.9, 801.063, 217.859, 625.25, 148, 621.938, 143.203, 248.531, 215.141, 280.781, 296.141, 335.461, 256.703, 595.563, 1652.78, 348.117, 1743.5, 313.68, 1738, 476.938, 1617.75, 406.523, 1298.55, 574.828, 1428.81, 513.75, 1488.9, 489.398, 1638.77, 799.922, 1590.72, 835.953, 1512.82, 835, 1292.54, 673.773, 1296.7, 581.492, 1411.04, 839.93, 1337.43, 820.781, 1236.63, 704.758, 1245.04, 836.711, 786.828, 283.75, 759.602, 103.828, 1224.15, 97.1406, 1226.01, 213.469, 1234.94, 328.672, 1223.08, 409.359, 205.727, 674.477, 210.492, 770.117, 148, 770.867, 404.961, 355.344, 327.742, 604.18, 655.898, 701.844, 1205.34, 878.383, 1142.63, 884.18, 1062.2, 916.352, 1042.96, 967.297, 854.492, 872.094, 781.391, 835.023, 882.25, 974.508, 709.32, 801.039, 596.969, 672.203, 591.578, 799.023, 513.406, 774.758, 515.219, 742.188, 503.297, 687.453, 569.93, 613.133, 589.992, 559.031, 459.063, 648.93, 494.703, 321.047, 1315.06, 515.141, 1316.2, 510.992, 1223.08, 467.641, 1561.4, 455.281, 395.93, 650.93, 359.672, 635.156, 624.773, 523.117, 563.492, 322.93, 640.398, 361.906, 670.648, 517.813, 709.617, 335.953, 1251.73, 517.813, 1255.69, 508.344, 1522.15, 452.328)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 11, 0, 2, 16), PackedInt32Array(13, 16, 17, 18), PackedInt32Array(19, 20, 13, 18, 21, 22), PackedInt32Array(23, 19, 22, 24), PackedInt32Array(25, 26, 27, 28), PackedInt32Array(25, 28, 29, 30), PackedInt32Array(31, 32, 33, 4), PackedInt32Array(3, 31, 4), PackedInt32Array(8, 7, 34, 35), PackedInt32Array(36, 23, 24, 37, 38), PackedInt32Array(36, 38, 39), PackedInt32Array(36, 39, 40, 41, 42), PackedInt32Array(40, 43, 41), PackedInt32Array(36, 42, 44), PackedInt32Array(45, 36, 44, 46, 47, 48), PackedInt32Array(45, 48, 49, 50), PackedInt32Array(51, 50, 49, 52, 34, 53), PackedInt32Array(54, 55, 14), PackedInt32Array(25, 30, 56), PackedInt32Array(57, 12, 11), PackedInt32Array(58, 59, 35, 34, 52), PackedInt32Array(60, 51, 53, 61, 62), PackedInt32Array(63, 60, 62, 64), PackedInt32Array(65, 63, 64, 25, 56, 66), PackedInt32Array(65, 66, 54, 13), PackedInt32Array(13, 54, 14), PackedInt32Array(57, 11, 15, 67)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(133, 233, 138, 622, 138, 781, 221, 780, 215.788, 675.449, 226.727, 631.063, 259.543, 605.975, 323.185, 613.694, 354.012, 643.607, 394, 661, 455.443, 659.046, 494.225, 692.818, 505.164, 742.994, 503, 782, 590, 809, 707, 811, 777, 844, 846, 879, 874.706, 984.862, 1050, 977, 1070, 924, 1145, 894, 1210, 888, 1250, 846, 1337, 831, 1410, 850, 1513, 845, 1594, 846, 1642, 810, 1685, 811, 1746, 848, 1754, 758, 1748, 477, 1754, 299, 1646, 340, 1610, 400, 1558, 445, 1518, 442, 1483, 481, 1426.99, 503.692, 1308.65, 500.797, 1286.78, 579.922, 1282.8, 667.73, 1234.07, 694.748, 658.304, 691.853, 604.605, 664.835, 580.739, 612.729, 598.639, 564.483, 629.466, 532.64, 671.231, 527.815, 1247, 527.815, 1297.71, 589.571, 1370.31, 511.412, 1260.92, 498.868, 1233.08, 464.13, 1233.08, 410.094, 1245, 329, 1236, 213, 1234, 87, 748, 94, 776, 279, 705, 327, 641, 351, 566, 313, 493, 311, 404, 345, 300, 326, 220, 272)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ec00h"]
 texture = ExtResource("5_pwlcn")
@@ -92,111 +99,138 @@ sources/0 = SubResource("TileSetAtlasSource_ec00h")
 
 [node name="Room15" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(14, 5)
+scale = Vector2(1.00561, 1.03635)
+navigation_polygon = SubResource("NavigationPolygon_glbeh")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAAUAAYAAAAAAAQAAAAVAAYAAAABAAQAAAAWAAYAAAAFAAIAAAAEAAsAAAAEAAIAAAAFAAsAAAABAAQAAAAGAAsAAAACAAQAAAAMAAkAAAABAAQAAAANAAkAAAABAAQAAAAOAAkAAAABAAQAAAAPAAkAAAABAAQAAAAQAAkAAAABAAQAAAAEAAoAAAAEAAEAAAAWAAUAAAAFAAEAAAALAAkAAAABAAQAAAARAAkAAAABAAQAAAASAAkAAAACAAQAAAAKAAkAAAAAAAQAAAA=")
 tile_set = SubResource("TileSet_lfyv2")
 
-[node name="Bush" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1208, 933)
 
-[node name="Bush2" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush2" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1114, 951)
 
-[node name="Bush3" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush3" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1705, 940)
 
-[node name="Bush4" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush4" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1288, 881)
 
-[node name="Bush5" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush5" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1748, 219)
 
-[node name="Bush6" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush6" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1370, 269)
 
-[node name="Bush7" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush7" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(810, 939)
 
-[node name="Bush8" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush8" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(161, 925)
 
-[node name="Bush9" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush9" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(728, 884)
 
-[node name="Bush10" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush10" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1295, 209)
 
-[node name="Bush11" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush11" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(439, 268)
 
-[node name="Bush12" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush12" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(206, 186)
 
-[node name="Bush13" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush13" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(713, 250)
 
-[node name="Bush14" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush14" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(571, 206)
 
-[node name="Bush15" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush15" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(485, 868)
 
-[node name="Bush16" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush16" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(358, 909)
 
-[node name="Bush17" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush17" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1497, 221)
 
-[node name="Bush18" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush18" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1537, 900)
 
-[node name="Bush19" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush19" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1668, 256)
 
-[node name="Bush20" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush20" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(287, 245)
 
-[node name="Bush21" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush21" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(1647, 877)
 
-[node name="Bush22" parent="." instance=ExtResource("1_daw6s")]
+[node name="Bush22" parent="NavigationRegion2D" instance=ExtResource("1_daw6s")]
 position = Vector2(234, 860)
 
-[node name="ForestTreeSmall" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(1463, 862)
 
-[node name="ForestTreeSmall2" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall2" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(1373, 896)
 
-[node name="ForestTreeSmall3" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall3" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(1299, 275)
 
-[node name="ForestTreeSmall4" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall4" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(1605, 203)
 
-[node name="ForestTreeSmall5" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall5" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(655, 868)
 
-[node name="ForestTreeSmall6" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall6" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(297, 890)
 
-[node name="ForestTreeSmall7" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall7" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(509, 188)
 
-[node name="ForestTreeSmall8" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall8" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(375, 231)
 
-[node name="ForestTreeSmall9" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall9" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(1457, 265)
 
-[node name="ForestTreeSmall10" parent="." instance=ExtResource("2_lkhss")]
+[node name="ForestTreeSmall10" parent="NavigationRegion2D" instance=ExtResource("2_lkhss")]
 position = Vector2(447, 899)
 
-[node name="ForestTreeLarge2" parent="." instance=ExtResource("3_tjce0")]
+[node name="ForestTreeLarge2" parent="NavigationRegion2D" instance=ExtResource("3_tjce0")]
 position = Vector2(539, 855)
 
-[node name="ForestTreeMedium" parent="." instance=ExtResource("4_a553k")]
+[node name="ForestTreeMedium" parent="NavigationRegion2D" instance=ExtResource("4_a553k")]
 position = Vector2(1567, 304)
 
-[node name="ForestTreeMedium2" parent="." instance=ExtResource("4_a553k")]
+[node name="ForestTreeMedium2" parent="NavigationRegion2D" instance=ExtResource("4_a553k")]
 position = Vector2(656, 223)
+
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("6_3v78w")]
+position = Vector2(909, 456)
+patrol_a = NodePath("../Patrol")
+patrol_b = NodePath("../Patrol4")
+
+[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("6_3v78w")]
+position = Vector2(1003, 730)
+patrol_a = NodePath("../Patrol4")
+patrol_b = NodePath("../Patrol3")
+
+[node name="Patrol" parent="." instance=ExtResource("7_j281l")]
+position = Vector2(377, 465)
+
+[node name="Patrol2" parent="." instance=ExtResource("7_j281l")]
+position = Vector2(1529, 721)
+
+[node name="Patrol3" parent="." instance=ExtResource("7_j281l")]
+position = Vector2(604, 721)
+
+[node name="Patrol4" parent="." instance=ExtResource("7_j281l")]
+position = Vector2(1122, 460)

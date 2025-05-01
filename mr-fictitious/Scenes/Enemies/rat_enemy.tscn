@@ -75,6 +75,7 @@ animations = [{
 size = Vector2(65, 72)
 
 [node name="CharacterBody2D3" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_7w4eh")
 health = 15
