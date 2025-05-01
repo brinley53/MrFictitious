@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://vcgj5uh2pu36"]
+[gd_scene load_steps=3 format=3 uid="uid://vcgj5uh2pu36"]
+
+[ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/shovel.tscn" id="1_gne78"]
+[ext_resource type="PackedScene" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="2_s7b7g"]
 
 [node name="Room16" type="Node2D"]
+
+[node name="Perm_Buff_Dmg" parent="." instance=ExtResource("1_gne78")]
+position = Vector2(966, 542)
+
+[node name="ForestTreeMedium" parent="." instance=ExtResource("2_s7b7g")]
+position = Vector2(881, 447)
+
+[node name="ForestTreeMedium2" parent="." instance=ExtResource("2_s7b7g")]
+position = Vector2(1091, 449)
+
+[node name="ForestTreeMedium3" parent="." instance=ExtResource("2_s7b7g")]
+position = Vector2(981, 345)
+
+[node name="ForestTreeMedium4" parent="." instance=ExtResource("2_s7b7g")]
+position = Vector2(816, 577)
+
+[node name="ForestTreeMedium5" parent="." instance=ExtResource("2_s7b7g")]
+position = Vector2(1175, 579)

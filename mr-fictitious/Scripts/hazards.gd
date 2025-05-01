@@ -21,18 +21,19 @@ func _ready():
 	damage_timer.timeout.connect(_on_damage_tick)
 
 func _on_body_entered(body: Node2D) -> void:
+	
 	if body.name == "Player":
 		player_in_area = body
 		if type == "Spikes":
 			damage_timer.start()
-		elif type == "Goo":
+		if type == "Spikes":
 			player_in_area.set_speed_multiplier(slow_multiplier)
 
 func _on_body_exited(body: Node2D) -> void:
 	if body == player_in_area:
 		if type == "Spikes":
 			damage_timer.stop()
-		elif type == "Goo":
+		if type == "Spikes":
 			player_in_area.set_speed_multiplier(1)
 		player_in_area = null
 
