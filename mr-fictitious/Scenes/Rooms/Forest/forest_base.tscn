@@ -155,10 +155,10 @@ offset_bottom = -908.0
 metadata/_edit_use_anchors_ = true
 
 [node name="InventoryEvidence" parent="CanvasLayer" instance=ExtResource("4_1faor")]
-offset_left = 1336.0
-offset_top = 5.0
-offset_right = -18.0
-offset_bottom = -905.0
+offset_left = 1617.0
+offset_top = 11.0
+offset_right = 263.0
+offset_bottom = -899.0
 
 [node name="FogEffect" type="TextureRect" parent="CanvasLayer"]
 material = ExtResource("4_jg1eg")
