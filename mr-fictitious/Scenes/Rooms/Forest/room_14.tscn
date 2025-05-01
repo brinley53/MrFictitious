@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbt4p8qkdcbkk"]
+[gd_scene load_steps=6 format=3 uid="uid://cbt4p8qkdcbkk"]
 
 [ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="2_i3ryt"]
+[ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="3_dykyf"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_fv52u"]
+[ext_resource type="PackedScene" uid="uid://bwvwhki3unhqy" path="res://Scenes/flashlight_item.tscn" id="4_ooknr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2hdmr"]
 vertices = PackedVector2Array(730.523, 113.75, 719.547, 38, 1198.28, 38, 1238.41, 136.313, 1825, 109.461, 1825, 991.008, 141.367, 992.977, 173.633, 125.789)
@@ -48,3 +50,12 @@ position = Vector2(1007, 871)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_2hdmr")
+
+[node name="Speed" parent="." instance=ExtResource("3_dykyf")]
+position = Vector2(948, 742)
+
+[node name="Speed2" parent="." instance=ExtResource("3_dykyf")]
+position = Vector2(942, 297)
+
+[node name="flashlight_item" parent="." instance=ExtResource("4_ooknr")]
+position = Vector2(940, 527)

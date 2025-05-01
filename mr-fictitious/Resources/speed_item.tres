@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://33ycyixyfh7v"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_kq4f8"]
-[ext_resource type="Texture2D" uid="uid://dh0447ynepkbf" path="res://images/inventory-background.png" id="2_7x07v"]
+[ext_resource type="Texture2D" uid="uid://by4fv00pxuwlc" path="res://images/speed pill sprite.png" id="2_qo71x"]
 
 [resource]
 script = ExtResource("1_kq4f8")
-texture = ExtResource("2_7x07v")
+texture = ExtResource("2_qo71x")
 action = "SPEED"

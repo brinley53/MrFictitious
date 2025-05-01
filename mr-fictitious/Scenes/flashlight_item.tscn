@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/flashlight_item.gd" id="1_dc8jj"]
 [ext_resource type="Resource" uid="uid://cg5p63ke61wwi" path="res://Resources/flashlight_item.tres" id="2_te6tw"]
-[ext_resource type="Texture2D" uid="uid://clo0uetylsacs" path="res://images/icon.svg" id="3_yvb5c"]
+[ext_resource type="Texture2D" uid="uid://hhnecb5ufhvo" path="res://images/flashlight.png" id="3_2xm3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jip1a"]
 size = Vector2(138, 130)
@@ -13,7 +13,8 @@ script = ExtResource("1_dc8jj")
 inventory_drop_item = ExtResource("2_te6tw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_yvb5c")
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("3_2xm3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)

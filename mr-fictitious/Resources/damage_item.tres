@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bdfitxxak6gok"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_1ufcg"]
-[ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_w30v0"]
+[ext_resource type="Texture2D" uid="uid://1qgssrbgixwq" path="res://images/strength shot (its meth shhhh).png" id="2_0y43u"]
 
 [resource]
 script = ExtResource("1_1ufcg")
-texture = ExtResource("2_w30v0")
+texture = ExtResource("2_0y43u")
 action = "DMG"

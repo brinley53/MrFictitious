@@ -21,7 +21,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("6_6domw")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_7bh2k")]
-position = Vector2(234, 227)
+position = Vector2(288, 227)
 
 [node name="sword" parent="." instance=ExtResource("6_1haym")]
 position = Vector2(1151, 356)

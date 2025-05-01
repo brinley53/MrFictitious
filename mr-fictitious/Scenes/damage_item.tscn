@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbh0rq1ugw0ng"]
 
 [ext_resource type="Script" path="res://Scripts/temp_items.gd" id="1_cbojx"]
-[ext_resource type="Texture2D" uid="uid://boqbol6lnf815" path="res://images/coin.svg" id="2_fsclw"]
 [ext_resource type="Resource" uid="uid://bdfitxxak6gok" path="res://Resources/damage_item.tres" id="2_kxppd"]
+[ext_resource type="Texture2D" uid="uid://1qgssrbgixwq" path="res://images/strength shot (its meth shhhh).png" id="3_nmcv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxki8"]
 size = Vector2(178, 178)
@@ -15,8 +15,8 @@ inventory_drop_item = ExtResource("2_kxppd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -0.999988)
-scale = Vector2(0.2, 0.187)
-texture = ExtResource("2_fsclw")
+scale = Vector2(2, 1.87)
+texture = ExtResource("3_nmcv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 3)

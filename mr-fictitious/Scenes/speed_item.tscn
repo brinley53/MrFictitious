@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1nsdeigj4w22"]
 
 [ext_resource type="Script" path="res://Scripts/temp_items.gd" id="1_j8ycd"]
-[ext_resource type="Texture2D" uid="uid://dh0447ynepkbf" path="res://images/inventory-background.png" id="2_6fhjw"]
 [ext_resource type="Resource" uid="uid://33ycyixyfh7v" path="res://Resources/speed_item.tres" id="2_h40hl"]
+[ext_resource type="Texture2D" uid="uid://by4fv00pxuwlc" path="res://images/speed pill sprite.png" id="3_k3uaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxki8"]
 size = Vector2(123.205, 115.068)
@@ -15,8 +15,8 @@ inventory_drop_item = ExtResource("2_h40hl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -0.999988)
-scale = Vector2(7, 6.531)
-texture = ExtResource("2_6fhjw")
+scale = Vector2(1.6, 1.493)
+texture = ExtResource("3_k3uaa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 1.90735e-06)

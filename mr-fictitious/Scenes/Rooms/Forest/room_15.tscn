@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://ctyfrk076mbsv"]
+[gd_scene load_steps=12 format=4 uid="uid://ctyfrk076mbsv"]
 
-[ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_daw6s"]
+[ext_resource type="PackedScene" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_daw6s"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="2_lkhss"]
 [ext_resource type="PackedScene" uid="uid://bilvi6f3lpo41" path="res://Scenes/Rooms/Forest/forest_tree_large.tscn" id="3_tjce0"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="4_a553k"]
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="5_pwlcn"]
 [ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="6_3v78w"]
+[ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="6_bmlem"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="7_j281l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_glbeh"]
@@ -212,6 +213,12 @@ position = Vector2(1567, 304)
 
 [node name="ForestTreeMedium2" parent="NavigationRegion2D" instance=ExtResource("4_a553k")]
 position = Vector2(656, 223)
+
+[node name="Spikes" parent="NavigationRegion2D" instance=ExtResource("6_bmlem")]
+position = Vector2(293.354, 349.303)
+
+[node name="Spikes2" parent="NavigationRegion2D" instance=ExtResource("6_bmlem")]
+position = Vector2(1663.67, 733.343)
 
 [node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("6_3v78w")]
 position = Vector2(909, 456)
