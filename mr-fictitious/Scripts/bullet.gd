@@ -7,6 +7,7 @@ Revisions:
 """
 extends Area2D
 @export var drop_item:InventoryItem;
+@onready var bulletResource = preload("res://Resources/bullet.tres")
 
 
 
@@ -14,9 +15,9 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	print("Body entered:", body.name)
 	if body.name == "Player":
-		if body.collectItem(drop_item):
-			body.add_bullet()
-			queue_free()
+		body.collectItem(bulletResource)
+		body.add_bullet()
+		queue_free()
 
 
 	
