@@ -106,6 +106,7 @@ radius = 101.91
 [node name="NavTimer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

@@ -20,7 +20,8 @@ Revisions:
 	Brinley Hull - 4/21/2025: Better Navigation
 	Brinley Hull - 4/22/2025: Darting Rats
 	Jose Leyba  - 4/24/2025: Stun Function
-	Brinley Hull - 4/26/2024: Ranged Enemy
+	Brinley Hull - 4/26/2025: Ranged Enemy
+	Brinley Hull - 5/1/2025: Knockback
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -39,6 +40,10 @@ var current_proc_count = 0
 var target_point:Node2D
 var point_a = 0
 var point_b = 0
+
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_strength := 600.0
+var knockback_decay := 2000.0
 
 #chase player variables
 var chase_player = false
@@ -107,6 +112,12 @@ func _physics_process(delta: float) -> void:
 		return
 	if player.stealth and chase_player:
 		reset_patrol()
+		
+	if knockback_velocity.length() > 0:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+		move_and_slide()
+		return
 		
 	if type=="Rat":
 		if stand:
@@ -202,7 +213,7 @@ func chase(body: Node2D) -> void:
 	else:
 		sprite.play("walk")
 		speed = base_speed
-			
+	
 	velocity = dir * speed
 	
 	# face the sprite and detection cone based on what direction we're going
@@ -263,3 +274,7 @@ func _on_shot_timer_timeout() -> void:
 			pass
 		shoot_player()
 		shot_timer.start()
+
+func knockback(pos):
+	var direction = (global_position - pos).normalized()
+	knockback_velocity = direction * knockback_strength

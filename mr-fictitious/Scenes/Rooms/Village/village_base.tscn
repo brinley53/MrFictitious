@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://dargaxylas2kq"]
+[gd_scene load_steps=9 format=4 uid="uid://dargaxylas2kq"]
 
 [ext_resource type="Texture2D" uid="uid://duh1ue844iai" path="res://images/cobble stone tile.png" id="1_f6nta"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_7yepn"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="3_6aksj"]
+[ext_resource type="PackedScene" uid="uid://cooahijcadpxe" path="res://Scenes/Inventory_evidence.tscn" id="4_ivglg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s5lyw"]
 texture = ExtResource("1_f6nta")
@@ -38,3 +39,9 @@ tile_set = SubResource("TileSet_gmvxd")
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("3_6aksj")]
 metadata/_edit_use_anchors_ = true
+
+[node name="InventoryEvidence" parent="CanvasLayer" instance=ExtResource("4_ivglg")]
+offset_left = 1617.0
+offset_top = 11.0
+offset_right = 263.0
+offset_bottom = -899.0

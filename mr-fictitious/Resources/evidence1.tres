@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Evidence" load_steps=2 format=3 uid="uid://bhvtuus8gw5ec"]
+[gd_resource type="Resource" script_class="Evidence" load_steps=3 format=3 uid="uid://bhvtuus8gw5ec"]
 
 [ext_resource type="Script" path="res://Scripts/evidence.gd" id="1_3ysge"]
+[ext_resource type="Texture2D" uid="uid://c48qrclb6xykf" path="res://images/evidence.png" id="2_5k1hw"]
 
 [resource]
 script = ExtResource("1_3ysge")
+texture = ExtResource("2_5k1hw")
 evidence_number = 1
 in_player_possession = false
 evidence_text = "This is evidence 1"
