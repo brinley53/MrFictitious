@@ -17,28 +17,20 @@ process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 783.0
-offset_top = 442.0
+offset_left = 802.0
+offset_top = 571.0
 offset_right = -864.0
-offset_bottom = -491.0
+offset_bottom = -415.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_b6lds")
 text = "Resume Game"
 
-[node name="Glossary" type="Button" parent="CanvasLayer"]
-offset_left = 794.0
-offset_top = 611.0
-offset_right = 1048.0
-offset_bottom = 701.0
-theme_override_fonts/font = ExtResource("2_b6lds")
-text = "Glossary"
-
 [node name="Exit" type="Button" parent="CanvasLayer"]
-offset_left = 792.0
-offset_top = 733.0
-offset_right = 1046.0
-offset_bottom = 823.0
+offset_left = 802.0
+offset_top = 680.0
+offset_right = 1056.0
+offset_bottom = 770.0
 theme_override_fonts/font = ExtResource("2_b6lds")
 text = "Exit
 "
@@ -55,7 +47,6 @@ text = "X
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/Glossary" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]
