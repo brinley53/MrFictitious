@@ -67,7 +67,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 2
+var evidence_collected = 0
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -87,6 +87,7 @@ var musket_attack_uses = 0
 var max_musket_attacks = 15
 var original_polygon = []
 var original_sprite_scale = Vector2.ONE
+var start = true
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -276,7 +277,11 @@ func inmate_dialogue():
 	if in_dialogue:
 		return
 	if evidence_collected < 2:
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "inmate")
+		if start:
+			starting_dialogue()
+			start = false
+		else:
+			dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "inmate")
 	else:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence2")	
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
@@ -527,16 +532,13 @@ func reset_shovel():
 func _on_dialogue_started(_resource: DialogueResource):
 	# Function to pause everything while dialogue is on
 	in_dialogue = true
-	print('in dialogue')
 
 func _on_dialogue_finished(_resource: DialogueResource):
 	# Function to resume everything when dialogue is done
 	in_dialogue = false
-	print('ended')
 	
 func _on_balloon_closed(_resource: DialogueResource):
 	in_dialogue = false
-	print('closed')
 
 func _input(event: InputEvent) -> void:
 	# Skip dialogue option
@@ -587,11 +589,12 @@ func play_footstep_sound(location:int):
 		_:
 			print("Wrong room loser")
 
-func receive_current_location(location:int):
-	print("Location recevived %d", location)
+func receive_current_location(location, central=false):
 	if dialogue_balloon != null:
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
+	if !central:
+		start = false
 	current_player_state = PLAYER_STATE.Explore
 	play_sound(AK.EVENTS.EXPLORE)
 	if current_location!=location:

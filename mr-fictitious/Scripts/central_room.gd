@@ -14,4 +14,3 @@ extends Node2D
 func _ready() -> void:
 	# call starting dialogue
 	await get_tree().process_frame  # Wait one frame so screen appears
-	player.starting_dialogue()

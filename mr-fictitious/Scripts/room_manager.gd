@@ -145,7 +145,6 @@ func _ready() -> void:
 func receive_player(object:Player):
 	# Store an instance of the player
 	# to update on location changes.
-	print("Player received")
 	playerInstance = object
 
 func get_active_room() -> Node:
@@ -174,8 +173,7 @@ func set_active_room(location:Location, room:int) -> void:
 	call_deferred("add_child", rooms[active_location][active_room])
 
 	# Send the updated location to the player.
-	print("Sending Player Location")
-	playerInstance.receive_current_location(location)
+	playerInstance.receive_current_location(location, active_location==Location.CENTRAL)
 
 	# Update the new active room's edges.
 	if edges.has(active_location):
