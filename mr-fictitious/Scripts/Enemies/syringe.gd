@@ -55,3 +55,4 @@ func initialize_bullet(target_position: Vector2, type_str="Poison") -> void:
 	target = target_position
 	var direction = (target_position - global_position).normalized()
 	velocity = direction * speed
+	rotation = direction.angle()

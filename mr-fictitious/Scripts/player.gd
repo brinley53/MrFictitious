@@ -231,7 +231,8 @@ func attack():
 	for body in bodies:
 		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(current_damage)
-			body.knockback(global_position)
+			if body.has_method("knockback"):
+				body.knockback(global_position)
 			
 	# Check for statue area hit
 	var areas = $AttackArea.get_overlapping_areas()

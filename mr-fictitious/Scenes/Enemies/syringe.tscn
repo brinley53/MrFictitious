@@ -1,17 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg62u7lo5cvg"]
+[gd_scene load_steps=5 format=3 uid="uid://cg62u7lo5cvg"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/syringe.gd" id="1_flpkg"]
-[ext_resource type="Texture2D" uid="uid://jnbo736ya4ck" path="res://images/SbulletWIP.png" id="2_2enjs"]
+[ext_resource type="Texture2D" uid="uid://b02ayowsteude" path="res://images/syringe.png" id="2_gcu48"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e334m"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gm6vl"]
 radius = 3.0
+height = 12.6667
 
 [sub_resource type="Gradient" id="Gradient_khrrq"]
 offsets = PackedFloat32Array(0.0333333, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.81, 0.81, 0.81, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_a6lxh"]
-radius = 42.19
 
 [node name="Syringe" type="Area2D" groups=["Bullet"]]
 script = ExtResource("1_flpkg")
@@ -22,21 +20,18 @@ one_shot = true
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_2enjs")
+rotation = -1.5708
+texture = ExtResource("2_gcu48")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
 scale = Vector2(3, 3)
-shape = SubResource("CircleShape2D_e334m")
+shape = SubResource("CapsuleShape2D_gm6vl")
 
 [node name="Trail" type="Line2D" parent="."]
+visible = false
 width = 2.0
+default_color = Color(0, 0, 0, 1)
 gradient = SubResource("Gradient_khrrq")
-
-[node name="Explosion" type="Area2D" parent="."]
-scale = Vector2(2.76, 2.57198)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
-shape = SubResource("CircleShape2D_a6lxh")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

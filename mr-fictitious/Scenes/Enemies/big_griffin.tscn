@@ -207,6 +207,8 @@ position = Vector2(-43.75, 1.78572)
 scale = Vector2(0.875, 1.12819)
 shape = SubResource("RectangleShape2D_xb3p1")
 
+[node name="SpecTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

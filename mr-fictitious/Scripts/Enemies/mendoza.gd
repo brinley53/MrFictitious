@@ -3,6 +3,7 @@ Script for the final boss logic
 Authors: Brinley Hull, Jose Leyba, Tej Gumaste, Sean Hammell
 Creation Date: 04/28/2025
 Revisions:
+	Brinley Hull - 5/1/2025 - Update sprites and triple bullet attacks
 """
 
 extends CharacterBody2D
@@ -28,13 +29,13 @@ var current_stun_timer: Timer = null
 var num_shots = 0
 # On ready attributes
 @onready var attack_timer = $AttackTimer
-@onready var sprite = $AnimatedSprite2D
+@onready var top_sprite = $TopSprite
+@onready var bottom_sprite = $BottomSprite
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var attack_area = $AttackArea
 @onready var switch_attack_timer = $BigAttackTimer
-@onready var shot_timer = $ShotTimer
 @onready var triple_timer = $TripleShotTimer
 
 func _ready():
@@ -51,8 +52,18 @@ func change_attack(attack_type):
 func shoot_player():
 	if stunned or player.stealth or attack != "Shot" or player.in_dialogue:
 		return
-	shot_timer.start()
+	top_sprite.play("projectile")
 	triple_timer.start()
+	
+func shoot():
+	var to_bullet = (global_position - player.global_position).normalized()
+	var angle_offset = deg_to_rad(30)
+	# Slightly rotate left or right
+	var left_offset = to_bullet.rotated(-angle_offset) * 100.0
+	var right_offset = to_bullet.rotated(angle_offset) * 100.0
+	add_bullet(player.global_position + left_offset)
+	add_bullet(player.global_position)
+	add_bullet(player.global_position + right_offset)
 
 func _physics_process(_delta: float) -> void:
 	if stunned or player.in_dialogue:
@@ -62,15 +73,20 @@ func _physics_process(_delta: float) -> void:
 		var direction = (player.global_position - global_position).normalized()
 
 		# Rotate the sprite towards the player
-		if direction.x > 0:
-			sprite.flip_h = true  # Not flipped
-		else:
-			sprite.flip_h = false  # Flip horizontally
+		#if direction.x > 0:
+			#sprite.flip_h = true  # Not flipped
+		#else:
+			#sprite.flip_h = false  # Flip horizontally
 				
 		if attack == "Chase":
+			top_sprite.play("melee")
+			bottom_sprite.play("walk")
 			velocity = (player.global_position - global_position).normalized() * speed
 			move_and_slide()
+		else:
+			bottom_sprite.play("default")
 	else:
+		bottom_sprite.play("default")
 		summon_workers()
 		
 func summon_workers():
@@ -129,20 +145,13 @@ func _on_attack_timer_timeout() -> void:
 	if attack_player:
 		player.reduce_player_health(damage)
 		attack_timer.start()
-
-func _on_shot_timer_timeout() -> void:
-	# Time between each individual shot for quick triple shot succession
-	if num_shots >= 3:
-		num_shots = 0
-		shot_timer.stop()
-		return
+	
+func add_bullet(target):
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.body_entered.connect(bullet._on_body_entered)
 	bullet.global_position = global_position
-	bullet.initialize_bullet(player.global_position, syringe_types[randi_range(0, 2)])
+	bullet.initialize_bullet(target, syringe_types[randi_range(0, 2)])
 	get_parent().add_child(bullet)
-	num_shots += 1
-	shot_timer.start()
 
 func _on_triple_shot_timer_timeout() -> void:
 	# time between triple shotssss
@@ -154,3 +163,8 @@ func _on_big_attack_timer_timeout() -> void:
 	else:
 		change_attack("Shot")
 	switch_attack_timer.start()
+
+func _on_top_sprite_animation_finished() -> void:
+	if top_sprite.animation == "projectile":
+		shoot()
+		top_sprite.play("end_projectile")
