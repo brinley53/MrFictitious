@@ -27,6 +27,7 @@ var attack_player = false
 var stunned = false
 var current_stun_timer: Timer = null
 var num_shots = 0
+var max_health:float
 # On ready attributes
 @onready var attack_timer = $AttackTimer
 @onready var top_sprite = $TopSprite
@@ -41,6 +42,7 @@ var num_shots = 0
 func _ready():
 	#set initial variables
 	speed = 150.0
+	max_health=health
 	
 func change_attack(attack_type):
 	if stunned:
@@ -95,7 +97,7 @@ func summon_workers():
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
-	health_bar.value = health
+	health_bar.value = (health/max_health)*100
 	if health <= 0:
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 

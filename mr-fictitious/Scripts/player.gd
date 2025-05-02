@@ -360,7 +360,7 @@ func collect_musket_weapon():
 func reduce_player_health(damage):
 	play_sound(AK.EVENTS.PLAYER_DAMAGE)
 	health = health - damage
-	health_bar.value = health
+	health_bar.value = (health/max_health)*100
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
 	if health <= 0:
 		play_sound(AK.EVENTS.PLAYER_DEATH)
