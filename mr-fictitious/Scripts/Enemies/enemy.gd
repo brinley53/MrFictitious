@@ -35,6 +35,8 @@ var speed : float
 @export var health_scene: PackedScene = preload("res://Scenes/health_item.tscn")
 @export var patrol_a : Area2D
 @export var patrol_b : Area2D
+@export var disabled : bool
+@export var flipped : bool
 var current_proc_count = 0
 
 var target_point:Node2D
@@ -42,7 +44,7 @@ var point_a = 0
 var point_b = 0
 
 var knockback_velocity: Vector2 = Vector2.ZERO
-var knockback_strength := 600.0
+@export var knockback_strength := 600.0
 var knockback_decay := 2000.0
 
 #chase player variables
@@ -98,6 +100,8 @@ func _ready():
 	if type == "Griffin":
 		vulnerable_area = $Vulnerable
 		spec_timer = $SpecTimer
+		
+	sprite.flip_h = flipped
 	
 func reset_patrol():
 	if patrol_a == null or patrol_b == null:
@@ -112,7 +116,7 @@ func reset_patrol():
 	attack_player = false
 
 func _physics_process(delta: float) -> void:
-	if stunned:
+	if stunned or disabled:
 		if type=="Rat":
 			sprite.play("stand")
 		return
@@ -169,14 +173,18 @@ func check_patrol():
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	timer.start()
+	if disabled:
+		return
 	if body.name == "Player":
 		attack_player = true
 		player.initiate_combat()
 		player.reduce_player_health(damage)
-		timer.start()
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
+	if disabled:
+		return
 	if type == "Griffin":
 		var vulnerable_areas = vulnerable_area.get_overlapping_areas()
 		var vulnerable = false
@@ -268,10 +276,10 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
-		if stunned:
+		timer.start()
+		if stunned or disabled:
 			pass
 		player.reduce_player_health(damage)
-		timer.start()
 
 func _on_dart_timer_timeout() -> void:
 	dart_timer.start()
@@ -289,7 +297,7 @@ func _on_shot_timer_timeout() -> void:
 		shot_timer.start()
 
 func knockback(pos):
-	if type=="Griffin":
+	if disabled:
 		return
 	var direction = (global_position - pos).normalized()
 	knockback_velocity = direction * knockback_strength

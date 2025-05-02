@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://b0lmc7525wy32"]
+[gd_scene load_steps=12 format=4 uid="uid://b0lmc7525wy32"]
 
 [ext_resource type="Script" path="res://Scripts/asylum.gd" id="1_ggxe1"]
 [ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="2_0v8f0"]
 [ext_resource type="Texture2D" uid="uid://mmutsnb7utcw" path="res://images/asylumfloor.png" id="2_igwce"]
 [ext_resource type="PackedScene" uid="uid://cb4i5bv71fnlp" path="res://Scenes/Enemies/mendoza.tscn" id="3_8j0xy"]
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="5_hjie5"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="6_vfucg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hr214"]
 texture = ExtResource("2_igwce")
@@ -25,6 +27,11 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_iu3pv")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_r5xqy"]
+vertices = PackedVector2Array(1731.54, 210.688, 1756.97, 355.727, 1738.28, 934.031, 1136.36, 1002, 800.508, 1004.99, 681.422, 991.102, 152.906, 915.313, 145.102, 152.367)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(135, 142, 143, 924, 680, 1001, 800, 1015, 1137, 1012, 1748, 943, 1767, 355, 1740, 201)])
+
 [node name="AsylumRoom" type="Node2D"]
 script = ExtResource("1_ggxe1")
 
@@ -38,3 +45,35 @@ tile_set = SubResource("TileSet_ortt5")
 
 [node name="Mendoza" parent="." instance=ExtResource("3_8j0xy")]
 position = Vector2(892, 517)
+
+[node name="Shadow" parent="." instance=ExtResource("5_hjie5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(134, 162, 145.333, 146.667, 160.667, 135.333, 208, 128.667, 252.667, 144, 290.667, 150.667, 374, 150.667, 443.333, 139.333, 683.333, 122, 741.333, 122, 786.667, 142, 864.667, 171.333, 902.667, 180, 945.333, 178, 990.667, 171.333, 1091.33, 171.333, 1142.67, 173.333, 1181.33, 283.333, 1167.33, 334.667, 1152, 359.333, 1145.33, 413.333, 1138.67, 554.667, 1132, 588, 1111.33, 612.667, 1073.33, 601.333, 1035.33, 610.667, 997.333, 640, 943.333, 678, 925.333, 709.333, 923.333, 848, 1625.33, 828, 1530, -307.333, -182.667, -199.333, -157.333, 942, 324.667, 986.667, 329.333, 772.667, 297.333, 673.333, 278, 654, 236, 633.333, 208.667, 603.333, 200, 569.333, 196, 538, 189.333, 493.333, 189.333, 453.333, 180.667, 396, 166, 326, 147.333, 273.333, 134.667, 233.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
+polygon = PackedVector2Array(132.667, 148, 181.333, 126.667, 219.333, 126.667, 259.333, 148, 310.667, 152, 587.333, 130.667, 684.667, 122.667, 718.667, 124.667, 803.333, 143.333, 898.667, 175.333, 1000.67, 162.667, 1078.67, 166.667, 1146.67, 164.667, 1188.67, 268.667, 1182.67, 315.333, 1156.67, 368, 1142, 463.333, 1142, 533.333, 1125.33, 596.667, 1042.67, 611.333, 996, 645.333, 947.333, 683.333, 938, 832, 1518.67, 814, 1494.67, -120, -181.333, -144, -124.667, 922, 363.333, 884.667, 286, 679.333, 238, 634, 195.333, 591.333, 184.667, 522, 184.667, 444.667, 163.333, 351.333, 134, 255.333, 131.333, 199.333)
+
+[node name="Spawn" parent="." instance=ExtResource("6_vfucg")]
+position = Vector2(948, 988)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_r5xqy")
+
+[node name="Patrol2" parent="." instance=ExtResource("6_vfucg")]
+position = Vector2(531, 398)
+
+[node name="Patrol3" parent="." instance=ExtResource("6_vfucg")]
+position = Vector2(1458, 384)
+
+[node name="Patrol4" parent="." instance=ExtResource("6_vfucg")]
+position = Vector2(510, 812)
+
+[node name="Patrol5" parent="." instance=ExtResource("6_vfucg")]
+position = Vector2(1498, 828)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -49,6 +49,8 @@ var sprite_string = "lhr"
 @onready var r_wing = $RightWing
 @onready var l_wing = $LeftWing
 
+signal broken
+
 
 func _ready():
 	#set initial variables
@@ -133,31 +135,43 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 				if area.is_in_group("Weapon"):
 					left_wing_health -= 1
 					change_sprite()
+					if left_wing_health == 0:
+						emit_signal("broken")
 					return
 		if right_wing_health > 0:
 			for area in rwing_areas:
 				if area.is_in_group("Weapon"):
 					right_wing_health -= 1
 					change_sprite()
+					if right_wing_health == 0:
+						emit_signal("broken")
 					return
 		if head_health > 0:
 			for area in head_areas:
 				if area.is_in_group("Weapon"):
 					head_health -= 1
 					change_sprite()
+					if head_health == 0:
+						emit_signal("broken")
 					return
 	else:
 		if area_hit == "LeftWing" and left_wing_health > 0:
 			left_wing_health -= 1
 			change_sprite()
+			if left_wing_health == 0:
+				emit_signal("broken")
 			return
 		if area_hit == "RightWing" and right_wing_health > 0:
 			right_wing_health -= 1
 			change_sprite()
+			if right_wing_health == 0:
+				emit_signal("broken")
 			return
 		if area_hit == "Head" and head_health > 0:
 			head_health -= 1
 			change_sprite()
+			if head_health == 0:
+				emit_signal("broken")
 			return
 				
 func change_sprite():

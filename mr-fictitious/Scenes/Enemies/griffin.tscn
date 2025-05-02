@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cajs0ydsfqpft" path="res://images/Wolf_White_Background.png" id="2_daues"]
 [ext_resource type="Texture2D" uid="uid://c7lw7t5c4ueuc" path="res://images/small griffin staute sprite sheet right facing .png" id="3_et11r"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vweiy"]
-radius = 48.8927
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivrkc"]
+radius = 44.3566
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr45q"]
 atlas = ExtResource("2_daues")
@@ -153,32 +153,34 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(152, 138.964)
+size = Vector2(132.132, 133.493)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ajgps")
-health = 20
-base_speed = 45.0
-damage = 10.0
+health = 10
+base_speed = 75.0
+damage = 5.0
+knockback_strength = 300.0
 type = "Griffin"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(-5, 8.5)
 scale = Vector2(1.432, 1.01077)
-shape = SubResource("CircleShape2D_vweiy")
+shape = SubResource("CircleShape2D_ivrkc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0dolo")
 animation = &"walk"
 
 [node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(5, -2)
+position = Vector2(-7, -1)
+scale = Vector2(1.17716, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(9.5, -4.5)
-scale = Vector2(0.875, 0.913907)
+position = Vector2(0.849501, 7)
+scale = Vector2(0.875, 0.753907)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="Detection" type="Area2D" parent="."]
@@ -200,8 +202,8 @@ position = Vector2(-60, 8)
 scale = Vector2(0.32, 0.559999)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vulnerable"]
-position = Vector2(3, 2.09272)
-scale = Vector2(0.875, 0.913907)
+position = Vector2(-21.875, 5.35715)
+scale = Vector2(0.574165, 0.913907)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="SpecTimer" type="Timer" parent="."]

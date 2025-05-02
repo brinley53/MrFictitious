@@ -70,6 +70,7 @@ script = ExtResource("1_bt5o5")
 health = 50
 base_speed = 50.0
 damage = 20.0
+knockback_strength = 300.0
 type = "Worker"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
