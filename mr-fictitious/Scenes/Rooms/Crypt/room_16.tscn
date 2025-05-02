@@ -137,6 +137,7 @@ autostart = true
 wait_time = 4.0
 autostart = true
 
+[connection signal="dead" from="ShadowBoss" to="." method="_on_shadow_boss_dead"]
 [connection signal="timeout" from="MazeTimer" to="." method="_on_maze_timer_timeout"]
 [connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
