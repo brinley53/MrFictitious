@@ -58,3 +58,5 @@ flipped = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_jcr84")
+
+[connection signal="dead" from="Statue" to="." method="_on_statue_boss_dead"]

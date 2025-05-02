@@ -70,6 +70,7 @@ func shoot_player():
 	get_parent().add_child(bullet)
 
 func _physics_process(delta: float) -> void:
+	
 	if stunned:
 		return
 	if !player.stealth or is_vulnerable:

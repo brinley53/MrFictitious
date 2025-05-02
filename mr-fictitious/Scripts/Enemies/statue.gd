@@ -12,6 +12,9 @@ Revisions:
 	Brinley Hull - 4/30/2025: Fix vulnerable area bullet detection
 """
 extends CharacterBody2D
+
+signal dead
+
 #GLOBAL VARIABLES
 # stats attributes
 var left_wing_health : int
@@ -71,6 +74,7 @@ func _physics_process(delta: float) -> void:
 		speed = 0.0
 	# Die if its arms are off
 	if left_wing_health <= 0 and right_wing_health <= 0 and head_health <= 0:
+		dead.emit()
 		queue_free()
 	var direction = (target - global_position).normalized()
 	velocity = speed * direction
@@ -173,7 +177,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			if head_health == 0:
 				emit_signal("broken")
 			return
-				
+
 func change_sprite():
 	sprite_string = ""
 	if left_wing_health > 0:

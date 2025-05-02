@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4mx8gss2o5ur"]
+
+[ext_resource type="Texture2D" uid="uid://bcd6omkm7hg6e" path="res://images/sideroofleft.png" id="1_bv7ld"]
+
+[node name="SideRoofLeft" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bv7ld")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-46, -34, 0, -83, 47, -40, 50, 53, -54, 54)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
