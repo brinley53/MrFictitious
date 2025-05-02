@@ -366,13 +366,14 @@ func end_spin_attack():
 func collect_sword_weapon():
 	sword = true
 	if has_shovel:
-		has_shovel = false
+		reset_shovel()
 		for i in range(max_shovel_attacks - shovel_attack_uses):
 			removeItem(ShovelResource)
 		var new_shovel = SHOVEL.instantiate()
 		var manager = get_node("/root/Main/RoomManager")
 		var room = manager.get_active_room()
 		room.add_child(new_shovel)
+		new_shovel.global_position = global_position + Vector2(0,200)
 	for i in range(max_sword_attacks - sword_attack_uses):
 		collectItem(SwordResource)
 	sword_attack_uses = 0
@@ -529,6 +530,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 		var manager = get_node("/root/Main/RoomManager")
 		var room = manager.get_active_room()
 		room.add_child(new_sword)
+		new_sword.global_position = global_position + Vector2(0,200)
 		sword = false
 	for i in range(max_shovel_attacks - shovel_attack_uses):
 		collectItem(ShovelResource)
@@ -550,7 +552,6 @@ func reset_shovel():
 	damage_difference = 0
 	current_damage = base_damage
 	has_shovel = false
-	shovel_attack_uses = 0
 
 	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
 	if poly_node:

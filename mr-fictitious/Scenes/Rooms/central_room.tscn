@@ -23,17 +23,11 @@ script = ExtResource("6_6domw")
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_7bh2k")]
 position = Vector2(288, 227)
 
-[node name="sword" parent="." instance=ExtResource("6_1haym")]
-position = Vector2(1151, 356)
-
-[node name="Perm_Buff_Dmg" parent="." instance=ExtResource("7_rftok")]
-position = Vector2(1530, 589)
-
 [node name="musket" parent="." instance=ExtResource("8_2kdqg")]
 position = Vector2(649, 331)
 
 [node name="sword2" parent="." instance=ExtResource("6_1haym")]
-position = Vector2(1624, 308)
+position = Vector2(1254, 298)
 
 [node name="Perm_Buff_Dmg2" parent="." instance=ExtResource("7_rftok")]
-position = Vector2(1263, 827)
+position = Vector2(1252, 763)
