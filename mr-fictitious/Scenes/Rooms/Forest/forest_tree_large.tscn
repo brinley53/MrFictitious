@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bilvi6f3lpo41"]
+[gd_scene load_steps=3 format=3 uid="uid://bilvi6f3lpo41"]
 
 [ext_resource type="Texture2D" uid="uid://cykkgno8ndv0e" path="res://images/treesprite1.png" id="1_h22di"]
+[ext_resource type="Texture2D" uid="uid://dwwuax3m75qrm" path="res://images/ForestTreeTop1.png" id="2_d8qw1"]
 
 [node name="ForestTreeLarge" type="StaticBody2D"]
 
@@ -10,4 +11,9 @@ texture = ExtResource("1_h22di")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-26, 2, -28, 68, -48, 90, -23, 97, 14, 94, 43, 97, 52, 80, 34, 57, 25, 4)
+polygon = PackedVector2Array(-28, -9, -28, 68, -48, 90, -23, 97, 14, 94, 43, 97, 52, 80, 34, 57, 26, -10)
+
+[node name="Branches" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -54)
+texture = ExtResource("2_d8qw1")
