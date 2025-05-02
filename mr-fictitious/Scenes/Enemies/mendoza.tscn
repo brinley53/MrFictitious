@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://caa2vjtkh035p" path="res://images/Mandavoprojectile.png" id="7_2nv3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arxui"]
-size = Vector2(46.3057, 66.157)
+size = Vector2(46.3057, 67.5971)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6o8cp"]
 atlas = ExtResource("4_odwmv")
@@ -215,7 +215,7 @@ position = Vector2(3.25, 13.75)
 scale = Vector2(2.22435, -2.32386)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-2.47264, -0.875096)
+position = Vector2(-2.47264, -1.59515)
 shape = SubResource("RectangleShape2D_arxui")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -261,6 +261,9 @@ animation = &"projectile"
 position = Vector2(-0.75, 23.25)
 shape = SubResource("RectangleShape2D_ci5xw")
 
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]
 [connection signal="timeout" from="TripleShotTimer" to="." method="_on_triple_shot_timer_timeout"]
 [connection signal="animation_finished" from="TopSprite" to="." method="_on_top_sprite_animation_finished"]

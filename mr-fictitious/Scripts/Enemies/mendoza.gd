@@ -73,12 +73,6 @@ func _physics_process(_delta: float) -> void:
 	if !player.stealth:
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
-
-		# Rotate the sprite towards the player
-		#if direction.x > 0:
-			#sprite.flip_h = true  # Not flipped
-		#else:
-			#sprite.flip_h = false  # Flip horizontally
 				
 		if attack == "Chase":
 			top_sprite.play("melee")
@@ -89,10 +83,6 @@ func _physics_process(_delta: float) -> void:
 			bottom_sprite.play("default")
 	else:
 		bottom_sprite.play("default")
-		summon_workers()
-		
-func summon_workers():
-	pass
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
