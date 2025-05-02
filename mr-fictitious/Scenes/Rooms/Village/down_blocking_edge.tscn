@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dut25a6a6l0i2"]
+[gd_scene load_steps=2 format=3 uid="uid://dut25a6a6l0i2"]
 
-[ext_resource type="Texture2D" uid="uid://cjofunvne6ja2" path="res://images/bush.png" id="1_7642d"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uqr02"]
-texture = ExtResource("1_7642d")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-
-[sub_resource type="TileSet" id="TileSet_whyko"]
-tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_uqr02")
+[ext_resource type="PackedScene" uid="uid://dppg08ydd8t8h" path="res://Scenes/Rooms/Village/village_house_left.tscn" id="1_tosmk"]
 
 [node name="DownBlockingEdge" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray(0, 0, 13, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-tile_set = SubResource("TileSet_whyko")
+[node name="VillageHouseLeft5" parent="." instance=ExtResource("1_tosmk")]
+z_index = 2
+position = Vector2(960, 1096)

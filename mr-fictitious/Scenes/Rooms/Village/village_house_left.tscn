@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dppg08ydd8t8h"]
+
+[ext_resource type="Texture2D" uid="uid://dsovswrpj03jj" path="res://images/townbuildingLeft.png" id="1_agafm"]
+
+[node name="VillageHouseLeft" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_agafm")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-120, -65, 112, -54, 109, 153, -11, 157, -12, 146, -113, 147)

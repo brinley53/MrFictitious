@@ -10,7 +10,7 @@ extends Node2D
 var color = "Gray"
 var prev_color = "Gray"
 var attacks = ["Default", "Split", "Target"]
-var blocking_edges = []
+var blocking_edge
 @onready var maze_timer = $MazeTimer
 @onready var transition_timer = $TransitionTimer
 @onready var attack_timer = $AttackTimer
@@ -28,6 +28,9 @@ func _ready() -> void:
 	shadows = get_node("Green").get_children()
 	for shadow in shadows:
 		shadow.toggle_enable()
+
+	if boss != null:
+		add_child(blocking_edge)
 
 
 func _on_maze_timer_timeout() -> void:
@@ -62,14 +65,5 @@ func _on_attack_timer_timeout() -> void:
 		boss.change_attack(attacks[randi_range(0, 2)])
 	attack_timer.start()
 
-
-func block_edges(edges:Array) -> void:
-	if boss != null:
-		for edge in edges:
-			blocking_edges.append(edge)
-			add_child(edge)
-
-
 func _on_shadow_boss_dead() -> void:
-	for edge in blocking_edges:
-		remove_child(edge)
+	remove_child(blocking_edge)

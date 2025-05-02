@@ -12,11 +12,13 @@ extends Node2D
 var wave1 = false
 var wave2 = false
 
-var blocking_edges = []
+var blocking_edge
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	boss.broken.connect(enable_wave)
+	if boss != null:
+		add_child(blocking_edge)
 
 func enable_wave():
 	if !wave1:
@@ -37,13 +39,10 @@ func enable_second_wave():
 	var griffins = second_wave.get_children()
 	for griffin in griffins:
 		griffin.disabled = false
-		
-func block_edges(edges:Array) -> void:
-	if boss != null:
-		for edge in edges:
-			blocking_edges.append(edge)
-			add_child(edge)
-		
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_statue_boss_dead() -> void:
+	remove_child(blocking_edge)
