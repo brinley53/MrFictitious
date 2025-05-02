@@ -32,4 +32,5 @@ shape = SubResource("RectangleShape2D_ln6fq")
 position = Vector2(960, 73)
 shape = SubResource("RectangleShape2D_rlm6o")
 
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="AsylumBlocker/DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
