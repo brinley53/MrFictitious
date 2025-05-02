@@ -32,9 +32,9 @@ texture = ExtResource("2_pt5yk")
 [node name="Controls" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
-offset_top = 784.0
+offset_top = 774.0
 offset_right = 1108.0
-offset_bottom = 873.0
+offset_bottom = 863.0
 theme_override_fonts/font = ExtResource("3_bv411")
 theme_override_font_sizes/font_size = 20
 text = "Controls"
@@ -42,9 +42,9 @@ text = "Controls"
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
-offset_top = 978.0
+offset_top = 968.0
 offset_right = 1108.0
-offset_bottom = 1067.0
+offset_bottom = 1057.0
 theme_override_fonts/font = ExtResource("3_bv411")
 theme_override_font_sizes/font_size = 20
 text = "Exit Game"
@@ -52,9 +52,9 @@ text = "Exit Game"
 [node name="Glossary" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
-offset_top = 882.0
+offset_top = 870.0
 offset_right = 1108.0
-offset_bottom = 971.0
+offset_bottom = 959.0
 theme_override_fonts/font = ExtResource("3_bv411")
 theme_override_font_sizes/font_size = 20
 text = "Glossary"
@@ -62,12 +62,24 @@ text = "Glossary"
 [node name="Start" type="Button" parent="."]
 layout_mode = 0
 offset_left = 869.0
-offset_top = 687.0
+offset_top = 676.0
 offset_right = 1108.0
-offset_bottom = 776.0
+offset_bottom = 765.0
 theme_override_fonts/font = ExtResource("3_bv411")
 theme_override_font_sizes/font_size = 20
 text = "Start Game"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 224.0
+offset_right = 1289.0
+offset_bottom = 344.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 120
+text = "Fictitious"
+horizontal_alignment = 1
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cylv47c8p3mry"]
+[gd_scene load_steps=6 format=3 uid="uid://cylv47c8p3mry"]
 
 [ext_resource type="PackedScene" uid="uid://xke0oamax83a" path="res://Scenes/Enemies/big_griffin.tscn" id="1_dp0g7"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="2_svmui"]
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="3_m2d3o"]
+[ext_resource type="PackedScene" uid="uid://4xy0bhyjkbg4" path="res://Scenes/musket.tscn" id="4_dvdkg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cvt3g"]
 vertices = PackedVector2Array(1672.49, 829.961, 209, 825.031, 209, 202.828, 1640.48, 179.156)
@@ -25,3 +26,6 @@ position = Vector2(1430, 320)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("3_m2d3o")]
 position = Vector2(406, 418)
+
+[node name="musket" parent="." instance=ExtResource("4_dvdkg")]
+position = Vector2(869, 331)
