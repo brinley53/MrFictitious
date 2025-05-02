@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4xy0bhyjkbg4"]
+[gd_scene load_steps=5 format=3 uid="uid://4xy0bhyjkbg4"]
 
-[ext_resource type="Script" path="res://Scenes/musket.gd" id="1_jvldu"]
+[ext_resource type="Script" path="res://Scripts/musket.gd" id="1_jvldu"]
+[ext_resource type="Resource" uid="uid://5nr2x6dsr3p3" path="res://Resources/musket.tres" id="2_bb5x8"]
 [ext_resource type="Texture2D" uid="uid://c41k01vp8dfer" path="res://images/MGweapon.png" id="2_t5f7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jip1a"]
@@ -9,6 +10,7 @@ size = Vector2(138, 130)
 [node name="musket" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_jvldu")
+inventory_drop_item = ExtResource("2_bb5x8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.75, 1.75)

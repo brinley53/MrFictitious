@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://daxskvbh0lox0"]
+[gd_scene load_steps=5 format=3 uid="uid://daxskvbh0lox0"]
 
 [ext_resource type="Script" path="res://Scripts/sword.gd" id="1_34iym"]
 [ext_resource type="Texture2D" uid="uid://boxtla0fwsulf" path="res://images/swordweapon.png" id="2_5bfuc"]
+[ext_resource type="Resource" uid="uid://urd3fhc772c2" path="res://Resources/sword.tres" id="2_jfk0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jip1a"]
 size = Vector2(138, 130)
@@ -9,6 +10,7 @@ size = Vector2(138, 130)
 [node name="sword" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_34iym")
+inventory_drop_item = ExtResource("2_jfk0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.75, 1.75)

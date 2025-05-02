@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cooahijcadpxe"]
+[gd_scene load_steps=4 format=3 uid="uid://blw5ieynomods"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_evidence.gd" id="1_af2aw"]
 [ext_resource type="Texture2D" uid="uid://b7ytsaw2t7pg0" path="res://images/Bando3Slot.png" id="2_elng0"]
-[ext_resource type="PackedScene" uid="uid://dea30unvn0m8j" path="res://Scenes/evidence_slot.tscn" id="3_7d1ax"]
+[ext_resource type="PackedScene" path="res://Scenes/evidence_slot.tscn" id="3_7d1ax"]
 
 [node name="InventoryEvidence" type="Control"]
 layout_mode = 3

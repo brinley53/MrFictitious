@@ -31,3 +31,9 @@ position = Vector2(1530, 589)
 
 [node name="musket" parent="." instance=ExtResource("8_2kdqg")]
 position = Vector2(649, 331)
+
+[node name="sword2" parent="." instance=ExtResource("6_1haym")]
+position = Vector2(1624, 308)
+
+[node name="Perm_Buff_Dmg2" parent="." instance=ExtResource("7_rftok")]
+position = Vector2(1263, 827)

@@ -12,6 +12,9 @@ extends Area2D
 @onready var dialogue = preload("res://shovel.dialogue")
 @onready var dialogue_manager = get_node("/root/DialogueManager")
 @onready var timer = $Timer
+@export var inventory_drop_item:InventoryItem;
+@export var evidence_item:Evidence;
+
 
 
 
@@ -22,5 +25,7 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Player":
 		body.collect_musket_weapon()
+		for i in range(15):
+			body.collectItem(inventory_drop_item)
 		dialogue_manager.show_dialogue_balloon(dialogue, "musket")
 		queue_free()

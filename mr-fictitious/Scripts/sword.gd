@@ -12,7 +12,8 @@ extends Area2D
 @onready var dialogue = preload("res://shovel.dialogue")
 @onready var dialogue_manager = get_node("/root/DialogueManager")
 @onready var timer = $Timer
-
+@export var inventory_drop_item:InventoryItem;
+@export var evidence_item:Evidence;
 
 
 func _ready():

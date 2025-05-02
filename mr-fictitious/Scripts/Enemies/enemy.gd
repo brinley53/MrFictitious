@@ -194,11 +194,13 @@ func reduce_enemy_health(damage_dealt):
 		for i in range(num_loot):
 			var item_scene = loot_options[randi() % loot_options.size()]
 			var item = item_scene.instantiate()
+			var manager = get_node("/root/Main/RoomManager")
+			var room = manager.get_active_room()
+			room.add_child(item)
 			var angle = randf() * TAU 
 			var radius = randf_range(64.0, 128.0)
 			var offset = Vector2(cos(angle), sin(angle)) * radius
 			item.global_position = global_position + offset
-			get_tree().current_scene.add_child(item)
 		queue_free()
 
 

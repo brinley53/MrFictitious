@@ -32,6 +32,8 @@ const ATTACK_LOCK_TIME_MELEE = 0.5
 const FOOTSTEP_FREQUENCY=0.4
 const ATTACK_LOCK_TIME_Range = 2
 const PROJECTILE_SCENE = preload("res://Scenes/projectile.tscn")
+const SHOVEL = preload("res://Scenes/shovel.tscn")
+const SWORD = preload("res://Scenes/sword.tscn")
 const MUSKET_PROJECTILE_SCENE = preload("res://Scenes/musket_projectile.tscn")
 const PROJECTILE_SPEED = 600.0 
 #GLOBAL VARIABLES
@@ -98,7 +100,11 @@ var start = true
 @onready var flashResource = preload("res://Resources/flashlight_item.tres")
 @onready var DmgResource = preload("res://Resources/damage_item.tres")
 @onready var SpeedResource = preload("res://Resources/speed_item.tres")
+@onready var MusketResource = preload("res://Resources/musket.tres")
+@onready var ShovelResource = preload("res://Resources/shovel.tres")
+@onready var SwordResource = preload("res://Resources/sword.tres")
 @onready var proof1 = preload("res://proof1.dialogue")
+@onready var read = preload("res://read.dialogue")
 @onready var attack_sprite = $AttackArea/AttackSprite
 @onready var attack_sprite_spin = $SpinNode/SpinArea/AttackSprite
 @onready var health_bar = $HealthContainer/HealthBar
@@ -165,6 +171,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack") and can_attack and !sword:
 		if has_shovel:
 			shovel_attack_uses += 1
+			removeItem(ShovelResource)
 			if shovel_attack_uses >= max_shovel_attacks:
 				reset_shovel()
 		attack_sprite.play("attacking")
@@ -172,7 +179,8 @@ func _process(delta):
 		can_attack = false
 	if Input.is_action_just_pressed("secondary_attack") and can_attack:
 		shoot_projectile()
-		
+	if Input.is_action_just_pressed("read"):
+		read_evidence()
 	if spin_attack_active:
 		orbit_timer += delta
 		spin_node.rotation += orbit_speed * delta
@@ -181,6 +189,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("attack") and can_attack and sword:
 		attack_sprite_spin.play("attacking_spin")
+		removeItem(SwordResource)
 		start_spin_attack()
 	
 	if Input.is_action_just_pressed("increaseBullet"):
@@ -194,6 +203,14 @@ func _process(delta):
 func get_size() -> Vector2:
 	return collision_shape.shape.size
 
+func read_evidence():
+	if evidence_collected == 1:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "start")
+	if evidence_collected == 2:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence2")
+	if evidence_collected == 3:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence3")
+	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(_delta):
 	var direction = Vector2.ZERO
@@ -302,6 +319,7 @@ func shoot_projectile():
 		removeItem(bulletResource)
 		bullets -= 1 
 		if has_musket:
+			removeItem(MusketResource)
 			musket_attack_uses += 1
 			if musket_attack_uses >= max_musket_attacks:
 				has_musket = false
@@ -349,7 +367,14 @@ func collect_sword_weapon():
 	sword = true
 	if has_shovel:
 		has_shovel = false
-		shovel_attack_uses = 0
+		for i in range(max_shovel_attacks - shovel_attack_uses):
+			removeItem(ShovelResource)
+		var new_shovel = SHOVEL.instantiate()
+		var manager = get_node("/root/Main/RoomManager")
+		var room = manager.get_active_room()
+		room.add_child(new_shovel)
+	for i in range(max_sword_attacks - sword_attack_uses):
+		collectItem(SwordResource)
 	sword_attack_uses = 0
 
 func collect_musket_weapon():
@@ -497,10 +522,17 @@ func _remove_damage_buff():
 #PERMANENT CHANGES
 #Trades Attack Area for DMG
 func shovel(damage_increase: int, shrink_factor: float):
-	has_shovel = true
 	if sword:
+		for i in range(max_sword_attacks - sword_attack_uses):
+			removeItem(SwordResource)
+		var new_sword = SWORD.instantiate()
+		var manager = get_node("/root/Main/RoomManager")
+		var room = manager.get_active_room()
+		room.add_child(new_sword)
 		sword = false
-		sword_attack_uses = 0
+	for i in range(max_shovel_attacks - shovel_attack_uses):
+		collectItem(ShovelResource)
+	has_shovel = true
 	base_damage = damage_increase
 	damage_difference = damage_increase
 	current_damage = base_damage 
