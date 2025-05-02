@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dalak7jjbaiv"]
+[gd_scene load_steps=10 format=3 uid="uid://dalak7jjbaiv"]
 
 [ext_resource type="Script" path="res://Scripts/central_room.gd" id="1_o4tgx"]
 [ext_resource type="PackedScene" uid="uid://dmmq47i6qhui7" path="res://Scenes/tent.tscn" id="5_7bh2k"]
@@ -7,6 +7,12 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="6_6domw"]
 [ext_resource type="PackedScene" uid="uid://cultue1qlvv0h" path="res://Scenes/shovel.tscn" id="7_rftok"]
 [ext_resource type="PackedScene" uid="uid://4xy0bhyjkbg4" path="res://Scenes/musket.tscn" id="8_2kdqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln6fq"]
+size = Vector2(256, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlm6o"]
+size = Vector2(256, 1)
 
 [node name="CentralRoom" type="Node2D"]
 script = ExtResource("1_o4tgx")
@@ -25,3 +31,17 @@ position = Vector2(1254, 298)
 
 [node name="Perm_Buff_Dmg2" parent="." instance=ExtResource("7_rftok")]
 position = Vector2(1252, 763)
+
+[node name="AsylumBlocker" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AsylumBlocker"]
+position = Vector2(960, 64)
+shape = SubResource("RectangleShape2D_ln6fq")
+
+[node name="DialogueTrigger" type="Area2D" parent="AsylumBlocker"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AsylumBlocker/DialogueTrigger"]
+position = Vector2(960, 73)
+shape = SubResource("RectangleShape2D_rlm6o")
+
+[connection signal="body_entered" from="AsylumBlocker/DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
