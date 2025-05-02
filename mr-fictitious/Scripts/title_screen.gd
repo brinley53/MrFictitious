@@ -21,6 +21,7 @@ func _on_tree_entered() -> void:
 	Wwise.register_listener(self)
 	Wwise.load_bank_id(AK.BANKS.MUSIC)
 	Wwise.load_bank_id(AK.BANKS.SOUND)
+	Wwise.post_event_id(AK.EVENTS.PLAYMUSIC,self)
 	#Wwise.post_event_id(AK.EVENTS.PLAYMUSIC,self)
 	#Wwise.post_event_id(AK.EVENTS.FOREST,self)
 	#Wwise.post_event_id(AK.EVENTS.EXPLORE,self)

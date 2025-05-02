@@ -136,6 +136,7 @@ func _ready():
 	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
+	play_sound(AK.EVENTS.PLAYMUSIC)
 	
 	# Dialogue signal connections
 	dialogue_manager.connect("dialogue_ended", Callable(self, "_on_dialogue_finished"))
@@ -264,7 +265,7 @@ func attack():
 			if body.has_method("reduce_enemy_health"):
 				body.reduce_enemy_health(current_damage, area.name)
 				break
-	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
+	play_sound(AK.EVENTS.KNIFE_SWING)
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
 	var mouse_position = get_global_mouse_position()
 	var attack_direction = (mouse_position - global_position).normalized()
@@ -328,7 +329,7 @@ func asylum_blocker_dialogue():
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
 	if bullets > 0:  
-		play_sound(AK.EVENTS.PLAYER_GUN_SHOOT)
+		play_sound(AK.EVENTS.PISTOL_SHOOT)
 		removeItem(bulletResource)
 		bullets -= 1 
 		if has_musket:
@@ -397,7 +398,7 @@ func collect_musket_weapon():
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
-	play_sound(AK.EVENTS.PLAYER_DAMAGE)
+	play_sound(AK.EVENTS.PLAYER_HURT)
 	health = health - damage
 	health_bar.value = (health/max_health)*100
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
@@ -603,19 +604,24 @@ func play_sound(id:int):
 	Wwise.post_event_id(id,self)
 
 func play_ambient_sound(location):
-	play_sound(AK.EVENTS.PLAYMUSIC)
+	Wwise.post_event_id(AK.EVENTS.GAMEPLAY,self)
+	#CENTRAL,
+	#FOREST,
+	#CRYPT,
+	#VILLAGE,
+	#ASYLUM,
+	#COUNT
 	match location:
 		0:
-			play_sound(AK.EVENTS.VILLAGE)
+			play_sound(AK.EVENTS.CENTRAL)
 		1:
 			play_sound(AK.EVENTS.FOREST)
-
 		2:
 			play_sound(AK.EVENTS.CRYPT)
 		3:
-			pass
+			play_sound(AK.EVENTS.VILLAGE)
 		4:
-			pass
+			play_sound(AK.EVENTS.ASYLUM)
 		_:
 			print("Wrong room loser")
 		
