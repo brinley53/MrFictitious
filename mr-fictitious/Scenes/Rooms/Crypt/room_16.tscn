@@ -8,124 +8,12 @@
 [node name="Room16" type="Node2D"]
 script = ExtResource("1_dbs7e")
 
+[node name="Pillar" parent="." instance=ExtResource("4_jwxd5")]
+position = Vector2(450, 700)
+lit = true
+
 [node name="ShadowBoss" parent="." instance=ExtResource("2_nkkfm")]
 position = Vector2(952, 512)
-
-[node name="Gray" type="Node2D" parent="."]
-
-[node name="Shadow" parent="Gray" instance=ExtResource("3_oiyn5")]
-position = Vector2(112, 974)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gray/Shadow"]
-polygon = PackedVector2Array(-27.3333, -152.667, 45.3333, -136.667, 69.3333, -104, 157.333, -96, 171.333, -76, 263.333, -58.6667, 306, 28.6666, -34, 23.3333)
-
-[node name="Polygon2D" type="Polygon2D" parent="Gray/Shadow"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(-28.6667, -155.333, 45.3333, -138, 74.6667, -110, 158.667, -94.6667, 172.667, -76, 270.667, -57.3334, 306, 27.3333, -31.3333, 26)
-
-[node name="Shadow2" parent="Gray" instance=ExtResource("3_oiyn5")]
-position = Vector2(97, 357)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gray/Shadow2"]
-position = Vector2(-1.01725e-05, -4.06901e-05)
-polygon = PackedVector2Array(-34, 28, 32.6667, -5.33333, 90, 6.66667, 142, -29.3333, 144.667, -100, 112.667, -130.667, 70, -152, 32.6667, -161.333, -26, -164)
-
-[node name="Polygon2D" type="Polygon2D" parent="Gray/Shadow2"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(-32.6667, 20, 35.3333, -9.33337, 83.3333, 3.99995, 143.333, -25.3334, 148.667, -100, 116.667, -128, 67.3333, -157.333, 27.3333, -162.667, -31.3333, -161.333)
-
-[node name="Pillar" parent="Gray" instance=ExtResource("4_jwxd5")]
-position = Vector2(174, 883)
-
-[node name="Pillar2" parent="Gray" instance=ExtResource("4_jwxd5")]
-position = Vector2(153, 189)
-
-[node name="Red" type="Node2D" parent="."]
-
-[node name="Shadow" parent="Red" instance=ExtResource("3_oiyn5")]
-position = Vector2(262, 792)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Red/Shadow"]
-polygon = PackedVector2Array(231.333, 31.3333, 220.667, 81.3334, 229.333, 140, 375.333, 146.667, 375.333, 196.667, 557.333, 195.333, 557.333, 157.333, 722.667, 150.667, 720.667, 104, 370, 93.3333, 368.667, 27.9999, 368.667, 27.3333, 376, -7.33331, 372, -78.6667, 362, -159.333, 330.667, -178, -41.3333, -162.667, -41.3333, 27.3333, 48.6667, 25.3333, 51.3333, -110.667, 274.667, -103.333, 288.667, -44.0001, 289.333, -20.0001, 226.667, -20.0001)
-
-[node name="Polygon2D" type="Polygon2D" parent="Red/Shadow"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(-47.3333, 15.9999, -51.3333, -133.333, -40.6667, -167.333, 1.33333, -174, 332.667, -184.667, 367.333, -168.667, 372.667, -111.333, 376, -70, 380, -2, 360.667, 33.9999, 361.333, 54, 376, 68.6666, 401.333, 81.9999, 695.089, 95.0144, 725.333, 118, 717.333, 153.333, 555.333, 154, 556, 190, 373.333, 191.333, 373.333, 150, 226.667, 142, 208.667, 106.667, 214.667, 17.9999, 227.333, -9.33337, 277.333, -22.0001, 286, -49.3334, 272.667, -83.3334, 262, -98.6667, 82.6667, -109.333, 51.3333, -103.333, 40, -76.0001, 48, 19.9999)
-
-[node name="Shadow2" parent="Red" instance=ExtResource("3_oiyn5")]
-position = Vector2(210, 302)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Red/Shadow2"]
-polygon = PackedVector2Array(-33.3333, 26.6667, 40.6667, 26.6667, 42, 110.667, 175.333, 110.667, 179.333, 33.3333, 88.6667, 33.3333, 90.6667, -87.3333, 332, -85.3333, 334, -23.3333, 143.333, -38.6667, 141.333, -8.66667, 226.667, -0.666672, 228, 153.333, -41.3333, 150.667)
-
-[node name="Polygon2D" type="Polygon2D" parent="Red/Shadow2"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(-39.3333, 19.3333, 42.6667, 26, 38.6667, 95.3333, 51.3333, 105.333, 134.667, 117.333, 165.333, 109.333, 174, 67.3333, 166, 48, 114, 45.3333, 83.3333, 32.6667, 72, -30, 87.3333, -88.6667, 133.333, -108, 272, -96.6667, 330, -84.6667, 350, -46, 332, -19.3333, 254.667, -18.6667, 145.333, -34, 145.333, -12.6667, 208.667, -6.66667, 228.667, 8, 228.52, 40.0864, 238, 134.667, 228, 154, 184, 166, -27.3333, 161.333, -42.6667, 148.667, -52.6667, 132.667, -51.3333, 36.6667)
-
-[node name="Pillar" parent="Red" instance=ExtResource("4_jwxd5")]
-position = Vector2(633, 640)
-
-[node name="Pillar2" parent="Red" instance=ExtResource("4_jwxd5")]
-position = Vector2(426, 375)
-
-[node name="Blue" type="Node2D" parent="."]
-
-[node name="Shadow2" parent="Blue" instance=ExtResource("3_oiyn5")]
-position = Vector2(650, 230)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Blue/Shadow2"]
-polygon = PackedVector2Array(-34, 19.3333, 33.3333, 36, 78.6667, 27.3333, 50, -55.3333, 78, -105.333, 120.667, -108.667, 122, -152.667, 288.667, -152, 288, -115.333, 321.333, -102, 319.333, -31.3333, 274.667, -38, 252, -69.3333, 164.667, -68, 139.333, -35.3333, 138, -10.6667, 208.667, 27.3333, 213.333, 84, 146, 98, 90, 134, 16.6667, 128.667, -20.6667, 74)
-
-[node name="Polygon2D" type="Polygon2D" parent="Blue/Shadow2"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(-39.3333, 19.3333, 38.6667, 36, 78.6667, 26.6667, 49.3333, -54, 80, -106.667, 122.181, -107.037, 120.667, -150.667, 291.333, -152, 292, -111.333, 330, -105.333, 332, -19.3333, 270.667, -26, 250.667, -63.3333, 164.667, -62.6667, 145.333, -34, 145.333, -12.6667, 213.333, 19.3333, 221.333, 90.6667, 146.667, 103.333, 121.333, 123.333, 58.6667, 138.667, 12, 132, -28.6667, 83.3333)
-
-[node name="Shadow3" parent="Blue" instance=ExtResource("3_oiyn5")]
-position = Vector2(650, 230)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Blue/Shadow3"]
-position = Vector2(498, 377.333)
-polygon = PackedVector2Array(-208, -118, -175.333, -129.333, -82, -124, 14, -121.333, 43.3333, -128, 39.3333, -151.333, 28.6666, -180.667, 52, -208.667, 117.333, -214.667, 212, -207.333, 308, -210, 325.333, -196, 336, -176.667, 329.333, -149.333, 305.333, -138.667, 110, -151.333, 120, -98, 107.333, -72, 78.6666, -56.6667, -89.3334, -60, -126.667, -54, -147.333, -4.66669, -136.667, 17.3333, -122, 28, -79.3334, 27.3333, -80.6667, -8, 216, -8.66669, 222.667, 141.333, -39.3334, 145.333, -39.3334, 100, -40, 98.6667, -42, 81.3333, -116, 87.3333, -186, 80.6667, -223.333, 66.6667, -239.333, 51.3333, -243.333, -16.6667)
-
-[node name="Polygon2D" type="Polygon2D" parent="Blue/Shadow3"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(284.667, 449.333, 256.667, 426.667, 254.667, 370, 285.333, 255.333, 335.333, 246.667, 428, 250, 540.667, 251.333, 528, 196, 540.667, 168.667, 800.667, 162.667, 830, 176.667, 831.333, 232, 802, 240, 607.333, 228, 626.667, 278.667, 608, 310, 575.333, 326, 365.333, 318, 353.333, 372.667, 360.667, 396.667, 414.667, 401.333, 416.667, 382, 440, 367.333, 522.667, 382.667, 656.667, 371.333, 703.333, 394.667, 716, 444, 721.333, 524.667, 452, 524.667, 452.667, 476, 452.667, 477.333, 454, 461.333, 316.667, 464.667)
-
-[node name="Pillar" parent="Blue" instance=ExtResource("4_jwxd5")]
-position = Vector2(1227, 735)
-
-[node name="Pillar2" parent="Blue" instance=ExtResource("4_jwxd5")]
-position = Vector2(832, 135)
-
-[node name="Green" type="Node2D" parent="."]
-
-[node name="Shadow3" parent="Green" instance=ExtResource("3_oiyn5")]
-position = Vector2(774, -283)
-timeEnabled = 2
-timeDisabled = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Green/Shadow3"]
-position = Vector2(498, 377.333)
-polygon = PackedVector2Array(-310.667, -56.6664, -256, -51.333, -241.333, -12.6664, -224.667, 29.3336, -171.333, 24.667, -84, -11.3333, -84, -90, 44, -86.6667, 42, -145.333, 223.333, -145.333, 226.667, -78.6667, 112.667, -93.3333, 110.667, -12.6667, -6.66663, -21.3333, -6.66663, 61.3333, 228.667, 62.6667, 223.333, 141.333, 144.667, 140, -84, 145.333, -154.667, 128.667, -197.333, 163.334, -197.333, 214.667, -262.667, 210.667, -282, 128.667, -325.333, 107.334)
-
-[node name="Polygon2D" type="Polygon2D" parent="Green/Shadow3"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(182, 317.333, 218.667, 315.333, 243.333, 326, 268.667, 387.333, 292, 404, 334.667, 398, 374, 368.667, 407.333, 361.333, 400, 305.333, 410.667, 278.667, 488.667, 275.333, 526.667, 282, 534, 259.333, 533.333, 235.333, 721.333, 233.333, 721.333, 297.333, 710, 307.333, 650.667, 283.333, 619.333, 289.333, 625.333, 340, 614, 366, 594, 369.333, 540.667, 354.667, 503.333, 360.667, 496, 396.667, 496.667, 430, 519.333, 440.667, 723.333, 434.667, 723.333, 498.667, 699.333, 514, 430.667, 525.333, 406, 515.333, 389.333, 518, 361.333, 514.667, 325.333, 528, 298, 540.667, 304, 572.667, 296.667, 594, 232.667, 590.667, 208, 495.333, 173.333, 472, 176.667, 404)
-
-[node name="Pillar" parent="Green" instance=ExtResource("4_jwxd5")]
-position = Vector2(1557, 273)
 
 [node name="MazeTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -136,6 +24,90 @@ autostart = true
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
+
+[node name="Pillar2" parent="." instance=ExtResource("4_jwxd5")]
+position = Vector2(450, 300)
+lit = true
+
+[node name="Pillar3" parent="." instance=ExtResource("4_jwxd5")]
+position = Vector2(1500, 300)
+lit = true
+
+[node name="Pillar4" parent="." instance=ExtResource("4_jwxd5")]
+position = Vector2(1500, 700)
+lit = true
+
+[node name="Shadow" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(1028, 524.667, 1029.33, 492, 1366.67, 498, 1318, 762.667, 1082, 766.667, 992, 526.667)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
+polygon = PackedVector2Array(992.667, 532.667, 1085.33, 768, 1293.33, 734, 1366, 500.667, 1026.67, 490)
+
+[node name="Shadow2" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow2"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(1028, 235.333, 1027.33, 222.667, 1016.67, 218.667, 1016, 192, 1015.33, 180.667, 1023.33, 168, 1020.67, 138.667, 993.333, 139.333, 1036, -33.3333, 1313.33, -30, 1310, 190.667, 1306, 199.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow2"]
+polygon = PackedVector2Array(1019.33, 236, 972.667, 223.333, 1033.33, -31.3333, 1325.33, -22, 1307.33, 198.667)
+
+[node name="Shadow3" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow3"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(272, 498.667, 272, 523.333, 297.333, 524, 266.667, 787.333, -40.6667, 776, -63.3333, 514)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow3"]
+polygon = PackedVector2Array(301.333, 522.667, 278.667, 497.333, -68.6667, 518, -48, 735.333, 145.333, 779.333, 268, 787.333)
+
+[node name="Shadow4" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow4"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(272, 229.333, 272, 239.333, -102, 253.333, -87.3333, -68, 232, -77.3333, 277.333, 154, 276, 166, 276.667, 175.333, 279.333, 178.667, 280.667, 192, 282.667, 204.667, 280, 218)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow4"]
+polygon = PackedVector2Array(269.333, 240.667, 292, 217.333, 232.667, -62, -72, -60, -116, 122.667, -95.3333, 252.667)
+
+[node name="Shadow5" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow5"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(286, 586, 275.333, 734, 1078.67, 730, 1068, 726, 1019.33, 590)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow5"]
+polygon = PackedVector2Array(286, 582.667, 1091.33, 592.667, 1093.33, 768, 230, 764.667)
+
+[node name="Shadow6" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow6"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(1135.33, 504, 1310.67, 498, 1307.33, 193.333, 1147.33, 207.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow6"]
+polygon = PackedVector2Array(1134.67, 489.333, 1149.33, 218.667, 1321.33, 193.333, 1319.33, 498.667)
+
+[node name="Shadow7" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow7"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(244, -14, 264.667, 141.333, 1007.33, 142, 1030, -16.6667)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow7"]
+polygon = PackedVector2Array(239.333, -33.3333, 250, 141.333, 1020.67, 146, 1039.33, -36.6667)
+
+[node name="Shadow8" parent="." instance=ExtResource("3_oiyn5")]
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow8"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(152, 242, 147.333, 512, -24.6667, 514.667, -24.6667, 247.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow8"]
+polygon = PackedVector2Array(-26, 516, -23.3333, 205.333, 152, 214.667, 140.667, 516)
 
 [connection signal="dead" from="ShadowBoss" to="." method="_on_shadow_boss_dead"]
 [connection signal="timeout" from="MazeTimer" to="." method="_on_maze_timer_timeout"]

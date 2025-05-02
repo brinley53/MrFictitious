@@ -8,6 +8,7 @@ Revisions:
 		Brinley Hull - 4/23/2025: Different boss attacks
 		Jose Leyba - 4/24/2025: Stun functionality added
 		Brinley Hull - 4/25/2025: Fix detection/attack areas
+		Brinley Hull - 5/2/2025: Change boss style completely
 """
 
 extends CharacterBody2D
@@ -42,17 +43,23 @@ var current_stun_timer: Timer = null
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var attack_area = $AttackArea
 @onready var melee_timer = $MeleeAttackTimer
+@onready var shadow_area = $ShadowArea
+@onready var detect_timer = $DetectTimer
+
+# variable to control turning around on player hit
+var detect = true
 
 
 func _ready():
 	#set initial variables
+	await get_tree().process_frame
 	player.play_sound(AK.EVENTS.BOSS)
-	speed = 10.0
+	speed = 20.0
 	timer.start()
 	
 func reset_patrol():
 	chase_player = false
-	speed = 10.0
+	speed = 20.0
 	attack_player = false
 	
 func change_attack(attack_type):
@@ -73,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	
 	if stunned:
 		return
-	if !player.stealth or is_vulnerable:
+	if (!player.stealth or (is_vulnerable and detect)) and chase_player:
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
 
@@ -88,6 +95,7 @@ func _physics_process(delta: float) -> void:
 		
 		direction = (player.global_position - detection.global_position).angle() + PI
 		detection.rotation = lerp_angle(detection.rotation, direction, delta)
+		shadow_area.rotation = lerp_angle(detection.rotation, direction, delta)
 		vul_area.scale.x = 1 if (player.global_position - global_position).normalized().x > 0 else -1
 		var offset = Vector2(-67, 29)  # 67 pixels to the right
 		offset.x *= vul_area.scale.x  # flip offset too
@@ -175,8 +183,11 @@ func _on_vulnerable_timer_timeout() -> void:
 	
 func _on_vulnerable_area_area_entered(area: Area2D) -> void:
 	if !chase_player:
+		detect = false
+		detect_timer.start()
 		is_vulnerable = true
 		vul_timer.start()
+		chase_player = true
 
 
 func _on_melee_attack_timer_timeout() -> void:
@@ -185,3 +196,8 @@ func _on_melee_attack_timer_timeout() -> void:
 			pass
 		player.reduce_player_health(damage)
 		melee_timer.start()
+
+
+func _on_detect_timer_timeout() -> void:
+	detect = true
+	detect_timer.stop()

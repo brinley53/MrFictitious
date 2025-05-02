@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq82b2lvoeuhx"]
+
+[ext_resource type="Script" path="res://Scripts/loading.gd" id="1_aa81k"]
+[ext_resource type="Texture2D" uid="uid://c0hfhfyox1nbh" path="res://images/title_screen.jpg" id="1_p8xmi"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_o2hib"]
+
+[node name="Loading" type="Node2D"]
+script = ExtResource("1_aa81k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+texture = ExtResource("1_p8xmi")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.827451)
+polygon = PackedVector2Array(-342, -350, -335, 1568, 2383, 1500, 2268, -390)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 830.0
+offset_top = 518.0
+offset_right = 1218.0
+offset_bottom = 618.0
+theme_override_fonts/font = ExtResource("2_o2hib")
+theme_override_font_sizes/font_size = 100
+text = "Loading..."
