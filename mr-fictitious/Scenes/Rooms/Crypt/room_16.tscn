@@ -107,7 +107,7 @@ polygon = PackedVector2Array(284.667, 449.333, 256.667, 426.667, 254.667, 370, 2
 position = Vector2(1227, 735)
 
 [node name="Pillar2" parent="Blue" instance=ExtResource("4_jwxd5")]
-position = Vector2(912, 135)
+position = Vector2(832, 135)
 
 [node name="Green" type="Node2D" parent="."]
 
