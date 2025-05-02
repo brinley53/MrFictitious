@@ -156,12 +156,17 @@ func set_active_room(location:Location, room:int) -> void:
 		remove_child(base_rooms[active_location])
 		call_deferred("add_child", base_rooms[location])
 
+	if active_location == Location.CENTRAL:
+		var edge = edges[Location.FOREST][DIRECTION_FROM_CENTRAL[Location.ASYLUM]]
+		if edge and edge.get_parent() == self:
+			call_deferred("remove_child", edge)
+
 	# Remove the old active room.
 	var old_room = rooms[active_location][active_room]
 	if old_room and old_room.get_parent() == self:
 		remove_child(old_room)
 
-	# Remove the old active room's edges.			
+	# Remove the old active room's edges.
 	if edges.has(active_location):
 		for direction in range(Direction.COUNT):
 			var edge = edges[active_location][direction]
@@ -180,6 +185,10 @@ func set_active_room(location:Location, room:int) -> void:
 		for direction in range(Direction.COUNT):
 			if connections[active_location][active_room][direction]["room"] == null:
 				call_deferred("add_child", edges[active_location][direction])
+
+	# Special case to block the Asylum until the Player collects all evidence.
+	if active_location == Location.CENTRAL and playerInstance.evidence_collected < 3:
+		call_deferred("add_child", edges[Location.FOREST][DIRECTION_FROM_CENTRAL[Location.ASYLUM]])
 
 	if BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location]:
 		rooms[active_location][active_room].block_edges(edges[active_location])
