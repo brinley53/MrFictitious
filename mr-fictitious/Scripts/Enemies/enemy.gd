@@ -61,8 +61,13 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")
 @onready var player = players[0]
 @onready var nav_timer = $NavTimer
 @onready var nav_agent = $NavigationAgent2D
-var vulnerable_area:Area2D
+
 var shot_timer:Timer
+
+#Griffin specs
+var vulnerable_area:Area2D
+var spec_timer:Timer
+var statue = true
 
 var patrol_points
 var dart_timer:Timer
@@ -92,6 +97,7 @@ func _ready():
 		
 	if type == "Griffin":
 		vulnerable_area = $Vulnerable
+		spec_timer = $SpecTimer
 	
 func reset_patrol():
 	if patrol_a == null or patrol_b == null:
@@ -124,6 +130,11 @@ func _physics_process(delta: float) -> void:
 			sprite.play("stand")
 		else:
 			chase(target_point)
+	elif type=="Griffin":
+		if !statue:
+			chase(target_point)
+		else:
+			sprite.pause()
 	else:
 		chase(target_point)
 		
@@ -276,5 +287,11 @@ func _on_shot_timer_timeout() -> void:
 		shot_timer.start()
 
 func knockback(pos):
+	if type=="Griffin":
+		return
 	var direction = (global_position - pos).normalized()
 	knockback_velocity = direction * knockback_strength
+
+func _on_spec_timer_timeout() -> void:
+	statue = !statue
+	spec_timer.start()

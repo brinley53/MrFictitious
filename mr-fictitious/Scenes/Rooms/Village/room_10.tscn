@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3aiygb0m303c"]
+[gd_scene load_steps=5 format=3 uid="uid://d3aiygb0m303c"]
 
+[ext_resource type="PackedScene" uid="uid://xke0oamax83a" path="res://Scenes/Enemies/big_griffin.tscn" id="1_0ohap"]
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="1_ork8r"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="2_334ml"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v2bkv"]
+vertices = PackedVector2Array(1672.49, 829.961, 209, 825.031, 209, 202.828, 1640.48, 179.156)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(199, 193, 199, 835, 1683, 840, 1650, 169)])
 
 [node name="Room10" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_ork8r")]
-position = Vector2(897, 520)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_v2bkv")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_0ohap")]
+position = Vector2(863, 497)
+
+[node name="Patrol" parent="." instance=ExtResource("2_334ml")]
+position = Vector2(279, 774)
+
+[node name="Patrol2" parent="." instance=ExtResource("2_334ml")]
+position = Vector2(1430, 320)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("1_ork8r")]
+position = Vector2(444, 660)

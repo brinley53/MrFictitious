@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7a6tyxpibonb" path="res://images/big griffin staute sprite sheet right facing .png" id="3_btj2d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vweiy"]
-radius = 26.7018
+radius = 77.4501
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr45q"]
 atlas = ExtResource("2_bmq1t")
@@ -153,7 +153,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(109.091, 98.4783)
+size = Vector2(254.545, 214.464)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
@@ -170,7 +170,6 @@ scale = Vector2(1.432, 1.01077)
 shape = SubResource("CircleShape2D_vweiy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_0dolo")
 animation = &"walk"
 frame_progress = 0.105814
@@ -180,15 +179,16 @@ position = Vector2(5, -2)
 scale = Vector2(0.880001, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(7.95454, 1)
+position = Vector2(18.1818, -6)
 scale = Vector2(0.875, 0.913907)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="Detection" type="Area2D" parent="."]
+position = Vector2(63, -66)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
+polygon = PackedVector2Array(0.728596, 49.8925, 460.474, 198.71, 467.76, -135.914, 0, -25)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -199,7 +199,7 @@ avoidance_enabled = true
 autostart = true
 
 [node name="Vulnerable" type="Area2D" parent="."]
-position = Vector2(-18, 5)
+position = Vector2(-64, 13)
 scale = Vector2(0.32, 0.559999)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vulnerable"]
@@ -208,9 +208,12 @@ scale = Vector2(0.875, 1.12819)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="SpecTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="SpecTimer" to="." method="_on_spec_timer_timeout"]
