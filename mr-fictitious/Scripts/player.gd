@@ -69,7 +69,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 3
+var evidence_collected = 0
 var in_dialogue = false
 
 var spin_attack_active = false
