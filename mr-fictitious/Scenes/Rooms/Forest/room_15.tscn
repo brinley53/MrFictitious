@@ -220,6 +220,15 @@ position = Vector2(293.354, 349.303)
 [node name="Spikes2" parent="NavigationRegion2D" instance=ExtResource("6_bmlem")]
 position = Vector2(1663.67, 733.343)
 
+[node name="Spikes3" parent="NavigationRegion2D" instance=ExtResource("6_bmlem")]
+position = Vector2(184.962, 733.343)
+
+[node name="Spikes4" parent="NavigationRegion2D" instance=ExtResource("6_bmlem")]
+position = Vector2(813.437, 251.845)
+
+[node name="Spikes5" parent="NavigationRegion2D" instance=ExtResource("6_bmlem")]
+position = Vector2(1185.35, 254.74)
+
 [node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("6_3v78w")]
 position = Vector2(909, 456)
 patrol_a = NodePath("../Patrol")
