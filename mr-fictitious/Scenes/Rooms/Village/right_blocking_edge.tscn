@@ -5,4 +5,4 @@
 [node name="RightBlockingEdge" type="Node2D"]
 
 [node name="VillageHouseRight11" parent="." instance=ExtResource("1_dtv2n")]
-position = Vector2(1936, 530)
+position = Vector2(1936, 506)

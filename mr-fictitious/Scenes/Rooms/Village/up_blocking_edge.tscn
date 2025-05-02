@@ -5,4 +5,4 @@
 [node name="UpBlockingEdge" type="Node2D"]
 
 [node name="VillageHouseRight" parent="." instance=ExtResource("1_x5wep")]
-position = Vector2(960, -16)
+position = Vector2(960, -64)
