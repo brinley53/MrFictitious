@@ -3,6 +3,7 @@ Script for the syringes that Mendoza shoots
 Authors: Brinley Hull, Jose Leyba
 Creation Date: 04/28/2025
 Revisions:
+	Brinley Hull - 5/2/2025: Syringe liquids
 """
 
 extends Area2D
@@ -56,3 +57,8 @@ func initialize_bullet(target_position: Vector2, type_str="Poison") -> void:
 	var direction = (target_position - global_position).normalized()
 	velocity = direction * speed
 	rotation = direction.angle()
+	if type == "Snail":
+		$Weak.visible = false
+		$Poison.visible = false
+	elif type == "Weak":
+		$Poison.visible = false

@@ -19,11 +19,24 @@ wait_time = 4.0
 one_shot = true
 autostart = true
 
+[node name="Snail" type="Polygon2D" parent="."]
+color = Color(0.448407, 0.395603, 0.196156, 1)
+polygon = PackedVector2Array(-6, -6, -6, 8, 12, 8, 12, -6)
+
+[node name="Weak" type="Polygon2D" parent="."]
+color = Color(0.419508, 0.261294, 0.377393, 1)
+polygon = PackedVector2Array(-6, -6, -6, 8, 12, 8, 12, -6)
+
+[node name="Poison" type="Polygon2D" parent="."]
+color = Color(0.17084, 0.374301, 0.194327, 1)
+polygon = PackedVector2Array(-6, -6, -6, 8, 12, 8, 12, -6)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
 texture = ExtResource("2_gcu48")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -1.5708
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_gm6vl")
@@ -33,5 +46,7 @@ visible = false
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 gradient = SubResource("Gradient_khrrq")
+
+[node name="Node" type="Node" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
