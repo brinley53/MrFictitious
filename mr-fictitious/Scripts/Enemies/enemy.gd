@@ -44,7 +44,7 @@ var point_a = 0
 var point_b = 0
 
 var knockback_velocity: Vector2 = Vector2.ZERO
-var knockback_strength := 600.0
+@export var knockback_strength := 600.0
 var knockback_decay := 2000.0
 
 #chase player variables
@@ -173,13 +173,13 @@ func check_patrol():
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	timer.start()
 	if disabled:
 		return
 	if body.name == "Player":
 		attack_player = true
 		player.initiate_combat()
 		player.reduce_player_health(damage)
-		timer.start()
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
@@ -274,10 +274,10 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if attack_player:
+		timer.start()
 		if stunned or disabled:
 			pass
 		player.reduce_player_health(damage)
-		timer.start()
 
 func _on_dart_timer_timeout() -> void:
 	dart_timer.start()
@@ -295,7 +295,7 @@ func _on_shot_timer_timeout() -> void:
 		shot_timer.start()
 
 func knockback(pos):
-	if type=="Griffin":
+	if disabled:
 		return
 	var direction = (global_position - pos).normalized()
 	knockback_velocity = direction * knockback_strength

@@ -19,11 +19,14 @@ func _ready() -> void:
 func enable_wave():
 	if !wave1:
 		enable_first_wave()
+		wave1 = true
 	elif !wave2:
 		enable_second_wave()
+		wave2 = true
 
 func enable_first_wave():
 	# function to call first wave of griffins
+	print('enabled')
 	var griffins = first_wave.get_children()
 	for griffin in griffins:
 		griffin.disabled = false

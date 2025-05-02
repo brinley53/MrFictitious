@@ -22,22 +22,9 @@ position = Vector2(962, 509)
 position = Vector2(408, 214)
 disabled = true
 
-[node name="CharacterBody2D8" parent="FirstWave" instance=ExtResource("3_d2io4")]
-position = Vector2(417, 896)
-disabled = true
-
-[node name="CharacterBody2D9" parent="FirstWave" instance=ExtResource("3_d2io4")]
-position = Vector2(210, 381)
-disabled = true
-
 [node name="CharacterBody2D10" parent="FirstWave" instance=ExtResource("3_d2io4")]
 position = Vector2(207, 755)
 disabled = true
-
-[node name="CharacterBody2D5" parent="FirstWave" instance=ExtResource("3_d2io4")]
-position = Vector2(1444, 187)
-disabled = true
-flipped = true
 
 [node name="CharacterBody2D11" parent="FirstWave" instance=ExtResource("3_d2io4")]
 position = Vector2(1663, 354)
@@ -46,11 +33,6 @@ flipped = true
 
 [node name="CharacterBody2D6" parent="FirstWave" instance=ExtResource("3_d2io4")]
 position = Vector2(1436, 911)
-disabled = true
-flipped = true
-
-[node name="CharacterBody2D12" parent="FirstWave" instance=ExtResource("3_d2io4")]
-position = Vector2(1666, 739)
 disabled = true
 flipped = true
 
