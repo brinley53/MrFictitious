@@ -37,7 +37,6 @@ tile_set = SubResource("TileSet_2mifp")
 position = Vector2(892, 517)
 
 [node name="Shadow" parent="." instance=ExtResource("5_hjie5")]
-visible = false
 
 [node name="Polygon2D" type="Polygon2D" parent="Shadow"]
 color = Color(0, 0, 0, 0.466667)
@@ -47,27 +46,21 @@ polygon = PackedVector2Array(134, 162, 145.333, 146.667, 160.667, 135.333, 208, 
 polygon = PackedVector2Array(132.667, 148, 181.333, 126.667, 219.333, 126.667, 259.333, 148, 310.667, 152, 587.333, 130.667, 684.667, 122.667, 718.667, 124.667, 803.333, 143.333, 898.667, 175.333, 1000.67, 162.667, 1078.67, 166.667, 1146.67, 164.667, 1188.67, 268.667, 1182.67, 315.333, 1156.67, 368, 1142, 463.333, 1142, 533.333, 1125.33, 596.667, 1042.67, 611.333, 996, 645.333, 947.333, 683.333, 938, 832, 1518.67, 814, 1494.67, -120, -181.333, -144, -124.667, 922, 363.333, 884.667, 286, 679.333, 238, 634, 195.333, 591.333, 184.667, 522, 184.667, 444.667, 163.333, 351.333, 134, 255.333, 131.333, 199.333)
 
 [node name="Spawn" parent="." instance=ExtResource("6_vfucg")]
-visible = false
 position = Vector2(948, 988)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_r5xqy")
 
 [node name="Patrol2" parent="." instance=ExtResource("6_vfucg")]
-visible = false
 position = Vector2(531, 398)
 
 [node name="Patrol3" parent="." instance=ExtResource("6_vfucg")]
-visible = false
 position = Vector2(1458, 384)
 
 [node name="Patrol4" parent="." instance=ExtResource("6_vfucg")]
-visible = false
 position = Vector2(510, 812)
 
 [node name="Patrol5" parent="." instance=ExtResource("6_vfucg")]
-visible = false
 position = Vector2(1498, 828)
 
 [node name="SpawnTimer" type="Timer" parent="."]
