@@ -20,28 +20,28 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = SubResource("TileSet_etusj")
 
 [node name="VillageHouseRight" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1210, -16)
+position = Vector2(1210, -64)
 
 [node name="VillageHouseLeft" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(710, -16)
+position = Vector2(710, -64)
 
 [node name="VillageHouseRight2" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1460, -16)
+position = Vector2(1460, -64)
 
 [node name="VillageHouseLeft2" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(460, -16)
+position = Vector2(460, -64)
 
 [node name="VillageHouseRight3" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1710, -16)
+position = Vector2(1710, -64)
 
 [node name="VillageHouseLeft3" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(210, -16)
+position = Vector2(210, -64)
 
 [node name="VillageHouseRight4" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1960, -16)
+position = Vector2(1960, -64)
 
 [node name="VillageHouseLeft4" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(-40, -16)
+position = Vector2(-40, -64)
 
 [node name="VillageHouseRight5" parent="." instance=ExtResource("4_5hakw")]
 z_index = 2
@@ -60,7 +60,7 @@ z_index = 2
 position = Vector2(1710, 1096)
 
 [node name="VillageHouseRight9" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1936, 288)
+position = Vector2(1936, 240)
 
 [node name="VillageHouseRight8" parent="." instance=ExtResource("4_5hakw")]
 z_index = 2
@@ -87,4 +87,4 @@ z_index = 2
 position = Vector2(-40, 1096)
 
 [node name="VillageHouseLeft9" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(-16, 288)
+position = Vector2(-16, 240)
