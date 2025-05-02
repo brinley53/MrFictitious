@@ -159,9 +159,9 @@ size = Vector2(152, 138.964)
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ajgps")
-health = 20
-base_speed = 45.0
-damage = 10.0
+health = 10
+base_speed = 90.0
+damage = 5.0
 type = "Griffin"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

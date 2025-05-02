@@ -1,8 +1,78 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvwtgd53nvtqx"]
+[gd_scene load_steps=6 format=3 uid="uid://bvwtgd53nvtqx"]
 
 [ext_resource type="PackedScene" uid="uid://crdsaeocr2klm" path="res://Scenes/Enemies/statue.tscn" id="1_p55qe"]
+[ext_resource type="Script" path="res://Scenes/Rooms/Village/statue_boss_room.gd" id="1_rwrxy"]
+[ext_resource type="PackedScene" uid="uid://xke0oamax83a" path="res://Scenes/Enemies/big_griffin.tscn" id="2_3bgmk"]
+[ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="3_d2io4"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jcr84"]
+vertices = PackedVector2Array(1723.91, 954.789, 153.078, 924.188, 159.906, 173.906, 1717.08, 161.078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(150, 164, 1727, 151, 1734, 965, 143, 934)])
 
 [node name="Room16" type="Node2D"]
+script = ExtResource("1_rwrxy")
 
 [node name="Statue" parent="." instance=ExtResource("1_p55qe")]
 position = Vector2(962, 509)
+
+[node name="FirstWave" type="Node2D" parent="."]
+
+[node name="CharacterBody2D7" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(408, 214)
+disabled = true
+
+[node name="CharacterBody2D8" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(417, 896)
+disabled = true
+
+[node name="CharacterBody2D9" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(210, 381)
+disabled = true
+
+[node name="CharacterBody2D10" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(207, 755)
+disabled = true
+
+[node name="CharacterBody2D5" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(1444, 187)
+disabled = true
+flipped = true
+
+[node name="CharacterBody2D11" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(1663, 354)
+disabled = true
+flipped = true
+
+[node name="CharacterBody2D6" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(1436, 911)
+disabled = true
+flipped = true
+
+[node name="CharacterBody2D12" parent="FirstWave" instance=ExtResource("3_d2io4")]
+position = Vector2(1666, 739)
+disabled = true
+flipped = true
+
+[node name="SecondWave" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="SecondWave" instance=ExtResource("2_3bgmk")]
+position = Vector2(237, 239)
+disabled = true
+
+[node name="CharacterBody2D3" parent="SecondWave" instance=ExtResource("2_3bgmk")]
+position = Vector2(238, 869)
+disabled = true
+
+[node name="CharacterBody2D2" parent="SecondWave" instance=ExtResource("2_3bgmk")]
+position = Vector2(1627, 214)
+disabled = true
+flipped = true
+
+[node name="CharacterBody2D4" parent="SecondWave" instance=ExtResource("2_3bgmk")]
+position = Vector2(1629, 878)
+disabled = true
+flipped = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_jcr84")
