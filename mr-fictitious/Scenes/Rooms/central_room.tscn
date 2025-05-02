@@ -37,18 +37,3 @@ position = Vector2(1254, 298)
 
 [node name="Perm_Buff_Dmg2" parent="." instance=ExtResource("7_rftok")]
 position = Vector2(1252, 763)
-
-[node name="AsylumBlocker" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AsylumBlocker"]
-position = Vector2(960, 64)
-shape = SubResource("RectangleShape2D_ign8a")
-
-[node name="DialogueTrigger" type="Area2D" parent="AsylumBlocker"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AsylumBlocker/DialogueTrigger"]
-position = Vector2(960, 73)
-shape = SubResource("RectangleShape2D_wp2g4")
-
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="body_entered" from="AsylumBlocker/DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]

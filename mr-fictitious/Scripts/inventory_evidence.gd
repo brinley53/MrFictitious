@@ -27,7 +27,7 @@ func updateSlots():
 		#if(i==playerinv.activeSlot):
 			#slotBg.texture=belt_sprites[i]
 			#print(belt_sprites[i].resource_name)
-		slots[i].update(playerinv.evidenceSlots[i])
+		slots[i].update(playerinv.evidenceSlots[i],i+1)
 	pass
 
 func close():

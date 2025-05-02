@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://f08qhyswc6d8" path="res://images/crypt_tiles.png" id="1_08hc8"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="2_v5yvk"]
-[ext_resource type="PackedScene" uid="uid://cooahijcadpxe" path="res://Scenes/Inventory_evidence.tscn" id="3_frh4x"]
+[ext_resource type="PackedScene" uid="uid://blw5ieynomods" path="res://Scenes/Inventory_evidence.tscn" id="3_frh4x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hkl5f"]
 texture = ExtResource("1_08hc8")
