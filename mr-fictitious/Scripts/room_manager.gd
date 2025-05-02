@@ -32,9 +32,9 @@ const DIRECTION_FROM_CENTRAL:Dictionary = {
 }
 
 const BOSS_INDEX:Dictionary = {
-	Location.FOREST: -1,
-	Location.CRYPT: -1,
-	Location.VILLAGE: -1,
+	Location.FOREST: 6,
+	Location.CRYPT: 6,
+	Location.VILLAGE: 6,
 	Location.ASYLUM: -1
 }
 
