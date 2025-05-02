@@ -40,3 +40,6 @@ INMATE: If you plan on proving your sanity you should collect more evidence. You
 ~ evidence2
 INMATE: If that doesn’t prove your sanity, I don’t know what will… 
 => END
+~ blocker
+INMATE: You aren't ready to confront Mendoza, you haven't gathered enough evidence.
+=> END

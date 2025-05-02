@@ -312,6 +312,14 @@ func evidence_dialogue():
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence1")
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
+func asylum_blocker_dialogue():
+	if in_dialogue:
+		return
+
+	if evidence_collected < 3:
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "blocker")
+		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
 	if bullets > 0:  
