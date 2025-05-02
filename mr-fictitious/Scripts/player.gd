@@ -84,7 +84,7 @@ var max_sword_attacks = 45
 var shovel_attack_uses = 0
 var max_shovel_attacks = 40
 var musket_attack_uses = 0
-var max_musket_attacks = 15
+var max_musket_attacks = 25
 var original_polygon = []
 var original_sprite_scale = Vector2.ONE
 #ONREADY VARIABLES
@@ -496,7 +496,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 	if sword:
 		sword = false
 		sword_attack_uses = 0
-	base_damage += damage_increase
+	base_damage = damage_increase
 	damage_difference = damage_increase
 	current_damage = base_damage 
 	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
@@ -509,7 +509,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 		attack_sprite.scale *= shrink_factor
 
 func reset_shovel():
-	base_damage -= damage_difference
+	base_damage += damage_difference
 	damage_difference = 0
 	current_damage = base_damage
 	has_shovel = false
@@ -519,10 +519,10 @@ func reset_shovel():
 	if poly_node:
 		var points = poly_node.polygon.duplicate()
 		for i in range(points.size()):
-			points[i] *= 1.3
+			points[i] *= 0.7
 		poly_node.polygon = points
 	if attack_sprite:
-		attack_sprite.scale *= 1.3
+		attack_sprite.scale *= 0.7
 
 func _on_dialogue_started(_resource: DialogueResource):
 	# Function to pause everything while dialogue is on

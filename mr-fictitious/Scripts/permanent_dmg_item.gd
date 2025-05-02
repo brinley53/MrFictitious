@@ -7,8 +7,8 @@ Revisions:
 """
 extends Area2D
 
-@export var damage_increase := 3
-@export var attack_area_shrink := 0.7  # 70% of original size\
+@export var damage_increase := -1
+@export var attack_area_shrink := 1.4  # 70% of original size\
 @onready var dialogue = preload("res://shovel.dialogue")
 @onready var dialogue_manager = get_node("/root/DialogueManager")
 @onready var timer = $Timer

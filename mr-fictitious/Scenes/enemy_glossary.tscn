@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5yvuv5stab68"]
+[gd_scene load_steps=23 format=3 uid="uid://b5yvuv5stab68"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_glossary.gd" id="1_o3r84"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_c4ykj"]
@@ -8,7 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://n78sw65t51mq" path="res://images/GlossaryCuts/wolf sprite sheet right facing.png" id="5_k54l7"]
 [ext_resource type="Texture2D" uid="uid://cbtkahbh2v70v" path="res://images/GlossaryCuts/assylum worker sprite-Sheet-Sheet.png" id="6_6dgna"]
 [ext_resource type="Texture2D" uid="uid://b7vgkh2hmfk7x" path="res://images/GlossaryCuts/hoodenemyrightface.png" id="7_imhqx"]
+[ext_resource type="Texture2D" uid="uid://ygpgmkee0844" path="res://images/GlossaryCuts/small griffin staute sprite sheet right facing .png" id="8_dgav5"]
 [ext_resource type="Texture2D" uid="uid://b2xfm42an77rf" path="res://images/GlossaryCuts/angel attack sprite-Sheet.png" id="8_jdkyt"]
+[ext_resource type="Texture2D" uid="uid://diwv84dkad0fc" path="res://images/GlossaryCuts/Doctorstance.png" id="10_da5cr"]
+[ext_resource type="Texture2D" uid="uid://ba0ra318kerwu" path="res://images/GlossaryCuts/health pack.png" id="12_5qib4"]
+[ext_resource type="Texture2D" uid="uid://b0hlhpf6qn0ox" path="res://images/GlossaryCuts/flashlight.png" id="12_xacfu"]
+[ext_resource type="Texture2D" uid="uid://d1undpnuvou5m" path="res://images/GlossaryCuts/speed pill sprite.png" id="13_4rpe6"]
+[ext_resource type="Texture2D" uid="uid://1eba2w6y0hh0" path="res://images/GlossaryCuts/strength shot (its meth shhhh).png" id="14_6gao4"]
+[ext_resource type="Texture2D" uid="uid://broo5qkyvpmwe" path="res://images/GlossaryCuts/shovel sprite.png" id="15_7sgqd"]
+[ext_resource type="Texture2D" uid="uid://dqbm02slg7olk" path="res://images/GlossaryCuts/MGweapon.png" id="16_gv31l"]
+[ext_resource type="Texture2D" uid="uid://c4c8pwqbxd23c" path="res://images/GlossaryCuts/swordweapon.png" id="17_7njxd"]
+[ext_resource type="Texture2D" uid="uid://dxlo8s1jfeog4" path="res://images/tent.png" id="18_rvxnn"]
+[ext_resource type="Texture2D" uid="uid://bn8iniw8m5814" path="res://images/GlossaryCuts/evidence.png" id="19_nfeuv"]
+[ext_resource type="Texture2D" uid="uid://dkwbu5petdwou" path="res://images/GlossaryCuts/Forest.png" id="21_uo4lb"]
+[ext_resource type="Texture2D" uid="uid://blsrtib3hr7nk" path="res://images/GlossaryCuts/Crypt.png" id="22_pc286"]
 
 [node name="EnemyGlossary" type="Control"]
 layout_mode = 3
@@ -43,7 +56,7 @@ theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("5_k54l7")
 icon_alignment = 1
 
-[node name="poison" type="Button" parent="EnemyGrid"]
+[node name="worker" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("6_6dgna")
@@ -55,16 +68,99 @@ theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("7_imhqx")
 icon_alignment = 1
 
+[node name="griffins" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("8_dgav5")
+icon_alignment = 1
+
 [node name="statue" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("8_jdkyt")
 icon_alignment = 1
 
-[node name="mendoza" type="Button" parent="EnemyGrid"]
+[node name="horseman" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("5_aisjq")
+icon_alignment = 1
+
+[node name="mendoza" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("10_da5cr")
+icon_alignment = 1
+
+[node name="medicine" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("12_5qib4")
+icon_alignment = 1
+
+[node name="flash" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("12_xacfu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="pills" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("13_4rpe6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="shot" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("14_6gao4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="shovel" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("15_7sgqd")
+icon_alignment = 1
+
+[node name="rifle" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("16_gv31l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="sword" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("17_7njxd")
+icon_alignment = 1
+expand_icon = true
+
+[node name="tent" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("18_rvxnn")
+icon_alignment = 1
+
+[node name="evidence" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("19_nfeuv")
+icon_alignment = 1
+
+[node name="forest" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("21_uo4lb")
+icon_alignment = 1
+
+[node name="crypt" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("22_pc286")
 icon_alignment = 1
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
