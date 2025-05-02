@@ -204,12 +204,16 @@ func get_size() -> Vector2:
 	return collision_shape.shape.size
 
 func read_evidence():
+	if evidence_collected == 0:
+		return
 	if evidence_collected == 1:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "start")
 	if evidence_collected == 2:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence2")
 	if evidence_collected == 3:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence3")
+	if evidence_collected == 4:
+		get_tree().change_scene_to_file("res://Scenes/title.tscn")
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(_delta):
