@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://crdsaeocr2klm"]
+[gd_scene load_steps=134 format=3 uid="uid://crdsaeocr2klm"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/statue.gd" id="1_ounb0"]
 [ext_resource type="Texture2D" uid="uid://bmw4pg4kcv4fn" path="res://images/angel attack sprite-Sheet.png" id="2_iwsbr"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dkvk6602h5s4r" path="res://images/angel attack missing right wing sprite-Sheet.png" id="5_h4jb1"]
 [ext_resource type="Texture2D" uid="uid://bt8krtfqymsr0" path="res://images/angel attack sprite-Sheet missing head and  left wing.png" id="6_lhs3q"]
 [ext_resource type="Texture2D" uid="uid://0kqmxpmqixto" path="res://images/angel attack sprite-Sheet missing left wing.png" id="7_avx63"]
-[ext_resource type="Texture2D" uid="uid://ht0h25cctxkp" path="res://images/assylum worker sprite-Sheet-Sheet.png" id="8_b44p3"]
+[ext_resource type="Texture2D" uid="uid://clnb2wfho02xx" path="res://images/angel attack sprite no head-Sheet.png" id="8_40bru"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yah7x"]
 size = Vector2(15.6977, 15.3553)
@@ -112,9 +112,21 @@ region = Rect2(0, 900, 256, 300)
 atlas = ExtResource("2_iwsbr")
 region = Rect2(256, 900, 256, 300)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_no2dl"]
-atlas = ExtResource("8_b44p3")
-region = Rect2(75, 75, 75, 75)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj1k0"]
+atlas = ExtResource("8_40bru")
+region = Rect2(512, 600, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21twt"]
+atlas = ExtResource("8_40bru")
+region = Rect2(768, 600, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcu3q"]
+atlas = ExtResource("8_40bru")
+region = Rect2(0, 900, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hjni"]
+atlas = ExtResource("8_40bru")
+region = Rect2(256, 900, 256, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2y6sh"]
 atlas = ExtResource("6_lhs3q")
@@ -372,9 +384,45 @@ region = Rect2(0, 600, 256, 300)
 atlas = ExtResource("2_iwsbr")
 region = Rect2(256, 600, 256, 300)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0bbj6"]
-atlas = ExtResource("8_b44p3")
-region = Rect2(225, 150, 75, 75)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ewdj"]
+atlas = ExtResource("8_40bru")
+region = Rect2(0, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp1ds"]
+atlas = ExtResource("8_40bru")
+region = Rect2(256, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27nqp"]
+atlas = ExtResource("8_40bru")
+region = Rect2(512, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r3af"]
+atlas = ExtResource("8_40bru")
+region = Rect2(768, 0, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1e0x"]
+atlas = ExtResource("8_40bru")
+region = Rect2(0, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diw4g"]
+atlas = ExtResource("8_40bru")
+region = Rect2(256, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74iod"]
+atlas = ExtResource("8_40bru")
+region = Rect2(512, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3llod"]
+atlas = ExtResource("8_40bru")
+region = Rect2(768, 300, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vw3n"]
+atlas = ExtResource("8_40bru")
+region = Rect2(0, 600, 256, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap5a6"]
+atlas = ExtResource("8_40bru")
+region = Rect2(256, 600, 256, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f4dwd"]
 atlas = ExtResource("6_lhs3q")
@@ -522,7 +570,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_no2dl")
+"texture": SubResource("AtlasTexture_cj1k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21twt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcu3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hjni")
 }],
 "loop": true,
 "name": &"default_lr",
@@ -757,7 +814,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0bbj6")
+"texture": SubResource("AtlasTexture_4ewdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp1ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27nqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r3af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1e0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diw4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74iod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3llod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vw3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap5a6")
 }],
 "loop": false,
 "name": &"pound_lr",
@@ -869,7 +953,7 @@ shape = SubResource("RectangleShape2D_yah7x")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_i7t77")
-animation = &"pound_lh"
+animation = &"default_lr"
 autoplay = "default_lhr"
 
 [node name="LeftWing" type="Area2D" parent="."]

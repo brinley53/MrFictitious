@@ -279,7 +279,8 @@ func new_evidence_collected(evidence:Evidence):
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
 	if evidence_collected == 3:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
-	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	if dialogue_balloon != null:
+		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 # Dialogue start functions
 func final_boss_dialogue():

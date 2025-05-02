@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="6_t4h5k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o3br0"]
-vertices = PackedVector2Array(1771.42, 961.039, 114.906, 968.953, 107.094, 73, 1810.55, 73)
+vertices = PackedVector2Array(1756.21, 898.039, 165.32, 903.961, 188.688, 162.969, 1699.73, 159.023)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(97, 63, 105, 979, 1781, 971, 1821, 63)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(179, 153, 155, 914, 1767, 908, 1709, 149)])
 
 [node name="Room13" type="Node2D"]
 
@@ -57,13 +57,10 @@ position = Vector2(1404, 562)
 position = Vector2(457, 559)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("3_2otpq")]
-position = Vector2(993, 147)
+position = Vector2(979, 245)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("3_2otpq")]
 position = Vector2(997, 827)
-
-[node name="Patrol" parent="." instance=ExtResource("4_60lft")]
-position = Vector2(860, 923)
 
 [node name="Patrol2" parent="." instance=ExtResource("4_60lft")]
 position = Vector2(974, 225)
@@ -75,7 +72,7 @@ position = Vector2(761, 491)
 position = Vector2(1705, 773)
 
 [node name="Patrol5" parent="." instance=ExtResource("4_60lft")]
-position = Vector2(1582, 177)
+position = Vector2(1539, 246)
 
 [node name="Patrol6" parent="." instance=ExtResource("4_60lft")]
 position = Vector2(1264, 441)

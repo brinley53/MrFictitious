@@ -181,7 +181,7 @@ func set_active_room(location:Location, room:int) -> void:
 			if connections[active_location][active_room][direction]["room"] == null:
 				call_deferred("add_child", edges[active_location][direction])
 
-	if BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location]:
+	if BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location] and rooms[active_location][active_room].has_method("block_edgesa"):
 		rooms[active_location][active_room].block_edges(edges[active_location])
 
 func add_connection_entry(location:Location, room:int) -> void:

@@ -12,6 +12,8 @@ extends Node2D
 var wave1 = false
 var wave2 = false
 
+var blocking_edges = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	boss.broken.connect(enable_wave)
@@ -26,7 +28,6 @@ func enable_wave():
 
 func enable_first_wave():
 	# function to call first wave of griffins
-	print('enabled')
 	var griffins = first_wave.get_children()
 	for griffin in griffins:
 		griffin.disabled = false
@@ -36,6 +37,12 @@ func enable_second_wave():
 	var griffins = second_wave.get_children()
 	for griffin in griffins:
 		griffin.disabled = false
+		
+func block_edges(edges:Array) -> void:
+	if boss != null:
+		for edge in edges:
+			blocking_edges.append(edge)
+			add_child(edge)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

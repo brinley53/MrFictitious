@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"
+uid="uid://cv5m2c2cui6ri"
+path="res://.godot/imported/jim.png-18ae371427cafc57587d2a3328d40e21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/inmate.png"
-dest_files=["res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"]
+source_file="res://characters/jim.png"
+dest_files=["res://.godot/imported/jim.png-18ae371427cafc57587d2a3328d40e21.ctex"]
 
 [params]
 

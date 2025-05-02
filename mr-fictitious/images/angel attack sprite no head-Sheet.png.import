@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"
+uid="uid://clnb2wfho02xx"
+path="res://.godot/imported/angel attack sprite no head-Sheet.png-730c9543249dd229e45856b1f364b2ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/inmate.png"
-dest_files=["res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"]
+source_file="res://images/angel attack sprite no head-Sheet.png"
+dest_files=["res://.godot/imported/angel attack sprite no head-Sheet.png-730c9543249dd229e45856b1f364b2ce.ctex"]
 
 [params]
 

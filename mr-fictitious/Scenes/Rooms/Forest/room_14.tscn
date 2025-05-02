@@ -9,7 +9,7 @@
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2hdmr"]
 vertices = PackedVector2Array(730.523, 113.75, 719.547, 38, 1198.28, 38, 1238.41, 136.313, 1825, 109.461, 1825, 991.008, 141.367, 992.977, 173.633, 125.789)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(3, 6, 7, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(164, 116, 719, 104, 708, 28, 1205, 28, 1245, 126, 1835, 99, 1835, 1001, 131, 1003)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(188, 181, 729, 163, 708, 28, 1205, 28, 1234, 156, 1798, 201, 1820, 960, 186, 949)])
 
 [node name="Room14" type="Node2D"]
 
