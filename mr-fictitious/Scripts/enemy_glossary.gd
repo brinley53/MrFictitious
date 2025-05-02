@@ -14,7 +14,7 @@ var enemy_data = {
 		 Perhaps these pests have been taking advantage of the dead all around.  "
 	},
 	"wolf": {
-		"texture": preload("res://images/GlossaryCuts/Wolf_White_Background.png"),
+		"texture": preload("res://images/GlossaryCuts/wolf sprite sheet right facing.png"),
 		"name": "Wolf",
 		"type": "Basic Enemy",
 		"description": "During the war wolves would hunt injured and dead soldiers. These \n
@@ -28,8 +28,8 @@ var enemy_data = {
 		you. His journal entries give a deeper look at his psyche. They can be discovered in each \n
 		location on the map."
 	},
-	"posion": {
-		"texture": preload("res://images/GlossaryCuts/pngtree-cute-bee-illustration-vector-on-white-background-png-image_2045195.jpg"),
+	"poison": {
+		"texture": preload("res://images/GlossaryCuts/assylum worker sprite-Sheet-Sheet.png"),
 		"name": "Asylum Workers",
 		"type": "Basic Enemy",
 		"description": "Enemies you’re quite familiar with these foes. Mendoza has sent them to hunt \n
@@ -43,7 +43,7 @@ var enemy_data = {
 	},
 	"skull": {
 		"texture": preload("res://images/GlossaryCuts/hoodenemyrightface.png"),
-		"name": "Asylum Workers",
+		"name": "Hooded Skulls",
 		"type": "Minion Enemies",
 		"description": "Enemies located in the Crypt. Their purpose is to guard The Horseman."
 	},
@@ -60,6 +60,14 @@ var enemy_data = {
 func _ready():
 	for btn in $EnemyGrid.get_children():
 		btn.connect("pressed", Callable(self, "_on_enemy_pressed").bind(btn.name))
+	print("Glossary visible: ", visible)
+	print("Glossary position: ", position)
+	print("Glossary size: ", size)
+	set_process(true)
+	set_anchors_preset(Control.PRESET_FULL_RECT)
+
+func _process(delta):
+	queue_redraw()
 
 func _on_enemy_pressed(enemy_key: String):
 	var data = enemy_data.get(enemy_key)

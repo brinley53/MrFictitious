@@ -44,8 +44,6 @@ theme_override_fonts/font = ExtResource("2_b6lds")
 text = "Exit
 "
 
-[node name="GlossaryGallery" parent="CanvasLayer" instance=ExtResource("3_g6nr6")]
-
 [node name="ExitGlossary" type="Button" parent="."]
 layout_mode = 0
 offset_left = 27.0
@@ -56,7 +54,16 @@ theme_override_fonts/font = ExtResource("2_b6lds")
 text = "X
 "
 
+[node name="GlossaryGallery" parent="." instance=ExtResource("3_g6nr6")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Glossary" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]

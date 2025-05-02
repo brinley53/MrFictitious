@@ -8,6 +8,7 @@
 
 [node name="Evidence" parent="." instance=ExtResource("1_kufyr")]
 position = Vector2(919, 524)
+evidence_item = null
 
 [node name="ForestTreeLarge2" parent="." instance=ExtResource("2_fmhhu")]
 position = Vector2(918, 294)

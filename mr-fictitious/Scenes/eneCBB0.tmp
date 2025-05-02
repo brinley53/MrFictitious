@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5yvuv5stab68"]
+[gd_scene load_steps=9 format=3 uid="uid://b5yvuv5stab68"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_glossary.gd" id="1_o3r84"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_c4ykj"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://45ops2nxrg6d" path="res://images/GlossaryCuts/Ratstanding.png" id="3_4gk1n"]
 [ext_resource type="Texture2D" uid="uid://blc1t5mdtvj7f" path="res://images/GlossaryCuts/cryptbossidle.webp" id="5_aisjq"]
 [ext_resource type="Texture2D" uid="uid://n78sw65t51mq" path="res://images/GlossaryCuts/wolf sprite sheet right facing.png" id="5_k54l7"]
-[ext_resource type="Texture2D" uid="uid://cbtkahbh2v70v" path="res://images/GlossaryCuts/assylum worker sprite-Sheet-Sheet.png" id="6_6dgna"]
 [ext_resource type="Texture2D" uid="uid://b7vgkh2hmfk7x" path="res://images/GlossaryCuts/hoodenemyrightface.png" id="7_imhqx"]
 [ext_resource type="Texture2D" uid="uid://b2xfm42an77rf" path="res://images/GlossaryCuts/angel attack sprite-Sheet.png" id="8_jdkyt"]
 
@@ -35,37 +34,30 @@ columns = 4
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("3_4gk1n")
-icon_alignment = 1
 
 [node name="wolf" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("5_k54l7")
-icon_alignment = 1
 
 [node name="poison" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
-icon = ExtResource("6_6dgna")
-icon_alignment = 1
 
 [node name="skull" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("7_imhqx")
-icon_alignment = 1
 
 [node name="statue" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("8_jdkyt")
-icon_alignment = 1
 
 [node name="mendoza" type="Button" parent="EnemyGrid"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("5_aisjq")
-icon_alignment = 1
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0

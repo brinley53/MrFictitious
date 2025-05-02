@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxv5k13lyiao4"
-path="res://.godot/imported/Wolf_White_Background.png-320eb92292f603be503d9d5bcb7d236a.ctex"
+uid="uid://n78sw65t51mq"
+path="res://.godot/imported/wolf sprite sheet right facing.png-c411b0f73ea330dd926df99290a0b759.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/GlossaryCuts/Wolf_White_Background.png"
-dest_files=["res://.godot/imported/Wolf_White_Background.png-320eb92292f603be503d9d5bcb7d236a.ctex"]
+source_file="res://images/GlossaryCuts/wolf sprite sheet right facing.png"
+dest_files=["res://.godot/imported/wolf sprite sheet right facing.png-c411b0f73ea330dd926df99290a0b759.ctex"]
 
 [params]
 
