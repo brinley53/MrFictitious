@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://b2uojxhgk3k6f"]
+[gd_scene load_steps=4 format=3 uid="uid://b2uojxhgk3k6f"]
 
 [ext_resource type="Texture2D" uid="uid://f08qhyswc6d8" path="res://images/crypt_tiles.png" id="1_e0n8i"]
 
@@ -42,5 +42,5 @@ sources/0 = SubResource("TileSetAtlasSource_50jxj")
 [node name="DownBlockingEdge" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAANABAAAAADAAAAAAAPABAAAAADAAAAAAARABAAAAADAAAAAAAMABAAAAACAAAAAAAOABAAAAACAAAAAAAQABAAAAACAAAAAAA=")
+tile_map_data = PackedByteArray(0, 0, 13, 0, 16, 0, 0, 0, 2, 0, 0, 0, 0, 0, 15, 0, 16, 0, 0, 0, 2, 0, 0, 0, 0, 0, 14, 0, 16, 0, 0, 0, 3, 0, 0, 0, 0, 0, 16, 0, 16, 0, 0, 0, 3, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_bveht")
