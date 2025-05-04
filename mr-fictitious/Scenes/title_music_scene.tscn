@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu6xo0kngw0qe"]
+
+[ext_resource type="Script" path="res://Scripts/title_music_scene.gd" id="1_7ulgs"]
+
+[node name="TitleMusicScene" type="Node2D"]
+script = ExtResource("1_7ulgs")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

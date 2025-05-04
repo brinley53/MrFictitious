@@ -6,6 +6,7 @@ extends Control
 
 
 func _on_reload_pressed() -> void:
+	TitleMusicScene.stop_music()
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 func _hard_reset():
@@ -25,14 +26,7 @@ func _on_button_2_pressed() -> void:
 
 	
 func _on_tree_entered() -> void:
+	Wwise.register_game_obj(self,self.name)
+	Wwise.register_listener(self)
 	print("Put in scene")
-
-	
-	PlayMusic.stop(self,200,AkUtils.AK_CURVE_LINEAR)
-	playTitle.stop(self,200,AkUtils.AK_CURVE_LINEAR)
-	playAgain.stop(self,200,AkUtils.AK_CURVE_LINEAR)
-	Wwise.unregister_game_obj(self)
-	Wwise.unload_bank_id(AK.BANKS.SOUND)
-	Wwise.unload_bank_id(AK.BANKS.MUSIC)
-	print("Exiting objects")
-	pass # Replace with function body.
+	TitleMusicScene.play_music()
