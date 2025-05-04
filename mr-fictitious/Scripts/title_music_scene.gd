@@ -23,3 +23,6 @@ func play_loading_music():
 
 func stop_loading_music():
 	Wwise.post_event_id(AK.EVENTS.LOADING_END,self)
+
+func set_volume_sound(value:float):
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.MUSIC_VOLUME,100,self)

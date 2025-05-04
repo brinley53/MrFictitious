@@ -29,3 +29,8 @@ func _on_resume_pressed() -> void:
 	menu.hide()
 	close_glossary.hide()
 	hide()
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	print(value)
+	TitleMusicScene.set_volume_sound(value)
