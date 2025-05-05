@@ -23,3 +23,5 @@ offset_bottom = 618.0
 theme_override_fonts/font = ExtResource("2_o2hib")
 theme_override_font_sizes/font_size = 100
 text = "Loading..."
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

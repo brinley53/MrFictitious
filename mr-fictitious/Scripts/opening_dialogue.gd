@@ -21,3 +21,5 @@ func _on_dialogue_finished(_resource: DialogueResource):
 func _input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_ENTER):
 		get_tree().change_scene_to_file("res://Scenes/loading.tscn")
+
+	

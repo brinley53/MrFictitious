@@ -35,6 +35,20 @@ theme_override_fonts/font = ExtResource("2_b6lds")
 text = "Exit
 "
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 872.0
+offset_top = 829.0
+offset_right = 979.0
+offset_bottom = 852.0
+text = "Volume Slider"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 740.0
+offset_top = 842.0
+offset_right = 1128.0
+offset_bottom = 941.0
+value = 100.0
+
 [node name="ExitGlossary" type="Button" parent="."]
 layout_mode = 0
 offset_left = 27.0
@@ -47,6 +61,7 @@ text = "X
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]

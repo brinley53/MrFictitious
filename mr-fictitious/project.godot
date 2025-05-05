@@ -21,6 +21,7 @@ WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Global="*res://Scripts/global.gd"
+TitleMusicScene="*res://Scripts/title_music_scene.gd"
 
 [dialogue_manager]
 
@@ -136,3 +137,4 @@ common_user_settings/root_output_path="res://GeneratedSoundBanks"
 project_settings/use_soundbank_names=false
 project_settings/windows_platform_info="res://Wwise/resources/Windows.tres"
 project_settings/mac_platform_info="res://Wwise/resources/Mac.tres"
+project_settings/linux_platform_info="res://Wwise/resources/Linux.tres"

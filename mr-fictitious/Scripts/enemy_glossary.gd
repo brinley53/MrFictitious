@@ -160,6 +160,10 @@ var enemy_data = {
 }
 
 func _ready():
+	Wwise.register_listener(self)
+	Wwise.register_game_obj(self,self.name)
+	Wwise.load_bank_id(AK.BANKS.SOUND)
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
 	for btn in $EnemyGrid.get_children():
 		btn.connect("pressed", Callable(self, "_on_enemy_pressed").bind(btn.name))
 	print("Glossary visible: ", visible)
@@ -172,6 +176,7 @@ func _process(delta):
 	queue_redraw()
 
 func _on_enemy_pressed(enemy_key: String):
+	Wwise.post_event_id(AK.EVENTS.MENU_TEXT,self)
 	var data = enemy_data.get(enemy_key)
 	if data:
 		enemy_image.texture = data.texture
@@ -181,4 +186,5 @@ func _on_enemy_pressed(enemy_key: String):
 
 
 func _on_button_pressed() -> void:
+	Wwise.post_event_id(AK.EVENTS.MENU_CLICK,self)
 	get_tree().change_scene_to_file("res://Scenes/title.tscn")

@@ -116,7 +116,8 @@ var start = true
 @onready var spin_area = $SpinNode/SpinArea
 
 #EXPORT VARIABLES
-@export var inventory:Inventory;
+@export var inventory:Inventory
+@export var volume_rtpc:WwiseRTPC
 
 #The attack area starts disabled
 func _ready():
@@ -134,8 +135,9 @@ func _ready():
 	Wwise.register_listener(self)
 	Wwise.load_bank_id(AK.BANKS.MUSIC)
 	Wwise.load_bank_id(AK.BANKS.SOUND)
-	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,100,self)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
+	play_sound(AK.EVENTS.PLAYMUSIC)
+	play_sound(AK.EVENTS.ZERO)
 	
 	# Dialogue signal connections
 	dialogue_manager.connect("dialogue_ended", Callable(self, "_on_dialogue_finished"))
@@ -264,7 +266,7 @@ func attack():
 			if body.has_method("reduce_enemy_health"):
 				body.reduce_enemy_health(current_damage, area.name)
 				break
-	play_sound(AK.EVENTS.PLAYER_KNIFE_SWING)
+	play_sound(AK.EVENTS.KNIFE_SWING)
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
 	var mouse_position = get_global_mouse_position()
 	var attack_direction = (mouse_position - global_position).normalized()
@@ -278,10 +280,13 @@ func new_evidence_collected(evidence:Evidence):
 	inventory.collect_evidence(evidence)
 	evidence_collected += 1
 	if evidence_collected == 1:
+		play_sound(AK.EVENTS.ONE)
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
 	if evidence_collected == 2:
+		play_sound(AK.EVENTS.TWO)
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
 	if evidence_collected == 3:
+		play_sound(AK.EVENTS.THREE)
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "start")
 	if dialogue_balloon != null:
 		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
@@ -328,10 +333,11 @@ func asylum_blocker_dialogue():
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
 	if bullets > 0:  
-		play_sound(AK.EVENTS.PLAYER_GUN_SHOOT)
+		
 		removeItem(bulletResource)
 		bullets -= 1 
 		if has_musket:
+			play_sound(AK.EVENTS.RIFLE_SHOOT)
 			removeItem(MusketResource)
 			musket_attack_uses += 1
 			if musket_attack_uses >= max_musket_attacks:
@@ -345,6 +351,7 @@ func shoot_projectile():
 			var direction = (target_position - global_position).normalized()
 			projectile.velocity = direction * PROJECTILE_SPEED
 		else:
+			play_sound(AK.EVENTS.PISTOL_SHOOT)
 			var projectile = PROJECTILE_SCENE.instantiate()
 			var manager = get_node("/root/Main/RoomManager")
 			var room = manager.get_active_room()
@@ -353,6 +360,8 @@ func shoot_projectile():
 			var target_position = get_global_mouse_position()
 			var direction = (target_position - global_position).normalized()
 			projectile.velocity = direction * PROJECTILE_SPEED
+	else:
+		play_sound(AK.EVENTS.PISTOL_DRY_FIRE)
 
 #Functions for swinging attack
 func start_spin_attack():
@@ -397,7 +406,7 @@ func collect_musket_weapon():
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
-	play_sound(AK.EVENTS.PLAYER_DAMAGE)
+	play_sound(AK.EVENTS.PLAYER_HURT)
 	health = health - damage
 	health_bar.value = (health/max_health)*100
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
@@ -603,19 +612,24 @@ func play_sound(id:int):
 	Wwise.post_event_id(id,self)
 
 func play_ambient_sound(location):
-	play_sound(AK.EVENTS.PLAYMUSIC)
+	Wwise.post_event_id(AK.EVENTS.GAMEPLAY,self)
+	#CENTRAL,
+	#FOREST,
+	#CRYPT,
+	#VILLAGE,
+	#ASYLUM,
+	#COUNT
 	match location:
 		0:
-			play_sound(AK.EVENTS.VILLAGE)
+			play_sound(AK.EVENTS.CENTRAL)
 		1:
 			play_sound(AK.EVENTS.FOREST)
-
 		2:
 			play_sound(AK.EVENTS.CRYPT)
 		3:
-			pass
+			play_sound(AK.EVENTS.VILLAGE)
 		4:
-			pass
+			play_sound(AK.EVENTS.ASYLUM)
 		_:
 			print("Wrong room loser")
 		
@@ -635,17 +649,21 @@ func play_footstep_sound(location:int):
 		_:
 			print("Wrong room loser")
 
-func receive_current_location(location, central=false):
+func receive_current_location(location, central=false, is_boss_room=false):
 	if dialogue_balloon != null:
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
 	if !central:
 		start = false
 	current_player_state = PLAYER_STATE.Explore
-	play_sound(AK.EVENTS.EXPLORE)
-	if current_location!=location:
-		current_location=location
-		play_ambient_sound(current_location)
+	if(is_boss_room):
+		play_sound(AK.EVENTS.BOSS)
+	else:
+		play_sound(AK.EVENTS.EXPLORE)
+		if current_location!=location:
+			current_location=location
+			play_ambient_sound(current_location)
+	
 
 func initiate_combat():
 	if current_player_state!=PLAYER_STATE.Combat:
@@ -679,3 +697,7 @@ func _on_poison_timer_timeout() -> void:
 			reduce_player_health(poison_damage)
 			current_proc_count+=1
 			poison_timer.start()
+			
+func update_volume(val:float):
+	volume_rtpc.set_value(self,val)
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,val,self)

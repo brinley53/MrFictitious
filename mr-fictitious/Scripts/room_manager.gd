@@ -171,9 +171,9 @@ func set_active_room(location:Location, room:int) -> void:
 	active_location = location
 	active_room = room
 	call_deferred("add_child", rooms[active_location][active_room])
-
+	
 	# Send the updated location to the player.
-	playerInstance.receive_current_location(location, active_location==Location.CENTRAL)
+	playerInstance.receive_current_location(location, active_location==Location.CENTRAL,BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location])
 
 	# Update the new active room's edges.
 	if edges.has(active_location):
