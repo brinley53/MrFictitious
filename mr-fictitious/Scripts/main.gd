@@ -4,6 +4,7 @@ const RoomManager:PackedScene = preload("res://Scenes/room_manager.tscn")
 
 @onready var player:Player = $Player
 @onready var menu = $PauseMenu/CanvasLayer
+@onready var menu_manager=$PauseMenu
 
 func _ready():
 	#var player = PlayerScene.instantiate()	
@@ -13,6 +14,7 @@ func _ready():
 	add_child(room_manager)
 	room_manager.receive_player(player)
 	room_manager.generate_rooms()
+	menu_manager.get_player(player)
 	
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
