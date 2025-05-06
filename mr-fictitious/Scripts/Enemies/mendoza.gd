@@ -99,6 +99,12 @@ func reduce_enemy_health(damage_dealt):
 		get_tree().current_scene.add_child(item)
 		queue_free()
 		dead.emit()
+	top_sprite.modulate = Color.RED
+	bottom_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	top_sprite.modulate=Color.WHITE
+	bottom_sprite.modulate = Color.WHITE
+	
 
 func apply_stun(duration):
 	if stunned and current_stun_timer:

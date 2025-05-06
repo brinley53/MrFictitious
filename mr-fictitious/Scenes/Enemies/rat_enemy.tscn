@@ -92,7 +92,7 @@ shape = SubResource("CircleShape2D_wk8k2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_42n1k")
-animation = &"stand"
+animation = &"walk"
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(5, 8)

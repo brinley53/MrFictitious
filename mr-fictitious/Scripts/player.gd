@@ -203,6 +203,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("healthItem"):
 		use_health_item()
 	
+	if health<=0:
+		reduce_player_health(1)
+	
 
 func get_size() -> Vector2:
 	return collision_shape.shape.size
@@ -406,6 +409,7 @@ func reduce_player_health(damage):
 	health_bar.value = health
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
 	if health <= 0:
+		print("u dead bro")
 		play_sound(AK.EVENTS.PLAYER_DEATH)
 		Wwise.unload_bank_id(AK.BANKS.SOUND)
 		Wwise.unload_bank_id(AK.BANKS.MUSIC)

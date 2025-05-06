@@ -89,6 +89,9 @@ func _ready():
 	health_bar.max_value = health
 	health_bar.value = health
 	health_container.visible = false
+	Wwise.register_game_obj(self,self.name)
+	Wwise.register_listener(self)
+	Wwise.load_bank_id(AK.BANKS.SOUND)
 	patrol_points = get_tree().get_nodes_in_group("Patrol")
 	if patrol_a == null or patrol_b == null:
 		if len(patrol_points) > 1:
@@ -210,6 +213,18 @@ func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
 	health_bar.value = health
 	health_container.visible = true
+	match type:
+		"Wolf":
+			Wwise.post_event_id(AK.EVENTS.WOLF_HURT,self)
+		"Rat":
+			Wwise.post_event_id(AK.EVENTS.RAT_HURT,self)
+		"Worker":
+			Wwise.post_event_id(AK.EVENTS.WORKER_HURT,self)
+		"Ranged":
+			Wwise.post_event_id(AK.EVENTS.GHOST_HURT,self)
+		_:
+			print("No registered Sound for this type")
+			
 	if health <= 0:
 		var loot_options = [bullet_scene, bullet_scene, bullet_scene, bullet_scene, health_scene]
 		var num_loot = randi_range(1, 3)
@@ -224,6 +239,9 @@ func reduce_enemy_health(damage_dealt):
 			var offset = Vector2(cos(angle), sin(angle)) * radius
 			item.global_position = global_position + offset
 		queue_free()
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate=Color.WHITE
 
 
 func _on_detection_body_entered(body: Node2D) -> void:

@@ -106,6 +106,9 @@ func _physics_process(delta: float) -> void:
 func reduce_enemy_health(damage_dealt):
 	if !is_vulnerable:
 		return
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate=Color.WHITE
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:

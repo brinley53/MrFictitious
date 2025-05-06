@@ -186,6 +186,9 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			if head_health == 0:
 				emit_signal("broken")
 			return
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate=Color.WHITE
 
 func change_sprite():
 	sprite_string = ""
