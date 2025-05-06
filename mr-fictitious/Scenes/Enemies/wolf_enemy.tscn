@@ -100,7 +100,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ocemh")
 health = 35
-base_speed = 60.0
+base_speed = 75.0
 damage = 5.0
 poison_proc_count = 3
 type = "Wolf"
@@ -125,7 +125,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(0, 25, 250, 75, 250, -75, 0, -25)
+polygon = PackedVector2Array(-52.459, 51.6129, -18.2149, 79.1398, 31.3297, 96.3441, 851.731, 103.226, 865.574, -98.9247, 39.3443, -76.5591, -5.10018, -60.2151, -52.459, -20.6452)
 
 [node name="AttackTimer" type="Timer" parent="."]
 

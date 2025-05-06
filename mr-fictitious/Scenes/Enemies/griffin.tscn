@@ -160,7 +160,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ajgps")
 health = 10
-base_speed = 75.0
+base_speed = 60.0
 damage = 5.0
 knockback_strength = 300.0
 type = "Griffin"
@@ -187,7 +187,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(30.6011, -11.1828, 264.481, 76.5591, 270.31, -106.667, 29.1439, -53.3333)
+polygon = PackedVector2Array(-55.3734, 47.3118, -8.74317, 101.505, 665.21, 94.6237, 679.053, -144.516, -5.10018, -94.6237, -59.0164, -19.7849)
 
 [node name="AttackTimer" type="Timer" parent="."]
 

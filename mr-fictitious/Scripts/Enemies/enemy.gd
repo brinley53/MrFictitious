@@ -80,7 +80,7 @@ func _ready():
 	#set initial variables
 	patrol_points = get_tree().get_nodes_in_group("Patrol")
 	if patrol_a == null or patrol_b == null:
-		if len(patrol_points) != 0:
+		if len(patrol_points) > 1:
 			point_a = randi_range(0, len(patrol_points)-1)
 			point_b = randi_range(0, len(patrol_points)-1)
 			while point_b == point_a:
@@ -105,7 +105,7 @@ func _ready():
 	
 func reset_patrol():
 	if patrol_a == null or patrol_b == null:
-		if len(patrol_points) == 0:
+		if len(patrol_points) < 2:
 			target_point = player
 		else:
 			target_point = patrol_points[point_a]
@@ -156,7 +156,7 @@ func shoot_player():
 	
 func check_patrol():
 	#if we're close to the target point, change patrol points as the target point
-	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player and len(patrol_points) > 0:
+	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player and len(patrol_points) > 1:
 		# Swap target between point A and B
 		if patrol_a == null or patrol_b == null:
 			target_point = patrol_points[point_a] if target_point == patrol_points[point_b] else patrol_points[point_b]
@@ -168,7 +168,7 @@ func check_patrol():
 			while point_b == point_a:
 				point_b = randi_range(0, len(patrol_points)-1)
 		
-	if target_point == null and len(patrol_points) > 0:
+	if target_point == null and len(patrol_points) > 1:
 		reset_patrol()
 
 #When player is inside the Attack Area, Take Damage (Will be change to something more later)
@@ -185,6 +185,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func reduce_enemy_health(damage_dealt):
 	if disabled:
 		return
+	chase_player = true
+	player.initiate_combat()
 	if type == "Griffin":
 		var vulnerable_areas = vulnerable_area.get_overlapping_areas()
 		var vulnerable = false
@@ -194,10 +196,8 @@ func reduce_enemy_health(damage_dealt):
 		if !vulnerable:
 			return
 	health = health - damage_dealt
-	chase_player = true
-	player.initiate_combat()
 	if health <= 0:
-		var loot_options = [bullet_scene, health_scene]
+		var loot_options = [bullet_scene, bullet_scene, bullet_scene, bullet_scene, health_scene]
 		var num_loot = randi_range(1, 3)
 		for i in range(num_loot):
 			var item_scene = loot_options[randi() % loot_options.size()]

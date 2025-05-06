@@ -51,18 +51,6 @@ position = Vector2(948, 988)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_r5xqy")
 
-[node name="Patrol2" parent="." instance=ExtResource("6_vfucg")]
-position = Vector2(531, 398)
-
-[node name="Patrol3" parent="." instance=ExtResource("6_vfucg")]
-position = Vector2(1458, 384)
-
-[node name="Patrol4" parent="." instance=ExtResource("6_vfucg")]
-position = Vector2(510, 812)
-
-[node name="Patrol5" parent="." instance=ExtResource("6_vfucg")]
-position = Vector2(1498, 828)
-
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 4.0
 

@@ -489,8 +489,10 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tokwd")
 animation = &"attacking_spin"
 
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_poison_timer_timeout"]
 [connection signal="area_entered" from="SpinNode/SpinArea" to="." method="_on_spin_area_area_entered"]
+[connection signal="body_entered" from="SpinNode/SpinArea" to="." method="_on_spin_area_body_entered"]

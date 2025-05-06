@@ -54,13 +54,8 @@ func _ready():
 	#set initial variables
 	await get_tree().process_frame
 	player.play_sound(AK.EVENTS.BOSS)
-	speed = 20.0
+	speed = 30.0
 	timer.start()
-	
-func reset_patrol():
-	chase_player = false
-	speed = 20.0
-	attack_player = false
 	
 func change_attack(attack_type):
 	if stunned:
@@ -167,7 +162,7 @@ func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if stunned:
 		return
-	if (!player.stealth and chase_player):
+	if (!player.stealth and chase_player and !is_vulnerable):
 		shoot_player()
 	timer.start()
 

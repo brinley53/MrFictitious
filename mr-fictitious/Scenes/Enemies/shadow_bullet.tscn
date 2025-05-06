@@ -30,7 +30,9 @@ scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_e334m")
 
 [node name="Trail" type="Line2D" parent="."]
+visible = false
 width = 2.0
+default_color = Color(0, 0, 0, 1)
 gradient = SubResource("Gradient_khrrq")
 
 [node name="Explosion" type="Area2D" parent="."]

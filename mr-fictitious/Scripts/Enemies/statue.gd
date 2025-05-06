@@ -10,6 +10,7 @@ Revisions:
 	Jose Leyba  4/24/2025: Statue Stun
 	Brinley Hull - 4/27/2025: Ground pound attack
 	Brinley Hull - 4/30/2025: Fix vulnerable area bullet detection
+	Brinley Hull - 5/6/2025: Add evidence drop
 """
 extends CharacterBody2D
 
@@ -52,6 +53,8 @@ var sprite_string = "lhr"
 @onready var r_wing = $RightWing
 @onready var l_wing = $LeftWing
 
+const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
+
 signal broken
 
 
@@ -59,9 +62,9 @@ func _ready():
 	#set initial variables
 	target = global_position
 	speed = base_speed
-	left_wing_health = 3
-	right_wing_health = 3
-	head_health = 5
+	left_wing_health = 5
+	right_wing_health = 5
+	head_health = 10
 	charge_speed = 750.0
 	total_health = left_wing_health + right_wing_health + head_health
 	pound_sprite.visible = false
@@ -75,6 +78,12 @@ func _physics_process(delta: float) -> void:
 	# Die if its arms are off
 	if left_wing_health <= 0 and right_wing_health <= 0 and head_health <= 0:
 		dead.emit()
+		var item = EVIDENCE_SCENE.instantiate()
+		var angle = randf() * TAU 
+		var radius = randf_range(64.0, 128.0)
+		var offset = Vector2(cos(angle), sin(angle)) * radius
+		item.global_position = global_position + offset
+		get_tree().current_scene.add_child(item)
 		queue_free()
 	var direction = (target - global_position).normalized()
 	velocity = speed * direction

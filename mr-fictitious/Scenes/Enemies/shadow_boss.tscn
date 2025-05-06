@@ -25,7 +25,7 @@ size = Vector2(65, 66.157)
 collision_layer = 2
 script = ExtResource("1_ccgou")
 health = 100.0
-damage = 100.0
+damage = 20.0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-31.8302, 10)

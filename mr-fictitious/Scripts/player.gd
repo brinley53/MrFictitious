@@ -18,6 +18,7 @@ Revisions:
 	Tej Gumaste - 4/27/2025 : Removed Overlapping music
 	Brinley Hull - 4/29/2025: All dialogue
 	Brinley Hull - 5/1/2025: Enemy knockback
+	Brinley Hull - 5/6/2025: Hit enemy on first swing
 """
 class_name Player
 extends CharacterBody2D
@@ -40,8 +41,8 @@ const PROJECTILE_SPEED = 600.0
 var base_speed := SPEED
 var buff_speed := 1.0
 var debuff_speed := 1.0
-var health = 300
-var max_health = 300
+var health = 200
+var max_health = 200
 var bullets = 3
 var attack_radius_x = 20 
 var attack_radius_y = 35
@@ -69,7 +70,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 3
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -121,7 +122,7 @@ var start = true
 
 #The attack area starts disabled
 func _ready():
-	health_bar.value = health
+	health_bar.value = (health/max_health)*100
 	attack_area.visible = false
 	attack_area.monitoring = false 
 	attack_area.monitorable = false
@@ -246,26 +247,18 @@ func move_character(_delta):
 			footstep_timer.start(FOOTSTEP_FREQUENCY)
 	velocity = direction * base_speed * buff_speed * debuff_speed
 	move_and_slide()
+	
+func hit_enemy(body):
+	if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
+		body.reduce_enemy_health(current_damage)
+		if body.has_method("knockback"):
+			body.knockback(global_position)
 
 #Will attack directing at the position of the map, uses radius 
 func attack():
 	attack_area.monitoring = true  
 	attack_area.monitorable = true
-	var bodies = $AttackArea.get_overlapping_bodies()
-	for body in bodies:
-		if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
-			body.reduce_enemy_health(current_damage)
-			if body.has_method("knockback"):
-				body.knockback(global_position)
 			
-	# Check for statue area hit
-	var areas = $AttackArea.get_overlapping_areas()
-	for area in areas:
-		var body = area.get_parent()
-		if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
-			if body.has_method("reduce_enemy_health"):
-				body.reduce_enemy_health(current_damage, area.name)
-				break
 	play_sound(AK.EVENTS.KNIFE_SWING)
 	attack_timer.start(ATTACK_LOCK_TIME_MELEE)
 	var mouse_position = get_global_mouse_position()
@@ -421,22 +414,26 @@ func reduce_player_health(damage):
 	
 func increase_player_health(amount:int):
 	health = min(health+amount,max_health)
-	health_bar.value=health
+	health_bar.value=(health/max_health)*100
 
 #Attacks enemies when entering the attack area
-func _on_attack_area_body_entered(_body: Node2D) -> void:
-	pass
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	hit_enemy(body)
 
-func _on_spin_area_area_entered(_area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_spin_area_area_entered(area: Area2D) -> void:
+	# Check for statue area hit
+	var body = area.get_parent()
+	if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+		if body.has_method("reduce_enemy_health"):
+			body.reduce_enemy_health(current_damage, area.name)
 
 
 #When timer runs out disable the attack area
 func _on_attack_timer_timeout():
 	can_attack = true 
 	attack_area.visible = false 
-	attack_area.monitoring = true  
-	attack_area.monitorable = true
+	attack_area.monitoring = false  
+	attack_area.monitorable = false
 
 func _on_footstep_timer_timeout():
 	can_play_footstep_sound=true
@@ -701,3 +698,15 @@ func _on_poison_timer_timeout() -> void:
 func update_volume(val:float):
 	volume_rtpc.set_value(self,val)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,val,self)
+
+
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	# Check for statue area hit
+	var body = area.get_parent()
+	if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+		if body.has_method("reduce_enemy_health"):
+			body.reduce_enemy_health(current_damage, area.name)
+
+
+func _on_spin_area_body_entered(body: Node2D) -> void:
+	hit_enemy(body)

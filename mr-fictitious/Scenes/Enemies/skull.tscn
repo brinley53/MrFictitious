@@ -68,7 +68,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_hfc3e")
 health = 30
-base_speed = 50.0
+base_speed = 60.0
 damage = 10.0
 type = "Ranged"
 
@@ -93,7 +93,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(-3, 37, 888, 340, 878, -357, 0, -38)
+polygon = PackedVector2Array(-17.6, 43.2, 7.2, 88, 1269.6, 384.8, 1305.6, -377.6, 12, -83.2, -18.4, -40)
 
 [node name="AttackTimer" type="Timer" parent="."]
 

@@ -68,8 +68,8 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_bt5o5")
 health = 50
-base_speed = 50.0
-damage = 20.0
+base_speed = 60.0
+damage = 15.0
 knockback_strength = 300.0
 type = "Worker"
 
@@ -94,7 +94,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(0, 20, 600, 149, 604, -172, -2, -66)
+polygon = PackedVector2Array(-60, 66, -19, 124, 766, 171, 766, -202, 0, -132, -62, -64)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
