@@ -43,6 +43,8 @@ func _ready():
 	#set initial variables
 	speed = 150.0
 	max_health=health
+	health_bar.max_value = health
+	health_bar.value = health
 	
 func change_attack(attack_type):
 	if stunned:
@@ -87,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
-	health_bar.value = (health/max_health)*100
+	health_bar.value = health
 	if health <= 0:
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 

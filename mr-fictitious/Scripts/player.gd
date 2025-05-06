@@ -122,7 +122,8 @@ var start = true
 
 #The attack area starts disabled
 func _ready():
-	health_bar.value = (health/max_health)*100
+	health_bar.max_value = health
+	health_bar.value = health
 	attack_area.visible = false
 	attack_area.monitoring = false 
 	attack_area.monitorable = false
@@ -402,7 +403,7 @@ func collect_musket_weapon():
 func reduce_player_health(damage):
 	play_sound(AK.EVENTS.PLAYER_HURT)
 	health = health - damage
-	health_bar.value = (health/max_health)*100
+	health_bar.value = health
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
 	if health <= 0:
 		play_sound(AK.EVENTS.PLAYER_DEATH)
@@ -415,7 +416,7 @@ func reduce_player_health(damage):
 	
 func increase_player_health(amount:int):
 	health = min(health+amount,max_health)
-	health_bar.value=(health/max_health)*100
+	health_bar.value=health
 
 #Attacks enemies when entering the attack area
 func _on_attack_area_body_entered(body: Node2D) -> void:

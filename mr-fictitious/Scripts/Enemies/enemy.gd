@@ -63,21 +63,32 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")
 @onready var player = players[0]
 @onready var nav_timer = $NavTimer
 @onready var nav_agent = $NavigationAgent2D
+@onready var health_bar = $HealthContainer/HealthBar
+@onready var health_container = $HealthContainer
 
 var shot_timer:Timer
+
+var i_frames = false
 
 #Griffin specs
 var vulnerable_area:Area2D
 var spec_timer:Timer
 var statue = true
 
+var max_health
+
 var patrol_points
 var dart_timer:Timer
 @export_enum("Wolf", "Rat", "Worker", "Ranged", "Griffin") var type : String
 
+@onready var i_frames_timer = $IFramesTimer
+
 
 func _ready():
 	#set initial variables
+	health_bar.max_value = health
+	health_bar.value = health
+	health_container.visible = false
 	patrol_points = get_tree().get_nodes_in_group("Patrol")
 	if patrol_a == null or patrol_b == null:
 		if len(patrol_points) > 1:
@@ -102,6 +113,7 @@ func _ready():
 		spec_timer = $SpecTimer
 		
 	sprite.flip_h = flipped
+	i_frames_timer.wait_time = 0.5
 	
 func reset_patrol():
 	if patrol_a == null or patrol_b == null:
@@ -183,7 +195,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
-	if disabled:
+	if disabled or i_frames:
 		return
 	chase_player = true
 	player.initiate_combat()
@@ -196,6 +208,8 @@ func reduce_enemy_health(damage_dealt):
 		if !vulnerable:
 			return
 	health = health - damage_dealt
+	health_bar.value = health
+	health_container.visible = true
 	if health <= 0:
 		var loot_options = [bullet_scene, bullet_scene, bullet_scene, bullet_scene, health_scene]
 		var num_loot = randi_range(1, 3)
@@ -297,11 +311,18 @@ func _on_shot_timer_timeout() -> void:
 		shot_timer.start()
 
 func knockback(pos):
-	if disabled:
+	if disabled or i_frames:
 		return
 	var direction = (global_position - pos).normalized()
 	knockback_velocity = direction * knockback_strength
+	i_frames = true
+	i_frames_timer.start()
 
 func _on_spec_timer_timeout() -> void:
 	statue = !statue
 	spec_timer.start()
+
+
+func _on_i_frames_timer_timeout() -> void:
+	i_frames = false
+	i_frames_timer.stop()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://jigu4v6vbtsk"]
+[gd_scene load_steps=16 format=3 uid="uid://jigu4v6vbtsk"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy.gd" id="1_ocemh"]
 [ext_resource type="Texture2D" uid="uid://cajs0ydsfqpft" path="res://images/Wolf_White_Background.png" id="2_purrr"]
 [ext_resource type="Texture2D" uid="uid://ckgcpt1i3rsdl" path="res://images/wolf sprite sheet right facing.png" id="3_lolx8"]
+[ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="4_dyjyu"]
+[ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="5_jb6wo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vweiy"]
 radius = 21.0238
@@ -139,8 +141,32 @@ autostart = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
+[node name="HealthContainer" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-3, -73)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_dyjyu")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.941
+offset_left = -95.0
+offset_top = -15.0
+offset_right = -99.0
+offset_bottom = -16.994
+value = 100.0
+texture_progress = ExtResource("5_jb6wo")
+tint_over = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="IFramesTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="IFramesTimer" to="." method="_on_i_frames_timer_timeout"]

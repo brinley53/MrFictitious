@@ -412,6 +412,7 @@ size = Vector2(28, 109)
 
 [node name="Player" type="CharacterBody2D" groups=["Depth_Object", "Player"]]
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_qm5xk")
 inventory = ExtResource("2_dulbo")
 
@@ -439,7 +440,7 @@ sprite_frames = SubResource("SpriteFrames_tokwd")
 animation = &"attacking"
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="HealthContainer" type="Sprite2D" parent="."]
