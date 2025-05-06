@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"
+uid="uid://kinng6lck431"
+path="res://.godot/imported/shadowgrass.png-0d931d8943362fdff56c7774b36aa388.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/inmate.png"
-dest_files=["res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"]
+source_file="res://images/shadowgrass.png"
+dest_files=["res://.godot/imported/shadowgrass.png-0d931d8943362fdff56c7774b36aa388.ctex"]
 
 [params]
 

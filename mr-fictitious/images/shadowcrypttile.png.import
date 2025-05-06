@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"
+uid="uid://bxdb8yiro1frj"
+path="res://.godot/imported/shadowcrypttile.png-c7c8ad65b7161174a9ccb534cbd0cace.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/inmate.png"
-dest_files=["res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"]
+source_file="res://images/shadowcrypttile.png"
+dest_files=["res://.godot/imported/shadowcrypttile.png-c7c8ad65b7161174a9ccb534cbd0cace.ctex"]
 
 [params]
 
