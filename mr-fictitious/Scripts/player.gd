@@ -70,7 +70,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 3
+var evidence_collected = 0
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -217,7 +217,8 @@ func read_evidence():
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence3")
 	if evidence_collected == 4:
 		get_tree().change_scene_to_file("res://Scenes/title.tscn")
-	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	if dialogue_balloon != null:
+		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(_delta):
 	var direction = Vector2.ZERO
