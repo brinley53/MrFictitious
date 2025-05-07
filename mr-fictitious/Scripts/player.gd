@@ -102,7 +102,7 @@ var can_shoot = true
 @onready var healthResource = preload("res://Resources/health_item.tres")
 @onready var flashResource = preload("res://Resources/flashlight_item.tres")
 @onready var DmgResource = preload("res://Resources/damage_item.tres")
-@onready var SpeedResource = preload("res://Resources/speed_item.tres")
+@onready var SpeedResource = preload("res://Resources/speed.tres")
 @onready var MusketResource = preload("res://Resources/musket.tres")
 @onready var ShovelResource = preload("res://Resources/shovel.tres")
 @onready var SwordResource = preload("res://Resources/sword.tres")
@@ -257,6 +257,7 @@ func move_character(_delta):
 	
 func hit_enemy(body):
 	if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
+		print(current_damage)
 		body.reduce_enemy_health(current_damage)
 		if body.has_method("knockback"):
 			body.knockback(global_position)
@@ -487,6 +488,7 @@ func use_dmg_item():
 
 
 func use_speed_item():
+	print(SpeedResource)
 	if removeItem(SpeedResource):
 		apply_speed_buff(1.5, 5)
 func use_inventory_item():
@@ -499,6 +501,7 @@ func use_inventory_item():
 		"DMG":
 			use_dmg_item()
 		"SPEED":
+			print("Speedy Boy")
 			use_speed_item()
 		_:
 			print("Invalid Option")
@@ -563,7 +566,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 	for i in range(max_shovel_attacks - shovel_attack_uses):
 		collectItem(ShovelResource)
 	has_shovel = true
-	base_damage = damage_increase
+	base_damage += damage_increase
 	damage_difference = damage_increase
 	current_damage = base_damage 
 	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
@@ -576,7 +579,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 		attack_sprite.scale *= shrink_factor
 
 func reset_shovel():
-	base_damage += damage_difference
+	base_damage -= damage_difference
 	damage_difference = 0
 	current_damage = base_damage
 	has_shovel = false
