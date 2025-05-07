@@ -21,15 +21,15 @@ script = ExtResource("6_6domw")
 position = Vector2(288, 227)
 
 [node name="AsylumBlocker" type="StaticBody2D" parent="."]
+position = Vector2(960, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsylumBlocker"]
-position = Vector2(960, 64)
 shape = SubResource("RectangleShape2D_ln6fq")
 
 [node name="DialogueTrigger" type="Area2D" parent="AsylumBlocker"]
+position = Vector2(0, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsylumBlocker/DialogueTrigger"]
-position = Vector2(960, 73)
 shape = SubResource("RectangleShape2D_rlm6o")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

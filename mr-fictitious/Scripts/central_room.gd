@@ -18,7 +18,8 @@ func _ready() -> void:
 
 
 func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
-	player.asylum_blocker_dialogue()
+	if player and abs(player.position.y - asylum_blocker.position.y) < 64:
+		player.asylum_blocker_dialogue()
 
 
 func _on_tree_entered() -> void:
