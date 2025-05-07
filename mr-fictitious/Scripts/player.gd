@@ -118,7 +118,6 @@ var start = true
 
 #EXPORT VARIABLES
 @export var inventory:Inventory
-@export var volume_rtpc:WwiseRTPC
 
 #The attack area starts disabled
 func _ready():
@@ -704,9 +703,11 @@ func _on_poison_timer_timeout() -> void:
 			current_proc_count+=1
 			poison_timer.start()
 			
-func update_volume(val:float):
-	volume_rtpc.set_value(self,val)
+func update_volume(val: float):
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,val,self)
+
+func update_music_volume(val: float):
+	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.MUSIC_VOLUME,val,self)
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:

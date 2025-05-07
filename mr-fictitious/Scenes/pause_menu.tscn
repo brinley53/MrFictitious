@@ -49,6 +49,13 @@ offset_right = 1128.0
 offset_bottom = 941.0
 value = 100.0
 
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 740.0
+offset_top = 942.0
+offset_right = 1128.0
+offset_bottom = 1041.0
+value = 100.0
+
 [node name="ExitGlossary" type="Button" parent="."]
 layout_mode = 0
 offset_left = 27.0
@@ -59,9 +66,10 @@ theme_override_fonts/font = ExtResource("2_b6lds")
 text = "X
 "
 
-[connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
 [connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]

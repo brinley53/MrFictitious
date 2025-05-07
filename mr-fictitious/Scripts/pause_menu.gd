@@ -39,3 +39,6 @@ func get_player(obj:Player):
 
 func _on_h_slider_value_changed(value: float) -> void:
 	player.update_volume(value)
+
+func _on_music_slider_value_changed(value: float):
+	player.update_music_volume(value)
