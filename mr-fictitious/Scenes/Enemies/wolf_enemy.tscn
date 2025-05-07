@@ -102,10 +102,10 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ocemh")
 health = 35
-base_speed = 90.0
+base_speed = 80.0
 damage = 5.0
 poison_proc_count = 3
-knockback_strength = 400.0
+knockback_strength = 500.0
 type = "Wolf"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
