@@ -203,6 +203,7 @@ animations = [{
 size = Vector2(43, 139)
 
 [node name="Mendoza" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
 position = Vector2(1, -1)
 scale = Vector2(1.25, 1.25)
 collision_layer = 2

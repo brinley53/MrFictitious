@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d4mx8gss2o5ur" path="res://Scenes/Rooms/Village/side_roof_left.tscn" id="4_qv8oj"]
 [ext_resource type="PackedScene" uid="uid://dppg08ydd8t8h" path="res://Scenes/Rooms/Village/village_house_left.tscn" id="5_dsn6y"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lm46v"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8hcln"]
 texture = ExtResource("1_av8ks")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -24,7 +24,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_ik3us"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_lm46v")
+sources/0 = SubResource("TileSetAtlasSource_8hcln")
 
 [node name="VillageBase" type="Node2D"]
 

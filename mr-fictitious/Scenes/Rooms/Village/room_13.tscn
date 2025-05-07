@@ -1,6 +1,15 @@
-[gd_scene load_steps=6 format=4 uid="uid://cylv47c8p3mry"]
+[gd_scene load_steps=10 format=4 uid="uid://cylv47c8p3mry"]
 
+[ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="2_si6wo"]
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="3_wpepu"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_07flv"]
 [ext_resource type="Texture2D" uid="uid://dedbooan4qfxo" path="res://images/village_tiles.png" id="5_v0mfm"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jqnpl"]
+vertices = PackedVector2Array(1525, 629, 1525, 843, 1291, 779, 1291, 565, 1672.98, 843, 1673.46, 911.094, 234.359, 893.891, 629, 779, 395, 843, 237.641, 220.43, 693, 216.969, 693, 267, 395, 245, 907, 215.344, 1013, 214.539, 1013, 267, 907, 267, 1668.52, 209.563, 1668.77, 245, 1525, 245, 1227, 212.906, 1227, 267, 1525, 459, 1670.28, 459, 1671.48, 629, 629, 565, 395, 629, 235.648, 629, 236.477, 459, 395, 459, 237.523, 245, 234.609, 843)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 1), PackedInt32Array(7, 2, 1, 6, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 20, 19, 22, 3), PackedInt32Array(22, 23, 24, 0, 3), PackedInt32Array(21, 3, 25, 15), PackedInt32Array(16, 15, 25), PackedInt32Array(11, 16, 25), PackedInt32Array(26, 27, 28, 29, 25), PackedInt32Array(12, 30, 9), PackedInt32Array(12, 11, 25, 29), PackedInt32Array(26, 25, 7, 8), PackedInt32Array(8, 6, 31)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(163, 146, 159, 968, 1749, 987, 1743, 134)])
+agent_radius = 75.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsv2b"]
 texture = ExtResource("5_v0mfm")
@@ -52,11 +61,41 @@ sources/0 = SubResource("TileSetAtlasSource_tmwx4")
 
 [node name="Room13" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_si6wo")]
+position = Vector2(421, 486)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_si6wo")]
+position = Vector2(1457, 495)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("3_wpepu")]
+position = Vector2(973, 823)
+
+[node name="Patrol" parent="." instance=ExtResource("4_07flv")]
+position = Vector2(455, 874)
+
+[node name="Patrol2" parent="." instance=ExtResource("4_07flv")]
+position = Vector2(1530, 512)
+
+[node name="Patrol3" parent="." instance=ExtResource("4_07flv")]
+position = Vector2(956, 882)
+
+[node name="Patrol4" parent="." instance=ExtResource("4_07flv")]
+position = Vector2(387, 509)
+
+[node name="Patrol5" parent="." instance=ExtResource("4_07flv")]
+position = Vector2(942, 286)
+
+[node name="Patrol6" parent="." instance=ExtResource("4_07flv")]
+position = Vector2(1502, 894)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_jqnpl")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAARAAEAAAAAAAIAAAABAAUAAAAAAAEAAAAcAAUAAAADAAEAAAAZAAUAAAAAAAEAAAAaAAUAAAABAAEAAAAbAAUAAAACAAEAAAACAAUAAAABAAEAAAADAAUAAAACAAEAAAAEAAUAAAADAAEAAAABAAsAAAAAAAEAAAACAAsAAAABAAEAAAADAAsAAAACAAEAAAAEAAsAAAADAAEAAAAZAAsAAAAAAAEAAAAaAAsAAAABAAEAAAAbAAsAAAACAAEAAAAcAAsAAAADAAEAAAALAAoAAAAAAAEAAAAMAAoAAAABAAEAAAANAAoAAAACAAEAAAAOAAoAAAABAAEAAAAPAAoAAAACAAEAAAAQAAoAAAABAAEAAAARAAoAAAACAAEAAAASAAoAAAADAAEAAAAMAAEAAAAAAAIAAAAMAAIAAAAAAAMAAAARAAIAAAAAAAMAAAA=")
 tile_set = SubResource("TileSet_b4tvm")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+[node name="TileMapLayer2" type="TileMapLayer" parent="NavigationRegion2D"]
 z_index = 2
 tile_map_data = PackedByteArray("AAABAAQAAAAAAAAAAAACAAQAAAABAAAAAAADAAQAAAACAAAAAAAEAAQAAAADAAAAAAAZAAQAAAAAAAAAAAAaAAQAAAABAAAAAAAbAAQAAAACAAAAAAAcAAQAAAADAAAAAAAZAAoAAAAAAAAAAAAaAAoAAAABAAAAAAAbAAoAAAACAAAAAAAcAAoAAAADAAAAAAABAAoAAAAAAAAAAAACAAoAAAABAAAAAAADAAoAAAACAAAAAAAEAAoAAAADAAAAAAAMAAkAAAABAAAAAAANAAkAAAACAAAAAAAOAAkAAAABAAAAAAAPAAkAAAACAAAAAAAQAAkAAAABAAAAAAARAAkAAAACAAAAAAALAAkAAAAAAAAAAAASAAkAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_l8w0x")

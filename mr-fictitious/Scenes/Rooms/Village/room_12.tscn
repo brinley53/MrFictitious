@@ -1,3 +1,48 @@
-[gd_scene format=3 uid="uid://v8d5qf4devgk"]
+[gd_scene load_steps=5 format=3 uid="uid://v8d5qf4devgk"]
+
+[ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="1_so6e3"]
+[ext_resource type="PackedScene" uid="uid://xke0oamax83a" path="res://Scenes/Enemies/big_griffin.tscn" id="2_8vgt0"]
+[ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_egkm0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vy5ks"]
+vertices = PackedVector2Array(1731.02, 930.898, 173, 916.094, 173, 155.922, 1732.97, 144.07)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(163, 146, 163, 926, 1741, 941, 1743, 134)])
 
 [node name="Room12" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_vy5ks")
+
+[node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("1_so6e3")]
+position = Vector2(962, 542)
+patrol_a = NodePath("../Patrol3")
+patrol_b = NodePath("../Patrol4")
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("2_8vgt0")]
+position = Vector2(337, 740)
+patrol_a = NodePath("../Patrol")
+patrol_b = NodePath("../Patrol2")
+
+[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("2_8vgt0")]
+position = Vector2(1527, 321)
+patrol_a = NodePath("../Patrol6")
+patrol_b = NodePath("../Patrol5")
+
+[node name="Patrol" parent="." instance=ExtResource("3_egkm0")]
+position = Vector2(324, 257)
+
+[node name="Patrol2" parent="." instance=ExtResource("3_egkm0")]
+position = Vector2(337, 737)
+
+[node name="Patrol3" parent="." instance=ExtResource("3_egkm0")]
+position = Vector2(943, 257)
+
+[node name="Patrol4" parent="." instance=ExtResource("3_egkm0")]
+position = Vector2(965, 806)
+
+[node name="Patrol5" parent="." instance=ExtResource("3_egkm0")]
+position = Vector2(1518, 264)
+
+[node name="Patrol6" parent="." instance=ExtResource("3_egkm0")]
+position = Vector2(1540, 794)

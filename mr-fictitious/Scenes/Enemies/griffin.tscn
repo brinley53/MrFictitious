@@ -158,6 +158,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ajgps")
