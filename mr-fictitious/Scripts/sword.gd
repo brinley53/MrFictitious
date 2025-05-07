@@ -11,13 +11,12 @@ extends Area2D
 @export var attack_area_shrink := 0.7  # 70% of original size\
 @onready var dialogue = preload("res://shovel.dialogue")
 @onready var dialogue_manager = get_node("/root/DialogueManager")
-@onready var timer = $Timer
 @export var inventory_drop_item:InventoryItem;
 @export var evidence_item:Evidence;
 
 
 func _ready():
-	connect("body_entered", Callable(self, "_on_body_entered"))
+	pass
 
 
 func _on_body_entered(body):

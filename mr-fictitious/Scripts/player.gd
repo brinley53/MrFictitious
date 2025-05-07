@@ -75,8 +75,8 @@ var in_dialogue = false
 
 var spin_attack_active = false
 var orbit_timer = 0.0
-var orbit_duration = 1.5  # How long the orbit lasts
-var orbit_speed = 2 * PI 
+var orbit_duration = 0.75  # How long the orbit lasts
+var orbit_speed = 3 * PI 
 
 #Weapon Variables
 var sword = false
@@ -257,7 +257,6 @@ func move_character(_delta):
 	
 func hit_enemy(body):
 	if body.is_in_group("Enemies") and body.has_method("reduce_enemy_health"):
-		print(current_damage)
 		body.reduce_enemy_health(current_damage)
 		if body.has_method("knockback"):
 			body.knockback(global_position)
