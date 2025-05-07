@@ -155,7 +155,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(132.132, 133.493)
+size = Vector2(126.259, 133.493)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
@@ -181,7 +181,7 @@ position = Vector2(-7, -1)
 scale = Vector2(1.17716, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0.849501, 7)
+position = Vector2(3.4188, 7)
 scale = Vector2(0.875, 0.753907)
 shape = SubResource("RectangleShape2D_xb3p1")
 
@@ -189,7 +189,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(-55.3734, 47.3118, -8.74317, 101.505, 665.21, 94.6237, 679.053, -144.516, -5.10018, -94.6237, -59.0164, -19.7849)
+polygon = PackedVector2Array(-40.8015, 40.4301, -8.74317, 101.505, 665.21, 94.6237, 679.053, -144.516, -5.10018, -94.6237, -40.8015, -29.2473)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
@@ -204,8 +204,8 @@ position = Vector2(-60, 8)
 scale = Vector2(0.32, 0.559999)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vulnerable"]
-position = Vector2(-21.875, 5.35715)
-scale = Vector2(0.574165, 0.913907)
+position = Vector2(-37.5, 5.35715)
+scale = Vector2(-0.175839, 0.913907)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="SpecTimer" type="Timer" parent="."]

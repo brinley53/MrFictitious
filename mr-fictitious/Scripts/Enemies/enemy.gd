@@ -197,19 +197,12 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		player.reduce_player_health(damage)
 
 #Takes damage, when life reaches 0 it dies
-func reduce_enemy_health(damage_dealt):
-	if disabled or i_frames:
+func reduce_enemy_health(damage_dealt, area_name=""):
+	if disabled or i_frames or (type=="Griffin" and area_name != "Vulnerable"):
 		return
+	
 	chase_player = true
 	player.initiate_combat()
-	if type == "Griffin":
-		var vulnerable_areas = vulnerable_area.get_overlapping_areas()
-		var vulnerable = false
-		for area in vulnerable_areas:
-			if area.is_in_group("Weapon"):
-				vulnerable = true
-		if !vulnerable:
-			return
 	health = health - damage_dealt
 	health_bar.value = health
 	health_container.visible = true
@@ -242,6 +235,10 @@ func reduce_enemy_health(damage_dealt):
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate=Color.WHITE
+	
+	if type == "Griffin":
+		i_frames = true
+		i_frames_timer.start()
 
 
 func _on_detection_body_entered(body: Node2D) -> void:
@@ -274,6 +271,11 @@ func chase(body: Node2D) -> void:
 		sprite.flip_h = 0
 	else:
 		sprite.flip_h = 1
+		
+	if type == "Griffin":
+		var offset = Vector2(-67, 29)  # 67 pixels to the right
+		offset.x *= vulnerable_area.scale.x  # flip offset too
+		vulnerable_area.position = offset
 		
 	if velocity.length() > 0:
 		detection.rotation = velocity.angle()
@@ -333,8 +335,9 @@ func knockback(pos):
 		return
 	var direction = (global_position - pos).normalized()
 	knockback_velocity = direction * knockback_strength
-	i_frames = true
-	i_frames_timer.start()
+	if type != "Griffin":
+		i_frames = true
+		i_frames_timer.start()
 
 func _on_spec_timer_timeout() -> void:
 	statue = !statue

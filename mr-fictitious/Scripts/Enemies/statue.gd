@@ -150,6 +150,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					change_sprite()
 					if left_wing_health == 0:
 						emit_signal("broken")
+					flash_red()
 					return
 		if right_wing_health > 0:
 			for area in rwing_areas:
@@ -158,6 +159,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					change_sprite()
 					if right_wing_health == 0:
 						emit_signal("broken")
+					flash_red()
 					return
 		if head_health > 0:
 			for area in head_areas:
@@ -166,6 +168,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					change_sprite()
 					if head_health == 0:
 						emit_signal("broken")
+					flash_red()
 					return
 	else:
 		if area_hit == "LeftWing" and left_wing_health > 0:
@@ -173,19 +176,24 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			change_sprite()
 			if left_wing_health == 0:
 				emit_signal("broken")
+			flash_red()
 			return
 		if area_hit == "RightWing" and right_wing_health > 0:
 			right_wing_health -= 1
 			change_sprite()
 			if right_wing_health == 0:
 				emit_signal("broken")
+			flash_red()
 			return
 		if area_hit == "Head" and head_health > 0:
 			head_health -= 1
 			change_sprite()
 			if head_health == 0:
 				emit_signal("broken")
+			flash_red()
 			return
+
+func flash_red():
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate=Color.WHITE

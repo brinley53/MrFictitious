@@ -969,7 +969,7 @@ position = Vector2(100, -144)
 scale = Vector2(5.32, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWing"]
-polygon = PackedVector2Array(-9.3985, 49, -8.08271, 26, -4.51128, 23, -0.751881, 38, 2.44361, 69, 1.31579, 161, -3.19549, 195, -7.5188, 156, -6.76692, 72)
+polygon = PackedVector2Array(-9.3985, 49, -8.08271, 26, -4.51128, 23, -0.751881, 38, 2.44361, 69, 2.25564, 217, -2.81955, 203, -7.89474, 156, -6.76692, 72)
 
 [node name="Head" type="Area2D" parent="."]
 position = Vector2(1, -120)
@@ -1027,9 +1027,6 @@ animation = &"unpound"
 autostart = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="LeftWing" to="." method="_on_left_wing_area_entered"]
-[connection signal="area_entered" from="RightWing" to="." method="_on_right_wing_area_entered"]
-[connection signal="area_entered" from="Head" to="." method="_on_head_area_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
