@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/INMATE.png-c32026f6e781b9a7ee16d5a4ebd73625.ctex"
+uid="uid://yjqb6n430lo3"
+path="res://.godot/imported/cornerspire.png-ef0075bcade9ae2d7dc1a09a4e3d9431.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/INMATE.png"
-dest_files=["res://.godot/imported/INMATE.png-c32026f6e781b9a7ee16d5a4ebd73625.ctex"]
+source_file="res://images/cornerspire.png"
+dest_files=["res://.godot/imported/cornerspire.png-ef0075bcade9ae2d7dc1a09a4e3d9431.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://c76b25r8ho3sy"]
 
-[ext_resource type="PackedScene" uid="uid://c6b7ocdntgo0x" path="res://Scenes/Rooms/Village/village_house_right.tscn" id="1_dtv2n"]
+[ext_resource type="PackedScene" uid="uid://d4mx8gss2o5ur" path="res://Scenes/Rooms/Village/side_roof_left.tscn" id="1_fj7bc"]
 
 [node name="RightBlockingEdge" type="Node2D"]
 
-[node name="VillageHouseRight11" parent="." instance=ExtResource("1_dtv2n")]
-position = Vector2(1936, 506)
+[node name="SideRoofLeft12" parent="." instance=ExtResource("1_fj7bc")]
+position = Vector2(1887, 487)

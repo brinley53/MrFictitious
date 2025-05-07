@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/INMATE.png-c32026f6e781b9a7ee16d5a4ebd73625.ctex"
+uid="uid://cghxoh13ibwy2"
+path="res://.godot/imported/altSideroofleft.png-29ce36a5dbcec0cc0783480ebbf5742b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/INMATE.png"
-dest_files=["res://.godot/imported/INMATE.png-c32026f6e781b9a7ee16d5a4ebd73625.ctex"]
+source_file="res://images/altSideroofleft.png"
+dest_files=["res://.godot/imported/altSideroofleft.png-29ce36a5dbcec0cc0783480ebbf5742b.ctex"]
 
 [params]
 
