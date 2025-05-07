@@ -433,6 +433,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func _on_spin_area_area_entered(area: Area2D) -> void:
 	# Check for statue area hit
 	var body = area.get_parent()
+	
 	if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(current_damage, area.name)

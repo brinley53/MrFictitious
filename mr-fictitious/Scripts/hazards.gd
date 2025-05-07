@@ -9,8 +9,8 @@ extends Area2D
 
 @export_enum("Spikes", "Goo", "Nothing fr") var type : String
 
-var damage_per_tick: int = 1
-var tick_interval: float = 0.2  
+var damage_per_tick: int = 4
+var tick_interval: float = 1
 var slow_multiplier: float = 0.5
 var player_in_area: Player = null
 
