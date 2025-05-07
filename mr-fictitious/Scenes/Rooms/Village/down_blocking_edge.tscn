@@ -6,4 +6,4 @@
 
 [node name="VillageHouseLeft5" parent="." instance=ExtResource("1_tosmk")]
 z_index = 2
-position = Vector2(960, 1096)
+position = Vector2(960, 1064)

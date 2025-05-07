@@ -49,60 +49,60 @@ z_index = 2
 position = Vector2(1884, 884)
 
 [node name="VillageHouseRight" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1210, -64)
+position = Vector2(1180, -64)
 
 [node name="VillageHouseLeft" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(710, -64)
+position = Vector2(740, -64)
 
 [node name="VillageHouseRight2" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1460, -64)
+position = Vector2(1400, -64)
 
 [node name="VillageHouseLeft2" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(460, -64)
+position = Vector2(520, -64)
 
 [node name="VillageHouseRight3" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1710, -64)
+position = Vector2(1620, -64)
 
 [node name="VillageHouseLeft3" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(210, -64)
+position = Vector2(300, -64)
 
 [node name="VillageHouseRight4" parent="." instance=ExtResource("4_5hakw")]
-position = Vector2(1960, -64)
+position = Vector2(1840, -64)
 
 [node name="VillageHouseLeft4" parent="." instance=ExtResource("5_dsn6y")]
-position = Vector2(-40, -64)
+position = Vector2(80, -64)
 
 [node name="VillageHouseRight5" parent="." instance=ExtResource("4_5hakw")]
 z_index = 2
-position = Vector2(1210, 1096)
+position = Vector2(1180, 1064)
 
 [node name="VillageHouseRight6" parent="." instance=ExtResource("4_5hakw")]
 z_index = 2
-position = Vector2(1460, 1096)
+position = Vector2(1400, 1064)
 
 [node name="VillageHouseRight7" parent="." instance=ExtResource("4_5hakw")]
 z_index = 2
-position = Vector2(1710, 1096)
+position = Vector2(1620, 1064)
 
 [node name="VillageHouseRight8" parent="." instance=ExtResource("4_5hakw")]
 z_index = 2
-position = Vector2(1960, 1096)
+position = Vector2(1840, 1064)
 
 [node name="VillageHouseLeft5" parent="." instance=ExtResource("5_dsn6y")]
 z_index = 2
-position = Vector2(710, 1096)
+position = Vector2(740, 1064)
 
 [node name="VillageHouseLeft6" parent="." instance=ExtResource("5_dsn6y")]
 z_index = 2
-position = Vector2(460, 1096)
+position = Vector2(520, 1064)
 
 [node name="VillageHouseLeft7" parent="." instance=ExtResource("5_dsn6y")]
 z_index = 2
-position = Vector2(210, 1096)
+position = Vector2(300, 1064)
 
 [node name="VillageHouseLeft8" parent="." instance=ExtResource("5_dsn6y")]
 z_index = 2
-position = Vector2(-40, 1096)
+position = Vector2(80, 1064)
 
 [node name="SideRoofLeft2" parent="." instance=ExtResource("4_qv8oj")]
 position = Vector2(43, 74)
