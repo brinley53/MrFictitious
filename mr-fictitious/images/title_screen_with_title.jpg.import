@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74o6ptcmkqmm"
-path="res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"
+uid="uid://d2mynlm2n6pmr"
+path="res://.godot/imported/title_screen_with_title.jpg-3500926f26fd628e1bad78c71e6217d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/inmate.png"
-dest_files=["res://.godot/imported/inmate.png-1b49225a05b4caa92384a45b4014962b.ctex"]
+source_file="res://images/title_screen_with_title.jpg"
+dest_files=["res://.godot/imported/title_screen_with_title.jpg-3500926f26fd628e1bad78c71e6217d2.ctex"]
 
 [params]
 
