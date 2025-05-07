@@ -32,7 +32,7 @@ const DIRECTION_FROM_CENTRAL:Dictionary = {
 }
 
 const BOSS_INDEX:Dictionary = {
-	Location.FOREST: -1,
+	Location.FOREST: 6,
 	Location.CRYPT: 6,
 	Location.VILLAGE: 6,
 	Location.ASYLUM: -1
@@ -173,14 +173,19 @@ func set_active_room(location:Location, room:int) -> void:
 	call_deferred("add_child", rooms[active_location][active_room])
 	
 	# Send the updated location to the player.
-	playerInstance.receive_current_location(location, active_location==Location.CENTRAL,BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location])
+	playerInstance.receive_current_location(
+		location,
+		active_location == Location.CENTRAL,
+		BOSS_INDEX.has(active_location) and
+		active_location != Location.FOREST and
+		active_room == BOSS_INDEX[active_location])
 
 	# Update the new active room's edges.
 	if edges.has(active_location):
 		for direction in range(Direction.COUNT):
 			if connections[active_location][active_room][direction]["room"] == null:
 				call_deferred("add_child", edges[active_location][direction])
-			elif BOSS_INDEX.has(active_location) and active_room == BOSS_INDEX[active_location]:
+			elif BOSS_INDEX.has(active_location) and active_location != Location.FOREST and active_room == BOSS_INDEX[active_location]:
 				rooms[active_location][active_room].blocking_edge = edges[active_location][direction]
 
 func add_connection_entry(location:Location, room:int) -> void:
