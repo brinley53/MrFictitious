@@ -72,7 +72,6 @@ script = ExtResource("1_hfc3e")
 health = 30
 base_speed = 60.0
 damage = 10.0
-knockback_strength = 400.0
 type = "Ranged"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
