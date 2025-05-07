@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0wd00fhx40d5"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/shadow_bullet.gd" id="1_wxwm6"]
-[ext_resource type="Texture2D" uid="uid://jnbo736ya4ck" path="res://images/SbulletWIP.png" id="2_1m0qh"]
+[ext_resource type="Texture2D" uid="uid://cw0mnd6eo4f4d" path="res://images/cryptbossprojectile.png" id="2_xu2ki"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e334m"]
 radius = 3.0
@@ -23,7 +23,7 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_1m0qh")
+texture = ExtResource("2_xu2ki")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)

@@ -56,6 +56,7 @@ func _ready():
 	speed = 30.0
 	timer.start()
 	health_bar.max_value = health
+	health_bar.value = health
 	
 func change_attack(attack_type):
 	if stunned:
