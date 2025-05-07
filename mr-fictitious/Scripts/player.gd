@@ -615,7 +615,10 @@ func play_sound(id:int):
 	Wwise.post_event_id(id,self)
 
 func play_ambient_sound(location):
-	Wwise.post_event_id(AK.EVENTS.GAMEPLAY,self)
+	print("Playing ambient sound ",location)
+	Wwise.stop_all()
+	play_sound(AK.EVENTS.PLAYMUSIC)
+	play_sound(AK.EVENTS.GAMEPLAY)
 	#CENTRAL,
 	#FOREST,
 	#CRYPT,

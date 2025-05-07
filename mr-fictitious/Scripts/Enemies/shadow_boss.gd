@@ -53,7 +53,6 @@ var detect = true
 func _ready():
 	#set initial variables
 	await get_tree().process_frame
-	player.play_sound(AK.EVENTS.BOSS)
 	speed = 30.0
 	timer.start()
 	
