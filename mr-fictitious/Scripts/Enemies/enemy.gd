@@ -89,9 +89,9 @@ func _ready():
 	health_bar.max_value = health
 	health_bar.value = health
 	health_container.visible = false
-	Wwise.register_game_obj(self,self.name)
-	Wwise.register_listener(self)
-	Wwise.load_bank_id(AK.BANKS.SOUND)
+	# Wwise.register_game_obj(self,self.name)
+	# Wwise.register_listener(self)
+	# Wwise.load_bank_id(AK.BANKS.SOUND)
 	patrol_points = get_tree().get_nodes_in_group("Patrol")
 	if patrol_a == null or patrol_b == null:
 		if len(patrol_points) > 1:

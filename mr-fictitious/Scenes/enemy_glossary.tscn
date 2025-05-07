@@ -187,10 +187,10 @@ theme_override_fonts/font = ExtResource("2_c4ykj")
 
 [node name="Title" type="Button" parent="."]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 13.0
-offset_right = 73.0
-offset_bottom = 69.0
+offset_left = 1822.0
+offset_top = 20.0
+offset_right = 1884.0
+offset_bottom = 76.0
 theme_override_fonts/font = ExtResource("2_c4ykj")
 theme_override_font_sizes/font_size = 40
 text = "X"

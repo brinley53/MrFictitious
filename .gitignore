@@ -1,8 +1,14 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
 /mr-fictitious/addons/Wwise
 /mr-fictitious/GeneratedSoundBanks
 /mr-fictitious/Wwise
+./.DS_Store
+/mr-fictitious/.DS_Store
 /addons/Wwise
 /GeneratedSoundBanks
 /Wwise
-
-*.DS_Store
+/.DS_Store
+.DS_Store
+.vscode

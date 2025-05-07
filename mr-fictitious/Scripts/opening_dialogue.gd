@@ -12,6 +12,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Wwise.post_event_id(AK.EVENTS.NEW_GAME, self)
 	dialogue_manager.connect("dialogue_ended", Callable(self, "_on_dialogue_finished"))
 	dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "opening", [], "res://Dialogue/balloon_no_portrait.tscn")
 

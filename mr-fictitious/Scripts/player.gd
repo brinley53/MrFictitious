@@ -409,9 +409,8 @@ func reduce_player_health(damage):
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
 	if health <= 0:
 		print("u dead bro")
-		play_sound(AK.EVENTS.PLAYER_DEATH)
-		Wwise.unload_bank_id(AK.BANKS.SOUND)
-		Wwise.unload_bank_id(AK.BANKS.MUSIC)
+		# Wwise.unload_bank_id(AK.BANKS.SOUND)
+		# Wwise.unload_bank_id(AK.BANKS.MUSIC)
 		if inventory:
 			inventory.clear()
 		Wwise.stop_all(self)
@@ -627,30 +626,19 @@ func play_ambient_sound(location):
 	match location:
 		0:
 			play_sound(AK.EVENTS.CENTRAL)
+			play_sound(AK.EVENTS.GAME_AREA_FOREST)
 		1:
 			play_sound(AK.EVENTS.FOREST)
+			play_sound(AK.EVENTS.GAME_AREA_FOREST)
 		2:
 			play_sound(AK.EVENTS.CRYPT)
-		3:
-			play_sound(AK.EVENTS.VILLAGE)
-		4:
-			play_sound(AK.EVENTS.ASYLUM)
-		_:
-			print("Wrong room loser")
-		
-func play_footstep_sound(location:int):
-	play_sound(AK.EVENTS.PLAYER_STEP)
-	match location:
-		0:
-			play_sound(AK.EVENTS.GAME_AREA_FOREST)
-		1:
-			play_sound(AK.EVENTS.GAME_AREA_FOREST)
-		2:
 			play_sound(AK.EVENTS.GAME_AREA_CRYPT)
 		3:
-			pass
+			play_sound(AK.EVENTS.VILLAGE)
+			play_sound(AK.EVENTS.GAME_AREA_TOWN)
 		4:
-			pass
+			play_sound(AK.EVENTS.ASYLUM)
+			play_sound(AK.EVENTS.GAME_AREA_ASYLUM)
 		_:
 			print("Wrong room loser")
 

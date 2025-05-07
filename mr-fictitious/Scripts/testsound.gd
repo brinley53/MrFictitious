@@ -19,10 +19,10 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Sound2"):
 		Wwise.post_event_id(AK.EVENTS.PLAYMUSIC,self)
-		Wwise.post_event_id(AK.EVENTS.CAMP,self)
+		Wwise.post_event_id(AK.EVENTS.CRYPT,self)
 		Wwise.post_event_id(AK.EVENTS.EXPLORE,self)
 	
 	if Input.is_action_just_pressed("Sound3"):
-		Wwise.post_event_id(AK.EVENTS.PLAYER_GUN_SHOOT,self)
+		Wwise.post_event_id(AK.EVENTS.PISTOL_SHOOT,self)
 		
 		

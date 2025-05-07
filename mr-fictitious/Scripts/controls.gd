@@ -17,6 +17,7 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
+	Wwise.post_event_id(AK.EVENTS.MENU_CLICK,self)
 	get_tree().change_scene_to_file("res://Scenes/title.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
