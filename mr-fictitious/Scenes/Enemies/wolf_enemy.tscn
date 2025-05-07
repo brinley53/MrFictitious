@@ -105,6 +105,7 @@ health = 35
 base_speed = 75.0
 damage = 5.0
 poison_proc_count = 3
+knockback_strength = 400.0
 type = "Wolf"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

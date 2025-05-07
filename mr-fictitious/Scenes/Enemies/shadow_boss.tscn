@@ -24,7 +24,7 @@ size = Vector2(65, 66.157)
 [node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
 script = ExtResource("1_ccgou")
-health = 100.0
+health = 200.0
 damage = 20.0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]

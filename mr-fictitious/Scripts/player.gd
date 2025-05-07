@@ -91,6 +91,8 @@ var max_musket_attacks = 25
 var original_polygon = []
 var original_sprite_scale = Vector2.ONE
 var start = true
+var can_shoot = true
+
 #ONREADY VARIABLES
 @onready var attack_area = $AttackArea
 @onready var collision_shape = $PlayerCollision
@@ -115,6 +117,7 @@ var start = true
 @onready var stealth_area = $Stealth
 @onready var spin_node = $SpinNode
 @onready var spin_area = $SpinNode/SpinArea
+@onready var gun_cooldown = $GunCooldown
 
 #EXPORT VARIABLES
 @export var inventory:Inventory
@@ -329,10 +332,12 @@ func asylum_blocker_dialogue():
 
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
-	if bullets > 0:  
+	if bullets > 0 and can_shoot:  
 		
 		removeItem(bulletResource)
 		bullets -= 1 
+		gun_cooldown.start()
+		can_shoot = false
 		if has_musket:
 			play_sound(AK.EVENTS.RIFLE_SHOOT)
 			removeItem(MusketResource)
@@ -357,7 +362,7 @@ func shoot_projectile():
 			var target_position = get_global_mouse_position()
 			var direction = (target_position - global_position).normalized()
 			projectile.velocity = direction * PROJECTILE_SPEED
-	else:
+	elif bullets <= 0:
 		play_sound(AK.EVENTS.PISTOL_DRY_FIRE)
 
 #Functions for swinging attack
@@ -711,3 +716,7 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 
 func _on_spin_area_body_entered(body: Node2D) -> void:
 	hit_enemy(body)
+
+
+func _on_gun_cooldodwn_timeout() -> void:
+	can_shoot = true

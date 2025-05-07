@@ -55,6 +55,7 @@ func _ready():
 	await get_tree().process_frame
 	speed = 30.0
 	timer.start()
+	health_bar.max_value = health
 	
 func change_attack(attack_type):
 	if stunned:
