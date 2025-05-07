@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_8j5t3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rg70u"]
-vertices = PackedVector2Array(1668.78, 209.563, 1676.2, 916.797, 1355, 715, 1355, 501, 1099, 501, 1099, 373, 821, 373, 821, 501, 565, 501, 237.289, 220.438, 565, 715, 821, 715, 821, 779, 230.711, 913.18, 1099, 779, 1099, 715)
+vertices = PackedVector2Array(1653.94, 224.68, 1661.04, 901.773, 1370, 730, 1370, 486, 1114, 486, 1114, 358, 806, 358, 806, 486, 550, 486, 252.148, 235.32, 550, 730, 806, 730, 806, 794, 245.859, 898.219, 1114, 794, 1114, 730)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 0), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 2, 1), PackedInt32Array(9, 0, 5, 6), PackedInt32Array(13, 9, 8, 10), PackedInt32Array(14, 1, 13, 12)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(163, 146, 155, 988, 1752, 992, 1743, 134)])
-agent_radius = 75.0
+agent_radius = 90.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4oc0u"]
 texture = ExtResource("4_7ayue")

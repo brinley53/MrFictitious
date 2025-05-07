@@ -1,18 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbt4p8qkdcbkk"]
+[gd_scene load_steps=9 format=3 uid="uid://cbt4p8qkdcbkk"]
 
 [ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="2_i3ryt"]
 [ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="3_dykyf"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_fv52u"]
 [ext_resource type="PackedScene" uid="uid://bwvwhki3unhqy" path="res://Scenes/flashlight_item.tscn" id="4_ooknr"]
 [ext_resource type="PackedScene" uid="uid://chcfdjr23txvi" path="res://Scenes/hazard_spikes.tscn" id="5_vn7fw"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2hdmr"]
-vertices = PackedVector2Array(740.617, 172.617, 719.68, 38, 1197.01, 38, 1225.87, 165.383, 1788.25, 210.25, 1809.69, 949.93, 196.023, 939.063, 197.969, 190.656)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(188, 181, 729, 163, 708, 28, 1205, 28, 1234, 156, 1798, 201, 1820, 960, 186, 949)])
+[ext_resource type="PackedScene" uid="uid://ws7aumqg0k22" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="6_d7r67"]
 
 [sub_resource type="Resource" id="Resource_qap8m"]
 metadata/__load_path__ = "res://Resources/speed.tres"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fwmtl"]
+vertices = PackedVector2Array(186.719, 333.32, 175.367, 323.172, 231.094, 325.867, 1720.77, 278.18, 1721.11, 277.898, 1720.52, 311.031, 177.719, 896.32, 157.531, 878.258, 157.078, 872.203, 212.094, 874.867, 332.594, 917.469, 178.57, 610.477, 136.828, 610.789, 145.852, 470.617, 192.094, 472.859, 1050.29, 946.547, 892.133, 184.867, 891.523, 169.344, 1042.4, 169.602, 1105.46, 216.297, 1049.53, 989.859, 863.422, 985.477, 858.57, 920.469, 1788.95, 476.547, 1789.45, 476.867, 1788.9, 612.203, 1742.29, 612.563, 1777.46, 480.297, 582.289, 922.547, 581.43, 971.289, 514.211, 971.789, 511.578, 936.469, 1200.77, 265.18, 1227.29, 924.547, 1226.92, 945.219, 1116.95, 212.547, 178.57, 918.617, 1712.48, 819.359, 1711.52, 874.031, 1665.27, 932.609, 1504.41, 933.82, 1503.57, 922.469, 1677.21, 793.227, 334.102, 937.797, 1558.77, 253.18, 1605.77, 214.711, 1625.46, 229.297, 1657.21, 391.227, 385.773, 257.18, 435.07, 216.828, 469.461, 242.297, 206.719, 735.32, 186.531, 717.258, 1377.77, 243.18, 1443.42, 189.453, 1463.47, 204.297, 227.07, 221.563, 265.703, 189.961, 290.461, 208.297, 1274.64, 204.727, 1636.95, 225.547, 1474.95, 200.547, 301.953, 204.547, 480.953, 238.547, 564.773, 291.18, 638.641, 230.727, 722.602, 234.789, 732.773, 241.18, 806.641, 180.727, 1740.52, 713.031, 1320.03, 206.93)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 16, 17, 18, 19), PackedInt32Array(15, 20, 21, 22), PackedInt32Array(23, 24, 25, 26, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(32, 33, 34, 15, 19, 35), PackedInt32Array(10, 36, 6), PackedInt32Array(37, 38, 39, 40, 41, 42), PackedInt32Array(31, 43, 10), PackedInt32Array(14, 0, 2), PackedInt32Array(44, 45, 46, 47), PackedInt32Array(11, 14, 48, 49, 50, 28, 31, 51, 52), PackedInt32Array(53, 54, 55), PackedInt32Array(56, 57, 58, 2), PackedInt32Array(53, 47, 27, 26, 32, 59), PackedInt32Array(10, 9, 51, 31), PackedInt32Array(60, 3, 5, 47, 46), PackedInt32Array(53, 55, 61, 44, 47), PackedInt32Array(2, 58, 62, 48, 14), PackedInt32Array(28, 50, 63, 64, 22), PackedInt32Array(22, 64, 65, 66, 67, 15), PackedInt32Array(15, 67, 68, 16), PackedInt32Array(69, 42, 41, 33, 32, 26), PackedInt32Array(53, 59, 70)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(95, 93, 34, 1041, 1862, 1084, 1866, 96)])
+agent_radius = 75.0
 
 [node name="Room14" type="Node2D"]
 
@@ -51,9 +53,6 @@ position = Vector2(1524, 529)
 
 [node name="Patrol8" parent="." instance=ExtResource("3_fv52u")]
 position = Vector2(1007, 871)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_2hdmr")
 
 [node name="Speed" parent="." instance=ExtResource("3_dykyf")]
 position = Vector2(948, 742)
@@ -95,3 +94,104 @@ position = Vector2(997, 840)
 
 [node name="Spikes10" parent="." instance=ExtResource("5_vn7fw")]
 position = Vector2(1025, 389)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_fwmtl")
+
+[node name="ForestTree22" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(44, 712)
+
+[node name="ForestTree21" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(15, 873)
+
+[node name="ForestTree27" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1884, 712)
+
+[node name="ForestTree28" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1855, 873)
+
+[node name="ForestTree" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(33, 1049)
+
+[node name="ForestTree2" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(198, 1019)
+
+[node name="ForestTree3" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(377, 1038)
+
+[node name="ForestTree4" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(556, 1072)
+
+[node name="ForestTree5" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(724, 1022)
+
+[node name="ForestTree6" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1192, 1046)
+
+[node name="ForestTree7" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1369, 1024)
+
+[node name="ForestTree8" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1550, 1034)
+
+[node name="ForestTree9" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1712, 1059)
+
+[node name="ForestTree10" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+z_index = 2
+position = Vector2(1896, 1040)
+
+[node name="ForestTree11" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(33, 49)
+
+[node name="ForestTree12" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(198, 19)
+
+[node name="ForestTree13" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(377, 38)
+
+[node name="ForestTree14" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(556, 72)
+
+[node name="ForestTree15" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(724, 22)
+
+[node name="ForestTree16" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1192, 46)
+
+[node name="ForestTree17" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1369, 24)
+
+[node name="ForestTree18" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1550, 34)
+
+[node name="ForestTree19" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1712, 59)
+
+[node name="ForestTree20" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1896, 40)
+
+[node name="ForestTree23" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(63, 163)
+
+[node name="ForestTree24" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(24, 310)
+
+[node name="ForestTree25" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1903, 163)
+
+[node name="ForestTree26" parent="NavigationRegion2D" instance=ExtResource("6_d7r67")]
+position = Vector2(1864, 310)

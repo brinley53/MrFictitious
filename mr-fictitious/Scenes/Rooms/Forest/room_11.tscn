@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b1qkiafyadplm"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_boqkt"]
+[ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_boqkt"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="1_dygw5"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="2_7bf8q"]
 [ext_resource type="PackedScene" uid="uid://bilvi6f3lpo41" path="res://Scenes/Rooms/Forest/forest_tree_large.tscn" id="3_vkc1f"]
@@ -10,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="8_t3s8t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1wrl7"]
-vertices = PackedVector2Array(732.758, 89.8984, 1283.82, 84.1094, 1264.87, 255.609, 688.813, 419.547, 1649.07, 472.148, 1800.69, 444.828, 1813.38, 655, 1536.14, 655, 1387.53, 428.563, 1380.45, 618.844, 1292.24, 372.453, 1279.5, 633.109, 1168.21, 651.133, 1134.21, 765.203, 1200.09, 882.773, 1202.64, 954.922, 816.547, 952.063, 792.039, 797.117, 270.977, 655.742, 118.109, 634.453, 137.727, 473.078, 300.781, 492.039, 472, 649.078, 700.859, 755.68, 632.094, 684.891, 548.922, 426.859, 456.023, 480.813, 416.742, 701.25, 304.281, 708.633)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 9), PackedInt32Array(3, 2, 10, 11, 12), PackedInt32Array(13, 14, 15, 16, 17), PackedInt32Array(18, 19, 20, 21, 22), PackedInt32Array(8, 9, 11, 10), PackedInt32Array(3, 12, 13, 17, 23, 24, 25), PackedInt32Array(25, 24, 22, 26), PackedInt32Array(21, 26, 22), PackedInt32Array(18, 22, 27, 28)])
+vertices = PackedVector2Array(1064.06, 772.977, 1129.28, 889.367, 872.141, 887.469, 850.773, 752.422, 789.75, 154.313, 1211.15, 149.883, 1199.04, 259.563, 746.109, 481.648, 1117.57, 593.477, 1235.29, 414.344, 1269.75, 568.844, 1649.5, 538.117, 1740.22, 521.773, 1744.34, 590, 1543.62, 590, 1364.94, 490.688, 1383.35, 552.781, 738.93, 701.57, 665.211, 625.688, 567.992, 490.953, 452.477, 578.109, 475.68, 544.547, 299.359, 557.313, 389.133, 637.922, 338.656, 641.227, 309.891, 595.531, 190.344, 578.883, 194.438, 545.109)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 7, 6, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 11, 14, 16), PackedInt32Array(15, 16, 10, 9), PackedInt32Array(7, 8, 0, 3, 17, 18, 19), PackedInt32Array(19, 18, 20, 21), PackedInt32Array(22, 21, 20, 23, 24, 25), PackedInt32Array(22, 25, 26, 27)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(129, 462, 107, 643, 265, 665, 299, 719, 421, 711, 475, 660, 627, 694, 695, 764, 783, 804, 808, 962, 1213, 965, 1210, 880, 1145, 764, 1176, 660, 1281, 643, 1380, 629, 1535, 665, 1824, 665, 1810, 433, 1649, 462, 1391, 419, 1301, 366, 1275, 255, 1295, 74, 724, 80, 680, 410, 546, 417, 453, 471, 301, 482)])
+agent_radius = 75.0
 
 [node name="Room11" type="Node2D"]
 
@@ -38,7 +39,7 @@ patrol_b = NodePath("../Patrol2")
 position = Vector2(821, 463)
 
 [node name="Patrol" parent="." instance=ExtResource("8_t3s8t")]
-position = Vector2(306, 543)
+position = Vector2(303, 561)
 
 [node name="Patrol2" parent="." instance=ExtResource("8_t3s8t")]
 position = Vector2(1582, 525)
@@ -59,7 +60,7 @@ position = Vector2(771, 605)
 position = Vector2(1366, 479)
 
 [node name="Patrol8" parent="." instance=ExtResource("8_t3s8t")]
-position = Vector2(621, 465)
+position = Vector2(629, 504)
 
 [node name="Patrol9" parent="." instance=ExtResource("8_t3s8t")]
 position = Vector2(1049, 500)

@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_4r0nh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2h8q6"]
-vertices = PackedVector2Array(1547, 779, 1666.18, 865.281, 1227, 861.102, 1227, 821, 1667.81, 209.57, 1547, 565, 238, 220.43, 1013, 565, 1013, 779, 1013, 821, 1013, 859.063, 907, 858.047, 907, 821, 693, 821, 693, 856.031, 238, 851.703, 373, 779, 907, 779, 907, 565, 373, 565)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 0, 3, 9), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 7, 8, 12), PackedInt32Array(7, 17, 18), PackedInt32Array(6, 7, 18), PackedInt32Array(6, 18, 19), PackedInt32Array(15, 6, 19, 16), PackedInt32Array(13, 16, 17, 12), PackedInt32Array(12, 8, 9)])
+vertices = PackedVector2Array(1567, 799, 1646.23, 845.094, 1247, 841.289, 1247, 801, 1647.76, 229.719, 1567, 545, 258, 240.281, 993, 545, 993, 799, 993, 801, 673, 801, 673, 835.828, 258, 831.891, 353, 799, 993, 838.867, 927, 838.242, 927, 801, 927, 799, 927, 545, 353, 545)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 0, 3, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(9, 14, 15, 16), PackedInt32Array(17, 7, 8, 16), PackedInt32Array(7, 17, 18), PackedInt32Array(6, 7, 18), PackedInt32Array(6, 18, 19), PackedInt32Array(12, 6, 19, 13), PackedInt32Array(10, 13, 17, 16), PackedInt32Array(16, 8, 9)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(163, 146, 163, 926, 1741, 941, 1743, 134)])
-agent_radius = 75.0
+agent_radius = 95.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6tbl2"]
 texture = ExtResource("1_n36xu")
