@@ -68,8 +68,8 @@ text = "X
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bqg6tfpn5salc"]
+[gd_scene load_steps=26 format=4 uid="uid://bqg6tfpn5salc"]
 
 [ext_resource type="Script" path="res://Scripts/procedural_generation.gd" id="1_w8ima"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_hmu8s"]
@@ -369,6 +369,9 @@ sources/0 = SubResource("TileSetAtlasSource_gpdx6")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gpwr5")
 
+[sub_resource type="Resource" id="Resource_qap8m"]
+metadata/__load_path__ = "res://Resources/speed.tres"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_nw7vk"]
 
 [node name="TestArea" type="Node2D"]
@@ -413,6 +416,7 @@ position = Vector2(429, 192)
 
 [node name="Speed" parent="." instance=ExtResource("17_xsx77")]
 position = Vector2(130, 426)
+inventory_drop_item = SubResource("Resource_qap8m")
 
 [node name="Speed2" parent="." instance=ExtResource("18_jvhr2")]
 position = Vector2(312, 171)

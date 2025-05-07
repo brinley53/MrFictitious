@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmeuwi7uv0od1"]
+[gd_scene load_steps=9 format=3 uid="uid://cmeuwi7uv0od1"]
 
 [ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="1_hkjih"]
 [ext_resource type="PackedScene" uid="uid://jigu4v6vbtsk" path="res://Scenes/Enemies/wolf_enemy.tscn" id="2_av5ke"]
@@ -11,6 +11,9 @@
 vertices = PackedVector2Array(1756.21, 898.039, 165.32, 903.961, 188.688, 162.969, 1699.73, 159.023)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(179, 153, 155, 914, 1767, 908, 1709, 149)])
+
+[sub_resource type="Resource" id="Resource_qap8m"]
+metadata/__load_path__ = "res://Resources/speed.tres"
 
 [node name="Room13" type="Node2D"]
 
@@ -94,3 +97,4 @@ position = Vector2(989, 667)
 
 [node name="Speed" parent="." instance=ExtResource("6_t4h5k")]
 position = Vector2(987, 586)
+inventory_drop_item = SubResource("Resource_qap8m")

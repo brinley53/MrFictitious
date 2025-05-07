@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbt4p8qkdcbkk"]
+[gd_scene load_steps=8 format=3 uid="uid://cbt4p8qkdcbkk"]
 
 [ext_resource type="PackedScene" uid="uid://6ip7x31517er" path="res://Scenes/Enemies/rat_enemy.tscn" id="2_i3ryt"]
 [ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="3_dykyf"]
@@ -10,6 +10,9 @@
 vertices = PackedVector2Array(740.617, 172.617, 719.68, 38, 1197.01, 38, 1225.87, 165.383, 1788.25, 210.25, 1809.69, 949.93, 196.023, 939.063, 197.969, 190.656)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5, 6, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(188, 181, 729, 163, 708, 28, 1205, 28, 1234, 156, 1798, 201, 1820, 960, 186, 949)])
+
+[sub_resource type="Resource" id="Resource_qap8m"]
+metadata/__load_path__ = "res://Resources/speed.tres"
 
 [node name="Room14" type="Node2D"]
 
@@ -54,9 +57,11 @@ navigation_polygon = SubResource("NavigationPolygon_2hdmr")
 
 [node name="Speed" parent="." instance=ExtResource("3_dykyf")]
 position = Vector2(948, 742)
+inventory_drop_item = SubResource("Resource_qap8m")
 
 [node name="Speed2" parent="." instance=ExtResource("3_dykyf")]
 position = Vector2(942, 297)
+inventory_drop_item = SubResource("Resource_qap8m")
 
 [node name="flashlight_item" parent="." instance=ExtResource("4_ooknr")]
 position = Vector2(940, 527)
