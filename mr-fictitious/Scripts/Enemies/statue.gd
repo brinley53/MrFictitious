@@ -62,9 +62,9 @@ func _ready():
 	#set initial variables
 	target = global_position
 	speed = base_speed
-	left_wing_health = 5
-	right_wing_health = 5
-	head_health = 10
+	left_wing_health = 10
+	right_wing_health = 10
+	head_health = 15
 	charge_speed = 750.0
 	total_health = left_wing_health + right_wing_health + head_health
 	pound_sprite.visible = false
