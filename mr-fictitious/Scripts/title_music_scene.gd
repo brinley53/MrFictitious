@@ -3,6 +3,7 @@ class_name TitleMusic
 var title_music_is_playing:bool=false;
 # Called when the node enters the scene tree for the first time.
 func play_music(obj:Object):
+	print(title_music_is_playing)
 	if(!title_music_is_playing):
 		Wwise.register_game_obj(obj,obj.name)
 		Wwise.register_listener(obj)

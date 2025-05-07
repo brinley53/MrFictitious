@@ -1,6 +1,6 @@
 extends Control
 @onready var menu = $CanvasLayer
-@onready var glossary = $GlossaryGallery
+#@onready var glossary = $GlossaryGallery
 @onready var close_glossary = $ExitGlossary
 var player:Player
 
@@ -13,13 +13,13 @@ func _ready() -> void:
 func _on_glossary_pressed() -> void:
 	Wwise.post_event_id(AK.EVENTS.MENU_CLICK,player)
 	menu.hide()
-	glossary.show()
+	#glossary.show()
 	close_glossary.show()
 
 func _on_exit_glossary_pressed() -> void:
 	Wwise.post_event_id(AK.EVENTS.MENU_CLICK,player)
 	close_glossary.hide()
-	glossary.hide()
+	#glossary.hide()
 	menu.show()
 
 
