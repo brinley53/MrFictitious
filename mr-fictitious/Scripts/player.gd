@@ -166,7 +166,11 @@ func _process(delta):
 	for area in overlapping_areas:
 		if area.is_in_group("Shadow") and area.enabled:  # or type check
 			stealth = true
+			sprite.modulate = Color(0, 0, 0, 0.5)
 			break
+			
+	if !stealth:
+		sprite.modulate=Color.WHITE
 	
 	move_character(delta)
 	if in_dialogue:

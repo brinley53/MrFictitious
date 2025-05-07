@@ -119,6 +119,8 @@ func _ready():
 		attack_area = $Flip/AttackArea
 		spec_timer = $SpecTimer
 		flip_node = $Flip
+	else:
+		attack_area = $AttackArea
 		
 	sprite.flip_h = flipped
 	i_frames_timer.wait_time = 0.5
@@ -142,6 +144,17 @@ func _physics_process(delta: float) -> void:
 		return
 	if player.stealth and chase_player:
 		reset_patrol()
+		
+	var in_shadow = false
+	var overlapping_areas = attack_area.get_overlapping_areas()
+	for area in overlapping_areas:
+		if area.is_in_group("Shadow") and area.enabled:  # or type check
+			in_shadow = true
+			sprite.modulate = Color(0, 0, 0, 0.5)
+			break
+			
+	if !in_shadow:
+		sprite.modulate=Color.WHITE
 		
 	if knockback_velocity.length() > 0:
 		velocity = knockback_velocity
