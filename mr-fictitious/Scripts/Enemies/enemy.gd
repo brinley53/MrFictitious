@@ -22,6 +22,7 @@ Revisions:
 	Jose Leyba  - 4/24/2025: Stun Function
 	Brinley Hull - 4/26/2025: Ranged Enemy
 	Brinley Hull - 5/1/2025: Knockback
+	Brinley Hull - 5/7/2025: Fix griffins
 """
 extends CharacterBody2D
 #GLOBAL VARIABLES
@@ -65,6 +66,7 @@ const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn")
 @onready var nav_agent = $NavigationAgent2D
 @onready var health_bar = $HealthContainer/HealthBar
 @onready var health_container = $HealthContainer
+var attack_area:Area2D
 
 var shot_timer:Timer
 
@@ -74,6 +76,7 @@ var i_frames = false
 var vulnerable_area:Area2D
 var spec_timer:Timer
 var statue = true
+var flip_node:Node2D
 
 var max_health
 
@@ -112,8 +115,10 @@ func _ready():
 		shot_timer = $ShotTimer
 		
 	if type == "Griffin":
-		vulnerable_area = $Vulnerable
+		vulnerable_area = $Flip/Vulnerable
+		attack_area = $Flip/AttackArea
 		spec_timer = $SpecTimer
+		flip_node = $Flip
 		
 	sprite.flip_h = flipped
 	i_frames_timer.wait_time = 0.5
@@ -198,6 +203,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt, area_name=""):
+	print("Hit", area_name)
 	if disabled or i_frames or (type=="Griffin" and area_name != "Vulnerable"):
 		return
 	
@@ -273,9 +279,11 @@ func chase(body: Node2D) -> void:
 		sprite.flip_h = 1
 		
 	if type == "Griffin":
-		var offset = Vector2(-67, 29)  # 67 pixels to the right
-		offset.x *= vulnerable_area.scale.x  # flip offset too
-		vulnerable_area.position = offset
+		if dir.x > 0:
+			flip_node.scale.x = 1
+		else:
+			flip_node.scale.x = -1
+		
 		
 	if velocity.length() > 0:
 		detection.rotation = velocity.angle()

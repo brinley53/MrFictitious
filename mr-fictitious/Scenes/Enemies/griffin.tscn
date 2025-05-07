@@ -9,6 +9,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivrkc"]
 radius = 44.3566
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
+size = Vector2(126.259, 160.223)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr45q"]
 atlas = ExtResource("2_daues")
 region = Rect2(0, 0, 247, 180)
@@ -154,9 +157,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(126.259, 133.493)
-
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
 motion_mode = 1
@@ -171,42 +171,6 @@ type = "Griffin"
 position = Vector2(-5, 8.5)
 scale = Vector2(1.432, 1.01077)
 shape = SubResource("CircleShape2D_ivrkc")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_0dolo")
-animation = &"walk"
-
-[node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(-7, -1)
-scale = Vector2(1.17716, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(3.4188, 7)
-scale = Vector2(0.875, 0.753907)
-shape = SubResource("RectangleShape2D_xb3p1")
-
-[node name="Detection" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(-40.8015, 40.4301, -8.74317, 101.505, 665.21, 94.6237, 679.053, -144.516, -5.10018, -94.6237, -40.8015, -29.2473)
-
-[node name="AttackTimer" type="Timer" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-
-[node name="NavTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="Vulnerable" type="Area2D" parent="."]
-position = Vector2(-60, 8)
-scale = Vector2(0.32, 0.559999)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vulnerable"]
-position = Vector2(-37.5, 5.35715)
-scale = Vector2(-0.175839, 0.913907)
-shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="SpecTimer" type="Timer" parent="."]
 wait_time = 4.0
@@ -235,10 +199,49 @@ metadata/_edit_use_anchors_ = true
 wait_time = 0.5
 one_shot = true
 
-[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
-[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="Flip" type="Node2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="Flip"]
+position = Vector2(-7, -1)
+scale = Vector2(1.17716, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/AttackArea"]
+position = Vector2(3.4188, 7)
+scale = Vector2(0.875, 0.753907)
+shape = SubResource("RectangleShape2D_xb3p1")
+
+[node name="Vulnerable" type="Area2D" parent="Flip"]
+position = Vector2(-60, 8)
+scale = Vector2(0.32, 0.559999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Vulnerable"]
+position = Vector2(-37.5, 3.57143)
+rotation = -3.14159
+scale = Vector2(0.175839, -0.913907)
+shape = SubResource("RectangleShape2D_xb3p1")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0dolo")
+animation = &"walk"
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
+scale = Vector2(1.3725, 1.1625)
+polygon = PackedVector2Array(-40.8015, 40.4301, -8.74317, 101.505, 665.21, 94.6237, 679.053, -144.516, -5.10018, -94.6237, -40.8015, -29.2473)
+
 [connection signal="timeout" from="SpecTimer" to="." method="_on_spec_timer_timeout"]
 [connection signal="timeout" from="IFramesTimer" to="." method="_on_i_frames_timer_timeout"]
+[connection signal="area_entered" from="Flip/AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="Flip/AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Flip/AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

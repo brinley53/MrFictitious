@@ -49,6 +49,10 @@ func _on_area_entered(area: Area2D) -> void:
 	# attacking statue boss wings and head
 	var body = area.get_parent()
 	if body.name == "Statue" and area.name in ["LeftWing", "RightWing", "Head"] or area.name == "Vulnerable":
+		if area.name == "Vulnerable":
+			body = body.get_parent()
+			if body.has_method("knockback"):
+				body.knockback(global_position)
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10, area.name)
 		queue_free()

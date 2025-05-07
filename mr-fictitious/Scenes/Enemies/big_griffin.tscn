@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="4_axalh"]
 [ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="5_lfv0v"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
+size = Vector2(217.126, 214.464)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_v458v"]
 radius = 9.61097
 
@@ -154,9 +157,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(217.126, 214.464)
-
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
 motion_mode = 1
@@ -166,49 +166,6 @@ base_speed = 45.0
 damage = 10.0
 knockback_strength = 200.0
 type = "Griffin"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, 18)
-scale = Vector2(9.5724, 6.72296)
-shape = SubResource("CircleShape2D_v458v")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_0dolo")
-animation = &"walk"
-frame_progress = 0.105814
-
-[node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(-16, -2)
-scale = Vector2(1.06604, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(19.6991, 9)
-scale = Vector2(0.979722, 0.753907)
-shape = SubResource("RectangleShape2D_xb3p1")
-
-[node name="Detection" type="Area2D" parent="."]
-position = Vector2(63, -66)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(-102.732, 125.591, -48.816, 172.903, 1052.82, 234.839, 1073.95, -182.366, -48.816, -70.5376, -100.546, -5.16129)
-
-[node name="AttackTimer" type="Timer" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-
-[node name="NavTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="Vulnerable" type="Area2D" parent="."]
-position = Vector2(-64, 13)
-scale = Vector2(0.32, 0.559999)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vulnerable"]
-position = Vector2(-140.625, 3.57144)
-scale = Vector2(-0.160163, 0.967018)
-shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="SpecTimer" type="Timer" parent="."]
 wait_time = 4.0
@@ -237,10 +194,55 @@ metadata/_edit_use_anchors_ = true
 wait_time = 0.5
 one_shot = true
 
-[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
-[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="Flip" type="Node2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="Flip"]
+position = Vector2(-16, -2)
+scale = Vector2(1.06604, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/AttackArea"]
+position = Vector2(19.6991, 9)
+scale = Vector2(0.979722, 0.753907)
+shape = SubResource("RectangleShape2D_xb3p1")
+
+[node name="Vulnerable" type="Area2D" parent="Flip"]
+position = Vector2(-64, 13)
+scale = Vector2(0.32, 0.559999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Vulnerable"]
+position = Vector2(-140.625, 3.57144)
+scale = Vector2(-0.160163, 0.967018)
+shape = SubResource("RectangleShape2D_xb3p1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 18)
+scale = Vector2(9.5724, 6.72296)
+shape = SubResource("CircleShape2D_v458v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0dolo")
+animation = &"walk"
+frame_progress = 0.105814
+
+[node name="Detection" type="Area2D" parent="."]
+position = Vector2(63, -66)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
+scale = Vector2(1.3725, 1.1625)
+polygon = PackedVector2Array(-102.732, 125.591, -48.816, 172.903, 1052.82, 234.839, 1073.95, -182.366, -48.816, -70.5376, -100.546, -5.16129)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="SpecTimer" to="." method="_on_spec_timer_timeout"]
 [connection signal="timeout" from="IFramesTimer" to="." method="_on_i_frames_timer_timeout"]
+[connection signal="area_entered" from="Flip/AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="Flip/AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Flip/AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
