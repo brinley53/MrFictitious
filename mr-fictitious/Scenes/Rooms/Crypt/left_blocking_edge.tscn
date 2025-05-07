@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc5rv6fk0dk2j"]
+[gd_scene load_steps=4 format=4 uid="uid://bc5rv6fk0dk2j"]
 
 [ext_resource type="Texture2D" uid="uid://f08qhyswc6d8" path="res://images/crypt_tiles.png" id="1_c0jef"]
 
@@ -33,6 +33,12 @@ texture_region_size = Vector2i(64, 64)
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 3:3/0 = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:4/0 = 0
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_he0mo"]
 tile_size = Vector2i(64, 64)
@@ -42,5 +48,5 @@ sources/0 = SubResource("TileSetAtlasSource_67vlo")
 [node name="LeftBlockingEdge" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 7, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0, 8, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 9, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0, 6, 0, 0, 0, 1, 0, 2, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAAAAcAAAABAAUAAFAAAAgAAAAAAAUAAFAAAAkAAAABAAUAAFAAAAYAAAAAAAUAAFABAAYAAAAAAAQAAFABAAcAAAABAAQAAFABAAgAAAAAAAQAAFABAAkAAAABAAQAAFA=")
 tile_set = SubResource("TileSet_he0mo")
