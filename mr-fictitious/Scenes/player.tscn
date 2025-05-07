@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="10_3ehms"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jal5q"]
-size = Vector2(35, 55)
+size = Vector2(30, 55)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldc7u"]
 atlas = ExtResource("3_w2qoj")
@@ -417,12 +417,12 @@ script = ExtResource("1_qm5xk")
 inventory = ExtResource("2_dulbo")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-4.5, 21.5)
+position = Vector2(0, 27)
 shape = SubResource("RectangleShape2D_jal5q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6qceo")
-animation = &"walk_right"
+animation = &"stand_down"
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Weapon"]]
 position = Vector2(12.75, 1)
@@ -470,6 +470,8 @@ script = ExtResource("10_3ehms")
 [node name="PoisonTimer" type="Timer" parent="."]
 
 [node name="Stealth" type="Area2D" parent="."]
+position = Vector2(3, 10)
+scale = Vector2(1, 0.72)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stealth"]
 position = Vector2(-4, -7.5)

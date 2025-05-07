@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/tent.gd" id="1_0dfic"]
 [ext_resource type="Texture2D" uid="uid://dxlo8s1jfeog4" path="res://images/tent.png" id="2_w4iuj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(271, 187)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4o2sl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fs4b"]
 radius = 267.572
@@ -14,8 +13,9 @@ height = 952.864
 script = ExtResource("1_0dfic")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, 40.5)
-shape = SubResource("RectangleShape2D_xb3p1")
+position = Vector2(-16, 49)
+scale = Vector2(13.3264, 8.58489)
+shape = SubResource("CircleShape2D_4o2sl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
