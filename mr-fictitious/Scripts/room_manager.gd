@@ -259,7 +259,7 @@ func generate_rooms() -> void:
 		for i in range(ROOMS[location].size()):
 			# Break early because buffer rooms shouldn't be
 			# attached like normal rooms.
-			if i > 6:
+			if BOSS_INDEX.has(location) and location not in [Location.FOREST, Location.ASYLUM] and i > BOSS_INDEX[location]:
 				break
 
 			unattached.append(i)
