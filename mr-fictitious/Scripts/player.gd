@@ -298,11 +298,11 @@ func new_evidence_collected(evidence:Evidence):
 
 # Dialogue start functions
 func final_boss_dialogue():
-	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "mendoza")
+	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "mendoza", [], "res://Dialogue/balloon_no_portrait.tscn")
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 func starting_dialogue():
-	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start")
+	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start", [], "res://Dialogue/balloon_no_portrait.tscn")
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 func inmate_dialogue():
@@ -313,9 +313,9 @@ func inmate_dialogue():
 			starting_dialogue()
 			start = false
 		else:
-			dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "inmate")
+			dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "inmate", [], "res://Dialogue/balloon_no_portrait.tscn")
 	else:
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence2")	
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence2", [], "res://Dialogue/balloon_no_portrait.tscn")	
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 	
 func evidence_dialogue():
