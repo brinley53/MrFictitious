@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx8bks6qwlrw3"]
+[gd_scene load_steps=5 format=3 uid="uid://dx8bks6qwlrw3"]
 
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="1_pjdt4"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="2_yocl6"]
+[ext_resource type="PackedScene" uid="uid://daxskvbh0lox0" path="res://Scenes/sword.tscn" id="3_5lxnc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gt373"]
 vertices = PackedVector2Array(1731.02, 930.898, 173, 916.094, 173, 155.922, 1732.97, 144.07)
@@ -58,3 +59,6 @@ position = Vector2(718, 490)
 
 [node name="Patrol8" parent="." instance=ExtResource("2_yocl6")]
 position = Vector2(411, 495)
+
+[node name="sword" parent="." instance=ExtResource("3_5lxnc")]
+position = Vector2(906, 494)

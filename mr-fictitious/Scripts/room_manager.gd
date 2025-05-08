@@ -64,7 +64,8 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/Crypt/room_13.tscn"),
 		preload("res://Scenes/Rooms/Crypt/room_14.tscn"),
 		preload("res://Scenes/Rooms/Crypt/room_15.tscn"),
-		preload("res://Scenes/Rooms/Crypt/room_16.tscn")
+		preload("res://Scenes/Rooms/Crypt/room_16.tscn"),
+		preload("res://Scenes/Rooms/Crypt/room_17.tscn")
 	],
 	Location.VILLAGE: [
 		preload("res://Scenes/Rooms/Village/room_10.tscn"),
@@ -73,7 +74,8 @@ const ROOMS:Dictionary = {
 		preload("res://Scenes/Rooms/Village/room_13.tscn"),
 		preload("res://Scenes/Rooms/Village/room_14.tscn"),
 		preload("res://Scenes/Rooms/Village/room_15.tscn"),
-		preload("res://Scenes/Rooms/Village/room_16.tscn")
+		preload("res://Scenes/Rooms/Village/room_16.tscn"),
+		preload("res://Scenes/Rooms/Village/room_17.tscn")
 	],
 	Location.ASYLUM: [
 		preload("res://Scenes/Rooms/asylum_room.tscn")
@@ -219,6 +221,12 @@ func add_connection_entry(location:Location, room:int) -> void:
 	}
 
 func create_connection(source_location:Location, source_room:int, destination_location:Location, destination_room:int, direction:Direction):
+		if BOSS_INDEX.has(destination_location) and destination_location != Location.FOREST and destination_room == BOSS_INDEX[destination_location]:
+			var buffer_room = destination_room + 1
+			add_connection_entry(destination_location, buffer_room)
+			create_connection(source_location, source_room, destination_location, buffer_room, direction)
+			source_room = buffer_room
+
 		# Record the source to destination connection.
 		connections[source_location][source_room][direction]["location"] = destination_location
 		connections[source_location][source_room][direction]["room"] = destination_room
@@ -249,6 +257,11 @@ func generate_rooms() -> void:
 
 		# All of the rooms begin unattached.
 		for i in range(ROOMS[location].size()):
+			# Break early because buffer rooms shouldn't be
+			# attached like normal rooms.
+			if BOSS_INDEX.has(location) and location not in [Location.FOREST, Location.ASYLUM] and i > BOSS_INDEX[location]:
+				break
+
 			unattached.append(i)
 
 		# Select a random room to serve as the anchor and move it from

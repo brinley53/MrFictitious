@@ -153,7 +153,7 @@ func _physics_process(delta: float) -> void:
 			sprite.modulate = Color(0.3, 0.3, 0.3, 1.0)
 			break
 			
-	if !in_shadow:
+	if !in_shadow and !i_frames:
 		sprite.modulate=Color.WHITE
 		
 	if knockback_velocity.length() > 0:
@@ -216,7 +216,6 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt, area_name=""):
-	print("Hit", area_name)
 	if disabled or i_frames or (type=="Griffin" and area_name != "Vulnerable"):
 		return
 	

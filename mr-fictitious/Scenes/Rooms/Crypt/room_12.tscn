@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4vff8h827008" path="res://Scenes/Enemies/skull.tscn" id="2_d32vl"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="3_4ah3f"]
 [ext_resource type="Texture2D" uid="uid://f08qhyswc6d8" path="res://images/crypt_tiles.png" id="4_6kjw8"]
-[ext_resource type="PackedScene" uid="uid://daxskvbh0lox0" path="res://Scenes/sword.tscn" id="4_t3j8q"]
+[ext_resource type="PackedScene" uid="uid://4xy0bhyjkbg4" path="res://Scenes/musket.tscn" id="5_vodha"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i65b0"]
 vertices = PackedVector2Array(1243, 873, 1243, 716, 1246, 848, 1246, 974, 1243, 489, 1630, 339, 1784.78, 339, 1795.23, 752, 1630, 752, 1243, 332, 1630, 182, 1038, 974, 1060, 873, 1060, 716, 882, 974, 859, 873, 859, 716, 1780.7, 178, 1780.8, 182, 1038, 178, 1038, 992.641, 882, 989.523, 673, 974, 676, 873, 673, 848, 676, 716, 1060, 332, 289, 182, 122.773, 182, 122.844, 178, 882, 178, 882, 116.133, 1038, 116.938, 1060, 489, 859, 489, 859, 332, 676, 332, 289, 339, 676, 489, 1630, 848, 289, 848, 289, 752, 114, 752, 114, 649.672, 119.82, 339)
@@ -146,9 +146,6 @@ position = Vector2(1573, 519)
 [node name="Patrol6" parent="." instance=ExtResource("3_4ah3f")]
 position = Vector2(951, 857)
 
-[node name="sword" parent="." instance=ExtResource("4_t3j8q")]
-position = Vector2(959, 559)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_i65b0")
 
@@ -236,3 +233,6 @@ lit = true
 [node name="Pillar18" parent="NavigationRegion2D" instance=ExtResource("1_ga3pi")]
 position = Vector2(1152, 732)
 lit = true
+
+[node name="musket" parent="." instance=ExtResource("5_vodha")]
+position = Vector2(954, 582)
