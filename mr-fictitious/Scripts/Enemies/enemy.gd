@@ -218,7 +218,9 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func reduce_enemy_health(damage_dealt, area_name=""):
 	if disabled or i_frames or (type=="Griffin" and area_name != "Vulnerable"):
 		return
-	
+	call_deferred("_apply_damage", damage_dealt)
+
+func _apply_damage(damage_dealt):
 	chase_player = true
 	player.initiate_combat()
 	health = health - damage_dealt
@@ -353,6 +355,9 @@ func _on_shot_timer_timeout() -> void:
 func knockback(pos):
 	if disabled or i_frames:
 		return
+	call_deferred("_apply_knockback", pos)
+
+func _apply_knockback(pos):
 	var direction = (global_position - pos).normalized()
 	knockback_velocity = direction * knockback_strength
 	if type != "Griffin":
