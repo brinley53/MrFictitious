@@ -13,11 +13,6 @@ var weapon_bg_textures: Array[Texture2D] = []
 func _ready() -> void:
 	# Load background textures for weapon slots
 	open()
-	for i in range(2):
-		var texture = ResourceLoader.load("res://images/weapon_slot_bg%d.png" % (i + 1))
-		if texture:
-			weapon_bg_textures.append(texture)
-	
 	# Connect signals and initialize
 	weapon_inv.update.connect(update_weapon_slots)
 	update_weapon_slots()
