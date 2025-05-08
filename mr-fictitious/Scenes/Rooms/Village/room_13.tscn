@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://cylv47c8p3mry"]
+[gd_scene load_steps=11 format=4 uid="uid://cylv47c8p3mry"]
 
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="2_si6wo"]
 [ext_resource type="PackedScene" uid="uid://m653te6y8pka" path="res://Scenes/Enemies/asylum_worker.tscn" id="3_wpepu"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_07flv"]
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="5_le4fp"]
 [ext_resource type="Texture2D" uid="uid://dedbooan4qfxo" path="res://images/village_tiles.png" id="5_v0mfm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jqnpl"]
@@ -99,3 +100,23 @@ tile_set = SubResource("TileSet_b4tvm")
 z_index = 2
 tile_map_data = PackedByteArray("AAABAAQAAAAAAAAAAAACAAQAAAABAAAAAAADAAQAAAACAAAAAAAEAAQAAAADAAAAAAAZAAQAAAAAAAAAAAAaAAQAAAABAAAAAAAbAAQAAAACAAAAAAAcAAQAAAADAAAAAAAZAAoAAAAAAAAAAAAaAAoAAAABAAAAAAAbAAoAAAACAAAAAAAcAAoAAAADAAAAAAABAAoAAAAAAAAAAAACAAoAAAABAAAAAAADAAoAAAACAAAAAAAEAAoAAAADAAAAAAAMAAkAAAABAAAAAAANAAkAAAACAAAAAAAOAAkAAAABAAAAAAAPAAkAAAACAAAAAAAQAAkAAAABAAAAAAARAAkAAAACAAAAAAALAAkAAAAAAAAAAAASAAkAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_l8w0x")
+
+[node name="Shadow5" parent="." instance=ExtResource("5_le4fp")]
+position = Vector2(1242, 869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow5"]
+polygon = PackedVector2Array(-861.333, -493.333, -761.333, -434.667, -679.333, -434.667, -616, -401.333, -562, -333.333, -500, -276, -455.333, -246, -419.333, -218.667, -384, -222, -354, -234.667, -320.667, -268, -317.333, -323.333, -333.333, -400, -376, -480.667, -460, -566, -522, -626.667, -604.667, -660, -684, -647.333, -858, -610.667)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow5"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-855.333, -493.333, -839.333, -464.667, -812, -440.667, -784, -426.667, -750.667, -420.667, -720.667, -418.667, -680.667, -412.667, -654, -402.667, -636, -392, -596.667, -356.667, -574.667, -336, -541.333, -308, -514, -279.333, -480.667, -247.333, -458.667, -233.333, -438, -225.333, -419.333, -220.667, -388.667, -216, -348, -218.667, -336.667, -226.667, -325.333, -252, -310, -284, -304.667, -316, -304.667, -339.333, -308, -362, -308, -387.333, -322.667, -418.667, -344.667, -464.667, -365.333, -507.333, -398.667, -558, -420.667, -577.333, -474.667, -620, -546, -642, -674.667, -658, -842.667, -607.333)
+
+[node name="Shadow6" parent="." instance=ExtResource("5_le4fp")]
+position = Vector2(1242, 869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow6"]
+polygon = PackedVector2Array(-2, -309.333, -2, -275.333, -2, -238.667, -8.66663, -172.667, -8.66663, 15.3333, -4, 139.333, 170, 125.333, 162.667, -132.667, 162.667, -268.667, 151.333, -354.667, 116, -403.333, 23.3334, -416.667)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow6"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-5.33331, -314, -5.33331, -277.333, -13.3333, -201.333, -16.6666, -154.667, -25.3333, -82, -28.6666, -22, -28.6666, 40.6666, -13.3333, 82.6666, -34, 172, 68, 170, 126, 170, 160, 162, 180, 134, 188, 88, 198, 24, 184, -92, 178, -233.333, 180, -315.333, 172, -375.333, 136, -417.333, 84, -437.333, 40, -437.333, 24, -427.333, 2, -409.333, -12, -381.333, -20, -345.333)

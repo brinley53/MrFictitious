@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://d0h7oauss1r24"]
+[gd_scene load_steps=14 format=4 uid="uid://d0h7oauss1r24"]
 
 [ext_resource type="Texture2D" uid="uid://dedbooan4qfxo" path="res://images/village_tiles.png" id="1_pqu6h"]
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="2_6ke7n"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bwvwhki3unhqy" path="res://Scenes/flashlight_item.tscn" id="5_u1ff3"]
 [ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="6_o0j2b"]
 [ext_resource type="PackedScene" uid="uid://c1nsdeigj4w22" path="res://Scenes/speed_item.tscn" id="7_yofwh"]
+[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="8_dehuj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v0ry3"]
 vertices = PackedVector2Array(939, 779, 1333, 715, 1547, 715, 1666.18, 865.281, 1667.81, 209.57, 1579, 459, 1579, 245, 238, 220.43, 981, 245, 939, 565, 981, 459, 1013, 459, 1013, 715, 1227, 715, 1227, 459, 1333, 459, 907, 565, 907, 245, 693, 245, 693, 565, 587, 565, 587, 245, 373, 245, 238, 851.703, 341, 565, 373, 565, 341, 779, 1547, 459)
@@ -186,3 +187,33 @@ position = Vector2(1224, 419)
 
 [node name="Speed" parent="." instance=ExtResource("7_yofwh")]
 position = Vector2(1360, 407)
+
+[node name="Shadow5" parent="." instance=ExtResource("8_dehuj")]
+position = Vector2(1242, 869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow5"]
+polygon = PackedVector2Array(-281.333, -338.667, -100, -336.667, -100, -185.333, -279.333, -182.667)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow5"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-281.333, -338.667, -250, -346.667, -202, -354, -172, -352.667, -145.333, -348, -124, -346.667, -104, -341.333, -100, -181.333, -237.333, -175.333, -264, -175.333, -272.667, -180.667)
+
+[node name="Shadow6" parent="." instance=ExtResource("8_dehuj")]
+position = Vector2(1242, 869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow6"]
+polygon = PackedVector2Array(-156, -594.667, -148, -494.667, -100.667, -418.667, -58, -394.667, 16.6667, -390, 64, -398, 126, -407.333, 150, -464.667, 151.333, -566, 148, -590)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow6"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-159.333, -596, -162.667, -554.667, -158, -505.333, -158, -483.333, -143.333, -467.333, -124.667, -444, -102, -414, -84.6666, -391.333, -22.6666, -386.667, 42, -383.333, 62.6667, -390, 89.3334, -404, 127.333, -420, 153.333, -456.667, 158, -482, 175.333, -544, 170.667, -591.333)
+
+[node name="Shadow7" parent="." instance=ExtResource("8_dehuj")]
+position = Vector2(1242, 869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow7"]
+polygon = PackedVector2Array(-613.333, 157.333, -588, 105.333, -572, 14.6666, -540, -53.3334, -506.667, -97.3334, -464, -113.333, -402.667, -122.667, -340, -122.667, -302.667, -112, -272, -88, -220, -49.3334, -196, 17.3333, -177.333, 122.667, -181.333, 196)
+
+[node name="Polygon2D" type="Polygon2D" parent="Shadow7"]
+color = Color(0, 0, 0, 0.466667)
+polygon = PackedVector2Array(-621.333, 152, -597.333, 125.333, -597.333, 104, -590.667, 81.3333, -582.667, 40, -570.667, 0, -558.667, -33.3334, -533.333, -73.3334, -514.667, -90.6667, -486.667, -110.667, -432, -125.333, -390.667, -129.333, -336, -129.333, -317.333, -129.333, -276, -106.667, -217.333, -72, -200, -37.3334, -190.667, 10.6666, -172, 73.3333, -166.667, 145.333, -168, 182.667, -193.333, 205.333, -330.667, 206.667, -576, 186.667)
