@@ -632,6 +632,9 @@ func shovel(damage_increase: int, shrink_factor: float):
 	base_damage += damage_increase
 	damage_difference = damage_increase
 	current_damage = base_damage 
+	call_deferred("_apply_shovel_collision_changes", shrink_factor)
+
+func _apply_shovel_collision_changes(shrink_factor: float):
 	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
 	if poly_node:
 		var points = poly_node.polygon.duplicate()
@@ -646,7 +649,9 @@ func reset_shovel():
 	damage_difference = 0
 	current_damage = base_damage
 	has_shovel = false
+	call_deferred("_apply_reset_shovel_collision_changes")
 
+func _apply_reset_shovel_collision_changes():
 	var poly_node := attack_area.get_node_or_null("CollisionPolygon2D")
 	if poly_node:
 		var points = poly_node.polygon.duplicate()
