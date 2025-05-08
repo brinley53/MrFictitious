@@ -135,13 +135,13 @@ patrol_a = NodePath("../Patrol8")
 patrol_b = NodePath("../Patrol7")
 
 [node name="Patrol" parent="." instance=ExtResource("1_bd7pk")]
-position = Vector2(645, 431)
+position = Vector2(676, 462)
 
 [node name="Patrol2" parent="." instance=ExtResource("1_bd7pk")]
 position = Vector2(1253, 456)
 
 [node name="Patrol3" parent="." instance=ExtResource("1_bd7pk")]
-position = Vector2(667, 585)
+position = Vector2(687, 560)
 
 [node name="Patrol4" parent="." instance=ExtResource("1_bd7pk")]
 position = Vector2(1262, 576)

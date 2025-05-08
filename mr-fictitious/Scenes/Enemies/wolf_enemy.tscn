@@ -97,7 +97,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
 size = Vector2(114, 81)
 
-[node name="CharacterBody2D3" type="CharacterBody2D" groups=["Enemies"]]
+[node name="CharacterBody2D4" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
 collision_layer = 2
 motion_mode = 1
@@ -129,7 +129,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(-52.459, 51.6129, -18.2149, 79.1398, 31.3297, 96.3441, 851.731, 103.226, 865.574, -98.9247, 39.3443, -76.5591, -5.10018, -60.2151, -52.459, -20.6452)
+polygon = PackedVector2Array(-52.459, 51.6129, 13.1148, 116.989, 58.2878, 134.194, 611.293, 136.774, 597.45, -152.258, 57.5592, -123.011, 13.8434, -91.1828, -52.459, -20.6452)
 
 [node name="AttackTimer" type="Timer" parent="."]
 

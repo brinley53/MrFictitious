@@ -202,7 +202,6 @@ func _process(delta):
 			end_spin_attack()
 
 	if Input.is_action_just_pressed("attack") and can_attack and sword:
-		attack_sprite_spin.play("attacking_spin")
 		removeWeapon(SwordResource)
 		start_spin_attack()
 	
@@ -298,7 +297,7 @@ func new_evidence_collected(evidence:Evidence):
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece3")
 	if evidence_collected == 4:
 		play_sound(AK.EVENTS.THREE)
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece4")
+		#dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece4")
 	if dialogue_balloon != null:
 		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
@@ -379,6 +378,8 @@ func shoot_projectile():
 #Functions for swinging attack
 func start_spin_attack():
 	if sword and sword_attack_uses < max_sword_attacks:
+		attack_sprite_spin.play("attacking_spin")
+		attack_sprite_spin.frame = 0
 		spin_attack_active = true
 		orbit_timer = 0.0
 		can_attack = false
@@ -532,7 +533,7 @@ func flash_screen(color := Color.WHITE, duration := 0.1):
 func use_health_item():
 	if removeItem(healthResource):
 		health_items-=1
-		increase_player_health(20)
+		increase_player_health(40)
 
 func use_dmg_item():
 	if removeItem(DmgResource):
@@ -715,9 +716,8 @@ func receive_current_location(location, central=false, is_boss_room=false):
 	if dialogue_balloon != null:
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
-		print("dial paused on move rooms,", evidence_collected)
-		if evidence_collected > 3:
-			get_tree().change_scene_to_file("res://Scenes/win.tscn")
+	if evidence_collected > 3:
+		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	if !central:
 		start = false
 	current_player_state = PLAYER_STATE.Explore
@@ -734,23 +734,6 @@ func initiate_combat():
 	if current_player_state!=PLAYER_STATE.Combat:
 		play_sound(AK.EVENTS.COMBAT)
 		current_player_state=PLAYER_STATE.Combat
-	
-#Might be useful later, rn not, leave it here for now
-#func start_attack_range():
-	#attack_area.visible = true
-	#attack_timer.start(ATTACK_LOCK_TIME_MELEE)
-	#var mouse_position = get_global_mouse_position()
-	#var attack_direction = (mouse_position - global_position).normalized()
-	#var collision_center = collision_shape.position
-	## Calculate the local offset for the attack area relative to the player
-	#var attack_offset = attack_direction * attack_radius + collision_center
-	#
-	#var tween = get_tree().create_tween()
-	#tween.tween_property(attack_area, "position", attack_offset, 2)
-	#
-	#await tween.finished
-	#attack_area.visible = false
-	#attack_area.position = Vector2.ZERO  # Reset position after attack
 
 #Function to poison the player
 func _on_poison_timer_timeout() -> void:

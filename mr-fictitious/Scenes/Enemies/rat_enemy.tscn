@@ -106,7 +106,7 @@ shape = SubResource("RectangleShape2D_xb3p1")
 [node name="Detection" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
-polygon = PackedVector2Array(-20, 29, 31, 71, 960, 127, 969, -95, 27, -64, -23, -21)
+polygon = PackedVector2Array(-20, 29, 32, 81, 682, 115, 677, -95, 27, -79, -23, -21)
 
 [node name="AttackTimer" type="Timer" parent="."]
 

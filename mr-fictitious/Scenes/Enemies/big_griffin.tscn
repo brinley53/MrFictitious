@@ -230,7 +230,7 @@ position = Vector2(63, -66)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(-102.732, 125.591, -48.816, 172.903, 1052.82, 234.839, 1073.95, -182.366, -48.816, -70.5376, -100.546, -5.16129)
+polygon = PackedVector2Array(-102.732, 125.591, -32.7869, 212.473, 99.8179, 249.462, 830.601, 243.441, 829.144, -166.022, 93.2605, -142.796, -45.9016, -117.849, -100.546, -5.16129)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
