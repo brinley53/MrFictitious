@@ -8,13 +8,13 @@ var is_open:bool;
 @onready var slotBg:NinePatchRect = $NinePatchRect
 var belt_sprites:Array[Texture2D]=[]
 func _ready() -> void:
+	open()
 	for i in range(2,7):
 		var texture = ResourceLoader.load("res://images/bandolierinventory%d.png"%i)
 		belt_sprites.append(texture)
 		
 	playerinv.update.connect(updateSlots)
 	updateSlots()
-	close()
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_inventory"):
 		if is_open:
