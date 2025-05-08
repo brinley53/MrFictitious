@@ -445,7 +445,7 @@ func reduce_player_health(damage):
 		if weapon_inventory:
 			weapon_inventory.clear()
 		Wwise.stop_all(self)
-		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
 	
 	
 func increase_player_health(amount:int):
