@@ -71,7 +71,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 3
+var evidence_collected = 0
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -178,8 +178,6 @@ func _process(delta):
 	if in_dialogue:
 		if dialogue_balloon == null or dialogue_manager.dialogue_end:
 			in_dialogue = false
-			if evidence_collected > 3:
-				get_tree().change_scene_to_file("res://Scenes/win.tscn")
 		else:
 			return
 	if Input.is_action_just_pressed("attack") and can_attack and !sword:
@@ -654,22 +652,16 @@ func _on_dialogue_finished(_resource: DialogueResource):
 	# Function to resume everything when dialogue is done
 	in_dialogue = false
 	print("dial finished ,", evidence_collected)
-	if evidence_collected > 3:
-		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	
 func _on_balloon_closed(_resource: DialogueResource):
 	in_dialogue = false
 	print("balloon closed,", evidence_collected)
-	if evidence_collected > 3:
-		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 
 func _input(event: InputEvent) -> void:
 	# Skip dialogue option
 	if in_dialogue and Input.is_key_pressed(KEY_ENTER):
 		in_dialogue = false
 		print("dial skipped,", evidence_collected)
-		if evidence_collected > 3:
-			get_tree().change_scene_to_file("res://Scenes/win.tscn")
 		if dialogue_balloon != null:
 			dialogue_balloon.end_dialogue()
 	

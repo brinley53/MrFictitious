@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b0lmc7525wy32"]
+[gd_scene load_steps=19 format=4 uid="uid://b0lmc7525wy32"]
 
 [ext_resource type="Script" path="res://Scripts/asylum.gd" id="1_ggxe1"]
 [ext_resource type="Texture2D" uid="uid://mmutsnb7utcw" path="res://images/asylumfloor.png" id="2_igwce"]
@@ -76,7 +76,13 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(135, 142, 143, 924, 680
 size = Vector2(20, 1200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4i7s"]
-size = Vector2(2000, 50)
+size = Vector2(832, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abjpj"]
+size = Vector2(832, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bf2b"]
+size = Vector2(256, 50)
 
 [node name="AsylumRoom" type="Node2D"]
 script = ExtResource("1_ggxe1")
@@ -135,8 +141,17 @@ shape = SubResource("RectangleShape2D_i4i7s")
 
 [node name="BottomBorder" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBorder"]
-position = Vector2(960, 1080)
+[node name="LeftBlocker" type="CollisionShape2D" parent="BottomBorder"]
+position = Vector2(416, 1080)
 shape = SubResource("RectangleShape2D_i4i7s")
 
+[node name="RightBlocker" type="CollisionShape2D" parent="BottomBorder"]
+position = Vector2(1504, 1080)
+shape = SubResource("RectangleShape2D_abjpj")
+
+[node name="PathBlocker" type="CollisionShape2D" parent="BottomBorder"]
+position = Vector2(960, 1080)
+shape = SubResource("RectangleShape2D_2bf2b")
+
+[connection signal="dead" from="Mendoza" to="." method="_on_mendoza_dead"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

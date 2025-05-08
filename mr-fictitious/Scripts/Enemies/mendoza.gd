@@ -96,7 +96,7 @@ func reduce_enemy_health(damage_dealt):
 		var radius = randf_range(64.0, 128.0)
 		var offset = Vector2(cos(angle), sin(angle)) * radius
 		item.global_position = global_position + offset
-		get_tree().current_scene.add_child(item)
+		get_node("/root/Main/RoomManager").get_active_room().add_child(item)
 		queue_free()
 		dead.emit()
 	top_sprite.modulate = Color.RED

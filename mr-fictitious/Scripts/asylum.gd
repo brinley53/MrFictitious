@@ -41,3 +41,7 @@ func _on_spawn_timer_timeout() -> void:
 	var room = manager.get_active_room()
 	room.add_child(worker)
 	spawn_workers()
+
+
+func _on_mendoza_dead() -> void:
+	$BottomBorder/PathBlocker.queue_free()

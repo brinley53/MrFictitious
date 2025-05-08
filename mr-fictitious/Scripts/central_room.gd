@@ -23,5 +23,5 @@ func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
 
 
 func _on_tree_entered() -> void:
-	if player and player.evidence_collected >= 3 and asylum_blocker != null:
+	if player != null and player.evidence_collected >= 3 and asylum_blocker != null:
 		asylum_blocker.queue_free()
