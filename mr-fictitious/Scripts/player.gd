@@ -71,7 +71,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 3
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -710,9 +710,8 @@ func receive_current_location(location, central=false, is_boss_room=false):
 	if dialogue_balloon != null:
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
-		print("dial paused on move rooms,", evidence_collected)
-		if evidence_collected > 3:
-			get_tree().change_scene_to_file("res://Scenes/win.tscn")
+	if evidence_collected > 3:
+		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	if !central:
 		start = false
 	current_player_state = PLAYER_STATE.Explore

@@ -237,7 +237,7 @@ animation = &"walk"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
 scale = Vector2(1.3725, 1.1625)
-polygon = PackedVector2Array(-40.8015, 40.4301, -8.74317, 101.505, 665.21, 94.6237, 679.053, -144.516, -5.10018, -94.6237, -40.8015, -29.2473)
+polygon = PackedVector2Array(-40.8015, 40.4301, -8.74317, 101.505, 99.8179, 119.57, 517.304, 113.548, 492.532, -129.892, 85.2459, -118.71, -7.28598, -95.4839, -40.8015, -29.2473)
 
 [connection signal="timeout" from="SpecTimer" to="." method="_on_spec_timer_timeout"]
 [connection signal="timeout" from="IFramesTimer" to="." method="_on_i_frames_timer_timeout"]
