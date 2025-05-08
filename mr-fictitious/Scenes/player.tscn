@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_manager.gd" id="10_3ehms"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jal5q"]
-size = Vector2(30, 55)
+size = Vector2(30, 59.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldc7u"]
 atlas = ExtResource("3_w2qoj")
@@ -419,7 +419,7 @@ inventory = ExtResource("2_dulbo")
 weapon_inventory = ExtResource("3_5wgx6")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 27)
+position = Vector2(0, 29.25)
 shape = SubResource("RectangleShape2D_jal5q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

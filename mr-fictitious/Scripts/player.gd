@@ -337,9 +337,9 @@ func evidence_dialogue():
 	if in_dialogue:
 		return
 	if evidence_collected == 0:
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence0")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence0", [], "res://Dialogue/balloon_no_portrait.tscn")
 	elif evidence_collected == 1:
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence1")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence1", [], "res://Dialogue/balloon_no_portrait.tscn")
 	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 func asylum_blocker_dialogue():
@@ -347,7 +347,7 @@ func asylum_blocker_dialogue():
 		return
 
 	if evidence_collected < 3:
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "blocker")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "blocker", [], "res://Dialogue/balloon_no_portrait.tscn")
 		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 #Fires the gun, only works when you have bullets
@@ -673,7 +673,6 @@ func _input(event: InputEvent) -> void:
 	# Skip dialogue option
 	if in_dialogue and Input.is_key_pressed(KEY_ENTER):
 		in_dialogue = false
-		print("dial skipped,", evidence_collected)
 		if dialogue_balloon != null:
 			dialogue_balloon.end_dialogue()
 	

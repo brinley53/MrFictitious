@@ -342,6 +342,7 @@ lit = true
 
 [node name="Pillar12" parent="NavigationRegion2D" instance=ExtResource("1_ylo5w")]
 position = Vector2(1104, 760)
+lit = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -2
