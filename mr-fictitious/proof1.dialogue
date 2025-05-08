@@ -9,3 +9,7 @@ Second Evidence: I need 1 more pieces to confront Dr. Mendoza (Read newest evide
 ~ piece3
 Third Evidence: I'm ready to confront Dr. Mendoza (Read newest evidence by pressing "R")
 => END
+
+~ piece4
+Last Evidence: With this, I can show everyone the wrongdoings of Mendoza (Read last evidence by pressing "R", Ends the game)
+=> END

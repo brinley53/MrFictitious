@@ -293,6 +293,9 @@ func new_evidence_collected(evidence:Evidence):
 	if evidence_collected == 3:
 		play_sound(AK.EVENTS.THREE)
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece3")
+	if evidence_collected == 4:
+		play_sound(AK.EVENTS.THREE)
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece4")
 	if dialogue_balloon != null:
 		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
