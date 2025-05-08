@@ -32,6 +32,7 @@ var attack_player = false
 var dir_facing = 1
 var stunned = false
 var current_stun_timer: Timer = null
+var prev_chase_player:bool = false
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $AnimatedSprite2D
@@ -57,6 +58,7 @@ func _ready():
 	timer.start()
 	health_bar.max_value = health
 	health_bar.value = health
+	Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT,self)
 	
 func change_attack(attack_type):
 	if stunned:
@@ -66,6 +68,7 @@ func change_attack(attack_type):
 func shoot_player():
 	if stunned:
 		return
+	Wwise.post_event_id(AK.EVENTS.HORSEMAN_SHOOT,self)
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.body_entered.connect(bullet._on_body_entered)
 	bullet.global_position = global_position
@@ -102,17 +105,26 @@ func _physics_process(delta: float) -> void:
 		
 		velocity = (player.global_position - global_position).normalized() * speed
 		move_and_slide()
+		if(chase_player and !prev_chase_player):
+			Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT,self)
+			prev_chase_player=true
+		if(!chase_player and prev_chase_player):
+			Wwise.post_event_id(AK.EVENTS.HORSEMAN_UNALERT,self)
+			prev_chase_player=false
+			
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	if !is_vulnerable:
 		return
+	Wwise.post_event_id(AK.EVENTS.HORSEMAN_HURT,self)
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate=Color.WHITE
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_DEATH,self)
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 
 		var radius = randf_range(64.0, 128.0)

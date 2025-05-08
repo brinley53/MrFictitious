@@ -92,9 +92,6 @@ func _ready():
 	health_bar.max_value = health
 	health_bar.value = health
 	health_container.visible = false
-	# Wwise.register_game_obj(self,self.name)
-	# Wwise.register_listener(self)
-	# Wwise.load_bank_id(AK.BANKS.SOUND)
 	patrol_points = get_tree().get_nodes_in_group("Patrol")
 	if patrol_a == null or patrol_b == null:
 		if len(patrol_points) > 1:
@@ -235,6 +232,8 @@ func _apply_damage(damage_dealt):
 			Wwise.post_event_id(AK.EVENTS.WORKER_HURT,self)
 		"Ranged":
 			Wwise.post_event_id(AK.EVENTS.GHOST_HURT,self)
+		"Griffin":
+			Wwise.post_event_id(AK.EVENTS.STATUE_HURT,self)
 		_:
 			print("No registered Sound for this type")
 			

@@ -68,6 +68,7 @@ func _ready():
 	charge_speed = 750.0
 	total_health = left_wing_health + right_wing_health + head_health
 	pound_sprite.visible = false
+	Wwise.post_event_id(AK.EVENTS.STATUE_ALERT,self)
 
 func _physics_process(delta: float) -> void:
 	health_bar.value = (left_wing_health+right_wing_health+head_health)*100/total_health
@@ -139,6 +140,7 @@ func _on_stun_timeout():
 		current_stun_timer = null
 
 func reduce_enemy_health(_damage_dealt, area_hit=""):
+	
 	if area_hit == "":
 		var rwing_areas = r_wing.get_overlapping_areas()
 		var head_areas = head.get_overlapping_areas()
@@ -151,6 +153,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					if left_wing_health == 0:
 						emit_signal("broken")
 					flash_red()
+					Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 					return
 		if right_wing_health > 0:
 			for area in rwing_areas:
@@ -160,6 +163,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					if right_wing_health == 0:
 						emit_signal("broken")
 					flash_red()
+					Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 					return
 		if head_health > 0:
 			for area in head_areas:
@@ -169,6 +173,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					if head_health == 0:
 						emit_signal("broken")
 					flash_red()
+					Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 					return
 	else:
 		if area_hit == "LeftWing" and left_wing_health > 0:
@@ -177,6 +182,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			if left_wing_health == 0:
 				emit_signal("broken")
 			flash_red()
+			Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 			return
 		if area_hit == "RightWing" and right_wing_health > 0:
 			right_wing_health -= 1
@@ -184,6 +190,7 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			if right_wing_health == 0:
 				emit_signal("broken")
 			flash_red()
+			Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 			return
 		if area_hit == "Head" and head_health > 0:
 			head_health -= 1
@@ -191,7 +198,9 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			if head_health == 0:
 				emit_signal("broken")
 			flash_red()
+			Wwise.post_event_id(AK.EVENTS.STATUE_HURT,self)
 			return
+	Wwise.post_event_id(AK.EVENTS.BIG_STATUE_NOT_HURT,self)
 
 func flash_red():
 	sprite.modulate = Color.RED
