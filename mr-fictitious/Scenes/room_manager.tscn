@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dggqasr34lq6"]
+[gd_scene load_steps=9 format=3 uid="uid://bwgdge3h6ha5y"]
 
 [ext_resource type="Script" path="res://Scripts/room_manager.gd" id="1_rpgco"]
 [ext_resource type="PackedScene" uid="uid://bhh4lvsctm4qx" path="res://Scenes/Inventory_UI.tscn" id="2_khcfp"]
 [ext_resource type="PackedScene" uid="uid://blw5ieynomods" path="res://Scenes/Inventory_evidence.tscn" id="3_l5hlg"]
+[ext_resource type="PackedScene" uid="uid://chal6657y8hhj" path="res://Scenes/Weapon_Inventory.tscn" id="4_ks26f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fewp6"]
 size = Vector2(256, 16)
@@ -61,6 +62,12 @@ offset_left = 1617.0
 offset_top = 11.0
 offset_right = 263.0
 offset_bottom = -899.0
+
+[node name="WeaponUi" parent="CanvasLayer" instance=ExtResource("4_ks26f")]
+offset_left = 1646.0
+offset_top = 4.0
+offset_right = 292.0
+offset_bottom = -906.0
 
 [connection signal="body_entered" from="PathUp" to="." method="_on_path_up_body_entered"]
 [connection signal="body_entered" from="PathDown" to="." method="_on_path_down_body_entered"]

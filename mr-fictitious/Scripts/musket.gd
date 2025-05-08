@@ -26,6 +26,6 @@ func _on_body_entered(body):
 	if body.name == "Player":
 		body.collect_musket_weapon()
 		for i in range(15):
-			body.collectItem(inventory_drop_item)
+			body.collectWeapon(inventory_drop_item)
 		dialogue_manager.show_dialogue_balloon(dialogue, "musket")
 		queue_free()

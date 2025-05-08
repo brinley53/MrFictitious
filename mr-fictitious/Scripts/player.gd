@@ -121,6 +121,7 @@ var can_shoot = true
 
 #EXPORT VARIABLES
 @export var inventory:Inventory
+@export var weapon_inventory:Inventory
 
 #The attack area starts disabled
 func _ready():
@@ -181,7 +182,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack") and can_attack and !sword:
 		if has_shovel:
 			shovel_attack_uses += 1
-			removeItem(ShovelResource)
+			removeWeapon(ShovelResource)
 			if shovel_attack_uses >= max_shovel_attacks:
 				reset_shovel()
 		attack_sprite.play("attacking")
@@ -199,7 +200,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("attack") and can_attack and sword:
 		attack_sprite_spin.play("attacking_spin")
-		removeItem(SwordResource)
+		removeWeapon(SwordResource)
 		start_spin_attack()
 	
 	if Input.is_action_just_pressed("increaseBullet"):
@@ -344,7 +345,7 @@ func shoot_projectile():
 		can_shoot = false
 		if has_musket:
 			play_sound(AK.EVENTS.RIFLE_SHOOT)
-			removeItem(MusketResource)
+			removeWeapon(MusketResource)
 			musket_attack_uses += 1
 			if musket_attack_uses >= max_musket_attacks:
 				has_musket = false
@@ -396,14 +397,14 @@ func collect_sword_weapon():
 	if has_shovel:
 		reset_shovel()
 		for i in range(max_shovel_attacks - shovel_attack_uses):
-			removeItem(ShovelResource)
+			removeWeapon(ShovelResource)
 		var new_shovel = SHOVEL.instantiate()
 		var manager = get_node("/root/Main/RoomManager")
 		var room = manager.get_active_room()
 		room.add_child(new_shovel)
 		new_shovel.global_position = global_position + Vector2(0,200)
 	for i in range(max_sword_attacks - sword_attack_uses):
-		collectItem(SwordResource)
+		collectWeapon(SwordResource)
 	sword_attack_uses = 0
 
 func collect_musket_weapon():
@@ -422,6 +423,8 @@ func reduce_player_health(damage):
 		# Wwise.unload_bank_id(AK.BANKS.MUSIC)
 		if inventory:
 			inventory.clear()
+		if weapon_inventory:
+			weapon_inventory.clear()
 		Wwise.stop_all(self)
 		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
 	
@@ -459,9 +462,16 @@ func add_bullet():
 func collectItem(item:InventoryItem):
 	return inventory.insert(item)
 
+
+func collectWeapon(item:InventoryItem):
+	return weapon_inventory.insert(item)
+
 func removeItem(item:InventoryItem):
 	return inventory.remove(item)
 
+func removeWeapon(item:InventoryItem):
+	return weapon_inventory.remove(item)
+	
 func add_health_item():
 	health_items+=1
 
@@ -561,7 +571,7 @@ func _remove_damage_buff():
 func shovel(damage_increase: int, shrink_factor: float):
 	if sword:
 		for i in range(max_sword_attacks - sword_attack_uses):
-			removeItem(SwordResource)
+			removeWeapon(SwordResource)
 		var new_sword = SWORD.instantiate()
 		var manager = get_node("/root/Main/RoomManager")
 		var room = manager.get_active_room()
@@ -569,7 +579,7 @@ func shovel(damage_increase: int, shrink_factor: float):
 		new_sword.global_position = global_position + Vector2(0,200)
 		sword = false
 	for i in range(max_shovel_attacks - shovel_attack_uses):
-		collectItem(ShovelResource)
+		collectWeapon(ShovelResource)
 	has_shovel = true
 	base_damage += damage_increase
 	damage_difference = damage_increase
