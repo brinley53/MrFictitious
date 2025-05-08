@@ -18,9 +18,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 802.0
-offset_top = 571.0
+offset_top = 469.0
 offset_right = -864.0
-offset_bottom = -415.0
+offset_bottom = -517.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_b6lds")
@@ -34,6 +34,14 @@ offset_bottom = 770.0
 theme_override_fonts/font = ExtResource("2_b6lds")
 text = "Exit
 "
+
+[node name="Main Menu" type="Button" parent="CanvasLayer"]
+offset_left = 802.0
+offset_top = 576.0
+offset_right = 1056.0
+offset_bottom = 665.0
+theme_override_fonts/font = ExtResource("2_b6lds")
+text = "Return To Main Menu"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 872.0
@@ -66,10 +74,11 @@ theme_override_fonts/font = ExtResource("2_b6lds")
 text = "X
 "
 
-[connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="ExitGlossary" to="." method="_on_exit_glossary_pressed"]

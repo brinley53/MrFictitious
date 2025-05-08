@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://ctyfrk076mbsv"]
 
-[ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_daw6s"]
+[ext_resource type="PackedScene" path="res://Scenes/Rooms/Forest/bush.tscn" id="1_daw6s"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="2_lkhss"]
 [ext_resource type="PackedScene" uid="uid://bilvi6f3lpo41" path="res://Scenes/Rooms/Forest/forest_tree_large.tscn" id="3_tjce0"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="4_a553k"]

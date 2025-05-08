@@ -32,3 +32,12 @@ func _on_tree_entered() -> void:
 	print("Put in scene")
 	TitleMusicScene.play_music(self)
 	Wwise.post_event_id(AK.EVENTS.PLAYER_DEATH, self)
+
+
+func _on_main_menu_pressed() -> void:
+	Wwise.unregister_game_obj(self)
+	TitleMusicScene.stop_music(self)
+	var title = load("res://Scenes/title.tscn").instantiate()
+	get_tree().root.add_child(title)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = title

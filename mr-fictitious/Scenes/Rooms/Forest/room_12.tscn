@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://bnforrw8frynl"]
 
 [ext_resource type="Texture2D" uid="uid://iwbllcew7yd2" path="res://images/forest_tiles.png" id="1_xi3pu"]
-[ext_resource type="PackedScene" uid="uid://cafmyut6uc681" path="res://Scenes/Rooms/Forest/bush.tscn" id="2_u3xac"]
+[ext_resource type="PackedScene" path="res://Scenes/Rooms/Forest/bush.tscn" id="2_u3xac"]
 [ext_resource type="PackedScene" uid="uid://bxg68uw7skj02" path="res://Scenes/Rooms/Forest/forest_tree_small.tscn" id="3_a8ffw"]
 [ext_resource type="PackedScene" uid="uid://cqev1q2d8iw6s" path="res://Scenes/Rooms/Forest/forest_tree_medium.tscn" id="4_7tyhb"]
 [ext_resource type="PackedScene" uid="uid://ws7aumqg0k22" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="4_amhok"]

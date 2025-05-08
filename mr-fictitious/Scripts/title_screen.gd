@@ -1,4 +1,6 @@
 extends Control
+func _ready():
+	get_tree().paused = false
 
 func _on_button_pressed() -> void:
 	TitleMusicScene.stop_music(self)
