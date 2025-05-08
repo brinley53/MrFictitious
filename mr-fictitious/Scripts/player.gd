@@ -476,11 +476,37 @@ func add_speed_item():
 
 func use_flashlight_item():
 	if removeItem(flashResource):
+		flash_screen(Color(1, 1, 1, 0.4), 0.2)  # white flash for 0.1 seconds
 		flashlight_items-=1
 		var enemies = get_tree().get_nodes_in_group("Enemies")
 		for enemy in enemies:
 			if enemy.has_method("apply_stun"):
 				enemy.apply_stun(5.0)
+				
+func flash_screen(color := Color.WHITE, duration := 0.1):
+	var flash = ColorRect.new()
+	flash.color = color
+	flash.name = "FlashOverlay"
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE  # So it doesn't block input
+
+	# Make it fullscreen
+	flash.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	flash.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	flash.anchor_left = 0
+	flash.anchor_top = 0
+	flash.anchor_right = 1
+	flash.anchor_bottom = 1
+	flash.offset_left = 0
+	flash.offset_top = 0
+	flash.offset_right = 0
+	flash.offset_bottom = 0
+
+	get_tree().current_scene.add_child(flash)  # Or use get_parent() if in a specific node
+
+	# Optionally fade out instead of instant removal
+	await get_tree().create_timer(duration).timeout
+	flash.queue_free()
+
 
 func use_health_item():
 	if removeItem(healthResource):
