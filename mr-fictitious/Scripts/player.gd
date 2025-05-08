@@ -728,6 +728,11 @@ func initiate_combat():
 		play_sound(AK.EVENTS.COMBAT)
 		current_player_state=PLAYER_STATE.Combat
 
+func uninitiate_combat():
+	if current_player_state==PLAYER_STATE.Combat:
+		play_sound(AK.EVENTS.EXPLORE)
+		current_player_state=PLAYER_STATE.Explore
+
 #Function to poison the player
 func _on_poison_timer_timeout() -> void:
 	if is_poisoned:
@@ -762,3 +767,4 @@ func _on_spin_area_body_entered(body: Node2D) -> void:
 
 func _on_gun_cooldodwn_timeout() -> void:
 	can_shoot = true
+	

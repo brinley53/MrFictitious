@@ -34,3 +34,8 @@ func _on_timer_timeout() -> void:
 	#timer.start()
 	#toggle_enable()
 	
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if(body.name=="Player"):
+		body.uninitiate_combat()
