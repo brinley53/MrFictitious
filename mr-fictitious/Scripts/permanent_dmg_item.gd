@@ -16,10 +16,6 @@ extends Area2D
 @export var evidence_item:Evidence;
 
 
-func _ready():
-	connect("body_entered", Callable(self, "_on_body_entered"))
-
-
 func _on_body_entered(body):
 	if body.name == "Player":
 		body.shovel(damage_increase, attack_area_shrink)
