@@ -71,7 +71,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 3
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -707,6 +707,7 @@ func play_ambient_sound(location):
 			play_sound(AK.EVENTS.VILLAGE)
 			play_sound(AK.EVENTS.GAME_AREA_TOWN)
 		4:
+			play_sound(AK.EVENTS.BOSS)
 			play_sound(AK.EVENTS.ASYLUM)
 			play_sound(AK.EVENTS.GAME_AREA_ASYLUM)
 		_:
