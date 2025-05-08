@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://xa6kbob1vxp5"]
+
+[ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_vau06"]
+[ext_resource type="Texture2D" uid="uid://c1vppgofap3gp" path="res://images/end_screen_title.jpg" id="2_fd1vd"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_sbr0k"]
+
+[node name="Lost" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vau06")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960.5, 539)
+scale = Vector2(1.10142, 1.11246)
+texture = ExtResource("2_fd1vd")
+
+[node name="Reload" type="Button" parent="."]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 666.0
+offset_right = 1109.0
+offset_bottom = 755.0
+theme_override_fonts/font = ExtResource("3_sbr0k")
+text = "Try Again?"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 888.0
+offset_right = 1109.0
+offset_bottom = 977.0
+theme_override_fonts/font = ExtResource("3_sbr0k")
+text = "Exit Game"
+
+[node name="Main Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 777.0
+offset_right = 1109.0
+offset_bottom = 866.0
+theme_override_fonts/font = ExtResource("3_sbr0k")
+text = "Return To Main Menu"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

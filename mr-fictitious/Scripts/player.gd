@@ -19,6 +19,7 @@ Revisions:
 	Brinley Hull - 4/29/2025: All dialogue
 	Brinley Hull - 5/1/2025: Enemy knockback
 	Brinley Hull - 5/6/2025: Hit enemy on first swing
+	Brinley Hull - 5/8/2025: Transition to win screen
 """
 class_name Player
 extends CharacterBody2D
@@ -177,6 +178,8 @@ func _process(delta):
 	if in_dialogue:
 		if dialogue_balloon == null or dialogue_manager.dialogue_end:
 			in_dialogue = false
+			if evidence_collected > 3:
+				get_tree().change_scene_to_file("res://Scenes/win.tscn")
 		else:
 			return
 	if Input.is_action_just_pressed("attack") and can_attack and !sword:
@@ -227,7 +230,7 @@ func read_evidence():
 	if evidence_collected == 3:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence3")
 	if evidence_collected == 4:
-		get_tree().change_scene_to_file("res://Scenes/title.tscn")
+		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence4")
 	if dialogue_balloon != null:
 		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
@@ -644,14 +647,23 @@ func _on_dialogue_started(_resource: DialogueResource):
 func _on_dialogue_finished(_resource: DialogueResource):
 	# Function to resume everything when dialogue is done
 	in_dialogue = false
+	print("dial finished ,", evidence_collected)
+	if evidence_collected > 3:
+		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	
 func _on_balloon_closed(_resource: DialogueResource):
 	in_dialogue = false
+	print("balloon closed,", evidence_collected)
+	if evidence_collected > 3:
+		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 
 func _input(event: InputEvent) -> void:
 	# Skip dialogue option
 	if in_dialogue and Input.is_key_pressed(KEY_ENTER):
 		in_dialogue = false
+		print("dial skipped,", evidence_collected)
+		if evidence_collected > 3:
+			get_tree().change_scene_to_file("res://Scenes/win.tscn")
 		if dialogue_balloon != null:
 			dialogue_balloon.end_dialogue()
 	
@@ -698,6 +710,9 @@ func receive_current_location(location, central=false, is_boss_room=false):
 	if dialogue_balloon != null:
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
+		print("dial paused on move rooms,", evidence_collected)
+		if evidence_collected > 3:
+			get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	if !central:
 		start = false
 	current_player_state = PLAYER_STATE.Explore
