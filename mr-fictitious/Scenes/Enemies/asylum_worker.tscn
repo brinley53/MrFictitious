@@ -72,7 +72,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_bt5o5")
 health = 50
 base_speed = 70.0
-damage = 15.0
+damage = 20.0
 knockback_strength = 200.0
 type = "Worker"
 

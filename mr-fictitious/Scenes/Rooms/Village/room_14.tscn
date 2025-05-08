@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dhfdqaked3g3g"]
+[gd_scene load_steps=11 format=4 uid="uid://dhfdqaked3g3g"]
 
 [ext_resource type="Texture2D" uid="uid://dedbooan4qfxo" path="res://images/village_tiles.png" id="1_n36xu"]
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="2_ofs5c"]
 [ext_resource type="PackedScene" uid="uid://xke0oamax83a" path="res://Scenes/Enemies/big_griffin.tscn" id="3_je85u"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="4_4r0nh"]
+[ext_resource type="PackedScene" uid="uid://dbh0rq1ugw0ng" path="res://Scenes/damage_item.tscn" id="5_3wwkh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2h8q6"]
 vertices = PackedVector2Array(1567, 799, 1646.23, 845.094, 1247, 841.289, 1247, 801, 1647.76, 229.719, 1567, 545, 258, 240.281, 993, 545, 993, 799, 993, 801, 673, 801, 673, 835.828, 258, 831.891, 353, 799, 993, 838.867, 927, 838.242, 927, 801, 927, 799, 927, 545, 353, 545)
@@ -103,3 +104,6 @@ tile_set = SubResource("TileSet_1kc3a")
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAAMAA4AAAAAAAIAAAAMAA8AAAAAAAMAAAARAA4AAAAAAAIAAAARAA8AAAAAAAMAAAAHAAoAAAAAAAEAAAAWAAoAAAADAAEAAAAUAAoAAAABAAEAAAAVAAoAAAACAAEAAAASAAoAAAABAAEAAAATAAoAAAACAAEAAAAIAAoAAAABAAEAAAAJAAoAAAACAAEAAAAKAAoAAAABAAEAAAALAAoAAAACAAEAAAAMAAoAAAADAAEAAAARAAoAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_q5xd5")
+
+[node name="Damage_Item2" parent="." instance=ExtResource("5_3wwkh")]
+position = Vector2(946, 652)
