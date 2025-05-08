@@ -35,9 +35,7 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Body entered:", body.name)
 	if body.is_in_group("Enemies"):
-		print("Hit an Enemy!")
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10)
 			if body.has_method("knockback"):

@@ -28,6 +28,7 @@ size = Vector2(65, 66.157)
 [node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
 collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_ccgou")
 health = 200.0
 damage = 20.0

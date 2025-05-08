@@ -40,19 +40,24 @@ func _physics_process(delta):
 # Deals damage to enemies when hit
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
-		print("Hit an Enemy!")
 		if body.has_method("reduce_enemy_health"):
 			body.reduce_enemy_health(10)
+			if body.has_method("knockback"):
+				body.knockback(global_position)
 		queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
 	# attacking statue boss wings and head
 	var body = area.get_parent()
-	if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+	if body.name == "Statue" and area.name in ["LeftWing", "RightWing", "Head"] or area.name == "Vulnerable":
+		if area.name == "Vulnerable":
+			body = body.get_parent()
+			if body.has_method("knockback"):
+				body.knockback(global_position)
 		if body.has_method("reduce_enemy_health"):
-			body.reduce_enemy_health(10)
+			body.reduce_enemy_health(10, area.name)
 		queue_free()
-
+		
 
 #Bullet disappears if nothing is hit in 4 seconds
 func _on_timer_timeout() -> void:
@@ -66,9 +71,13 @@ func _on_timer_timeout() -> void:
 			body.reduce_enemy_health(5)
 	for area in areas:
 		var body = area.get_parent()
-		if body.name == "Statue" and area.name in ["LeftWing", "RighWing", "Head"]:
+		if body.name == "Statue" and area.name in ["LeftWing", "RightWing", "Head"] or area.name == "Vulnerable":
+			if area.name == "Vulnerable":
+				body = body.get_parent()
+				if body.has_method("knockback"):
+					body.knockback(global_position)
 			if body.has_method("reduce_enemy_health"):
-				body.reduce_enemy_health(10)
+				body.reduce_enemy_health(10, area.name)
 	queue_free()
 
 

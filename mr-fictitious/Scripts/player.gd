@@ -541,7 +541,7 @@ func flash_screen(color := Color.WHITE, duration := 0.1):
 func use_health_item():
 	if removeItem(healthResource):
 		health_items-=1
-		increase_player_health(40)
+		increase_player_health(75)
 
 func use_dmg_item():
 	if removeItem(DmgResource):
