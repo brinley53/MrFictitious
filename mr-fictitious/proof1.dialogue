@@ -1,3 +1,11 @@
 ~ start
 First Evidence: I need 2 more pieces to confront Dr. Mendoza (Read evidence by pressing "R")
 => END
+
+~ piece2
+Second Evidence: I need 1 more pieces to confront Dr. Mendoza (Read newest evidence by pressing "R")
+=> END
+
+~ piece3
+Third Evidence: I'm ready to confront Dr. Mendoza (Read newest evidence by pressing "R")
+=> END

@@ -33,13 +33,6 @@ func _process(_delta: float) -> void:
 		else:
 			open()
 	
-	# Add weapon switching with keys 1 and 2
-	if Input.is_action_just_pressed("weapon_slot_1"):
-		selected_weapon_slot = 0
-		update_weapon_slots()
-	elif Input.is_action_just_pressed("weapon_slot_2"):
-		selected_weapon_slot = 1
-		update_weapon_slots()
 
 func update_weapon_slots():
 	# Update the background to highlight selected weapon

@@ -17,4 +17,3 @@ offset_bottom = 538.0
 z_index = 1
 position = Vector2(939, 534)
 scale = Vector2(1.5, 1.5)
-weapon_inventory = null

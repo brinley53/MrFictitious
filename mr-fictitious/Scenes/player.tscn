@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qm5xk"]
 [ext_resource type="Resource" uid="uid://bwokjx3lenypg" path="res://Resources/inventory.tres" id="2_dulbo"]
-[ext_resource type="Resource" uid="uid://bt14wsomwua2i" path="res://Resources/weapon_inventory.tres" id="3_5wgx6"]
+[ext_resource type="Resource" uid="uid://v5wfcdup76tc" path="res://Resources/weapon_inventory.tres" id="3_5wgx6"]
 [ext_resource type="Texture2D" uid="uid://bke3m4icrarhg" path="res://images/JIMIDLESPRITESHEET.png" id="3_w2qoj"]
 [ext_resource type="Texture2D" uid="uid://ibturv6yjl8p" path="res://images/JIMWALKSPRITESHEET.png" id="4_py2r5"]
 [ext_resource type="Texture2D" uid="uid://cxyuu1igo7us8" path="res://images/right-facing slashframes.png" id="5_lkyq1"]
