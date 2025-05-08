@@ -386,7 +386,7 @@ animations = [{
 "duration": 0.3,
 "texture": SubResource("AtlasTexture_47jwp")
 }, {
-"duration": 6.0,
+"duration": 5.5,
 "texture": SubResource("AtlasTexture_88dys")
 }, {
 "duration": 0.3,
@@ -493,6 +493,7 @@ polygon = PackedVector2Array(73, 10, 73, -10, 60, -30, 35, -40, 14, -24, 0, 0, 1
 position = Vector2(12.75, -9)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tokwd")
+animation = &"attacking_spin"
 
 [node name="GunCooldown" type="Timer" parent="."]
 wait_time = 0.5

@@ -172,7 +172,7 @@ icon_alignment = 1
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1231.0
+offset_left = 1148.0
 offset_right = 1921.0
 offset_bottom = 1084.0
 alignment = 1
