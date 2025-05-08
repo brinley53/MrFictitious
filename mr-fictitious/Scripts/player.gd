@@ -71,7 +71,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 3
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -527,7 +527,7 @@ func flash_screen(color := Color.WHITE, duration := 0.1):
 func use_health_item():
 	if removeItem(healthResource):
 		health_items-=1
-		increase_player_health(20)
+		increase_player_health(40)
 
 func use_dmg_item():
 	if removeItem(DmgResource):

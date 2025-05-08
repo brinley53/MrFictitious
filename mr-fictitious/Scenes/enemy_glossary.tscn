@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b5yvuv5stab68"]
+[gd_scene load_steps=24 format=3 uid="uid://b5yvuv5stab68"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_glossary.gd" id="1_o3r84"]
 [ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="2_c4ykj"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bn8iniw8m5814" path="res://images/GlossaryCuts/evidence.png" id="19_nfeuv"]
 [ext_resource type="Texture2D" uid="uid://dkwbu5petdwou" path="res://images/GlossaryCuts/Forest.png" id="21_uo4lb"]
 [ext_resource type="Texture2D" uid="uid://blsrtib3hr7nk" path="res://images/GlossaryCuts/Crypt.png" id="22_pc286"]
+[ext_resource type="Texture2D" uid="uid://wd2fhqqcsxk0" path="res://images/GlossaryCuts/Village.png" id="23_kwqe3"]
 
 [node name="EnemyGlossary" type="Control"]
 layout_mode = 3
@@ -163,9 +164,15 @@ theme_override_fonts/font = ExtResource("2_c4ykj")
 icon = ExtResource("22_pc286")
 icon_alignment = 1
 
+[node name="town" type="Button" parent="EnemyGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c4ykj")
+icon = ExtResource("23_kwqe3")
+icon_alignment = 1
+
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1148.0
+offset_left = 1231.0
 offset_right = 1921.0
 offset_bottom = 1084.0
 alignment = 1

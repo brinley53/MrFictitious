@@ -142,7 +142,7 @@ var enemy_data = {
 		can be discovered here.  "
 	},
 	"town": {
-		"texture": preload("res://images/GlossaryCuts/Crypt.png"),
+		"texture": preload("res://images/GlossaryCuts/Village.png"),
 		"name": "Village",
 		"type": "Location",
 		"description": "Your previous home. Now a forgotten memory. Not many are left here. Most of what remains 
