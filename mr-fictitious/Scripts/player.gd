@@ -143,8 +143,6 @@ func _ready():
 		collectItem(bulletResource)
 	Wwise.register_game_obj(self,self.name)
 	Wwise.register_listener(self)
-	Wwise.load_bank_id(AK.BANKS.MUSIC)
-	Wwise.load_bank_id(AK.BANKS.SOUND)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,100,self)
 	play_sound(AK.EVENTS.PLAYMUSIC)
 	play_sound(AK.EVENTS.ZERO)
