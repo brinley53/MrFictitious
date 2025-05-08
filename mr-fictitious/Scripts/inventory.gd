@@ -69,10 +69,11 @@ func collect_evidence(evi:Evidence):
 	insert_evidence(evi)
 	
 func insert_evidence(item:Evidence):
-	for slot in evidenceSlots:
-		if slot.item == null:
-			slot.item = item
-			break
+	if(evidenceSlots[0].item):
+		evidenceSlots[0].amount+=1
+	else:
+		evidenceSlots[0].item = item
+		evidenceSlots[0].amount=1
 	evidence_update.emit()
 
 func remove_evidence(item:Evidence):

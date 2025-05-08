@@ -1,16 +1,10 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=12 format=3 uid="uid://bwokjx3lenypg"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=10 format=3 uid="uid://bwokjx3lenypg"]
 
 [ext_resource type="Script" path="res://Scripts/evidence_slot.gd" id="1_r3f4s"]
 [ext_resource type="Script" path="res://Scripts/inventory_slot.gd" id="2_2yvb4"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_ug38v"]
 
 [sub_resource type="Resource" id="Resource_dqdl3"]
-script = ExtResource("1_r3f4s")
-
-[sub_resource type="Resource" id="Resource_i2435"]
-script = ExtResource("1_r3f4s")
-
-[sub_resource type="Resource" id="Resource_q6yex"]
 script = ExtResource("1_r3f4s")
 
 [sub_resource type="Resource" id="Resource_yudnu"]
@@ -36,4 +30,4 @@ amount = 0
 [resource]
 script = ExtResource("3_ug38v")
 slots = Array[ExtResource("2_2yvb4")]([SubResource("Resource_yudnu"), SubResource("Resource_oe2ti"), SubResource("Resource_5dm2i"), SubResource("Resource_f3v22"), SubResource("Resource_s2efg")])
-evidenceSlots = Array[ExtResource("1_r3f4s")]([SubResource("Resource_dqdl3"), SubResource("Resource_i2435"), SubResource("Resource_q6yex")])
+evidenceSlots = Array[ExtResource("1_r3f4s")]([SubResource("Resource_dqdl3")])

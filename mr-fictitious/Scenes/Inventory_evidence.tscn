@@ -44,9 +44,3 @@ columns = 5
 
 [node name="evidence_slot" parent="NinePatchRect/GridContainer" instance=ExtResource("3_7d1ax")]
 layout_mode = 2
-
-[node name="evidence_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_7d1ax")]
-layout_mode = 2
-
-[node name="evidence_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_7d1ax")]
-layout_mode = 2

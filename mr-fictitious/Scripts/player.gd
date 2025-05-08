@@ -171,7 +171,7 @@ func _process(delta):
 			sprite.modulate = Color(0.3, 0.3, 0.3, 1.0)
 			break
 			
-	if !stealth:
+	if !stealth and sprite.modulate==Color(0.3, 0.3, 0.3, 1.0):
 		sprite.modulate=Color.WHITE
 	
 	move_character(delta)
@@ -419,10 +419,14 @@ func collect_musket_weapon():
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
+	
 	play_sound(AK.EVENTS.PLAYER_HURT)
 	health = health - damage
 	health_bar.value = health
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.PLAYER_HEALTH,health,self)
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate=Color.WHITE
 	if health <= 0:
 		print("u dead bro")
 		# Wwise.unload_bank_id(AK.BANKS.SOUND)
@@ -433,6 +437,7 @@ func reduce_player_health(damage):
 			weapon_inventory.clear()
 		Wwise.stop_all(self)
 		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
+	
 	
 func increase_player_health(amount:int):
 	health = min(health+amount,max_health)

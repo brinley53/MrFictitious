@@ -7,7 +7,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 	
-func update(slot:EvidenceSlot, num:int):
+func update(slot:EvidenceSlot):
 	if !slot.item:
 		itemvisual.visible = false
 		amountText.visible = false
@@ -15,4 +15,4 @@ func update(slot:EvidenceSlot, num:int):
 		itemvisual.visible = true
 		amountText.visible = true
 		itemvisual.texture = slot.item.texture
-		amountText.text = str(num)
+		amountText.text = str(slot.amount)
