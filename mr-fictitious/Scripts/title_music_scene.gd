@@ -7,8 +7,6 @@ func play_music(obj:Object):
 	if(!title_music_is_playing):
 		Wwise.register_game_obj(obj,obj.name)
 		Wwise.register_listener(obj)
-		Wwise.load_bank_id(AK.BANKS.MUSIC)
-		Wwise.load_bank_id(AK.BANKS.SOUND)
 		Wwise.post_event_id(AK.EVENTS.PLAYMUSIC,obj)
 		title_music_is_playing=true
 
