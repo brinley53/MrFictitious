@@ -79,6 +79,10 @@ var orbit_timer = 0.0
 var orbit_duration = 0.75  # How long the orbit lasts
 var orbit_speed = 3 * PI 
 
+var enemies_count:int=0
+var changing_rooms:bool=false
+var in_boss_room:bool=false
+
 #Weapon Variables
 var sword = false
 var has_shovel = false
@@ -198,6 +202,7 @@ func _process(delta):
 		spin_node.rotation += orbit_speed * delta
 		if orbit_timer >= orbit_duration:
 			end_spin_attack()
+	
 
 	if Input.is_action_just_pressed("attack") and can_attack and sword:
 		removeWeapon(SwordResource)
@@ -212,6 +217,13 @@ func _process(delta):
 	
 	if health<=0:
 		reduce_player_health(1)
+	var enemies_in_scene:int = get_tree().get_nodes_in_group("Enemies").size()
+	if(enemies_in_scene!=enemies_count and !changing_rooms and !in_boss_room):
+		enemies_count=enemies_in_scene
+		if(enemies_count==0):
+			print("enemies cleared")
+			play_sound(AK.EVENTS.CLEAR)
+	
 	
 
 func get_size() -> Vector2:
@@ -699,6 +711,7 @@ func play_ambient_sound(location):
 			play_sound(AK.EVENTS.VILLAGE)
 			play_sound(AK.EVENTS.GAME_AREA_TOWN)
 		4:
+			in_boss_room = true
 			play_sound(AK.EVENTS.BOSS)
 			play_sound(AK.EVENTS.ASYLUM)
 			play_sound(AK.EVENTS.GAME_AREA_ASYLUM)
@@ -706,6 +719,7 @@ func play_ambient_sound(location):
 			print("Wrong room loser")
 
 func receive_current_location(location, central=false, is_boss_room=false):
+	changing_rooms=true
 	if dialogue_balloon != null:
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
@@ -713,12 +727,20 @@ func receive_current_location(location, central=false, is_boss_room=false):
 		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	if !central:
 		start = false
+	var enemies_in_scene:int = get_tree().get_nodes_in_group("Enemies").size()
+	enemies_count=enemies_in_scene
+	changing_rooms=false
 	current_player_state = PLAYER_STATE.Explore
 	if(is_boss_room):
+		in_boss_room = true
 		play_sound(AK.EVENTS.BOSS)
 	else:
-		play_sound(AK.EVENTS.EXPLORE)
-		if current_location!=location:
+		in_boss_room = false
+		if(enemies_count==0):
+			play_sound(AK.EVENTS.CLEAR)
+		else:
+			play_sound(AK.EVENTS.EXPLORE)
+		if current_location!=location or in_boss_room!=is_boss_room:
 			current_location=location
 			play_ambient_sound(current_location)
 	
