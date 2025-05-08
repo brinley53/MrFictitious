@@ -71,7 +71,7 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 3
+var evidence_collected = 0
 var in_dialogue = false
 
 var spin_attack_active = false
@@ -298,7 +298,7 @@ func new_evidence_collected(evidence:Evidence):
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece3")
 	if evidence_collected == 4:
 		play_sound(AK.EVENTS.THREE)
-		dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece4")
+		#dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece4")
 	if dialogue_balloon != null:
 		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 

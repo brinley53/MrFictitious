@@ -1,6 +1,6 @@
 '''
 Script for central room logic.
-Authors: Brinley Hull
+Authors: Brinley Hull, Sean Hammell
 Creation date: 4/29/2025
 Revisions:
 '''
@@ -23,5 +23,5 @@ func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
 
 
 func _on_tree_entered() -> void:
-	if player and player.evidence_collected >= 3 and asylum_blocker:
+	if player and player.evidence_collected >= 3 and asylum_blocker != null:
 		asylum_blocker.queue_free()
