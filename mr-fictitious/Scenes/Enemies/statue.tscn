@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://clnb2wfho02xx" path="res://images/angel attack sprite no head-Sheet.png" id="8_40bru"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yah7x"]
-size = Vector2(15.6977, 15.3553)
+size = Vector2(24.1279, 23.731)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tf20"]
 atlas = ExtResource("2_yd238")
@@ -942,13 +942,13 @@ animations = [{
 
 [node name="Statue" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
-collision_layer = 2
+collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_ounb0")
 damage = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 3.5)
+position = Vector2(0.5, 24.5)
 scale = Vector2(3.44, 7.88)
 shape = SubResource("RectangleShape2D_yah7x")
 
@@ -971,7 +971,7 @@ position = Vector2(100, -144)
 scale = Vector2(5.32, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWing"]
-polygon = PackedVector2Array(-9.3985, 49, -8.08271, 26, -4.51128, 23, -0.751881, 38, 2.44361, 69, 2.25564, 217, -2.81955, 203, -7.89474, 156, -6.76692, 72)
+polygon = PackedVector2Array(-9.3985, 49, -8.08271, 26, -4.51128, 23, -0.751881, 42, 1.31579, 77, 0.751879, 167, -2.81955, 203, -7.89474, 156, -6.76692, 72)
 
 [node name="Head" type="Area2D" parent="."]
 position = Vector2(1, -120)
@@ -984,7 +984,7 @@ shape = SubResource("CircleShape2D_4vast")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="BigAttackTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="AttackArea" type="Area2D" parent="."]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx8bks6qwlrw3"]
+[gd_scene load_steps=5 format=3 uid="uid://dx8bks6qwlrw3"]
 
 [ext_resource type="PackedScene" uid="uid://dcumsafep2m5" path="res://Scenes/Enemies/griffin.tscn" id="1_pjdt4"]
 [ext_resource type="PackedScene" uid="uid://dytosiqlbde4g" path="res://Scenes/patrol.tscn" id="2_yocl6"]
 [ext_resource type="PackedScene" uid="uid://daxskvbh0lox0" path="res://Scenes/sword.tscn" id="3_5lxnc"]
-[ext_resource type="PackedScene" uid="uid://c5ttxlhunr5yw" path="res://Scenes/shadow.tscn" id="4_hpeau"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gt373"]
 vertices = PackedVector2Array(1731.02, 930.898, 173, 916.094, 173, 155.922, 1732.97, 144.07)
@@ -63,23 +62,3 @@ position = Vector2(411, 495)
 
 [node name="sword" parent="." instance=ExtResource("3_5lxnc")]
 position = Vector2(906, 494)
-
-[node name="Shadow4" parent="." instance=ExtResource("4_hpeau")]
-position = Vector2(1242, 869)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow4"]
-polygon = PackedVector2Array(34, -592, 22.6667, 202.667, 202, 188.667, 224, -597.333)
-
-[node name="Polygon2D" type="Polygon2D" parent="Shadow4"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(29.3334, -600.667, 211.333, -602.667, 234.667, -608.667, 208, 207.333, 8.66669, 218.667, 19.3334, -602)
-
-[node name="Shadow5" parent="." instance=ExtResource("4_hpeau")]
-position = Vector2(271, 856)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow5"]
-polygon = PackedVector2Array(70.6667, -594.667, 64.6667, 197.333, 215.333, 182, 224, -597.333)
-
-[node name="Polygon2D" type="Polygon2D" parent="Shadow5"]
-color = Color(0, 0, 0, 0.466667)
-polygon = PackedVector2Array(29.3334, -600.667, 211.333, -602.667, 234.667, -608.667, 234.667, 212, 40.6667, 210, 50, -596.667)

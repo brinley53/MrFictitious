@@ -687,11 +687,9 @@ func _on_dialogue_started(_resource: DialogueResource):
 func _on_dialogue_finished(_resource: DialogueResource):
 	# Function to resume everything when dialogue is done
 	in_dialogue = false
-	print("dial finished ,", evidence_collected)
 	
 func _on_balloon_closed(_resource: DialogueResource):
 	in_dialogue = false
-	print("balloon closed,", evidence_collected)
 
 func _input(event: InputEvent) -> void:
 	# Skip dialogue option
