@@ -21,4 +21,5 @@ func _on_body_entered(body):
 		for i in range(15):
 			body.collectWeapon(inventory_drop_item)
 		dialogue_manager.show_dialogue_balloon(dialogue, "musket")
+		body.in_dialogue = true
 		queue_free()

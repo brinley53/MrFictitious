@@ -23,4 +23,5 @@ func _on_body_entered(body):
 	if body.name == "Player":
 		body.collect_sword_weapon()
 		dialogue_manager.show_dialogue_balloon(dialogue, "sword")
+		body.in_dialogue = true
 		queue_free()
