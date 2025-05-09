@@ -425,7 +425,7 @@ shape = SubResource("RectangleShape2D_jal5q")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6qceo")
 animation = &"walk_up"
-frame_progress = 0.0967422
+frame_progress = 0.568647
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Weapon"]]
 position = Vector2(12.75, 1)

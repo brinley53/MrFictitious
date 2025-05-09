@@ -14,6 +14,7 @@ extends Node2D
 @onready var spawn_timer = $SpawnTimer
 var spawning = false
 const WORKER_SCENE = preload("res://Scenes/Enemies/asylum_worker.tscn")
+const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,3 +46,6 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_mendoza_dead() -> void:
 	$BottomBorder/PathBlocker.queue_free()
+	var item = EVIDENCE_SCENE.instantiate()
+	item.global_position = Vector2(960, 540)
+	get_tree().current_scene.add_child(item)

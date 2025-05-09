@@ -79,12 +79,6 @@ func _physics_process(delta: float) -> void:
 	# Die if its arms are off
 	if left_wing_health <= 0 and right_wing_health <= 0 and head_health <= 0:
 		dead.emit()
-		var item = EVIDENCE_SCENE.instantiate()
-		var angle = randf() * TAU 
-		var radius = randf_range(64.0, 128.0)
-		var offset = Vector2(cos(angle), sin(angle)) * radius
-		item.global_position = global_position + offset
-		get_tree().current_scene.add_child(item)
 		queue_free()
 	var direction = (target - global_position).normalized()
 	velocity = speed * direction
