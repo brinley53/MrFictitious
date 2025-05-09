@@ -449,13 +449,12 @@ func reduce_player_health(damage):
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate=Color.WHITE
 	if health <= 0:
-		print("u dead bro")
 		if inventory:
 			inventory.clear()
 		if weapon_inventory:
 			weapon_inventory.clear()
 		play_sound(AK.EVENTS.PLAYER_DEATH)
-		get_tree().change_scene_to_file("res://Scenes/lost.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
 	
 	
 func increase_player_health(amount:int):
