@@ -75,9 +75,8 @@ func shoot():
 func _physics_process(_delta: float) -> void:
 	if stunned or player.in_dialogue:
 		return
-	if !player.stealth and !prev_chase_variable:
+	if !player.stealth:
 		Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
-		prev_chase_variable=true
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
 				
@@ -88,9 +87,7 @@ func _physics_process(_delta: float) -> void:
 			move_and_slide()
 		else:
 			bottom_sprite.play("default")
-	elif prev_chase_variable:
-		prev_chase_variable=false
-		Wwise.post_event_id(AK.EVENTS.MENDOZA_PASSIVE,self)
+	else:
 		bottom_sprite.play("default")
 
 #Takes damage, when life reaches 0 it dies

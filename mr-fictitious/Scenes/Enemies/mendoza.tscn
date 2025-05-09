@@ -252,7 +252,8 @@ wait_time = 2.0
 [node name="BottomSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.25, 44.75)
 sprite_frames = SubResource("SpriteFrames_heauu")
-frame_progress = 0.758366
+animation = &"walk"
+frame_progress = 0.636747
 
 [node name="TopSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(3.75, -22.25)
