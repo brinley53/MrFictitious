@@ -15,6 +15,7 @@ extends Node2D
 var spawning = false
 const WORKER_SCENE = preload("res://Scenes/Enemies/asylum_worker.tscn")
 const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
+var is_dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,7 +46,17 @@ func _on_spawn_timer_timeout() -> void:
 
 
 func _on_mendoza_dead() -> void:
+	if is_dead:
+		return
+	call_deferred("_handle_death")
+
+func _handle_death() -> void:
+	if is_dead:
+		return
+	is_dead = true
 	$BottomBorder/PathBlocker.queue_free()
 	var item = EVIDENCE_SCENE.instantiate()
 	item.global_position = Vector2(960, 540)
-	get_tree().current_scene.add_child(item)
+	var manager = get_node("/root/Main/RoomManager")
+	var room = manager.get_active_room()
+	room.add_child(item)

@@ -13,6 +13,7 @@ var wave1 = false
 var wave2 = false
 const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 var blocking_edge
+var is_dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,7 +46,17 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_statue_boss_dead() -> void:
+	if is_dead:
+		return
+	call_deferred("_handle_death")
+
+func _handle_death() -> void:
+	if is_dead:
+		return
+	is_dead = true
 	remove_child(blocking_edge)
 	var item = EVIDENCE_SCENE.instantiate()
 	item.global_position = Vector2(960, 540)
-	get_tree().current_scene.add_child(item)
+	var manager = get_node("/root/Main/RoomManager")
+	var room = manager.get_active_room()
+	room.add_child(item)
