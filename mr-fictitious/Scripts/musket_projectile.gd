@@ -83,10 +83,12 @@ func _on_timer_timeout() -> void:
 
 func create_mini_bullet(velocity: Vector2):
 	var bullet = BULLET_SCENE.instantiate()
+	var manager = get_node("/root/Main/RoomManager")
+	var room = manager.get_active_room()
 	bullet.global_position = global_position
 	bullet.initialize_velocity(velocity.normalized() * speed, "Mini")
 	bullet.scale = Vector2(0.75, 0.75)
-	get_tree().get_current_scene().add_child(bullet)
+	room.add_child(bullet)
 
 func _on_split_timer_timeout() -> void:
 	if type == "Mini":
