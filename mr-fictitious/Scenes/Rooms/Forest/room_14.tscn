@@ -19,7 +19,7 @@ agent_radius = 75.0
 [node name="Room14" type="Node2D"]
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("2_i3ryt")]
-position = Vector2(916, 360)
+position = Vector2(919, 412)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("2_i3ryt")]
 position = Vector2(1079, 502)

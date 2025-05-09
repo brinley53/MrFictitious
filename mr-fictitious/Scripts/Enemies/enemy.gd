@@ -121,7 +121,7 @@ func _ready():
 		attack_area = $AttackArea
 		
 	sprite.flip_h = flipped
-	i_frames_timer.wait_time = 0.5
+	i_frames_timer.wait_time = 0.25
 	
 func reset_patrol():
 	if patrol_a == null or patrol_b == null:

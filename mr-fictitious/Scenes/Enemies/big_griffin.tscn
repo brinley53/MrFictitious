@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="5_lfv0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(217.126, 214.464)
+size = Vector2(188.033, 182.838)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v458v"]
 radius = 9.61097
@@ -202,7 +202,7 @@ position = Vector2(-16, -2)
 scale = Vector2(1.06604, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/AttackArea"]
-position = Vector2(19.6991, 9)
+position = Vector2(5.44743, 20.9215)
 scale = Vector2(0.979722, 0.753907)
 shape = SubResource("RectangleShape2D_xb3p1")
 

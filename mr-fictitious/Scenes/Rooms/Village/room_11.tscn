@@ -18,7 +18,7 @@ patrol_b = NodePath("../Patrol8")
 flipped = true
 
 [node name="CharacterBody2D2" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("1_pjdt4")]
-position = Vector2(912, 648)
+position = Vector2(909, 593)
 patrol_a = NodePath("../Patrol5")
 patrol_b = NodePath("../Patrol6")
 flipped = true
@@ -29,7 +29,7 @@ patrol_a = NodePath("../Patrol3")
 patrol_b = NodePath("../Patrol4")
 
 [node name="CharacterBody2D4" parent="." node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("1_pjdt4")]
-position = Vector2(905, 333)
+position = Vector2(913, 379)
 patrol_a = NodePath("../Patrol")
 patrol_b = NodePath("../Patrol2")
 

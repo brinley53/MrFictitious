@@ -120,10 +120,10 @@ sources/0 = SubResource("TileSetAtlasSource_u2k4n")
 [node name="Room10" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_w5e4n")]
-position = Vector2(1320, 640)
+position = Vector2(1206, 864)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_w5e4n")]
-position = Vector2(576, 397)
+position = Vector2(595, 366)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("3_rkndk")]
 position = Vector2(587, 633)

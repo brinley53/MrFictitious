@@ -10,7 +10,7 @@
 radius = 44.3566
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(126.259, 160.223)
+size = Vector2(126.212, 128.663)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr45q"]
 atlas = ExtResource("2_daues")
@@ -207,7 +207,7 @@ position = Vector2(-7, -1)
 scale = Vector2(1.17716, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/AttackArea"]
-position = Vector2(3.4188, 7)
+position = Vector2(3.39807, 9.49999)
 scale = Vector2(0.875, 0.753907)
 shape = SubResource("RectangleShape2D_xb3p1")
 

@@ -74,10 +74,10 @@ patrol_a = NodePath("../Patrol4")
 patrol_b = NodePath("../Patrol3")
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("3_u1ras")]
-position = Vector2(954, 855)
+position = Vector2(578, 841)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("3_u1ras")]
-position = Vector2(954, 263)
+position = Vector2(1194, 288)
 
 [node name="Patrol" parent="." instance=ExtResource("4_8j5t3")]
 position = Vector2(298, 262)

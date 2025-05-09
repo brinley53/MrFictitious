@@ -229,14 +229,13 @@ color = Color(0, 0, 0, 0.466667)
 polygon = PackedVector2Array(-176, -122.667, -196.667, -44, -127.333, 55.3333, -109.333, 70.6667, -43.3333, 90.6667, 318, 201.333, 348, 214.667, 396.667, 243.333, 588, 314, 626.667, 329.333, 658.667, 358, 687.333, 403.333, 866.667, 614.667, 895.333, 631.333, 1201.33, 638, 1172.67, 389.333, 1126, 339.333, 1087.33, 300.667, 1043.33, 280.667, 989.333, 258.667, 895.333, 201.333, 772.667, 127.333, 710.667, 102.667, 594.667, 77.3333, 319.333, 28.6667, 142.667, -12, -72, -70.6667)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow"]
-visible = false
 polygon = PackedVector2Array(-189.333, -47.3333, -116, 60.6667, 326, 191.333, 618.667, 316, 897.333, 634.667, 1181.33, 636.667, 1159.33, 396.667, 936, 230, 790, 137.333, 593.333, 82, 264, 23.3333, -68.6667, -60.6667, -178, -109.333)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("2_2sexs")]
-position = Vector2(894, 833)
+position = Vector2(744, 716)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("2_2sexs")]
-position = Vector2(723, 216)
+position = Vector2(686, 227)
 
 [node name="CharacterBody2D5" parent="." instance=ExtResource("2_2sexs")]
 position = Vector2(312, 542)

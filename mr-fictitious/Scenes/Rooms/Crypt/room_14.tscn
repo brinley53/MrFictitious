@@ -250,7 +250,7 @@ position = Vector2(289, 859)
 position = Vector2(306, 217)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("4_1vvgj")]
-position = Vector2(931, 727)
+position = Vector2(939, 603)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_d2qcf")

@@ -63,13 +63,13 @@ sources/0 = SubResource("TileSetAtlasSource_tmwx4")
 [node name="Room13" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_si6wo")]
-position = Vector2(421, 486)
+position = Vector2(481, 308)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_si6wo")]
-position = Vector2(1457, 495)
+position = Vector2(1411, 311)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("3_wpepu")]
-position = Vector2(973, 823)
+position = Vector2(783, 827)
 
 [node name="Patrol" parent="." instance=ExtResource("4_07flv")]
 position = Vector2(455, 874)

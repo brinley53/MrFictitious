@@ -56,16 +56,16 @@ color = Color(0, 0, 0, 0.466667)
 polygon = PackedVector2Array(944, -62, 914.667, 48.6667, 941.333, 156.667, 962, 249.333, 1055.33, 288.667, 1100, 270.667, 1166, 282.667, 1240.67, 261.333, 1303.33, 249.333, 1348.67, 180.667, 1327.33, 58, 1303.33, -14, 1240.67, -106.667, 1130, -118.667, 968, -115.333)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_av5ke")]
-position = Vector2(1404, 562)
+position = Vector2(1290, 576)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_av5ke")]
-position = Vector2(457, 559)
+position = Vector2(609, 576)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("3_2otpq")]
-position = Vector2(979, 245)
+position = Vector2(799, 397)
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("3_2otpq")]
-position = Vector2(997, 827)
+position = Vector2(1232, 763)
 
 [node name="Patrol2" parent="." instance=ExtResource("4_60lft")]
 position = Vector2(974, 225)

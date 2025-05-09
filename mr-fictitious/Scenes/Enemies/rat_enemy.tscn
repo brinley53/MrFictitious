@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3p1"]
-size = Vector2(65, 72)
+size = Vector2(59.8462, 59.375)
 
 [node name="CharacterBody2D3" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 1
@@ -100,7 +100,7 @@ position = Vector2(5, 8)
 scale = Vector2(1.04, 0.64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-1.5, -1)
+position = Vector2(1.07692, -1.5625)
 shape = SubResource("RectangleShape2D_xb3p1")
 
 [node name="Detection" type="Area2D" parent="."]
