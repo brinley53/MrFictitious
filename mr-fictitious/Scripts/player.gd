@@ -456,7 +456,7 @@ func reduce_player_health(damage):
 			inventory.clear()
 		if weapon_inventory:
 			weapon_inventory.clear()
-		play_sound(AK.EVENTS.PLAYER_DEATH)
+		Wwise.stop_all()
 		get_tree().change_scene_to_file("res://Scenes/Lost.tscn")
 	
 	
@@ -739,7 +739,7 @@ func play_ambient_sound(location):
 		_:
 			print("Wrong room loser")
 
-func receive_current_location(location, central=false, is_boss_room=false):
+func receive_current_location(location, central=false, is_boss_room=false,pre_boss=false):
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.MUSIC_VOLUME,music_volume,self)
 	Wwise.set_rtpc_value_id(AK.GAME_PARAMETERS.SOUND_VOLUME,sfx_volume,self)
 	changing_rooms=true
@@ -764,7 +764,9 @@ func receive_current_location(location, central=false, is_boss_room=false):
 		play_sound(AK.EVENTS.BOSS)
 	else:
 		in_boss_room = false
-		if(enemies_count==0):
+		if(pre_boss):
+			play_sound(AK.EVENTS.PREBOSS)
+		if(enemies_count==0 and !pre_boss):
 			play_sound(AK.EVENTS.CLEAR)
 		else:
 			play_sound(AK.EVENTS.EXPLORE)
@@ -779,7 +781,7 @@ func initiate_combat():
 		current_player_state=PLAYER_STATE.Combat
 
 func uninitiate_combat():
-	if current_player_state==PLAYER_STATE.Combat:
+	if current_player_state==PLAYER_STATE.Combat and enemies_count>0:
 		play_sound(AK.EVENTS.EXPLORE)
 		current_player_state=PLAYER_STATE.Explore
 

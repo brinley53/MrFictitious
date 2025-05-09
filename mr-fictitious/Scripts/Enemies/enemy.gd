@@ -55,6 +55,7 @@ var poison = false
 var stand = false
 var stunned = false
 var current_stun_timer: Timer = null
+var is_chasing_player=false
 const BULLET_SCENE = preload("res://Scenes/Enemies/shadow_bullet.tscn") 
 # On ready attributes
 @onready var timer = $AttackTimer
@@ -133,6 +134,38 @@ func reset_patrol():
 	chase_player = false
 	speed = base_speed
 	attack_player = false
+func _process(delta: float) -> void:
+	if(chase_player and !is_chasing_player):
+		is_chasing_player=true
+		match type:
+			"Wolf":
+				Wwise.post_event_id(AK.EVENTS.WOLF_ALERT,self)
+			"Rat":
+				Wwise.post_event_id(AK.EVENTS.RAT_ALERT,self)
+			"Worker":
+				Wwise.post_event_id(AK.EVENTS.WORKER_ALERT,self)
+			"Ranged":
+				Wwise.post_event_id(AK.EVENTS.GHOST_ALERT,self)
+			"Griffin":
+				Wwise.post_event_id(AK.EVENTS.STATUE_ALERT,self)
+			_:
+				print("Wrong enemy")
+	elif(!chase_player and is_chasing_player):
+		is_chasing_player=false
+		match type:
+			"Wolf":
+				Wwise.post_event_id(AK.EVENTS.WOLF_PASSIVE,self)
+			"Rat":
+				Wwise.post_event_id(AK.EVENTS.RAT_PASSIVE,self)
+			"Worker":
+				Wwise.post_event_id(AK.EVENTS.WORKER_PASSIVE,self)
+			"Ranged":
+				Wwise.post_event_id(AK.EVENTS.GHOST_PASSIVE,self)
+			"Griffin":
+				Wwise.post_event_id(AK.EVENTS.STATUE_PASSIVE,self)
+			_:
+				print("Wrong enemy")
+	
 
 func _physics_process(delta: float) -> void:
 	if stunned or disabled:

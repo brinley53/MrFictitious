@@ -173,14 +173,18 @@ func set_active_room(location:Location, room:int) -> void:
 	active_location = location
 	active_room = room
 	call_deferred("add_child", rooms[active_location][active_room])
-	
+
+	var pre_boss = active_location in [Location.CRYPT, Location.VILLAGE] and active_room == BOSS_INDEX[active_location] + 1
+
 	# Send the updated location to the player.
 	playerInstance.receive_current_location(
 		location,
 		active_location == Location.CENTRAL,
 		BOSS_INDEX.has(active_location) and
 		active_location != Location.FOREST and
-		active_room == BOSS_INDEX[active_location])
+		active_room == BOSS_INDEX[active_location],
+		pre_boss
+		)
 
 	# Update the new active room's edges.
 	if edges.has(active_location):

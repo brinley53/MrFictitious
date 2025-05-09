@@ -29,7 +29,7 @@ func _on_button_2_pressed() -> void:
 func _on_tree_entered() -> void:
 	Wwise.register_game_obj(self,self.name)
 	Wwise.register_listener(self)
-	TitleMusicScene.play_music(self)
+	Wwise.post_event_id(AK.EVENTS.DEAD,self)
 	Wwise.post_event_id(AK.EVENTS.PLAYER_DEATH, self)
 
 

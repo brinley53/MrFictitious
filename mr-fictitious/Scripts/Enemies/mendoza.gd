@@ -28,6 +28,7 @@ var stunned = false
 var current_stun_timer: Timer = null
 var num_shots = 0
 var max_health:float
+var prev_chase_variable:bool = false
 # On ready attributes
 @onready var attack_timer = $AttackTimer
 @onready var top_sprite = $TopSprite
@@ -45,6 +46,7 @@ func _ready():
 	max_health=health
 	health_bar.max_value = health
 	health_bar.value = health
+	Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
 	
 func change_attack(attack_type):
 	if stunned:
@@ -60,6 +62,7 @@ func shoot_player():
 	triple_timer.start()
 	
 func shoot():
+	Wwise.post_event_id(AK.EVENTS.SYRINGE,self)
 	var to_bullet = (global_position - player.global_position).normalized()
 	var angle_offset = deg_to_rad(30)
 	# Slightly rotate left or right
@@ -72,7 +75,9 @@ func shoot():
 func _physics_process(_delta: float) -> void:
 	if stunned or player.in_dialogue:
 		return
-	if !player.stealth:
+	if !player.stealth and !prev_chase_variable:
+		Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
+		prev_chase_variable=true
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
 				
@@ -83,14 +88,18 @@ func _physics_process(_delta: float) -> void:
 			move_and_slide()
 		else:
 			bottom_sprite.play("default")
-	else:
+	elif prev_chase_variable:
+		prev_chase_variable=false
+		Wwise.post_event_id(AK.EVENTS.MENDOZA_PASSIVE,self)
 		bottom_sprite.play("default")
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
+	Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT,self)
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:
+		Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT,self)
 		var item = EVIDENCE_SCENE.instantiate()
 		var angle = randf() * TAU 
 		var radius = randf_range(64.0, 128.0)
