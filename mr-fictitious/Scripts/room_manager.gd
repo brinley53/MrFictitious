@@ -155,8 +155,11 @@ func get_active_room() -> Node:
 func set_active_room(location:Location, room:int) -> void:
 	# Set the new base room if needed
 	if base_rooms[location] != base_rooms[active_location]:
-		remove_child(base_rooms[active_location])
-		call_deferred("add_child", base_rooms[location])
+		if base_rooms[active_location] != null:
+			remove_child(base_rooms[active_location])
+
+		if base_rooms[location] != null:
+			call_deferred("add_child", base_rooms[location])
 
 	# Remove the old active room.
 	var old_room = rooms[active_location][active_room]
@@ -177,7 +180,8 @@ func set_active_room(location:Location, room:int) -> void:
 	var pre_boss = active_location in [Location.CRYPT, Location.VILLAGE] and active_room == BOSS_INDEX[active_location] + 1
 
 	# Send the updated location to the player.
-	playerInstance.receive_current_location(
+	playerInstance.call_deferred(
+		"receive_current_location",
 		location,
 		active_location == Location.CENTRAL,
 		BOSS_INDEX.has(active_location) and

@@ -97,6 +97,10 @@ func _physics_process(_delta: float) -> void:
 func reduce_enemy_health(damage_dealt):
 	if health <= 0:
 		return
+	call_deferred("_apply_damage", damage_dealt)
+
+
+func _apply_damage(damage_dealt):
 	Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT,self)
 	health = health - damage_dealt
 	health_bar.value = health
