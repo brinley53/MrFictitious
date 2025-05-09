@@ -426,7 +426,10 @@ func collect_sword_weapon():
 		var manager = get_node("/root/Main/RoomManager")
 		var room = manager.get_active_room()
 		room.add_child(new_shovel)
-		new_shovel.global_position = global_position + Vector2(0,200)
+		if global_position.y < 580:
+			new_shovel.global_position = global_position + Vector2(0,200)
+		else:
+			new_shovel.global_position = global_position + Vector2(0,-200)
 	for i in range(max_sword_attacks - sword_attack_uses):
 		collectWeapon(SwordResource)
 	play_sound(AK.EVENTS.SABER_PICK_UP)
@@ -637,7 +640,10 @@ func shovel(damage_increase: int, shrink_factor: float):
 		var manager = get_node("/root/Main/RoomManager")
 		var room = manager.get_active_room()
 		room.add_child(new_sword)
-		new_sword.global_position = global_position + Vector2(0,200)
+		if global_position.y < 580:
+			new_sword.global_position = global_position + Vector2(0,200)
+		else:
+			new_sword.global_position = global_position + Vector2(0,-200)
 		sword = false
 	for i in range(max_shovel_attacks - shovel_attack_uses):
 		collectWeapon(ShovelResource)
