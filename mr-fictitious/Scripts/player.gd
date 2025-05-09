@@ -743,6 +743,10 @@ func receive_current_location(location, central=false, is_boss_room=false):
 		dialogue_balloon.end_dialogue()
 		in_dialogue = false
 	if evidence_collected > 3:
+		if inventory:
+			inventory.clear()
+		if weapon_inventory:
+			weapon_inventory.clear()
 		get_tree().change_scene_to_file("res://Scenes/win.tscn")
 		return
 	if !central:
