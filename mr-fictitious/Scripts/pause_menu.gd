@@ -38,6 +38,8 @@ func get_player(obj:Player):
 	player = obj
 
 func _on_main_menu_pressed() -> void:
+	player.inventory.clear()
+	player.weapon_inventory.clear()
 	get_tree().change_scene_to_file("res://Scenes/title.tscn")
 
 func _on_h_slider_value_changed(value: float) -> void:
