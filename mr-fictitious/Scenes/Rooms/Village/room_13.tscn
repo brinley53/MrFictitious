@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dedbooan4qfxo" path="res://images/village_tiles.png" id="5_v0mfm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jqnpl"]
-vertices = PackedVector2Array(1525, 629, 1525, 843, 1291, 779, 1291, 565, 1672.98, 843, 1673.46, 911.094, 234.359, 893.891, 629, 779, 395, 843, 237.641, 220.43, 693, 216.969, 693, 267, 395, 245, 907, 215.344, 1013, 214.539, 1013, 267, 907, 267, 1668.52, 209.563, 1668.77, 245, 1525, 245, 1227, 212.906, 1227, 267, 1525, 459, 1670.28, 459, 1671.48, 629, 629, 565, 395, 629, 235.648, 629, 236.477, 459, 395, 459, 237.523, 245, 234.609, 843)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 1), PackedInt32Array(7, 2, 1, 6, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 20, 19, 22, 3), PackedInt32Array(22, 23, 24, 0, 3), PackedInt32Array(21, 3, 25, 15), PackedInt32Array(16, 15, 25), PackedInt32Array(11, 16, 25), PackedInt32Array(26, 27, 28, 29, 25), PackedInt32Array(12, 30, 9), PackedInt32Array(12, 11, 25, 29), PackedInt32Array(26, 25, 7, 8), PackedInt32Array(8, 6, 31)])
+vertices = PackedVector2Array(1510, 614, 1510, 858, 1306, 794, 1306, 550, 1658.09, 858, 1658.35, 895.906, 249.43, 879.07, 410, 858, 1653.62, 224.68, 1653.67, 230, 1510, 230, 1242, 227.797, 1242, 282, 1510, 474, 410, 474, 410, 234.117, 678, 232.078, 678, 282, 614, 550, 922, 230.227, 998, 229.648, 998, 282, 922, 282, 1655.39, 474, 1656.37, 614, 410, 614, 250.719, 614, 251.398, 474, 614, 794, 249.539, 858)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 1), PackedInt32Array(2, 1, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 11, 10, 13, 3), PackedInt32Array(14, 15, 16, 17, 18), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(13, 23, 24, 0, 3), PackedInt32Array(12, 3, 18, 21), PackedInt32Array(22, 21, 18), PackedInt32Array(17, 22, 18), PackedInt32Array(25, 26, 27, 14, 18), PackedInt32Array(25, 18, 28, 7), PackedInt32Array(6, 29, 7), PackedInt32Array(7, 28, 2)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(163, 146, 159, 968, 1749, 987, 1743, 134)])
-agent_radius = 75.0
+agent_radius = 90.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsv2b"]
 texture = ExtResource("5_v0mfm")
