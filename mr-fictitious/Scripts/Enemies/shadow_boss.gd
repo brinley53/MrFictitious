@@ -120,7 +120,10 @@ func reduce_enemy_health(damage_dealt):
 	Wwise.post_event_id(AK.EVENTS.HORSEMAN_HURT,self)
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
-	sprite.modulate=Color.WHITE
+	if(is_vulnerable):
+		sprite.modulate=Color.DARK_GREEN
+	else:
+		sprite.modulate=Color.WHITE
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:
@@ -191,6 +194,7 @@ func _on_vulnerable_area_body_entered(body: Node2D) -> void:
 
 func _on_vulnerable_timer_timeout() -> void:
 	is_vulnerable = false
+	sprite.modulate = Color.WHITE
 	
 func _on_vulnerable_area_area_entered(area: Area2D) -> void:
 	if !chase_player:
@@ -199,6 +203,7 @@ func _on_vulnerable_area_area_entered(area: Area2D) -> void:
 		is_vulnerable = true
 		vul_timer.start()
 		chase_player = true
+		sprite.modulate = Color.DARK_GREEN
 
 
 func _on_melee_attack_timer_timeout() -> void:
