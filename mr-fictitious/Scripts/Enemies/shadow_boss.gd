@@ -93,8 +93,8 @@ func _physics_process(delta: float) -> void:
 		# Rotate the detection area to face the playe
 		
 		direction = (player.global_position - detection.global_position).angle() + PI
-		detection.rotation = lerp_angle(detection.rotation, direction, delta)
-		shadow_area.rotation = lerp_angle(detection.rotation, direction, delta)
+		detection.rotation = lerp_angle(detection.rotation, direction, delta *100)
+		shadow_area.rotation = lerp_angle(detection.rotation, direction, delta *100)
 		vul_area.scale.x = 1 if (player.global_position - global_position).normalized().x > 0 else -1
 		var offset = Vector2(-67, 29)  # 67 pixels to the right
 		offset.x *= vul_area.scale.x  # flip offset too
@@ -128,12 +128,6 @@ func reduce_enemy_health(damage_dealt):
 	health_bar.value = health
 	if health <= 0:
 		Wwise.post_event_id(AK.EVENTS.HORSEMAN_DEATH,self)
-		var item = EVIDENCE_SCENE.instantiate()
-		var angle = randf() * TAU 
-		var radius = randf_range(64.0, 128.0)
-		var offset = Vector2(cos(angle), sin(angle)) * radius
-		item.global_position = global_position + offset
-		get_tree().current_scene.add_child(item)
 		queue_free()
 		dead.emit()
 

@@ -194,28 +194,28 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_17eci")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_doym2")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_rq56j")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_2kgje")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_gturi")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_iujx3")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_e7f1q")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_pjid5")
 }],
 "loop": true,
@@ -223,28 +223,28 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_3wwbp")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_iifwm")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_o5ywc")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_v2vkt")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_r6cm8")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_a0cpt")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_16g5j")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_mb3vg")
 }],
 "loop": true,
@@ -252,28 +252,28 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_t2ou6")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_p5ie2")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_owbjs")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_1ufi8")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_dwo3b")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_kdlkj")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_iv25e")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_0j1bh")
 }],
 "loop": true,
@@ -281,28 +281,28 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ljj3b")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_44yts")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_i0pib")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_e3grl")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_2hx2u")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_e7thv")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_6roj0")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_154nb")
 }],
 "loop": true,
@@ -424,7 +424,8 @@ shape = SubResource("RectangleShape2D_jal5q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6qceo")
-animation = &"stand_down"
+animation = &"walk_up"
+frame_progress = 0.0967422
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Weapon"]]
 position = Vector2(12.75, 1)

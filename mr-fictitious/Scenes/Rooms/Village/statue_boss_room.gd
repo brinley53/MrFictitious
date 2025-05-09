@@ -11,7 +11,7 @@ extends Node2D
 @onready var boss = $Statue
 var wave1 = false
 var wave2 = false
-
+const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 var blocking_edge
 
 # Called when the node enters the scene tree for the first time.
@@ -46,3 +46,6 @@ func _process(delta: float) -> void:
 
 func _on_statue_boss_dead() -> void:
 	remove_child(blocking_edge)
+	var item = EVIDENCE_SCENE.instantiate()
+	item.global_position = Vector2(960, 540)
+	get_tree().current_scene.add_child(item)

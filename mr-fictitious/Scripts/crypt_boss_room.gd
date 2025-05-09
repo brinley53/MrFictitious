@@ -15,6 +15,7 @@ var blocking_edge
 @onready var transition_timer = $TransitionTimer
 @onready var attack_timer = $AttackTimer
 @onready var boss = $ShadowBoss
+const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -69,3 +70,6 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_shadow_boss_dead() -> void:
 	remove_child(blocking_edge)
+	var item = EVIDENCE_SCENE.instantiate()
+	item.global_position = Vector2(960, 540)
+	get_tree().current_scene.add_child(item)
