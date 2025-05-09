@@ -30,7 +30,7 @@ z_index = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_ccgou")
-health = 200.0
+health = 150.0
 damage = 20.0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]

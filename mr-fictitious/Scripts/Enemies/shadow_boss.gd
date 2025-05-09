@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
-	if !is_vulnerable:
+	if !is_vulnerable or health <= 0:
 		return
 	Wwise.post_event_id(AK.EVENTS.HORSEMAN_HURT,self)
 	sprite.modulate = Color.RED

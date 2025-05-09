@@ -8,6 +8,7 @@
 size = Vector2(178, 178)
 
 [node name="Evidence" type="Area2D"]
+z_index = 10
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_gcskn")
 type = "Evidence"

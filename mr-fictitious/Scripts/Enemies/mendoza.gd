@@ -95,6 +95,8 @@ func _physics_process(_delta: float) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
+	if health <= 0:
+		return
 	Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT,self)
 	health = health - damage_dealt
 	health_bar.value = health

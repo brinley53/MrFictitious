@@ -140,7 +140,8 @@ func _on_stun_timeout():
 		current_stun_timer = null
 
 func reduce_enemy_health(_damage_dealt, area_hit=""):
-	
+	if total_health <= 0:
+		return
 	if area_hit == "":
 		var rwing_areas = r_wing.get_overlapping_areas()
 		var head_areas = head.get_overlapping_areas()

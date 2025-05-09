@@ -443,7 +443,8 @@ func collect_musket_weapon():
 
 #Called from enemies when dealing damage, when health reaches 0 you die
 func reduce_player_health(damage):
-	
+	if health <= 0:
+		return
 	play_sound(AK.EVENTS.PLAYER_HURT)
 	health = health - damage
 	health_bar.value = health
