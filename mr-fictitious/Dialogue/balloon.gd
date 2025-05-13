@@ -18,7 +18,7 @@ var is_waiting_for_input: bool = false
 
 var closed = false
 
-signal balloon_closed
+#signal balloon_closed
 
 @onready var portrait = $Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer/Portrait
 

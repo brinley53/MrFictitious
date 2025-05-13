@@ -15,9 +15,9 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Collision")
+	# print("Collision")
 	if body.name == "Player":
-		print("entered collision")
+		# print("entered collision")
 		if body.collectItem(inventory_drop_item):
 			body.add_health_item()
 			queue_free()

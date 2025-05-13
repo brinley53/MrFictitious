@@ -3,7 +3,7 @@ func _ready():
 	get_tree().paused = false
 
 func _on_button_pressed() -> void:
-	TitleMusicScene.stop_music(self)
+	TitleMusicScene.stop_music()
 	get_tree().change_scene_to_file("res://Scenes/opening_dialogue.tscn")
 
 func _on_controls_pressed() -> void:
@@ -21,5 +21,5 @@ func _on_glossary_pressed() -> void:
 
 func _on_tree_entered() -> void:
 	TitleMusicScene.play_music(self)
-	print("Put in scene")
+	# print("Put in scene")
 	

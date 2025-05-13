@@ -40,11 +40,13 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		body.reduce_player_health(damage)
 		if type == "Poison":
-			body.poison(poison_proc_count, damage/2)
+			@warning_ignore("integer_division")
+			body.poison(poison_proc_count, damage / 2)
 		elif type == "Snail":
 			body.apply_speed_buff(debuff_strength, debuff_duration)
 		elif type == "Weak":
 			body.apply_damage_buff(debuff_strength, debuff_duration)
+		Wwise.post_event_id(AK.EVENTS.SYRINGE, self)
 		queue_free()
 
 #Bullet disappears if nothing is hit in 4 seconds

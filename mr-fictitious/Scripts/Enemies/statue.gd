@@ -55,6 +55,7 @@ var sprite_string = "lhr"
 
 const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")  
 
+@warning_ignore("unused_signal")
 signal broken
 
 
@@ -68,16 +69,19 @@ func _ready():
 	charge_speed = 750.0
 	total_health = left_wing_health + right_wing_health + head_health
 	pound_sprite.visible = false
-	Wwise.post_event_id(AK.EVENTS.STATUE_ALERT,self)
+	Wwise.post_event_id(AK.EVENTS.BIG_STATUE_ALERT,self)
 
 func _physics_process(delta: float) -> void:
-	health_bar.value = (left_wing_health+right_wing_health+head_health)*100/total_health
+	@warning_ignore("integer_division")
+	health_bar.value = (left_wing_health + right_wing_health + head_health) * 100 / total_health
+	
 	if stunned:
 		return
 	if global_position.distance_to(target) < sprite.sprite_frames.get_frame_texture("default_" + sprite_string, 0).get_size().x/4:
 		speed = 0.0
 	# Die if its arms are off
 	if left_wing_health <= 0 and right_wing_health <= 0 and head_health <= 0:
+		Wwise.post_event_id(AK.EVENTS.BIG_STATUE_DEATH, self)
 		dead.emit()
 		queue_free()
 	var direction = (target - global_position).normalized()
@@ -133,6 +137,7 @@ func _on_stun_timeout():
 		current_stun_timer.queue_free()
 		current_stun_timer = null
 
+
 func reduce_enemy_health(_damage_dealt, area_hit=""):
 	if total_health <= 0:
 		return
@@ -147,8 +152,10 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					change_sprite()
 					if left_wing_health == 0:
 						emit_signal("broken")
+						Wwise.post_event_id(AK.EVENTS.STATUE_DEATH, self)
+					else:
+						Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT, self)
 					flash_red()
-					Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 					return
 		if right_wing_health > 0:
 			for area in rwing_areas:
@@ -157,8 +164,10 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					change_sprite()
 					if right_wing_health == 0:
 						emit_signal("broken")
+						Wwise.post_event_id(AK.EVENTS.STATUE_DEATH, self)
+					else:
+						Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT, self)
 					flash_red()
-					Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 					return
 		if head_health > 0:
 			for area in head_areas:
@@ -167,8 +176,10 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 					change_sprite()
 					if head_health == 0:
 						emit_signal("broken")
+						Wwise.post_event_id(AK.EVENTS.STATUE_DEATH, self)
+					else:
+						Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT, self)
 					flash_red()
-					Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 					return
 	else:
 		if area_hit == "LeftWing" and left_wing_health > 0:
@@ -176,24 +187,30 @@ func reduce_enemy_health(_damage_dealt, area_hit=""):
 			change_sprite()
 			if left_wing_health == 0:
 				emit_signal("broken")
+				Wwise.post_event_id(AK.EVENTS.STATUE_DEATH, self)
+			else:
+				Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT, self)
 			flash_red()
-			Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 			return
 		if area_hit == "RightWing" and right_wing_health > 0:
 			right_wing_health -= 1
 			change_sprite()
 			if right_wing_health == 0:
 				emit_signal("broken")
+				Wwise.post_event_id(AK.EVENTS.STATUE_DEATH, self)
+			else:
+				Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT, self)
 			flash_red()
-			Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT,self)
 			return
 		if area_hit == "Head" and head_health > 0:
 			head_health -= 1
 			change_sprite()
 			if head_health == 0:
 				emit_signal("broken")
+				Wwise.post_event_id(AK.EVENTS.STATUE_DEATH, self)
+			else:
+				Wwise.post_event_id(AK.EVENTS.BIG_STATUE_HURT, self)
 			flash_red()
-			Wwise.post_event_id(AK.EVENTS.STATUE_HURT,self)
 			return
 	Wwise.post_event_id(AK.EVENTS.BIG_STATUE_NOT_HURT,self)
 
@@ -219,6 +236,7 @@ func ground_pound():
 func charge():
 	speed = charge_speed
 	target = player.global_position
+	Wwise.post_event_id(AK.EVENTS.BIG_STATUE_DASH, self)
 
 func _on_big_attack_timer_timeout() -> void:
 	big_attack_timer.start()
@@ -234,6 +252,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	pound_sprite.visible = true
 	pound_sprite.play("pound")
 	sprite.play("default_" + sprite_string)
+	
+	Wwise.post_event_id(AK.EVENTS.BIG_STATUE_GROUND_POUND, self)
 
 func _on_pound_timer_timeout() -> void:
 	#pound_sprite.visible = false

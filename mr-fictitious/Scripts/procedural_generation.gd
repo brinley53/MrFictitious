@@ -29,6 +29,9 @@ func _ready() -> void:
 	generate_objects(generic_item,num_generic_item)
 	generate_objects(key_item,num_key_item)
 	generate_objects(health_item,num_health_items)
+	Wwise.register_game_obj(self, self.name)
+	Wwise.register_listener(self)
+	Wwise.load_bank_id(AK.BANKS.SOUND)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

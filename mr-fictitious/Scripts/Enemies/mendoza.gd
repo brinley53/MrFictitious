@@ -15,9 +15,9 @@ const EVIDENCE_SCENE = preload("res://Scenes/evidence.tscn")
 
 #GLOBAL VARIABLES
 # stats attributes
-var speed : float
-@export var health : float
-@export var damage : float
+var speed: float
+@export var health: float
+@export var damage: float
 var attack = "Chase"
 var syringe_types = ["Poison", "Snail", "Weak"]
 
@@ -27,8 +27,8 @@ var attack_player = false
 var stunned = false
 var current_stun_timer: Timer = null
 var num_shots = 0
-var max_health:float
-var prev_chase_variable:bool = false
+var max_health: float = health
+var prev_chase_variable: bool = false
 # On ready attributes
 @onready var attack_timer = $AttackTimer
 @onready var top_sprite = $TopSprite
@@ -43,10 +43,9 @@ var prev_chase_variable:bool = false
 func _ready():
 	#set initial variables
 	speed = 150.0
-	max_health=health
 	health_bar.max_value = health
 	health_bar.value = health
-	Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
+	Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT, self)
 	
 func change_attack(attack_type):
 	if stunned:
@@ -62,7 +61,7 @@ func shoot_player():
 	triple_timer.start()
 	
 func shoot():
-	Wwise.post_event_id(AK.EVENTS.SYRINGE,self)
+	Wwise.post_event_id(AK.EVENTS.MENDOZA_THROW_SYRINGE, self)
 	var to_bullet = (global_position - player.global_position).normalized()
 	var angle_offset = deg_to_rad(30)
 	# Slightly rotate left or right
@@ -78,8 +77,8 @@ func _physics_process(_delta: float) -> void:
 	if !player.stealth:
 		Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
 		# Calculate the direction vector towards the player
-		var direction = (player.global_position - global_position).normalized()
-				
+		#var direction = (player.global_position - global_position).normalized()
+		
 		if attack == "Chase":
 			top_sprite.play("melee")
 			bottom_sprite.play("walk")
@@ -98,13 +97,14 @@ func reduce_enemy_health(damage_dealt):
 
 
 func _apply_damage(damage_dealt):
-	Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT,self)
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:
-		Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT,self)
-		queue_free()
 		dead.emit()
+		Wwise.post_event_id(AK.EVENTS.MENDOZA_DEATH, self)
+		queue_free()
+	else:
+		Wwise.post_event_id(AK.EVENTS.MENDOZA_HURT, self)
 	top_sprite.modulate = Color.RED
 	bottom_sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout

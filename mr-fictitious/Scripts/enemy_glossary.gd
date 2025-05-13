@@ -162,9 +162,9 @@ var enemy_data = {
 func _ready():
 	for btn in $EnemyGrid.get_children():
 		btn.connect("pressed", Callable(self, "_on_enemy_pressed").bind(btn.name))
-	print("Glossary visible: ", visible)
-	print("Glossary position: ", position)
-	print("Glossary size: ", size)
+	# print("Glossary visible: ", visible)
+	# print("Glossary position: ", position)
+	# print("Glossary size: ", size)
 	set_process(true)
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 

@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://bm8vr7nfbo4g8"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/shadow_boss.gd" id="1_ccgou"]
+[ext_resource type="Texture2D" uid="uid://bv1d32yij8i8e" path="res://images/cryptbossfixed.png" id="2_xe37s"]
+[ext_resource type="Texture2D" uid="uid://b060akbuv0brt" path="res://images/health bar sprite empty.png" id="3_yrm7j"]
+[ext_resource type="Texture2D" uid="uid://b8wh2s4xu68y7" path="res://images/SingleRow.png" id="4_p6ikl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bymkg"]
+atlas = ExtResource("2_xe37s")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_heauu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bymkg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arxui"]
+size = Vector2(65, 66.157)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wuf0x"]
+
+[node name="ShadowBoss" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_ccgou")
+health = 150.0
+damage = 20.0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-31.8302, 10)
+scale = Vector2(6.53397, -4.71009)
+polygon = PackedVector2Array(12.9829, -0.21231, 11.7586, 3.18465, 13.9012, 15.074, 10.3812, 15.4986, 9.92202, 20.8064, 5.94281, 20.1695, 4.2593, 11.4647, 1.50447, 9.34165, -6.30089, 15.9233, -10.8923, 14.8617, -12.4227, 0.84924, -6.60699, -2.1231, -7.52526, -15.711, 5.94281, -14.8617, 11.1464, -5.73237, 13.136, -0.21231)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_heauu")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detection"]
+polygon = PackedVector2Array(-7, -8, 74, -73, 1380, -667, -215, -1520, -1646, -1125, -1955, -132, -1784, 851, -770, 1609, 63, 1780, 757, 1481, 20, 121)
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(-31, -2)
+scale = Vector2(2.22435, -2.32386)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-1.5, -0.875096)
+shape = SubResource("RectangleShape2D_arxui")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="VulnerableArea" type="Area2D" parent="."]
+position = Vector2(67, 29)
+scale = Vector2(2.76, 2.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VulnerableArea"]
+shape = SubResource("CircleShape2D_wuf0x")
+
+[node name="VulnerableTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="HealthContainer" type="Sprite2D" parent="."]
+position = Vector2(-3, -130)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_yrm7j")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.941
+offset_left = -95.0
+offset_top = -15.0
+offset_right = -99.0
+offset_bottom = -16.994
+value = 100.0
+texture_progress = ExtResource("4_p6ikl")
+tint_over = Color(1, 0, 0, 1)
+
+[node name="MeleeAttackTimer" type="Timer" parent="."]
+
+[node name="ShadowArea" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="ShadowArea"]
+color = Color(0, 0, 0, 0.396078)
+polygon = PackedVector2Array(54, 66, 90, 40, 95, 17, 101, -18, 82, -47, 130, -78, 1657, -742, 2053, 149, 2053, 149, 1939, 1373, 977, 1755)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowArea"]
+polygon = PackedVector2Array(-7, -8, 74, -73, 1380, -667, -215, -1520, -1646, -1125, -1955, -132, -1784, 851, -770, 1609, 63, 1780, 757, 1481, 20, 121)
+
+[node name="DetectTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="area_entered" from="VulnerableArea" to="." method="_on_vulnerable_area_area_entered"]
+[connection signal="body_entered" from="VulnerableArea" to="." method="_on_vulnerable_area_body_entered"]
+[connection signal="timeout" from="VulnerableTimer" to="." method="_on_vulnerable_timer_timeout"]
+[connection signal="timeout" from="MeleeAttackTimer" to="." method="_on_melee_attack_timer_timeout"]
+[connection signal="timeout" from="DetectTimer" to="." method="_on_detect_timer_timeout"]

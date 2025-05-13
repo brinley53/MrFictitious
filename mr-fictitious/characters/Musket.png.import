@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2nw08sicv86j"
-path="res://.godot/imported/Musket.png-119bc906eb1854bada85155080240125.ctex"
+path="res://.godot/imported/musket.png-433aa4e698d70dff0fd918c9565b1596.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/Musket.png"
-dest_files=["res://.godot/imported/Musket.png-119bc906eb1854bada85155080240125.ctex"]
+source_file="res://characters/musket.png"
+dest_files=["res://.godot/imported/musket.png-433aa4e698d70dff0fd918c9565b1596.ctex"]
 
 [params]
 

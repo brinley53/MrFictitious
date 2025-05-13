@@ -41,6 +41,9 @@ signal finished_typing()
 
 var _already_mutated_indices: PackedInt32Array = []
 
+var text_sound_timer = 0.0
+const text_sound_interval = 0.05
+
 
 ## The current line of dialogue.
 var dialogue_line:
@@ -82,6 +85,11 @@ func _process(delta: float) -> void:
 			# Make sure any mutations at the end of the line get run
 			_mutate_inline_mutations(get_total_character_count())
 			self.is_typing = false
+		
+		text_sound_timer += delta
+		if text_sound_timer >= text_sound_interval:
+			text_sound_timer = 0.0
+			Wwise.post_event_id(AK.EVENTS.MENU_TEXT, self)
 
 
 func _unhandled_input(event: InputEvent) -> void:

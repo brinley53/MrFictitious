@@ -9,7 +9,8 @@ Revisions:
 
 extends Area2D
 var velocity = Vector2.ZERO  
-var damage = 10
+var base_damage = 10
+var damage = base_damage
 @onready var trail := $Trail
 @onready var players = get_tree().get_nodes_in_group("Player")
 @onready var player = players[0]
@@ -56,7 +57,7 @@ func _on_timer_timeout() -> void:
 	var bodies = explosion_area.get_overlapping_bodies()
 	for body in bodies:
 		if body.name == "Player":
-			player.reduce_player_health(damage/2)
+			player.reduce_player_health(damage * 0.5)
 	queue_free()
 	
 func initialize_bullet(target_position: Vector2, type_str="Default") -> void:
@@ -64,8 +65,10 @@ func initialize_bullet(target_position: Vector2, type_str="Default") -> void:
 	target = target_position
 	var direction = (target_position - global_position).normalized()
 	velocity = direction * speed
+	damage = base_damage
 	if type == "Mini":
-		damage = damage/2
+		@warning_ignore("integer_division")
+		damage = base_damage / 2
 		
 func create_mini_bullet(target_pos):
 	# Function to create a mini bullet

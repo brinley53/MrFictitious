@@ -240,15 +240,15 @@ func create_connection(source_location:Location, source_room:int, destination_lo
 		connections[source_location][source_room][direction]["room"] = destination_room
 
 		# Record the destination to source connection.
-		# Intentional integer division.
+		@warning_ignore("integer_division")
 		var opposite_direction:int = ((direction / 2) * 2) + (1 - (direction % 2))
 		connections[destination_location][destination_room][opposite_direction]["location"] = source_location
 		connections[destination_location][destination_room][opposite_direction]["room"] = source_room
 
-func get_random_room(location:Location, rooms:Array[int], boss_allowed:bool):
+func get_random_room(location:Location, room_list:Array[int], boss_allowed:bool):
 	var random:RandomNumberGenerator = RandomNumberGenerator.new()
 	while true:
-		var room:int = rooms[random.randi_range(0, rooms.size() - 1)]
+		var room:int = room_list[random.randi_range(0, room_list.size() - 1)]
 		if boss_allowed or room != BOSS_INDEX[location]:
 			return room
 

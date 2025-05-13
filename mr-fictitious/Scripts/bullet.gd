@@ -13,7 +13,7 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Body entered:", body.name)
+	# print("Body entered:", body.name)
 	if body.name == "Player":
 		body.collectItem(bulletResource)
 		body.add_bullet()

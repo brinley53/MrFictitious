@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://br2u722xc5scc"]
+
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_ktvh1"]
+[ext_resource type="Texture2D" uid="uid://d2mynlm2n6pmr" path="res://images/title_screen_with_title.jpg" id="2_pkexx"]
+[ext_resource type="FontFile" uid="uid://dhnnokt7bjnx2" path="res://Dialogue/anewserifintownF.ttf" id="3_bv411"]
+
+[node name="Lost" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ktvh1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_pkexx")
+
+[node name="Controls" type="Button" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 774.0
+offset_right = 1108.0
+offset_bottom = 863.0
+theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
+text = "Controls"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 968.0
+offset_right = 1108.0
+offset_bottom = 1057.0
+theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
+text = "Exit Game"
+
+[node name="Glossary" type="Button" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 870.0
+offset_right = 1108.0
+offset_bottom = 959.0
+theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
+text = "Glossary"
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 676.0
+offset_right = 1108.0
+offset_bottom = 765.0
+theme_override_fonts/font = ExtResource("3_bv411")
+theme_override_font_sizes/font_size = 20
+text = "Start Game"
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Glossary" to="." method="_on_glossary_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_button_pressed"]

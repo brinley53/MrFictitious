@@ -29,10 +29,11 @@ var attack = "Default"
 #chase player variables
 var chase_player = false
 var attack_player = false
+var player_in_detection_body = false
 var dir_facing = 1
 var stunned = false
 var current_stun_timer: Timer = null
-var prev_chase_player:bool = false
+#var prev_chase_player:bool = false
 # On ready attributes
 @onready var timer = $AttackTimer
 @onready var sprite = $AnimatedSprite2D
@@ -76,13 +77,20 @@ func shoot_player():
 	get_parent().add_child(bullet)
 
 func _physics_process(delta: float) -> void:
-	
 	if stunned:
 		return
-	if (!player.stealth or (is_vulnerable and detect)) and chase_player:
+	
+	if chase_player and player.stealth:
+		chase_player = false;
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_UNALERT, self)
+	elif !chase_player and !player.stealth and player_in_detection_body:
+		chase_player = true;
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT, self)
+	
+	if chase_player: # and (!player.stealth or (is_vulnerable and detect)):
 		# Calculate the direction vector towards the player
 		var direction = (player.global_position - global_position).normalized()
-
+		
 		# Rotate the sprite towards the player
 		if direction.x > 0:
 			sprite.flip_h = true  # Not flipped
@@ -105,19 +113,18 @@ func _physics_process(delta: float) -> void:
 		
 		velocity = (player.global_position - global_position).normalized() * speed
 		move_and_slide()
-		if(chase_player and !prev_chase_player):
-			Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT,self)
-			prev_chase_player=true
-		if(!chase_player and prev_chase_player):
-			Wwise.post_event_id(AK.EVENTS.HORSEMAN_UNALERT,self)
-			prev_chase_player=false
-			
+	
+	#if(chase_player and !prev_chase_player):
+		#Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT,self)
+	#if(!chase_player and prev_chase_player):
+		#Wwise.post_event_id(AK.EVENTS.HORSEMAN_UNALERT,self)
+	#prev_chase_player = chase_player
+
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
 	if !is_vulnerable or health <= 0:
 		return
-	Wwise.post_event_id(AK.EVENTS.HORSEMAN_HURT,self)
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	if(is_vulnerable):
@@ -127,9 +134,11 @@ func reduce_enemy_health(damage_dealt):
 	health = health - damage_dealt
 	health_bar.value = health
 	if health <= 0:
-		Wwise.post_event_id(AK.EVENTS.HORSEMAN_DEATH,self)
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_DEATH, self)
 		queue_free()
 		dead.emit()
+	else:
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_HURT, self)
 
 
 func apply_stun(duration):
@@ -143,6 +152,7 @@ func apply_stun(duration):
 	add_child(current_stun_timer)
 	current_stun_timer.connect("timeout", Callable(self, "_on_stun_timeout"))
 	current_stun_timer.start()
+	Wwise.post_event_id(AK.EVENTS.HORSEMAN_HURT, self)
 
 func _on_stun_timeout():
 	stunned = false
@@ -164,7 +174,7 @@ func _on_detection_body_entered(body: Node2D) -> void:
 	if stunned:
 		return
 	if body.name == "Player":
-		chase_player = true
+		player_in_detection_body = true;
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	# When player escapes, don't reduce health anymore
@@ -175,29 +185,30 @@ func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes
 	if stunned:
 		return
-	if (!player.stealth and chase_player and !is_vulnerable):
+	if (chase_player and !is_vulnerable):
 		shoot_player()
 	timer.start()
 
 func _on_detection_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		chase_player = false
+		player_in_detection_body = false;
 
-func _on_vulnerable_area_body_entered(body: Node2D) -> void:
+func _on_vulnerable_area_body_entered(_body: Node2D) -> void:
 	pass
 
 func _on_vulnerable_timer_timeout() -> void:
 	is_vulnerable = false
 	sprite.modulate = Color.WHITE
 	
-func _on_vulnerable_area_area_entered(area: Area2D) -> void:
-	if !chase_player:
+func _on_vulnerable_area_area_entered(_area: Area2D) -> void:
+	if !chase_player and !player_in_detection_body:
 		detect = false
 		detect_timer.start()
 		is_vulnerable = true
 		vul_timer.start()
-		chase_player = true
 		sprite.modulate = Color.DARK_GREEN
+		chase_player = true
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT, self)
 
 
 func _on_melee_attack_timer_timeout() -> void:

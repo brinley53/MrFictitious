@@ -18,6 +18,6 @@ func _ready() -> void:
 func toggle_enable():
 	lit_sprite.visible = !lit_sprite.visible
 
-func _on_hit_area_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+func _on_hit_area_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.is_in_group("Bullet"):
 		area.queue_free()

@@ -17,7 +17,7 @@ func _ready() -> void:
 	await get_tree().process_frame  # Wait one frame so screen appears
 
 
-func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
+func _on_dialogue_trigger_body_entered(_body: Node2D) -> void:
 	if player and abs(player.position.y - asylum_blocker.position.y) < 64:
 		player.asylum_blocker_dialogue()
 

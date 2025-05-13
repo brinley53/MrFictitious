@@ -55,7 +55,7 @@ func clear():
 	update.emit()
 
 func equipSlot(index:int):
-	print(index)
+	# print(index)
 	if(index>=0 and index<slots.size()):
 		activeSlot = index
 		update.emit()

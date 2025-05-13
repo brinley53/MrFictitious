@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cgw6q3trlopuc"]
 
-[ext_resource type="PackedScene" uid="uid://cu51fnslx4l0e" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="1_57sso"]
+[ext_resource type="PackedScene" uid="uid://ws7aumqg0k22" path="res://Scenes/Rooms/Forest/forest_tree.tscn" id="1_57sso"]
 
 [node name="DownBlockingEdge" type="Node2D"]
 z_index = 1

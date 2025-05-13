@@ -8,8 +8,9 @@ Revisions:
 """
 
 extends Area2D
-var velocity = Vector2.ZERO  
-var damage = 10
+var velocity = Vector2.ZERO
+var base_damage = 10
+var damage = base_damage
 @onready var trail := $Trail
 @export var btype = "None"
 
@@ -81,12 +82,12 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func create_mini_bullet(velocity: Vector2):
+func create_mini_bullet(new_velocity: Vector2):
 	var bullet = BULLET_SCENE.instantiate()
 	var manager = get_node("/root/Main/RoomManager")
 	var room = manager.get_active_room()
 	bullet.global_position = global_position
-	bullet.initialize_velocity(velocity.normalized() * speed, "Mini")
+	bullet.initialize_velocity(new_velocity.normalized(), "Mini")
 	bullet.scale = Vector2(0.75, 0.75)
 	room.add_child(bullet)
 
@@ -102,6 +103,8 @@ func _on_split_timer_timeout() -> void:
 
 func initialize_velocity(vel: Vector2, type_str = "Default") -> void:
 	type = type_str
-	velocity = vel
+	velocity = vel.normalized() * speed
+	damage = base_damage
 	if type == "Mini":
-		damage = damage / 2
+		@warning_ignore("integer_division")
+		damage = base_damage / 2

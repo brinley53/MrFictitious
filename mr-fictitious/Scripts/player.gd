@@ -71,13 +71,13 @@ var dialogue_balloon
 var can_play_footstep_sound:bool=true
 var current_location:int = -1
 var current_player_state:PLAYER_STATE=PLAYER_STATE.Explore
-var evidence_collected = 0
+var evidence_collected = 3
 var in_dialogue = false
 
 var spin_attack_active = false
 var orbit_timer = 0.0
 var orbit_duration = 0.75  # How long the orbit lasts
-var orbit_speed = 3 * PI 
+var orbit_speed = 3 * PI
 
 var enemies_count:int=0
 var changing_rooms:bool=false
@@ -166,7 +166,7 @@ func poison(pp, pd):
 	poison_damage = pd
 
 #Every frame call the move_character function, calls the attack function when pressing left click
-func _process(delta):	
+func _process(delta):
 	var overlapping_areas = stealth_area.get_overlapping_areas()
 	stealth = false
 	for area in overlapping_areas:
@@ -190,6 +190,7 @@ func _process(delta):
 			removeWeapon(ShovelResource)
 			if shovel_attack_uses >= max_shovel_attacks:
 				reset_shovel()
+				play_sound(AK.EVENTS.PISTOL_DROP)
 		attack_sprite.play("attacking")
 		attack()
 		can_attack = false
@@ -221,7 +222,7 @@ func _process(delta):
 	if(enemies_in_scene!=enemies_count and !changing_rooms and !in_boss_room):
 		enemies_count=enemies_in_scene
 		if(enemies_count==0):
-			print("enemies cleared")
+			# print("enemies cleared")
 			play_sound(AK.EVENTS.CLEAR)
 	
 	
@@ -240,12 +241,12 @@ func read_evidence():
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence3")
 	if evidence_collected == 4:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(read, "evidence4")
-	if dialogue_balloon != null:
-		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	#if dialogue_balloon != null:
+		#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 #Moves using WASD (Input Map Defined), normalized to keep same speed any direction
 func move_character(_delta):
 	var direction = Vector2.ZERO
-	var animation = "stand_down" 
+	var animation = "stand_down"
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
 		animation = "walk_up"
@@ -311,17 +312,17 @@ func new_evidence_collected(evidence:Evidence):
 	if evidence_collected == 4:
 		play_sound(AK.EVENTS.THREE)
 		#dialogue_balloon = dialogue_manager.show_dialogue_balloon(proof1, "piece4")
-	if dialogue_balloon != null:
-		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	#if dialogue_balloon != null:
+		#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 # Dialogue start functions
 func final_boss_dialogue():
 	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "mendoza", [], "res://Dialogue/balloon_no_portrait.tscn")
-	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 func starting_dialogue():
 	dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "start", [], "res://Dialogue/balloon_no_portrait.tscn")
-	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 func inmate_dialogue():
 	if in_dialogue:
@@ -334,7 +335,7 @@ func inmate_dialogue():
 			dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "inmate", [], "res://Dialogue/balloon_no_portrait.tscn")
 	else:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence2", [], "res://Dialogue/balloon_no_portrait.tscn")	
-	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 	
 func evidence_dialogue():
 	if in_dialogue:
@@ -343,7 +344,7 @@ func evidence_dialogue():
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence0", [], "res://Dialogue/balloon_no_portrait.tscn")
 	elif evidence_collected == 1:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "evidence1", [], "res://Dialogue/balloon_no_portrait.tscn")
-	dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+	#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 func asylum_blocker_dialogue():
 	if in_dialogue:
@@ -351,22 +352,26 @@ func asylum_blocker_dialogue():
 
 	if evidence_collected < 3:
 		dialogue_balloon = dialogue_manager.show_dialogue_balloon(load("res://dialogue.dialogue"), "blocker", [], "res://Dialogue/balloon_no_portrait.tscn")
-		dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
+		#dialogue_balloon.connect("balloon_closed", Callable(self, "_on_balloon_closed"))
 
 #Fires the gun, only works when you have bullets
 func shoot_projectile():
-	if bullets > 0 and can_shoot:  
-		
+	if !can_shoot:
+		return
+	gun_cooldown.start()
+	can_shoot = false
+	
+	if bullets > 0:  
 		removeItem(bulletResource)
-		bullets -= 1 
-		gun_cooldown.start()
-		can_shoot = false
+		bullets -= 1
+		
 		if has_musket:
 			play_sound(AK.EVENTS.RIFLE_SHOOT)
 			removeWeapon(MusketResource)
 			musket_attack_uses += 1
 			if musket_attack_uses >= max_musket_attacks:
 				has_musket = false
+				play_sound(AK.EVENTS.RIFLE_DROP)
 			var projectile = MUSKET_PROJECTILE_SCENE.instantiate()
 			var manager = get_node("/root/Main/RoomManager")
 			var room = manager.get_active_room()
@@ -385,7 +390,7 @@ func shoot_projectile():
 			var target_position = get_global_mouse_position()
 			var direction = (target_position - global_position).normalized()
 			projectile.velocity = direction * PROJECTILE_SPEED
-	elif bullets <= 0:
+	else:
 		if(has_musket):
 			play_sound(AK.EVENTS.RIFLE_DRY_FIRE)
 		else:
@@ -406,6 +411,7 @@ func start_spin_attack():
 		sword_attack_uses += 1
 		if sword_attack_uses >= max_sword_attacks:
 			sword = false
+		play_sound(AK.EVENTS.SABER_SWING)
 
 func end_spin_attack():
 	spin_attack_active = false
@@ -414,10 +420,11 @@ func end_spin_attack():
 	spin_area.visible = false
 	spin_area.monitoring = false
 	spin_area.monitorable = false
+	if !sword:
+		play_sound(AK.EVENTS.SABER_DROP)
 
 func collect_sword_weapon():
 	sword = true
-	play_sound(AK.EVENTS.KNIFE_DROP)
 	if has_shovel:
 		reset_shovel()
 		for i in range(max_shovel_attacks - shovel_attack_uses):
@@ -436,7 +443,6 @@ func collect_sword_weapon():
 	sword_attack_uses = 0
 
 func collect_musket_weapon():
-	play_sound(AK.EVENTS.PISTOL_DROP)
 	play_sound(AK.EVENTS.RIFLE_PICK_UP)
 	has_musket = true
 	musket_attack_uses = 0
@@ -491,6 +497,7 @@ func _on_footstep_timer_timeout():
 #Adds bullet back to the player	
 func add_bullet():
 	bullets += 1
+	play_sound(AK.EVENTS.MORPHINE_PICK_UP) # used for all items, old name
 	
 func collectItem(item:InventoryItem):
 	return inventory.insert(item)
@@ -505,20 +512,21 @@ func removeItem(item:InventoryItem):
 func removeWeapon(item:InventoryItem):
 	return weapon_inventory.remove(item)
 	
-func add_health_item():
-	health_items+=1
+func add_health_item(): # morphine
+	play_sound(AK.EVENTS.MORPHINE_PICK_UP)
+	health_items += 1
 
 func add_flashlight_item():
 	play_sound(AK.EVENTS.FLASHLIGHT_PICK_UP)
 	flashlight_items+=1
 
-func add_damage_item():#Morphine
+func add_damage_item(): #NOT Morphine, syringe (same sound tho)
 	play_sound(AK.EVENTS.MORPHINE_PICK_UP)
-	dmg_items+=1
+	dmg_items += 1
 
 func add_speed_item(): #Coccaine
 	play_sound(AK.EVENTS.COCAINE_PICK_UP)
-	speed_items+=1
+	speed_items += 1
 
 func use_flashlight_item():
 	if removeItem(flashResource):
@@ -556,21 +564,22 @@ func flash_screen(color := Color.WHITE, duration := 0.1):
 
 
 func use_health_item():
-	play_sound(AK.EVENTS.COCAINE_USE)
+	play_sound(AK.EVENTS.MORPHINE_USE)
 	if removeItem(healthResource):
 		health_items-=1
 		increase_player_health(75)
 
 func use_dmg_item():
-	play_sound(AK.EVENTS.MORPHINE_USE)
+	play_sound(AK.EVENTS.SYRINGE)
 	if removeItem(DmgResource):
 		apply_damage_buff(10, 5)
 
-
 func use_speed_item():
-	print(SpeedResource)
+	play_sound(AK.EVENTS.COCAINE_USE)
+	# print(SpeedResource)
 	if removeItem(SpeedResource):
 		apply_speed_buff(1.5, 5)
+
 func use_inventory_item():
 	var action = inventory.use_item()
 	match action:
@@ -581,13 +590,11 @@ func use_inventory_item():
 		"DMG":
 			use_dmg_item()
 		"SPEED":
-			print("Speedy Boy")
+			#print("Speedy Boy")
 			use_speed_item()
 		_:
 			print("Invalid Option")
-				
-		
-	
+
 #Changes the speed, called when on "goo" (Debuffs Speed)
 func set_speed_multiplier(multiplier: float) -> void:
 	debuff_speed = multiplier
@@ -651,7 +658,8 @@ func shovel(damage_increase: int, shrink_factor: float):
 	has_shovel = true
 	base_damage += damage_increase
 	damage_difference = damage_increase
-	current_damage = base_damage 
+	current_damage = base_damage
+	play_sound(AK.EVENTS.PISTOL_DROP)
 	call_deferred("_apply_shovel_collision_changes", shrink_factor)
 
 func _apply_shovel_collision_changes(shrink_factor: float):
@@ -689,8 +697,8 @@ func _on_dialogue_finished(_resource: DialogueResource):
 	# Function to resume everything when dialogue is done
 	in_dialogue = false
 	
-func _on_balloon_closed(_resource: DialogueResource):
-	in_dialogue = false
+#func _on_balloon_closed(_resource: DialogueResource):
+	#in_dialogue = false
 
 func _input(event: InputEvent) -> void:
 	# Skip dialogue option
@@ -709,7 +717,7 @@ func play_sound(id:int):
 	Wwise.post_event_id(id,self)
 
 func play_ambient_sound(location):
-	print("Playing ambient sound ",location)
+	# print("Playing ambient sound ", location)
 	Wwise.stop_all()
 	play_sound(AK.EVENTS.PLAYMUSIC)
 	play_sound(AK.EVENTS.GAMEPLAY)

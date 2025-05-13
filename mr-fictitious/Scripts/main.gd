@@ -16,7 +16,7 @@ func _ready():
 	room_manager.generate_rooms()
 	menu_manager.get_player(player)
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		menu.show()
 		get_tree().paused = true

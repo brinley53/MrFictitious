@@ -134,7 +134,7 @@ func reset_patrol():
 	chase_player = false
 	speed = base_speed
 	attack_player = false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(chase_player and !is_chasing_player):
 		is_chasing_player=true
 		match type:
@@ -216,7 +216,7 @@ func shoot_player():
 	bullet.global_position = global_position
 	bullet.initialize_bullet(player.global_position)
 	get_parent().add_child(bullet)
-	
+
 func check_patrol():
 	#if we're close to the target point, change patrol points as the target point
 	if global_position.distance_to(target_point.global_position) < $CollisionShape2D.shape.radius and !chase_player and len(patrol_points) > 1:
@@ -246,16 +246,15 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt, area_name=""):
-	if disabled or i_frames or (type=="Griffin" and area_name != "Vulnerable"):
+	if disabled or i_frames:
+		return
+	if type == "Griffin" and area_name != "Vulnerable":
+		Wwise.post_event_id(AK.EVENTS.BIG_STATUE_NOT_HURT, self)
 		return
 	call_deferred("_apply_damage", damage_dealt)
 
-func _apply_damage(damage_dealt):
-	chase_player = true
-	player.initiate_combat()
-	health = health - damage_dealt
-	health_bar.value = health
-	health_container.visible = true
+
+func play_hurt_sound():
 	match type:
 		"Wolf":
 			Wwise.post_event_id(AK.EVENTS.WOLF_HURT,self)
@@ -269,8 +268,31 @@ func _apply_damage(damage_dealt):
 			Wwise.post_event_id(AK.EVENTS.STATUE_HURT,self)
 		_:
 			print("No registered Sound for this type")
-			
+
+func play_death_sound():
+	match type:
+		"Wolf":
+			Wwise.post_event_id(AK.EVENTS.WOLF_DEATH,self)
+		"Rat":
+			Wwise.post_event_id(AK.EVENTS.RAT_DEATH,self)
+		"Worker":
+			Wwise.post_event_id(AK.EVENTS.WORKER_DEATH,self)
+		"Ranged":
+			Wwise.post_event_id(AK.EVENTS.GHOST_DEATH,self)
+		"Griffin":
+			Wwise.post_event_id(AK.EVENTS.STATUE_DEATH,self)
+		_:
+			print("No registered Sound for this type")
+
+func _apply_damage(damage_dealt):
+	chase_player = true
+	player.initiate_combat()
+	health = health - damage_dealt
+	health_bar.value = health
+	health_container.visible = true
+	
 	if health <= 0:
+		play_death_sound()
 		var loot_options = [bullet_scene, bullet_scene, bullet_scene, bullet_scene, health_scene]
 		var num_loot = randi_range(1, 3)
 		for i in range(num_loot):
@@ -284,9 +306,12 @@ func _apply_damage(damage_dealt):
 			var offset = Vector2(cos(angle), sin(angle)) * radius
 			item.global_position = global_position + offset
 		queue_free()
+	else:
+		play_hurt_sound()
+	
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
-	sprite.modulate=Color.WHITE
+	sprite.modulate = Color.WHITE
 	
 	if type == "Griffin":
 		i_frames = true
@@ -347,6 +372,7 @@ func apply_stun(duration):
 	add_child(current_stun_timer)
 	current_stun_timer.connect("timeout", Callable(self, "_on_stun_timeout"))
 	current_stun_timer.start()
+	play_hurt_sound()
 
 func _on_stun_timeout():
 	stunned = false
@@ -359,7 +385,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		attack_player = false
 		if (type == 'Wolf'):
-			player.poison(poison_proc_count, damage)			
+			player.poison(poison_proc_count, damage)
 
 func _on_attack_timer_timeout() -> void:
 	# timer to allow player iframes

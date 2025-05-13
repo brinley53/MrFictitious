@@ -23,7 +23,7 @@ func _ready() -> void:
 	await get_tree().process_frame  # Wait one frame so screen appears
 	player.final_boss_dialogue()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player.stealth and !spawning:
 		spawn_workers()
 		spawning = true

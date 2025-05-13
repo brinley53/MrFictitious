@@ -11,7 +11,7 @@ func play_music(obj:Object):
 		Wwise.post_event_id(AK.EVENTS.PLAYMUSIC,obj)
 		title_music_is_playing=true
 
-func stop_music(obj:Object):
+func stop_music():
 	title_music_is_playing=false
 	Wwise.stop_all()
 	#Wwise.post_event_id(AK.EVENTS.MENU_CLICK,obj)

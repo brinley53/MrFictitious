@@ -1,7 +1,7 @@
 extends Control
 
 func _on_reload_pressed() -> void:
-	TitleMusicScene.stop_music(self)
+	TitleMusicScene.stop_music()
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 func _hard_reset():
@@ -35,7 +35,7 @@ func _on_tree_entered() -> void:
 
 func _on_main_menu_pressed() -> void:
 	Wwise.unregister_game_obj(self)
-	TitleMusicScene.stop_music(self)
+	TitleMusicScene.stop_music()
 	var title = load("res://Scenes/title.tscn").instantiate()
 	get_tree().root.add_child(title)
 	get_tree().current_scene.queue_free()
