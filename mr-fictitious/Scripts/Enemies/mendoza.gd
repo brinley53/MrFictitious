@@ -40,13 +40,18 @@ var prev_chase_variable: bool = false
 @onready var switch_attack_timer = $BigAttackTimer
 @onready var triple_timer = $TripleShotTimer
 
+
+var time_until_next_step_sound = 0.0
+var time_until_next_slash_sound = 0.0
+var slashing = false
+
 func _ready():
 	#set initial variables
 	speed = 150.0
 	health_bar.max_value = health
 	health_bar.value = health
 	Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT, self)
-	
+
 func change_attack(attack_type):
 	if stunned:
 		return
@@ -58,6 +63,7 @@ func shoot_player():
 	if stunned or player.stealth or attack != "Shot" or player.in_dialogue:
 		return
 	top_sprite.play("projectile")
+	slashing = false
 	triple_timer.start()
 	
 func shoot():
@@ -71,23 +77,36 @@ func shoot():
 	add_bullet(player.global_position)
 	add_bullet(player.global_position + right_offset)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if stunned or player.in_dialogue:
 		return
 	if !player.stealth:
-		Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
+		#Wwise.post_event_id(AK.EVENTS.MENDOZA_ALERT,self)
 		# Calculate the direction vector towards the player
 		#var direction = (player.global_position - global_position).normalized()
 		
 		if attack == "Chase":
 			top_sprite.play("melee")
+			slashing = true
 			bottom_sprite.play("walk")
 			velocity = (player.global_position - global_position).normalized() * speed
 			move_and_slide()
+			
+			time_until_next_step_sound -= delta
+			if time_until_next_step_sound <= 0.0:
+				time_until_next_step_sound += 0.6
+				Wwise.post_event_id(AK.EVENTS.WORKER_PASSIVE, self)
+			
 		else:
 			bottom_sprite.play("default")
 	else:
 		bottom_sprite.play("default")
+	
+	if slashing:
+		time_until_next_slash_sound -= delta
+		if time_until_next_slash_sound <= 0.0:
+			time_until_next_slash_sound += 0.68
+			Wwise.post_event_id(AK.EVENTS.MENDOZA_PASSIVE, self)
 
 #Takes damage, when life reaches 0 it dies
 func reduce_enemy_health(damage_dealt):
@@ -174,3 +193,4 @@ func _on_top_sprite_animation_finished() -> void:
 	if top_sprite.animation == "projectile":
 		shoot()
 		top_sprite.play("end_projectile")
+		slashing = false

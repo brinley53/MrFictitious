@@ -88,6 +88,45 @@ var dart_timer:Timer
 @onready var i_frames_timer = $IFramesTimer
 
 
+
+func get_passive_sound_interval() -> float:
+	match type:
+		"Wolf":
+			return randf_range(7.0, 10.0)
+		"Rat":
+			return randf_range(3.0, 5.0)
+		"Worker":
+			return 0.4
+		"Ranged":
+			return randf_range(4.0, 8.0)
+		"Griffin":
+			return 20.0
+		_:
+			print("Wrong enemy")
+			return 60.0
+
+var time_until_next_passive_sound = 0.0;
+
+func process_passive_sound(delta: float):
+	time_until_next_passive_sound -= delta;
+	if time_until_next_passive_sound <= 0.0:
+		time_until_next_passive_sound = get_passive_sound_interval();
+		
+		match type:
+			"Wolf":
+				Wwise.post_event_id(AK.EVENTS.WOLF_PASSIVE, self)
+			"Rat":
+				Wwise.post_event_id(AK.EVENTS.RAT_PASSIVE, self)
+			"Worker":
+				Wwise.post_event_id(AK.EVENTS.WORKER_PASSIVE, self)
+			"Ranged":
+				Wwise.post_event_id(AK.EVENTS.GHOST_PASSIVE, self)
+			"Griffin":
+				pass
+			_:
+				print("Wrong enemy")
+
+
 func _ready():
 	#set initial variables
 	health_bar.max_value = health
@@ -123,6 +162,10 @@ func _ready():
 	sprite.flip_h = flipped
 	i_frames_timer.wait_time = 0.25
 	
+	time_until_next_passive_sound = randf_range(0, get_passive_sound_interval())
+
+
+
 func reset_patrol():
 	if patrol_a == null or patrol_b == null:
 		if len(patrol_points) < 2:
@@ -134,38 +177,31 @@ func reset_patrol():
 	chase_player = false
 	speed = base_speed
 	attack_player = false
-func _process(_delta: float) -> void:
-	if(chase_player and !is_chasing_player):
-		is_chasing_player=true
-		match type:
-			"Wolf":
-				Wwise.post_event_id(AK.EVENTS.WOLF_ALERT,self)
-			"Rat":
-				Wwise.post_event_id(AK.EVENTS.RAT_ALERT,self)
-			"Worker":
-				Wwise.post_event_id(AK.EVENTS.WORKER_ALERT,self)
-			"Ranged":
-				Wwise.post_event_id(AK.EVENTS.GHOST_ALERT,self)
-			"Griffin":
-				Wwise.post_event_id(AK.EVENTS.STATUE_ALERT,self)
-			_:
-				print("Wrong enemy")
-	elif(!chase_player and is_chasing_player):
-		is_chasing_player=false
-		match type:
-			"Wolf":
-				Wwise.post_event_id(AK.EVENTS.WOLF_PASSIVE,self)
-			"Rat":
-				Wwise.post_event_id(AK.EVENTS.RAT_PASSIVE,self)
-			"Worker":
-				Wwise.post_event_id(AK.EVENTS.WORKER_PASSIVE,self)
-			"Ranged":
-				Wwise.post_event_id(AK.EVENTS.GHOST_PASSIVE,self)
-			"Griffin":
-				Wwise.post_event_id(AK.EVENTS.STATUE_PASSIVE,self)
-			_:
-				print("Wrong enemy")
+
+
+
+func _process(delta: float) -> void:
+	if chase_player:
+		if !is_chasing_player:
+			is_chasing_player = true
+			match type:
+				"Wolf":
+					Wwise.post_event_id(AK.EVENTS.WOLF_ALERT, self)
+				"Rat":
+					Wwise.post_event_id(AK.EVENTS.RAT_ALERT, self)
+				"Worker":
+					Wwise.post_event_id(AK.EVENTS.WORKER_ALERT, self)
+				"Ranged":
+					Wwise.post_event_id(AK.EVENTS.GHOST_ALERT, self)
+				"Griffin":
+					Wwise.post_event_id(AK.EVENTS.STATUE_ALERT, self)
+				_:
+					print("Wrong enemy")
+	else:
+		is_chasing_player = false
 	
+	process_passive_sound(delta)
+
 
 func _physics_process(delta: float) -> void:
 	if stunned or disabled:
@@ -409,6 +445,7 @@ func _on_shot_timer_timeout() -> void:
 			pass
 		shoot_player()
 		shot_timer.start()
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_SHOOT, self)
 
 func knockback(pos):
 	if disabled or i_frames:
@@ -424,6 +461,8 @@ func _apply_knockback(pos):
 
 func _on_spec_timer_timeout() -> void:
 	statue = !statue
+	if type == "Griffin":
+		Wwise.post_event_id(AK.EVENTS.STATUE_ALERT, self)
 	spec_timer.start()
 
 

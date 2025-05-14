@@ -76,6 +76,9 @@ func shoot_player():
 	bullet.initialize_bullet(player.global_position, attack)
 	get_parent().add_child(bullet)
 
+
+var time_until_next_passive_sound = 0.0
+
 func _physics_process(delta: float) -> void:
 	if stunned:
 		return
@@ -92,13 +95,9 @@ func _physics_process(delta: float) -> void:
 		var direction = (player.global_position - global_position).normalized()
 		
 		# Rotate the sprite towards the player
-		if direction.x > 0:
-			sprite.flip_h = true  # Not flipped
-		else:
-			sprite.flip_h = false  # Flip horizontally
-			
-
-		# Rotate the detection area to face the playe
+		sprite.flip_h = direction.x > 0
+		
+		# Rotate the detection area to face the player
 		
 		direction = (player.global_position - detection.global_position).angle() + PI
 		detection.rotation = lerp_angle(detection.rotation, direction, delta *100)
@@ -113,6 +112,11 @@ func _physics_process(delta: float) -> void:
 		
 		velocity = (player.global_position - global_position).normalized() * speed
 		move_and_slide()
+	
+	time_until_next_passive_sound -= delta
+	if time_until_next_passive_sound <= 0.0:
+		time_until_next_passive_sound = randf_range(3.0, 6.0)
+		Wwise.post_event_id(AK.EVENTS.HORSEMAN_PASSIVE, self)
 	
 	#if(chase_player and !prev_chase_player):
 		#Wwise.post_event_id(AK.EVENTS.HORSEMAN_ALERT,self)
